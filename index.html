@@ -16,66 +16,34 @@ body{
   color:#fff;
 }
 .card{
-  width:95%;
-  max-width:450px;
+  width:600px;
   background:rgba(255,255,255,.05);
   backdrop-filter:blur(15px);
-  padding:25px;
-  border-radius:20px;
+  padding:40px;
+  border-radius:25px;
   text-align:center;
   box-shadow:0 20px 50px rgba(0,0,0,.4);
 }
 .logo{
-  font-size:32px;
+  font-size:48px;
   font-weight:900;
   background:linear-gradient(90deg,#0d6efd,#6610f2);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  margin-bottom:10px;
-}
-.dua{
-  color:#ccc;
-  font-size:14px;
-  margin-bottom:20px;
-  text-align:center;
-}
-.apps{
-  text-align:right;
-  margin-bottom:20px;
-}
-.app-item{
-  background:rgba(37,211,102,.1);
-  border:1px solid rgba(37,211,102,.3);
-  padding:12px;
-  border-radius:12px;
-  margin-bottom:10px;
-}
-.app-item a{
-  display:block;
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-  background:#25D366;
-  padding:10px;
-  border-radius:8px;
+  margin-bottom:30px;
 }
 .maint{
-  margin-top:10px;
-  padding:20px;
-  border-radius:12px;
+  padding:30px;
+  border-radius:20px;
   background:rgba(255,193,7,.1);
   border:1px solid rgba(255,193,7,.4);
+  font-size:28px;
 }
 .count{
-  margin-top:10px;
-  font-size:18px;
+  margin-top:15px;
+  font-size:36px;
   color:#ffc107;
   font-weight:bold;
-}
-.footer{
-  margin-top:20px;
-  font-size:12px;
-  color:#aaa;
 }
 </style>
 </head>
@@ -83,48 +51,24 @@ body{
 
 <div class="card">
   <div class="logo">HDMosul Store</div>
-  <div class="dua">لا تنسونا من صالح دعائكم 🤍</div>
-
-  <div class="apps" id="appsContainer">
-    <!-- التطبيقات سيتم إضافتها ديناميكيًا -->
-  </div>
 
   <div class="maint">
-    <div style="font-size:35px">⚠️</div>
-    <div>الموقع تحت الصيانة</div>
+    ⚠️ الموقع تحت الصيانة
     <div class="count" id="c"></div>
   </div>
-
-  <div class="footer">نعود قريباً ❤️</div>
 </div>
 
 <script>
-// مصفوفة التطبيقات: ضع هنا اسم التطبيق ورابطه
-const apps = [
-  {name: "تطبيق شاشات", link: "https://example.com/app1"},
-  {name: "تطبيق تيفي بوكس", link: "https://example.com/app2"},
-  {name: "تطبيق جديد", link: "https://example.com/app3"}
-];
-
-// إنشاء التطبيقات تلقائيًا
-const container = document.getElementById("appsContainer");
-apps.forEach(app => {
-  const div = document.createElement("div");
-  div.className = "app-item";
-  div.innerHTML = `<div>${app.name}</div><a href="${app.link}" target="_blank">تحميل التطبيق</a>`;
-  container.appendChild(div);
-});
-
-// العداد التنازلي للصيانة
-let e=new Date(); e.setDate(e.getDate()+10); // 10 أيام
+// عداد الوقت (ساعات/دقائق/ثواني)
+let e=new Date(); 
+e.setHours(e.getHours()+10); // 10 ساعات
 function u(){
   let n=new Date(), d=e-n;
   if(d<=0) return c.innerHTML="انتهى 🚀";
-  let D=Math.floor(d/864e5),
-      H=Math.floor(d/36e5)%24,
+  let H=Math.floor(d/36e5),
       M=Math.floor(d/6e4)%60,
       S=Math.floor(d/1e3)%60;
-  c.innerHTML=D+" يوم : "+H+" ساعة : "+M+" دقيقة : "+S+" ثانية";
+  c.innerHTML=H+" ساعة : "+M+" دقيقة : "+S+" ثانية";
 }
 setInterval(u,1000); u();
 </script>
