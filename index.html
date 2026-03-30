@@ -19,38 +19,39 @@ body{
   max-width:1400px;
   padding:20px;
   text-align:center;
-  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-/* علم ريال مدريد متحرك */
-.flag-container{
-  position:relative;
-  height:60px;
+/* اسم المتجر مع العلم */
+.logo-container{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
   margin-bottom:10px;
-  overflow:hidden;
 }
-.flag{
-  height:50px;
-  position:absolute;
-  animation:slideFlag 4s linear infinite alternate;
-}
-@keyframes slideFlag{
-  0%{left:-60px;}
-  50%{left:10px;}
-  100%{left:-60px;}
-}
-
-/* اسم المتجر جاذبية بصرياً */
 .logo{
   font-size:48px;
   font-weight:900;
-  color:#0dcaf0;
-  margin-bottom:10px;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.6),
-               0 0 10px #0dcaf0,
-               0 0 20px #0dcaf0,
-               0 0 30px #0dcaf0;
+  color:#ff4d4d; /* أحمر */
+  text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000; /* توهج أسود خفيف */
+  animation:logoGlow 2s ease-in-out infinite alternate;
 }
+@keyframes logoGlow{
+  0%{text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000;}
+  50%{text-shadow: 0 0 8px #000, 0 0 14px #000, 0 0 20px #000;}
+  100%{text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000;}
+}
+.logo img{
+  height:50px;
+  width:50px;
+  border-radius:50%;
+  border:2px solid #ff4d4d;
+}
+
+/* شعار فرعي */
 .sublogo{
   color:#ffc107;
   margin-bottom:15px;
@@ -63,14 +64,14 @@ body{
   padding:10px 20px;
   border-radius:12px;
   background:rgba(0,0,0,0.3);
-  border:1px solid rgba(13,202,240,0.5);
+  border:1px solid rgba(255,77,77,0.5);
   font-size:16px;
   margin-bottom:15px;
-  box-shadow:0 0 20px rgba(13,202,240,0.5);
+  box-shadow:0 0 20px rgba(255,77,77,0.5);
 }
 .count{
   margin-top:5px;
-  color:#0dcaf0;
+  color:#ff4d4d;
   font-weight:bold;
   font-size:16px;
   text-shadow:1px 1px 5px rgba(0,0,0,0.7);
@@ -81,40 +82,36 @@ body{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:15px;
+  width:100%;
 }
 
-/* مربعات التطبيقات */
+/* أزرار التطبيقات بدون صور */
 .app-card{
-  position:relative;
   border-radius:15px;
-  overflow:hidden;
-  height:180px;
+  padding:20px 10px;
+  font-size:22px;
+  font-weight:bold;
+  text-align:center;
   color:#fff;
-  box-shadow:0 10px 30px rgba(0,0,0,.4);
   cursor:pointer;
   transition:0.3s;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  text-decoration:none;
   display:flex;
   flex-direction:column;
-  justify-content:flex-end;
-  text-decoration:none;
+  justify-content:center;
+  min-height:120px;
 }
 .app-card:hover{
   transform:scale(1.05);
   box-shadow:0 15px 40px rgba(0,0,0,.6);
 }
 
-/* Overlay للكتابة */
-.app-overlay{
-  background:rgba(0,0,0,0.5);
-  padding:10px;
-  text-align:center;
-}
-
-/* صور افتراضية */
-.btn1{background:url('https://i.ibb.co/9c3y4Kc/prime-tv.jpg') center/cover no-repeat;}
-.btn2{background:url('https://i.ibb.co/Bg7J7R9/cinemana.jpg') center/cover no-repeat;}
-.btn3{background:url('https://i.ibb.co/6R7W5Zy/cinemana-linback.jpg') center/cover no-repeat;}
-.btn4{background:url('https://i.ibb.co/N9C3b7D/iraq-tv.jpg') center/cover no-repeat;}
+/* ألوان ثابتة لكل زر */
+.btn1{background:#25D366;} /* برايم تيفي */
+.btn2{background:#0d6efd;} /* سينمانا شاشة */
+.btn3{background:#6610f2;} /* سينمانا لينباك */
+.btn4{background:#ff5722;} /* 1 IRAQ TV */
 
 /* الوصف */
 .desc{
@@ -146,26 +143,25 @@ body{
 
 /* Responsive adjustments */
 @media screen and (min-width: 1200px){
-  .app-card{height:200px;}
+  .app-card{min-height:140px;}
 }
 @media screen and (max-width: 600px){
-  .app-card{height:150px;}
-  .app-overlay{padding:5px;}
+  .app-card{min-height:120px;}
   .logo{font-size:36px;}
-  .flag-container{height:40px;}
-  .flag{height:30px;}
+  .logo img{height:40px;width:40px;}
 }
 </style>
 </head>
 <body>
 
 <div class="card">
-  <!-- علم ريال مدريد -->
-  <div class="flag-container">
-    <img class="flag" src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid Flag">
+
+  <!-- اسم المتجر مع علم ريال مدريد ثابت -->
+  <div class="logo-container">
+    <div class="logo">HDMosul Store</div>
+    <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid Flag">
   </div>
 
-  <div class="logo">HDMosul Store</div>
   <div class="sublogo">تجريبي</div>
 
   <div class="maint">
@@ -175,28 +171,20 @@ body{
 
   <div class="download">
     <a class="app-card btn1" href="#" target="_blank">
-      <div class="app-overlay">
-        <div>برايم تيفي</div>
-        <div class="desc">كود التفعيل: 2026</div>
-      </div>
+      <div>برايم تيفي</div>
+      <div class="desc">كود التفعيل: 2026</div>
     </a>
     <a class="app-card btn2" href="#" target="_blank">
-      <div class="app-overlay">
-        <div>سينمانا شاشة</div>
-        <div class="desc">يعمل على: ايرثلنك + كيبل ضوئي</div>
-      </div>
+      <div>سينمانا شاشة</div>
+      <div class="desc">يعمل على: ايرثلنك + كيبل ضوئي</div>
     </a>
     <a class="app-card btn3" href="#" target="_blank">
-      <div class="app-overlay">
-        <div>سينمانا لينباك</div>
-        <div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
-      </div>
+      <div>سينمانا لينباك</div>
+      <div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
     </a>
     <a class="app-card btn4" href="#" target="_blank">
-      <div class="app-overlay">
-        <div>1 IRAQ TV</div>
-        <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
-      </div>
+      <div>1 IRAQ TV</div>
+      <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
     </a>
   </div>
 </div>
@@ -208,7 +196,7 @@ body{
 </div>
 
 <script>
-// الساعة والتاريخ الحية بتوقيت نينوى مع تصميم جذاب
+// الساعة والتاريخ الحية بتوقيت نينوى
 function updateClock(){
   let now = new Date();
   let utc = now.getTime() + (now.getTimezoneOffset() * 60000);
