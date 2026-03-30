@@ -57,7 +57,8 @@ body{
   margin-top:20px;
 }
 .download a{
-  display:inline-block;
+  display:block;
+  margin:10px auto;
   padding:15px 25px;
   font-size:22px;
   font-weight:bold;
@@ -66,6 +67,7 @@ body{
   border-radius:12px;
   text-decoration:none;
   transition:0.3s;
+  width:80%;
 }
 .download a:hover{
   background:#1ebe57;
@@ -79,6 +81,11 @@ body{
   padding:8px 15px;
   border-radius:8px;
 }
+.note{
+  margin-top:8px;
+  font-size:16px;
+  color:#ffc107;
+}
 .footer{
   width:100%;
   overflow:hidden;
@@ -91,7 +98,7 @@ body{
 .marquee{
   display:inline-block;
   padding-left:100%;
-  animation: move 15s linear infinite;
+  animation: move 30s linear infinite;
   font-size:24px;
   color:#ffc107;
 }
@@ -113,32 +120,23 @@ body{
   </div>
 
   <div class="download">
+    
     <a href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file" target="_blank">
       تحميل تطبيق هلي برايم TV
     </a>
     <div class="activation">كود التفعيل: 2026</div>
+
+    <a href="https://www.mediafire.com/file/f5bayroe9arsszp/%D8%B3%D9%8A%D9%86%D9%85%D8%A7%D9%86%D8%A7+TV.apk/file" target="_blank">
+      تحميل سينمانا شاشة
+    </a>
+    <div class="note">يعمل على: ايرثلنك + كيبل ضوئي</div>
+
   </div>
 </div>
 
 <div class="footer">
-  <div class="marquee">الحمد لله | سبحان الله | وصل على النبي | صل على النبي | الحمد لله | سبحان الله | وصل على النبي | صل على النبي</div>
+  <div class="marquee">الحمد لله | سبحان الله | الحمد لله | سبحان الله</div>
 </div>
-
-<script>
-// عداد الوقت (ساعات/دقائق/ثواني)
-let e=new Date(); 
-e.setHours(e.getHours()+10); // 10 ساعات
-function updateCountdown(){
-  let n=new Date(), d=e-n;
-  if(d<=0) return c.innerHTML="انتهى 🚀";
-  let H=Math.floor(d/36e5),
-      M=Math.floor(d/6e4)%60,
-      S=Math.floor(d/1e3)%60;
-  c.innerHTML=H+" ساعة : "+M+" دقيقة : "+S+" ثانية";
-}
-setInterval(updateCountdown,1000); 
-updateCountdown();
-</script>
 
 </body>
 </html>
