@@ -1,51 +1,122 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HDMosul</title>
+<title>HDMosul Store</title>
 <style>
-body{margin:0;font-family:sans-serif;background:linear-gradient(135deg,#0f172a,#1e293b);display:flex;justify-content:center;align-items:center;height:100vh;color:#fff}
-.card{width:95%;max-width:400px;background:rgba(255,255,255,.05);backdrop-filter:blur(15px);padding:25px;border-radius:20px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4)}
-.logo{font-size:32px;font-weight:900;background:linear-gradient(90deg,#0d6efd,#6610f2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.dua{color:#ccc;font-size:14px;margin:15px 0}
-.wa{background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);padding:12px;border-radius:12px}
-.wa a{display:block;background:#25D366;color:#fff;padding:10px;border-radius:8px;text-decoration:none;font-weight:bold}
-.verify{color:#0d6efd;margin-right:5px}
-.maint{margin-top:20px;padding:20px;border-radius:12px;background:rgba(255,193,7,.1);border:1px solid rgba(255,193,7,.4)}
-.count{margin-top:10px;font-size:18px;color:#ffc107;font-weight:bold}
-.footer{margin-top:20px;font-size:12px;color:#aaa}
+body{
+  margin:0;
+  font-family:sans-serif;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  color:#fff;
+}
+.card{
+  width:95%;
+  max-width:450px;
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(15px);
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+.logo{
+  font-size:32px;
+  font-weight:900;
+  background:linear-gradient(90deg,#0d6efd,#6610f2);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:10px;
+}
+.dua{
+  color:#ccc;
+  font-size:14px;
+  margin-bottom:20px;
+}
+.apps{
+  text-align:right;
+  margin-bottom:20px;
+}
+.app-item{
+  background:rgba(37,211,102,.1);
+  border:1px solid rgba(37,211,102,.3);
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+.app-item a{
+  display:block;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  background:#25D366;
+  padding:10px;
+  border-radius:8px;
+}
+.maint{
+  margin-top:10px;
+  padding:20px;
+  border-radius:12px;
+  background:rgba(255,193,7,.1);
+  border:1px solid rgba(255,193,7,.4);
+}
+.count{
+  margin-top:10px;
+  font-size:18px;
+  color:#ffc107;
+  font-weight:bold;
+}
+.footer{
+  margin-top:20px;
+  font-size:12px;
+  color:#aaa;
+}
 </style>
 </head>
 <body>
 
 <div class="card">
-<div class="logo">HDMosul</div>
-<div class="dua">لا تنسونا من صالح دعائكم 🤍</div>
+  <div class="logo">HDMosul Store</div>
+  <div class="dua">Do not forget us in your prayers 🤍</div>
 
-<div class="wa">
-<p>لطلب أي تطبيق واتساب</p>
-<a href="https://wa.me/9647766780579">✔️ <span class="verify">موثق</span> 07766780579 🟢</a>
-</div>
+  <div class="apps">
+    <div class="app-item">
+      <div>تطبيق شاشات</div>
+      <a href="https://example.com/app1" target="_blank">Download App 1</a>
+    </div>
+    <div class="app-item">
+      <div>تطبيق تيفي بوكس</div>
+      <a href="https://example.com/app2" target="_blank">Download App 2</a>
+    </div>
+    <!-- تستطيع إضافة المزيد من التطبيقات بنفس التنسيق -->
+  </div>
 
-<div class="maint">
-<div style="font-size:35px">⚠️</div>
-<div>الموقع تحت الصيانة</div>
-<div class="count" id="c"></div>
-</div>
+  <div class="maint">
+    <div style="font-size:35px">⚠️</div>
+    <div>Website Under Maintenance</div>
+    <div class="count" id="c"></div>
+  </div>
 
-<div class="footer">نعود قريباً ❤️</div>
+  <div class="footer">We will be back soon ❤️</div>
 </div>
 
 <script>
-let e=new Date();e.setDate(e.getDate()+10);
+let e=new Date(); e.setDate(e.getDate()+10); // 10 أيام
 function u(){
-let n=new Date(),d=e-n;
-if(d<=0)return c.innerHTML="انتهى 🚀";
-let D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24,M=Math.floor(d/6e4)%60,S=Math.floor(d/1e3)%60;
-c.innerHTML=D+" يوم : "+H+" ساعة : "+M+" دقيقة : "+S+" ثانية";
+  let n=new Date(), d=e-n;
+  if(d<=0) return c.innerHTML="Finished 🚀";
+  let D=Math.floor(d/864e5),
+      H=Math.floor(d/36e5)%24,
+      M=Math.floor(d/6e4)%60,
+      S=Math.floor(d/1e3)%60;
+  c.innerHTML=D+" days : "+H+" hours : "+M+" minutes : "+S+" seconds";
 }
-setInterval(u,1000);u();
+setInterval(u,1000); u();
 </script>
 
 </body>
