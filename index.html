@@ -7,19 +7,34 @@
 <style>
 body{margin:0;font-family:sans-serif;background:linear-gradient(135deg,#0f172a,#1e293b);display:flex;justify-content:center;align-items:center;min-height:100vh;color:#fff;flex-direction:column}
 .card{width:600px;background:rgba(255,255,255,.05);backdrop-filter:blur(15px);padding:30px;border-radius:20px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4)}
-.logo{font-size:40px;font-weight:900;background:linear-gradient(90deg,#0d6efd,#6610f2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{font-size:42px;font-weight:900;color:#0dcaf0;margin-bottom:5px} 
 .sublogo{color:#ffc107;margin:10px 0 20px}
 .maint{padding:20px;border-radius:15px;background:rgba(255,193,7,.1);border:1px solid rgba(255,193,7,.4);font-size:22px}
 .count{margin-top:10px;color:#ffc107;font-weight:bold}
+
+/* الأزرار */
 .download a{display:block;margin:10px auto;padding:14px;font-size:20px;font-weight:bold;color:#fff;border-radius:12px;text-decoration:none;width:80%}
-.btn1{background:linear-gradient(45deg,#25D366,#1ebe57)}
-.btn2{background:linear-gradient(45deg,#0d6efd,#0b5ed7)}
-.btn3{background:linear-gradient(45deg,#6610f2,#520dc2)}
+.btn1{background:#25D366}
+.btn2{background:#0d6efd}
+.btn3{background:#6610f2}
+
 .activation,.note,.desc{margin-top:5px;font-size:14px}
 .note{color:#ffc107}.desc{color:#ccc}
+
+/* شريط الأذكار */
 .footer{width:100%;overflow:hidden;background:rgba(0,0,0,.2);margin-top:10px}
-.marquee{display:inline-block;padding-left:100%;animation:move 30s linear infinite;font-size:20px;color:#ffc107}
-@keyframes move{100%{transform:translateX(-100%)}}
+.marquee{
+  display:inline-block;
+  white-space:nowrap;
+  padding-right:100%;
+  animation:move 60s linear infinite; /* حركة أبطأ */
+  font-size:20px;
+  color:#ffc107
+}
+@keyframes move{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(100%)}
+}
 </style>
 </head>
 <body>
@@ -51,7 +66,7 @@ body{margin:0;font-family:sans-serif;background:linear-gradient(135deg,#0f172a,#
 </div>
 
 <div class="footer">
-<div class="marquee">الحمد لله | سبحان الله | الحمد لله | سبحان الله</div>
+<div class="marquee">الحمد لله | سبحان الله | معة عزيز صاحب منزل هذه تطبيقات مجانية لثواب | الحمد لله | سبحان الله</div>
 </div>
 
 <script>
