@@ -5,15 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HDMosul Store</title>
 <style>
+:root {
+  --bg-light: #f5f5f5;
+  --bg-dark: linear-gradient(135deg,#0f172a,#1e293b);
+  --text-light: #111;
+  --text-dark: #fff;
+  --btn1-light: #4CAF50;
+  --btn3-light: #3F51B5;
+  --btn4-light: #FF9800;
+  --btn1-dark: #25D366;
+  --btn3-dark: #6610f2;
+  --btn4-dark: #ff5722;
+}
+
+/* الوضع الافتراضي داكن */
 body{
   margin:0;
   font-family:sans-serif;
-  background:linear-gradient(135deg,#0f172a,#1e293b);
-  color:#fff;
+  background: var(--bg-dark);
+  color: var(--text-dark);
   display:flex;
   flex-direction:column;
   align-items:center;
+  transition: all 0.5s ease;
 }
+
 .card{
   width:95%;
   max-width:1400px;
@@ -22,6 +38,7 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
+  transition: all 0.5s ease;
 }
 
 /* اسم المتجر مع العلم */
@@ -35,9 +52,10 @@ body{
 .logo{
   font-size:48px;
   font-weight:900;
-  color:#ff4d4d; /* أحمر */
+  color:#ff4d4d; 
   text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000;
   animation:logoGlow 2s ease-in-out infinite alternate;
+  transition: all 0.5s ease;
 }
 @keyframes logoGlow{
   0%{text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000;}
@@ -47,8 +65,9 @@ body{
 .logo img{
   height:50px;
   width:50px;
-  border-radius:50%;
+  border-radius:5px;
   border:2px solid #ff4d4d;
+  transition: all 0.5s ease;
 }
 
 /* شعار فرعي */
@@ -56,6 +75,7 @@ body{
   color:#ffc107;
   margin-bottom:15px;
   font-size:20px;
+  transition: all 0.5s ease;
 }
 
 /* عداد الوقت */
@@ -68,6 +88,7 @@ body{
   font-size:16px;
   margin-bottom:15px;
   box-shadow:0 0 20px rgba(255,77,77,0.5);
+  transition: all 0.5s ease;
 }
 .count{
   margin-top:5px;
@@ -83,9 +104,10 @@ body{
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:15px;
   width:100%;
+  transition: all 0.5s ease;
 }
 
-/* أزرار التطبيقات موحدة الحجم */
+/* أزرار التطبيقات */
 .app-card{
   border-radius:15px;
   padding:20px 10px;
@@ -94,8 +116,8 @@ body{
   text-align:center;
   color:#fff;
   cursor:pointer;
-  transition:0.3s;
-  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  transition: all 0.5s ease;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
   text-decoration:none;
   display:flex;
   flex-direction:column;
@@ -104,20 +126,21 @@ body{
 }
 .app-card:hover{
   transform:scale(1.05);
-  box-shadow:0 15px 40px rgba(0,0,0,.6);
+  box-shadow:0 12px 30px rgba(0,0,0,.5);
 }
 
-/* ألوان ثابتة لكل زر */
-.btn1{background:#25D366;} /* برايم تيفي */
-.btn3{background:#6610f2;} /* سينمانا لينباك */
-.btn4{background:#ff5722;} /* 1 IRAQ TV */
+/* ألوان مناسبة لكل وضع */
+.btn1{background:#25D366;} /* افتراضي داكن */
+.btn3{background:#6610f2;}
+.btn4{background:#ff5722;}
 
 /* الوصف */
 .desc{
   font-size:14px;
-  color:#ffc107;
+  color:#fff;
   margin-top:5px;
   line-height:1.2;
+  transition: all 0.5s ease;
 }
 
 /* شريط الأذكار */
@@ -126,6 +149,7 @@ body{
   overflow:hidden;
   background:rgba(0,0,0,.2);
   margin-top:20px;
+  transition: all 0.5s ease;
 }
 .marquee{
   display:inline-block;
@@ -133,29 +157,57 @@ body{
   padding-right:100%;
   animation:move 90s linear infinite; 
   font-size:18px;
-  color:#ffc107
+  color:#ffc107;
+  transition: all 0.5s ease;
 }
 @keyframes move{
   0%{transform:translateX(0)}
   100%{transform:translateX(100%)}
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 600px){
-  .app-card{min-height:120px;}
-  .logo{font-size:36px;}
-  .logo img{height:40px;width:40px;}
+/* زر تغيير الوضع */
+.mode-btn{
+  position:fixed;
+  top:10px;
+  left:10px;
+  padding:8px 12px;
+  background:#ff4d4d;
+  color:#fff;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+  font-weight:bold;
+  z-index:1000;
+  transition: all 0.5s ease;
 }
+
+/* الوضع النهاري */
+body.light{
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+body.light .maint{
+  background: rgba(0,0,0,0.05);
+  border:1px solid rgba(0,0,0,0.2);
+  box-shadow:0 0 20px rgba(0,0,0,0.1);
+}
+body.light .app-card.btn1{background: var(--btn1-light);}
+body.light .app-card.btn3{background: var(--btn3-light);}
+body.light .app-card.btn4{background: var(--btn4-light);}
+body.light .desc{color:#111;}
+body.light .footer{background: rgba(0,0,0,0.05);}
 </style>
 </head>
 <body>
 
+<button class="mode-btn" onclick="toggleMode()">تغيير الوضع</button>
+
 <div class="card">
 
-  <!-- اسم المتجر مع العلم المبسط بدون صليب -->
+  <!-- اسم المتجر مع علم العراق -->
   <div class="logo-container">
     <div class="logo">HDMosul Store</div>
-    <img src="https://i.ibb.co/W2F0qgX/real-madrid-no-cross.png" alt="Real Madrid Flag">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Flag_of_Iraq.svg" alt="Iraq Flag">
   </div>
 
   <div class="sublogo">تجريبي</div>
@@ -207,6 +259,11 @@ function updateClock(){
   document.getElementById("countdown").innerHTML = `${dayName} ${date}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
 }
 setInterval(updateClock,1000);
+
+// تبديل الوضع
+function toggleMode(){
+  document.body.classList.toggle('light');
+}
 </script>
 
 </body>
