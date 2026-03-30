@@ -32,75 +32,56 @@ body{
   background:linear-gradient(90deg,#0d6efd,#6610f2);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  margin-bottom:10px;
 }
 .sublogo{
   font-size:20px;
   color:#ffc107;
-  margin-bottom:30px;
+  margin-bottom:25px;
 }
 .maint{
-  padding:30px;
+  padding:25px;
   border-radius:20px;
   background:rgba(255,193,7,.1);
   border:1px solid rgba(255,193,7,.4);
-  font-size:28px;
-  margin-bottom:20px;
+  font-size:26px;
+  margin-bottom:15px;
 }
 .count{
-  margin-top:15px;
-  font-size:36px;
+  margin-top:10px;
+  font-size:28px;
   color:#ffc107;
   font-weight:bold;
 }
-.download{
-  margin-top:20px;
-}
-.btn1{background:#25D366;}
-.btn1:hover{background:#1ebe57;}
-.btn2{background:#0d6efd;}
-.btn2:hover{background:#0b5ed7;}
-.btn3{background:#6610f2;}
-.btn3:hover{background:#520dc2;}
+
+/* الأزرار */
 .download a{
   display:block;
-  margin:10px auto;
-  padding:15px 25px;
+  margin:12px auto;
+  padding:16px;
   font-size:22px;
   font-weight:bold;
   color:#fff;
-  border-radius:12px;
+  border-radius:14px;
   text-decoration:none;
-  transition:0.3s;
   width:80%;
 }
-.activation{
-  margin-top:10px;
-  font-size:18px;
-  color:#fff;
-  background:rgba(0,0,0,.2);
-  display:inline-block;
-  padding:8px 15px;
-  border-radius:8px;
-}
-.note{
-  margin-top:8px;
+
+/* ألوان */
+.btn1{background:linear-gradient(45deg,#25D366,#1ebe57);}
+.btn2{background:linear-gradient(45deg,#0d6efd,#0b5ed7);}
+.btn3{background:linear-gradient(45deg,#6610f2,#520dc2);}
+
+.activation,.note,.desc{
+  margin-top:6px;
   font-size:16px;
-  color:#ffc107;
 }
-.desc{
-  margin-top:5px;
-  font-size:15px;
-  color:#ccc;
-}
+.note{color:#ffc107;}
+.desc{color:#ccc;}
+
 .footer{
   width:100%;
   overflow:hidden;
   background:rgba(0,0,0,.2);
-  white-space:nowrap;
-  box-sizing:border-box;
-  padding:10px 0;
-  margin-top:10px;
 }
 .marquee{
   display:inline-block;
@@ -110,7 +91,6 @@ body{
   color:#ffc107;
 }
 @keyframes move{
-  0%{transform:translateX(0);}
   100%{transform:translateX(-100%);}
 }
 </style>
@@ -123,13 +103,13 @@ body{
 
   <div class="maint">
     ⚠️ الموقع تحت الصيانة
-    <div class="count" id="c"></div>
+    <div class="count" id="countdown"></div>
   </div>
 
   <div class="download">
     
     <a class="btn1" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file" target="_blank">
-      تحميل تطبيق هلي برايم TV
+      تحميل برايم تيفي
     </a>
     <div class="activation">كود التفعيل: 2026</div>
 
@@ -149,6 +129,31 @@ body{
 <div class="footer">
   <div class="marquee">الحمد لله | سبحان الله | الحمد لله | سبحان الله</div>
 </div>
+
+<script>
+// عد تنازلي 10 أيام
+let endDate = new Date();
+endDate.setDate(endDate.getDate() + 10);
+
+function updateCountdown(){
+  let now = new Date().getTime();
+  let distance = endDate - now;
+
+  let days = Math.floor(distance / (1000*60*60*24));
+  let hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+  let minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  let seconds = Math.floor((distance % (1000*60)) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+    days + " يوم : " + hours + " ساعة : " + minutes + " دقيقة : " + seconds + " ثانية";
+
+  if(distance < 0){
+    document.getElementById("countdown").innerHTML = "تم انتهاء الصيانة";
+  }
+}
+
+setInterval(updateCountdown,1000);
+</script>
 
 </body>
 </html>
