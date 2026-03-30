@@ -14,17 +14,18 @@ body{
   flex-direction:column;
   align-items:center;
 }
-.card{
-  width:95%;
-  max-width:1400px;
-  padding:20px;
-  text-align:center;
+
+/* اسم المتجر ضوءي متحرك */
+@keyframes glow {
+  0%,100% {text-shadow: 0 0 5px #0dcaf0, 0 0 10px #0dcaf0, 0 0 20px #0dcaf0;}
+  50% {text-shadow: 0 0 20px #0dcaf0, 0 0 40px #0dcaf0, 0 0 60px #0dcaf0;}
 }
 .logo{
   font-size:42px;
   font-weight:900;
   color:#0dcaf0;
   margin-bottom:5px;
+  animation: glow 2s infinite;
 }
 .sublogo{
   color:#ffc107;
@@ -53,17 +54,15 @@ body{
 
 /* مربعات التطبيقات */
 .app-card{
-  position:relative;
   border-radius:15px;
-  overflow:hidden;
-  height:180px;
+  padding:25px 10px;
+  font-size:20px;
+  font-weight:bold;
+  text-align:center;
   color:#fff;
-  box-shadow:0 10px 30px rgba(0,0,0,.4);
   cursor:pointer;
   transition:0.3s;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
   text-decoration:none;
 }
 .app-card:hover{
@@ -71,25 +70,19 @@ body{
   box-shadow:0 15px 40px rgba(0,0,0,.6);
 }
 
-/* Overlay للكتابة */
-.app-overlay{
-  background:rgba(0,0,0,0.5);
-  padding:10px;
-  text-align:center;
-}
+/* ألوان مختلفة لكل زر */
+.btn1{background:#25D366} /* برايم تيفي */
+.btn2{background:#0d6efd} 
+.btn3{background:#6610f2}
+.btn4{background:#ff5722}
 
-/* صور افتراضية */
-.btn1{background:url('https://i.ibb.co/9c3y4Kc/prime-tv.jpg') center/cover no-repeat;}
-.btn2{background:url('https://i.ibb.co/Bg7J7R9/cinemana.jpg') center/cover no-repeat;}
-.btn3{background:url('https://i.ibb.co/6R7W5Zy/cinemana-linback.jpg') center/cover no-repeat;}
-.btn4{background:url('https://i.ibb.co/N9C3b7D/iraq-tv.jpg') center/cover no-repeat;}
-
-/* الوصف */
+/* الوصف تحت كل زر */
 .desc{
   font-size:14px;
   color:#ffc107;
   margin-top:5px;
   line-height:1.2;
+  min-height:45px;
 }
 
 /* شريط الأذكار */
@@ -114,11 +107,10 @@ body{
 
 /* Responsive adjustments */
 @media screen and (min-width: 1200px){
-  .app-card{height:200px;}
+  .app-card{padding:30px 15px;font-size:22px;}
 }
 @media screen and (max-width: 600px){
-  .app-card{height:150px;}
-  .app-overlay{padding:5px;}
+  .app-card{padding:20px 10px;font-size:18px;}
 }
 </style>
 </head>
@@ -136,35 +128,23 @@ body{
 <div class="download">
 <!-- برايم تيفي -->
 <a class="app-card btn1" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file" target="_blank">
-  <div class="app-overlay">
-    <div>برايم تيفي</div>
-    <div class="desc">كود التفعيل: 2026</div>
-  </div>
-</a>
+برايم تيفي</a>
+<div class="desc">كود التفعيل: 2026</div>
 
 <!-- سينمانا شاشة -->
 <a class="app-card btn2" href="https://www.mediafire.com/file/f5bayroe9arsszp/%D8%B3%D9%8A%D9%86%D9%85%D8%A7%D9%86%D8%A7+TV.apk/file" target="_blank">
-  <div class="app-overlay">
-    <div>سينمانا شاشة</div>
-    <div class="desc">يعمل على: ايرثلنك + كيبل ضوئي</div>
-  </div>
-</a>
+سينمانا شاشة</a>
+<div class="desc">يعمل على: ايرثلنك + كيبل ضوئي</div>
 
 <!-- سينمانا لينباك -->
 <a class="app-card btn3" href="https://workupload.com/file/QN6shgxPdgr" target="_blank">
-  <div class="app-overlay">
-    <div>سينمانا لينباك</div>
-    <div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
-  </div>
-</a>
+سينمانا لينباك</a>
+<div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
 
 <!-- 1 IRAQ TV -->
 <a class="app-card btn4" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file" target="_blank">
-  <div class="app-overlay">
-    <div>1 IRAQ TV</div>
-    <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات وشاهد | Android_AppsX</div>
-  </div>
-</a>
+1 IRAQ TV</a>
+<div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
 
 </div>
 </div>
@@ -176,6 +156,7 @@ body{
 </div>
 
 <script>
+// عداد الصيانة 10 أيام
 let endDate=new Date();endDate.setDate(endDate.getDate()+10);
 function updateCountdown(){
 let now=new Date().getTime(),d=endDate-now;
