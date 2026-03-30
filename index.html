@@ -13,12 +13,13 @@
   --btn1-light: #4CAF50;
   --btn3-light: #3F51B5;
   --btn4-light: #FF9800;
+  --btn5-light: #E91E63;
   --btn1-dark: #25D366;
   --btn3-dark: #6610f2;
   --btn4-dark: #ff5722;
+  --btn5-dark: #e91e63;
 }
 
-/* الوضع الافتراضي داكن */
 body{
   margin:0;
   font-family:sans-serif;
@@ -41,7 +42,6 @@ body{
   transition: all 0.5s ease;
 }
 
-/* اسم المتجر مع رمز ريال مدريد */
 .logo-container{
   display:flex;
   align-items:center;
@@ -62,15 +62,12 @@ body{
   50%{text-shadow: 0 0 8px #000, 0 0 14px #000, 0 0 20px #000;}
   100%{text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000;}
 }
-
-/* رمز ريال مدريد صغير بجانب الاسم */
-.logo .realmadrid{
-  font-size:24px;
-  color:#fff;
-  text-shadow: 0 0 2px #000;
+.logo svg{
+  width:28px;
+  height:28px;
+  vertical-align:middle;
 }
 
-/* شعار فرعي */
 .sublogo{
   color:#ffc107;
   margin-bottom:15px;
@@ -78,7 +75,6 @@ body{
   transition: all 0.5s ease;
 }
 
-/* عداد الوقت */
 .maint{
   display:inline-block;
   padding:10px 20px;
@@ -98,7 +94,6 @@ body{
   text-shadow:1px 1px 5px rgba(0,0,0,0.7);
 }
 
-/* Grid responsive */
 .download{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -107,11 +102,10 @@ body{
   transition: all 0.5s ease;
 }
 
-/* أزرار التطبيقات */
 .app-card{
   border-radius:15px;
   padding:20px 10px;
-  font-size:22px;
+  font-size:20px;
   font-weight:bold;
   text-align:center;
   color:#fff;
@@ -129,21 +123,20 @@ body{
   box-shadow:0 12px 30px rgba(0,0,0,.5);
 }
 
-/* ألوان مناسبة لكل وضع */
+/* ألوان الأزرار */
 .btn1{background:#25D366;} 
 .btn3{background:#6610f2;}
 .btn4{background:#ff5722;}
+.btn5{background:#e91e63;}
 
-/* الوصف */
 .desc{
   font-size:14px;
-  color:#fff;
+  color:#ffc107;
   margin-top:5px;
   line-height:1.2;
   transition: all 0.5s ease;
 }
 
-/* شريط الأذكار */
 .footer{
   width:100%;
   overflow:hidden;
@@ -165,7 +158,6 @@ body{
   100%{transform:translateX(100%)}
 }
 
-/* زر تغيير الوضع */
 .mode-btn{
   position:fixed;
   top:10px;
@@ -181,7 +173,6 @@ body{
   transition: all 0.5s ease;
 }
 
-/* الوضع النهاري */
 body.light{
   background: var(--bg-light);
   color: var(--text-light);
@@ -194,6 +185,7 @@ body.light .maint{
 body.light .app-card.btn1{background: var(--btn1-light);}
 body.light .app-card.btn3{background: var(--btn3-light);}
 body.light .app-card.btn4{background: var(--btn4-light);}
+body.light .app-card.btn5{background: var(--btn5-light);}
 body.light .desc{color:#111;}
 body.light .footer{background: rgba(0,0,0,0.05);}
 </style>
@@ -203,31 +195,42 @@ body.light .footer{background: rgba(0,0,0,0.05);}
 <button class="mode-btn" onclick="toggleMode()">تغيير الوضع</button>
 
 <div class="card">
-
-  <!-- اسم المتجر مع رمز ريال مدريد -->
   <div class="logo-container">
-    <div class="logo">HDMosul Store <span class="realmadrid">⚽</span></div>
+    <div class="logo">
+      HDMosul Store 
+      <!-- شعار ريال مدريد صغير ككرة -->
+      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="256" cy="256" r="256" fill="#fff"/>
+        <circle cx="256" cy="256" r="220" fill="#00529B"/>
+        <path d="M256 50 L276 190 L400 190 Z" fill="#FFD700"/>
+      </svg>
+    </div>
   </div>
-
   <div class="sublogo">تجريبي</div>
-
   <div class="maint">
     ⚠️ الموقع تحت الصيانة
     <div class="count" id="countdown"></div>
   </div>
 
   <div class="download">
-    <a class="app-card btn1" href="#" target="_blank">
-      <div>برايم تيفي</div>
+    <a class="app-card btn1" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file" target="_blank">
+      <div>تحميل برايم تيفي</div>
       <div class="desc">كود التفعيل: 2026</div>
     </a>
-    <a class="app-card btn3" href="#" target="_blank">
-      <div>سينمانا لينباك</div>
+
+    <a class="app-card btn3" href="https://workupload.com/file/QN6shgxPdgr" target="_blank">
+      <div>تحميل سينمانا لينباك</div>
       <div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
     </a>
-    <a class="app-card btn4" href="#" target="_blank">
-      <div>1 IRAQ TV</div>
+
+    <a class="app-card btn4" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file" target="_blank">
+      <div>تحميل 1 IRAQ TV</div>
       <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
+    </a>
+
+    <a class="app-card btn5" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file" target="_blank">
+      <div>تحميل يوتيوب لكافة الشاشات</div>
+      <div class="desc">محدث شهر 4 2026</div>
     </a>
   </div>
 </div>
@@ -259,7 +262,6 @@ function updateClock(){
 }
 setInterval(updateClock,1000);
 
-// تبديل الوضع
 function toggleMode(){
   document.body.classList.toggle('light');
 }
