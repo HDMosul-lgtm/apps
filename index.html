@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +37,7 @@ body{
   color:#ccc;
   font-size:14px;
   margin-bottom:20px;
+  text-align:center;
 }
 .apps{
   text-align:right;
@@ -82,39 +83,48 @@ body{
 
 <div class="card">
   <div class="logo">HDMosul Store</div>
-  <div class="dua">Do not forget us in your prayers 🤍</div>
+  <div class="dua">لا تنسونا من صالح دعائكم 🤍</div>
 
-  <div class="apps">
-    <div class="app-item">
-      <div>تطبيق شاشات</div>
-      <a href="https://example.com/app1" target="_blank">Download App 1</a>
-    </div>
-    <div class="app-item">
-      <div>تطبيق تيفي بوكس</div>
-      <a href="https://example.com/app2" target="_blank">Download App 2</a>
-    </div>
-    <!-- تستطيع إضافة المزيد من التطبيقات بنفس التنسيق -->
+  <div class="apps" id="appsContainer">
+    <!-- التطبيقات سيتم إضافتها ديناميكيًا -->
   </div>
 
   <div class="maint">
     <div style="font-size:35px">⚠️</div>
-    <div>Website Under Maintenance</div>
+    <div>الموقع تحت الصيانة</div>
     <div class="count" id="c"></div>
   </div>
 
-  <div class="footer">We will be back soon ❤️</div>
+  <div class="footer">نعود قريباً ❤️</div>
 </div>
 
 <script>
+// مصفوفة التطبيقات: ضع هنا اسم التطبيق ورابطه
+const apps = [
+  {name: "تطبيق شاشات", link: "https://example.com/app1"},
+  {name: "تطبيق تيفي بوكس", link: "https://example.com/app2"},
+  {name: "تطبيق جديد", link: "https://example.com/app3"}
+];
+
+// إنشاء التطبيقات تلقائيًا
+const container = document.getElementById("appsContainer");
+apps.forEach(app => {
+  const div = document.createElement("div");
+  div.className = "app-item";
+  div.innerHTML = `<div>${app.name}</div><a href="${app.link}" target="_blank">تحميل التطبيق</a>`;
+  container.appendChild(div);
+});
+
+// العداد التنازلي للصيانة
 let e=new Date(); e.setDate(e.getDate()+10); // 10 أيام
 function u(){
   let n=new Date(), d=e-n;
-  if(d<=0) return c.innerHTML="Finished 🚀";
+  if(d<=0) return c.innerHTML="انتهى 🚀";
   let D=Math.floor(d/864e5),
       H=Math.floor(d/36e5)%24,
       M=Math.floor(d/6e4)%60,
       S=Math.floor(d/1e3)%60;
-  c.innerHTML=D+" days : "+H+" hours : "+M+" minutes : "+S+" seconds";
+  c.innerHTML=D+" يوم : "+H+" ساعة : "+M+" دقيقة : "+S+" ثانية";
 }
 setInterval(u,1000); u();
 </script>
