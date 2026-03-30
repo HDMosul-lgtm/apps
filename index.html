@@ -41,12 +41,12 @@ body{
   transition: all 0.5s ease;
 }
 
-/* اسم المتجر مع العلم */
+/* اسم المتجر مع رمز ريال مدريد */
 .logo-container{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
+  gap:8px;
   margin-bottom:10px;
 }
 .logo{
@@ -62,12 +62,12 @@ body{
   50%{text-shadow: 0 0 8px #000, 0 0 14px #000, 0 0 20px #000;}
   100%{text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000;}
 }
-.logo img{
-  height:50px;
-  width:50px;
-  border-radius:5px;
-  border:2px solid #ff4d4d;
-  transition: all 0.5s ease;
+
+/* رمز ريال مدريد صغير بجانب الاسم */
+.logo .realmadrid{
+  font-size:24px;
+  color:#fff;
+  text-shadow: 0 0 2px #000;
 }
 
 /* شعار فرعي */
@@ -130,7 +130,7 @@ body{
 }
 
 /* ألوان مناسبة لكل وضع */
-.btn1{background:#25D366;} /* افتراضي داكن */
+.btn1{background:#25D366;} 
 .btn3{background:#6610f2;}
 .btn4{background:#ff5722;}
 
@@ -204,10 +204,9 @@ body.light .footer{background: rgba(0,0,0,0.05);}
 
 <div class="card">
 
-  <!-- اسم المتجر مع علم العراق -->
+  <!-- اسم المتجر مع رمز ريال مدريد -->
   <div class="logo-container">
-    <div class="logo">HDMosul Store</div>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Flag_of_Iraq.svg" alt="Iraq Flag">
+    <div class="logo">HDMosul Store <span class="realmadrid">⚽</span></div>
   </div>
 
   <div class="sublogo">تجريبي</div>
