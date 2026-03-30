@@ -3,176 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HDMosul Store</title>
-
+<title>HDMosul</title>
 <style>
-:root {
-    --primary: #0d6efd;
-    --secondary: #6610f2;
-    --success: #25D366;
-    --bg: #0f172a;
-    --card: rgba(255,255,255,0.05);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-}
-
-body {
-    background: linear-gradient(135deg, #0f172a, #1e293b);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    color: #fff;
-}
-
-.card {
-    width: 95%;
-    max-width: 420px;
-    background: var(--card);
-    backdrop-filter: blur(15px);
-    border-radius: 25px;
-    padding: 30px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-    text-align: center;
-    animation: fadeIn 1s ease;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
-}
-
-.logo {
-    font-size: 34px;
-    font-weight: 900;
-    background: linear-gradient(90deg, #0d6efd, #6610f2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
-}
-
-.dua {
-    color: #ccc;
-    font-size: 14px;
-    margin-bottom: 25px;
-}
-
-.wa-box {
-    background: rgba(37, 211, 102, 0.1);
-    border: 1px solid rgba(37, 211, 102, 0.3);
-    padding: 15px;
-    border-radius: 15px;
-    margin-bottom: 25px;
-}
-
-.wa-box p {
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.wa-link {
-    display: block;
-    background: var(--success);
-    color: white;
-    text-decoration: none;
-    padding: 12px;
-    border-radius: 10px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.wa-link:hover {
-    transform: scale(1.05);
-}
-
-.verify {
-    margin-right: 6px;
-    color: #0d6efd;
-    font-size: 18px;
-}
-
-.app-item {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.app-name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.download-count {
-    font-size: 13px;
-    color: #aaa;
-    margin-bottom: 10px;
-}
-
-.dl-btn {
-    display: block;
-    background: linear-gradient(90deg, #0d6efd, #6610f2);
-    color: white;
-    text-decoration: none;
-    padding: 14px;
-    border-radius: 12px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.dl-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(13,110,253,0.5);
-}
-
-.footer-note {
-    margin-top: 25px;
-    font-size: 13px;
-    color: #aaa;
-}
+body{margin:0;font-family:sans-serif;background:linear-gradient(135deg,#0f172a,#1e293b);display:flex;justify-content:center;align-items:center;height:100vh;color:#fff}
+.card{width:95%;max-width:400px;background:rgba(255,255,255,.05);backdrop-filter:blur(15px);padding:25px;border-radius:20px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.logo{font-size:32px;font-weight:900;background:linear-gradient(90deg,#0d6efd,#6610f2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.dua{color:#ccc;font-size:14px;margin:15px 0}
+.wa{background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);padding:12px;border-radius:12px}
+.wa a{display:block;background:#25D366;color:#fff;padding:10px;border-radius:8px;text-decoration:none;font-weight:bold}
+.verify{color:#0d6efd;margin-right:5px}
+.maint{margin-top:20px;padding:20px;border-radius:12px;background:rgba(255,193,7,.1);border:1px solid rgba(255,193,7,.4)}
+.count{margin-top:10px;font-size:18px;color:#ffc107;font-weight:bold}
+.footer{margin-top:20px;font-size:12px;color:#aaa}
 </style>
 </head>
-
 <body>
 
 <div class="card">
+<div class="logo">HDMosul</div>
+<div class="dua">لا تنسونا من صالح دعائكم 🤍</div>
 
-    <div class="logo">HDMosul</div>
-    <div class="dua">لا تنسونا من صالح دعائكم 🤍</div>
+<div class="wa">
+<p>لطلب أي تطبيق واتساب</p>
+<a href="https://wa.me/9647766780579">✔️ <span class="verify">موثق</span> 07766780579 🟢</a>
+</div>
 
-    <div class="wa-box">
-        <p>لطلب أي تطبيق تواصل واتساب</p>
-        <a href="https://wa.me/9647766780579" class="wa-link">
-            ✔️ <span class="verify">موثق</span> 07766780579 🟢
-        </a>
-    </div>
+<div class="maint">
+<div style="font-size:35px">⚠️</div>
+<div>الموقع تحت الصيانة</div>
+<div class="count" id="c"></div>
+</div>
 
-    <div class="app-item">
-        <span class="app-name">🎬 Cinemana Leanback v4.5.9</span>
-        <div class="download-count">عدد التحميلات: <span id="count">0</span></div>
-        <a href="Cinemana_Leanback_v4.5.9.apk" class="dl-btn" onclick="increaseDownload()">
-            تحميل التطبيق
-        </a>
-    </div>
-
-    <div class="footer-note">بخدمتكم دائماً ❤️</div>
-
+<div class="footer">نعود قريباً ❤️</div>
 </div>
 
 <script>
-let downloads = localStorage.getItem("downloads") || 0;
-document.getElementById("count").innerText = downloads;
-
-function increaseDownload() {
-    downloads++;
-    localStorage.setItem("downloads", downloads);
-    document.getElementById("count").innerText = downloads;
+let e=new Date();e.setDate(e.getDate()+10);
+function u(){
+let n=new Date(),d=e-n;
+if(d<=0)return c.innerHTML="انتهى 🚀";
+let D=Math.floor(d/864e5),H=Math.floor(d/36e5)%24,M=Math.floor(d/6e4)%60,S=Math.floor(d/1e3)%60;
+c.innerHTML=D+" يوم : "+H+" ساعة : "+M+" دقيقة : "+S+" ثانية";
 }
+setInterval(u,1000);u();
 </script>
 
 </body>
