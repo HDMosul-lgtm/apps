@@ -5,36 +5,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HDMosul Store</title>
 <style>
-body{margin:0;font-family:sans-serif;background:linear-gradient(135deg,#0f172a,#1e293b);display:flex;justify-content:center;align-items:center;min-height:100vh;color:#fff;flex-direction:column}
-.card{width:600px;background:rgba(255,255,255,.05);backdrop-filter:blur(15px);padding:30px;border-radius:20px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4)}
-.logo{font-size:42px;font-weight:900;color:#0dcaf0;margin-bottom:5px}
-.sublogo{color:#ffc107;margin:10px 0 20px}
-.maint{padding:20px;border-radius:15px;background:rgba(255,193,7,.1);border:1px solid rgba(255,193,7,.4);font-size:22px}
-.count{margin-top:10px;color:#ffc107;font-weight:bold}
+body{
+  margin:0;
+  font-family:sans-serif;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.card{
+  width:95%;
+  max-width:1400px;
+  padding:20px;
+  text-align:center;
+}
+.logo{
+  font-size:42px;
+  font-weight:900;
+  color:#0dcaf0;
+  margin-bottom:5px;
+}
+.sublogo{
+  color:#ffc107;
+  margin:10px 0 20px;
+}
+.maint{
+  padding:20px;
+  border-radius:15px;
+  background:rgba(255,193,7,.1);
+  border:1px solid rgba(255,193,7,.4);
+  font-size:22px;
+  margin-bottom:20px;
+}
+.count{
+  margin-top:10px;
+  color:#ffc107;
+  font-weight:bold;
+}
 
-/* الأزرار */
-.download a{display:block;margin:10px auto;padding:14px;font-size:20px;font-weight:bold;color:#fff;border-radius:12px;text-decoration:none;width:80%}
-.btn1{background:#25D366}
-.btn2{background:#0d6efd}
-.btn3{background:#6610f2}
-.btn4{background:#ff5722} /* لون مختلف للتطبيق الجديد */
+/* Grid responsive */
+.download{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+}
 
-.activation,.note,.desc{margin-top:5px;font-size:14px}
-.note{color:#ffc107}.desc{color:#ccc}
+/* مربعات التطبيقات */
+.app-card{
+  position:relative;
+  border-radius:15px;
+  overflow:hidden;
+  height:180px;
+  color:#fff;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  cursor:pointer;
+  transition:0.3s;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  text-decoration:none;
+}
+.app-card:hover{
+  transform:scale(1.05);
+  box-shadow:0 15px 40px rgba(0,0,0,.6);
+}
+
+/* Overlay للكتابة */
+.app-overlay{
+  background:rgba(0,0,0,0.5);
+  padding:10px;
+  text-align:center;
+}
+
+/* صور افتراضية */
+.btn1{background:url('https://i.ibb.co/9c3y4Kc/prime-tv.jpg') center/cover no-repeat;}
+.btn2{background:url('https://i.ibb.co/Bg7J7R9/cinemana.jpg') center/cover no-repeat;}
+.btn3{background:url('https://i.ibb.co/6R7W5Zy/cinemana-linback.jpg') center/cover no-repeat;}
+.btn4{background:url('https://i.ibb.co/N9C3b7D/iraq-tv.jpg') center/cover no-repeat;}
+
+/* الوصف */
+.desc{
+  font-size:14px;
+  color:#ffc107;
+  margin-top:5px;
+  line-height:1.2;
+}
 
 /* شريط الأذكار */
-.footer{width:100%;overflow:hidden;background:rgba(0,0,0,.2);margin-top:10px}
+.footer{
+  width:100%;
+  overflow:hidden;
+  background:rgba(0,0,0,.2);
+  margin-top:20px;
+}
 .marquee{
   display:inline-block;
   white-space:nowrap;
   padding-right:100%;
-  animation:move 90s linear infinite; /* حركة بطيئة جدًا */
+  animation:move 90s linear infinite; 
   font-size:20px;
   color:#ffc107
 }
 @keyframes move{
   0%{transform:translateX(0)}
   100%{transform:translateX(100%)}
+}
+
+/* Responsive adjustments */
+@media screen and (min-width: 1200px){
+  .app-card{height:200px;}
+}
+@media screen and (max-width: 600px){
+  .app-card{height:150px;}
+  .app-overlay{padding:5px;}
 }
 </style>
 </head>
@@ -50,22 +134,37 @@ body{margin:0;font-family:sans-serif;background:linear-gradient(135deg,#0f172a,#
 </div>
 
 <div class="download">
+<!-- برايم تيفي -->
+<a class="app-card btn1" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file" target="_blank">
+  <div class="app-overlay">
+    <div>برايم تيفي</div>
+    <div class="desc">كود التفعيل: 2026</div>
+  </div>
+</a>
 
-<a class="btn1" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file" target="_blank">
-تحميل برايم تيفي</a>
-<div class="activation">كود التفعيل: 2026</div>
+<!-- سينمانا شاشة -->
+<a class="app-card btn2" href="https://www.mediafire.com/file/f5bayroe9arsszp/%D8%B3%D9%8A%D9%86%D9%85%D8%A7%D9%86%D8%A7+TV.apk/file" target="_blank">
+  <div class="app-overlay">
+    <div>سينمانا شاشة</div>
+    <div class="desc">يعمل على: ايرثلنك + كيبل ضوئي</div>
+  </div>
+</a>
 
-<a class="btn2" href="https://www.mediafire.com/file/f5bayroe9arsszp/%D8%B3%D9%8A%D9%86%D9%85%D8%A7%D9%86%D8%A7+TV.apk/file" target="_blank">
-تحميل سينمانا شاشة</a>
-<div class="note">يعمل على: ايرثلنك + كيبل ضوئي</div>
+<!-- سينمانا لينباك -->
+<a class="app-card btn3" href="https://workupload.com/file/QN6shgxPdgr" target="_blank">
+  <div class="app-overlay">
+    <div>سينمانا لينباك</div>
+    <div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
+  </div>
+</a>
 
-<a class="btn3" href="https://workupload.com/file/QN6shgxPdgr" target="_blank">
-تحميل سينمانا لينباك</a>
-<div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
-
-<a class="btn4" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file" target="_blank">
-تحميل 1 IRAQ TV</a>
-<div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات وشاهد | تعديل فريق Android_AppsX</div>
+<!-- 1 IRAQ TV -->
+<a class="app-card btn4" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file" target="_blank">
+  <div class="app-overlay">
+    <div>1 IRAQ TV</div>
+    <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات وشاهد | Android_AppsX</div>
+  </div>
+</a>
 
 </div>
 </div>
