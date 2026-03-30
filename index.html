@@ -36,7 +36,7 @@ body{
   font-size:48px;
   font-weight:900;
   color:#ff4d4d; /* أحمر */
-  text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000; /* توهج أسود خفيف */
+  text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000;
   animation:logoGlow 2s ease-in-out infinite alternate;
 }
 @keyframes logoGlow{
@@ -85,7 +85,7 @@ body{
   width:100%;
 }
 
-/* أزرار التطبيقات بدون صور */
+/* أزرار التطبيقات موحدة الحجم */
 .app-card{
   border-radius:15px;
   padding:20px 10px;
@@ -100,7 +100,7 @@ body{
   display:flex;
   flex-direction:column;
   justify-content:center;
-  min-height:120px;
+  min-height:140px;
 }
 .app-card:hover{
   transform:scale(1.05);
@@ -109,7 +109,6 @@ body{
 
 /* ألوان ثابتة لكل زر */
 .btn1{background:#25D366;} /* برايم تيفي */
-.btn2{background:#0d6efd;} /* سينمانا شاشة */
 .btn3{background:#6610f2;} /* سينمانا لينباك */
 .btn4{background:#ff5722;} /* 1 IRAQ TV */
 
@@ -142,9 +141,6 @@ body{
 }
 
 /* Responsive adjustments */
-@media screen and (min-width: 1200px){
-  .app-card{min-height:140px;}
-}
 @media screen and (max-width: 600px){
   .app-card{min-height:120px;}
   .logo{font-size:36px;}
@@ -156,10 +152,10 @@ body{
 
 <div class="card">
 
-  <!-- اسم المتجر مع علم ريال مدريد ثابت -->
+  <!-- اسم المتجر مع العلم المبسط بدون صليب -->
   <div class="logo-container">
     <div class="logo">HDMosul Store</div>
-    <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid Flag">
+    <img src="https://i.ibb.co/W2F0qgX/real-madrid-no-cross.png" alt="Real Madrid Flag">
   </div>
 
   <div class="sublogo">تجريبي</div>
@@ -173,10 +169,6 @@ body{
     <a class="app-card btn1" href="#" target="_blank">
       <div>برايم تيفي</div>
       <div class="desc">كود التفعيل: 2026</div>
-    </a>
-    <a class="app-card btn2" href="#" target="_blank">
-      <div>سينمانا شاشة</div>
-      <div class="desc">يعمل على: ايرثلنك + كيبل ضوئي</div>
     </a>
     <a class="app-card btn3" href="#" target="_blank">
       <div>سينمانا لينباك</div>
