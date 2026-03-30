@@ -5,22 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>متجر تطبيقات HDMosul</title>
     <style>
-        body { font-family: sans-serif; text-align: center; background-color: #f0f2f5; padding: 20px; }
-        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
-        .app-item { border: 1px solid #ddd; padding: 15px; margin: 15px 0; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .btn { background-color: #007bff; color: white; padding: 8px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        h1 { color: #1a1a1a; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background-color: #f8f9fa; padding: 20px; margin: 0; color: #333; }
+        .container { background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); max-width: 500px; margin: 20px auto; border-top: 5px solid #28a745; }
+        .header-msg { background-color: #fff3cd; padding: 15px; border-radius: 10px; margin-bottom: 20px; font-style: italic; border: 1px dashed #ffeeba; }
+        h1 { color: #1a1a1a; font-size: 22px; margin-bottom: 10px; }
+        .whatsapp-section { margin: 20px 0; padding: 15px; background: #e7f3ff; border-radius: 10px; }
+        .whatsapp-link { color: #25d366; font-weight: bold; text-decoration: none; font-size: 18px; }
+        .app-card { border: 1px solid #eee; padding: 20px; margin: 15px 0; border-radius: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px; background: #fafafa; }
+        .app-name { font-weight: bold; font-size: 18px; color: #007bff; }
+        .download-btn { background-color: #28a745; color: white; padding: 12px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; transition: 0.3s; width: 80%; }
+        .download-btn:hover { background-color: #218838; transform: scale(1.05); }
+        .footer { font-size: 12px; color: #999; margin-top: 30px; }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>تطبيقات HDMosul</h1>
-        <p>مرحباً بك! اختر التطبيق للتحميل المباشر</p>
-        <div class="app-item">
-            <span>تطبيق واتساب بلس</span>
-            <a href="files/whatsapp.apk" class="btn">تحميل</a>
+        <div class="header-msg">
+            "نرجو منكم أن لا تنسونا من صالح دعائكم بظهر الغيب"
+        </div>
+
+        <h1>تطبيقات HDMosul المجانية</h1>
+        
+        <div class="whatsapp-section">
+            للطلب أو لتفعيل اشتراكات المتجر (مجاني بالكامل):<br>
+            <a href="https://wa.me/9647766780579" class="whatsapp-link">
+                🟢 واتساب: 07766780579
+            </a>
+        </div>
+
+        <div class="app-card">
+            <span class="app-name">تطبيق سينمانا HDMosul</span>
+            <a href="cinemana.apk" class="download-btn">اضغط هنا للتحميل المباشر</a>
+        </div>
+
+        <div class="footer">
+            جميع الحقوق محفوظة لـ HDMosul &copy; 2026
         </div>
     </div>
+
 </body>
 </html>
-
