@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HDMosul Store</title>
 <style>
-/* ======== إعدادات عامة ======== */
 body{
   margin:0;
   font-family:sans-serif;
@@ -14,154 +13,221 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  min-height:100vh;
-  padding-bottom:20px;
+}
+.card{
+  width:95%;
+  max-width:1400px;
+  padding:20px;
+  text-align:center;
+  position:relative;
 }
 
-/* ======== اسم المتجر 3D متحرك ======== */
-@keyframes logoGradient{
-  0%{color:#0dcaf0;}
-  25%{color:#6610f2;}
-  50%{color:#ffc107;}
-  75%{color:#ff5722;}
-  100%{color:#0dcaf0;}
+/* علم ريال مدريد متحرك */
+.flag-container{
+  position:relative;
+  height:60px;
+  margin-bottom:10px;
+  overflow:hidden;
 }
+.flag{
+  height:50px;
+  position:absolute;
+  animation:slideFlag 4s linear infinite alternate;
+}
+@keyframes slideFlag{
+  0%{left:-60px;}
+  50%{left:10px;}
+  100%{left:-60px;}
+}
+
+/* اسم المتجر جاذبية بصرياً */
 .logo{
-  font-size:6vw;
+  font-size:48px;
   font-weight:900;
-  margin:4vh 0 2vh;
-  animation:logoGradient 3s linear infinite;
-  text-shadow:2px 2px 4px #000,0 0 10px #0dcaf0,0 0 20px #6610f2;
+  color:#0dcaf0;
+  margin-bottom:10px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6),
+               0 0 10px #0dcaf0,
+               0 0 20px #0dcaf0,
+               0 0 30px #0dcaf0;
 }
 .sublogo{
   color:#ffc107;
-  margin-bottom:3vh;
-  font-size:4vw;
+  margin-bottom:15px;
+  font-size:20px;
 }
 
-/* ======== عداد الصيانة ======== */
+/* عداد الوقت */
 .maint{
-  padding:3vh 2vw;
-  border-radius:15px;
-  background:rgba(255,193,7,.1);
-  border:1px solid rgba(255,193,7,.4);
-  font-size:4vw;
-  margin-bottom:3vh;
-  text-align:center;
+  display:inline-block;
+  padding:10px 20px;
+  border-radius:12px;
+  background:rgba(0,0,0,0.3);
+  border:1px solid rgba(13,202,240,0.5);
+  font-size:16px;
+  margin-bottom:15px;
+  box-shadow:0 0 20px rgba(13,202,240,0.5);
 }
 .count{
-  color:#ffc107;
+  margin-top:5px;
+  color:#0dcaf0;
   font-weight:bold;
-  font-size:5vw;
-  margin-top:1vh;
+  font-size:16px;
+  text-shadow:1px 1px 5px rgba(0,0,0,0.7);
 }
 
-/* ======== Grid التطبيقات ======== */
+/* Grid responsive */
 .download{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:12px;
-  width:95%;
-  margin-bottom:3vh;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
 }
 
-/* ======== مربعات التطبيقات ======== */
+/* مربعات التطبيقات */
 .app-card{
+  position:relative;
   border-radius:15px;
-  padding:4vh 1vw;
-  font-size:4vw;
-  font-weight:bold;
-  text-align:center;
+  overflow:hidden;
+  height:180px;
   color:#fff;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
   cursor:pointer;
   transition:0.3s;
-  box-shadow:0 8px 20px rgba(0,0,0,.4);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
   text-decoration:none;
 }
 .app-card:hover{
   transform:scale(1.05);
-  box-shadow:0 12px 35px rgba(0,0,0,.6);
+  box-shadow:0 15px 40px rgba(0,0,0,.6);
 }
 
-/* ======== ألوان الأزرار ======== */
-.btn1{background:#25D366}
-.btn2{background:#0d6efd}
-.btn3{background:#6610f2}
-.btn4{background:#ff5722}
+/* Overlay للكتابة */
+.app-overlay{
+  background:rgba(0,0,0,0.5);
+  padding:10px;
+  text-align:center;
+}
 
-/* ======== الوصف تحت كل زر ======== */
+/* صور افتراضية */
+.btn1{background:url('https://i.ibb.co/9c3y4Kc/prime-tv.jpg') center/cover no-repeat;}
+.btn2{background:url('https://i.ibb.co/Bg7J7R9/cinemana.jpg') center/cover no-repeat;}
+.btn3{background:url('https://i.ibb.co/6R7W5Zy/cinemana-linback.jpg') center/cover no-repeat;}
+.btn4{background:url('https://i.ibb.co/N9C3b7D/iraq-tv.jpg') center/cover no-repeat;}
+
+/* الوصف */
 .desc{
-  font-size:3vw;
+  font-size:14px;
   color:#ffc107;
-  margin-top:8px;
-  line-height:1.3;
-  min-height:auto;
+  margin-top:5px;
+  line-height:1.2;
 }
 
-/* ======== شريط الأذكار ======== */
+/* شريط الأذكار */
 .footer{
   width:100%;
   overflow:hidden;
   background:rgba(0,0,0,.2);
-  margin-top:3vh;
-  padding:1vh 0;
+  margin-top:20px;
 }
 .marquee{
   display:inline-block;
   white-space:nowrap;
   padding-right:100%;
-  animation:move 120s linear infinite;
-  font-size:4vw;
+  animation:move 90s linear infinite; 
+  font-size:18px;
+  color:#ffc107
 }
 @keyframes move{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-100%);}
+  0%{transform:translateX(0)}
+  100%{transform:translateX(100%)}
 }
 
-/* ======== استجابة للشاشات الصغيرة ======== */
-@media screen and (max-width:480px){
-  .logo{font-size:8vw;}
-  .sublogo{font-size:5vw;}
-  .maint{font-size:5vw;padding:3vh 4vw;}
-  .count{font-size:6vw;}
-  .app-card{font-size:5vw;padding:5vw 2vw;}
-  .desc{font-size:4vw;}
-  .marquee{font-size:5vw;}
+/* Responsive adjustments */
+@media screen and (min-width: 1200px){
+  .app-card{height:200px;}
+}
+@media screen and (max-width: 600px){
+  .app-card{height:150px;}
+  .app-overlay{padding:5px;}
+  .logo{font-size:36px;}
+  .flag-container{height:40px;}
+  .flag{height:30px;}
 }
 </style>
 </head>
 <body>
 
-<div class="logo">HDMosul Store</div>
-<div class="sublogo">متجر التطبيقات التجريبي</div>
+<div class="card">
+  <!-- علم ريال مدريد -->
+  <div class="flag-container">
+    <img class="flag" src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid Flag">
+  </div>
 
-<div class="maint">
-⚠️ المتجر تحت الصيانة ⚠️
-<div class="count">ينتهي بعد 10 أيام</div>
-</div>
+  <div class="logo">HDMosul Store</div>
+  <div class="sublogo">تجريبي</div>
 
-<div class="download">
-<a href="#" class="app-card btn1">
-  برايم تيفي
-  <div class="desc">أفضل القنوات المشفرة والمباشرة</div>
-</a>
-<a href="#" class="app-card btn2">
-  سينمانا شاشة
-  <div class="desc">أحدث الأفلام والعروض</div>
-</a>
-<a href="#" class="app-card btn3">
-  سينمانا لينباك
-  <div class="desc">مكتبة ضخمة من المسلسلات</div>
-</a>
-<a href="#" class="app-card btn4">
-  1 IRAQ TV
-  <div class="desc">قنوات عراقية حية</div>
-</a>
+  <div class="maint">
+    ⚠️ الموقع تحت الصيانة
+    <div class="count" id="countdown"></div>
+  </div>
+
+  <div class="download">
+    <a class="app-card btn1" href="#" target="_blank">
+      <div class="app-overlay">
+        <div>برايم تيفي</div>
+        <div class="desc">كود التفعيل: 2026</div>
+      </div>
+    </a>
+    <a class="app-card btn2" href="#" target="_blank">
+      <div class="app-overlay">
+        <div>سينمانا شاشة</div>
+        <div class="desc">يعمل على: ايرثلنك + كيبل ضوئي</div>
+      </div>
+    </a>
+    <a class="app-card btn3" href="#" target="_blank">
+      <div class="app-overlay">
+        <div>سينمانا لينباك</div>
+        <div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
+      </div>
+    </a>
+    <a class="app-card btn4" href="#" target="_blank">
+      <div class="app-overlay">
+        <div>1 IRAQ TV</div>
+        <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
+      </div>
+    </a>
+  </div>
 </div>
 
 <div class="footer">
-  <div class="marquee">الحمدلله سبحان الله - وصل على النبي - استمتع بتطبيقات HDMosul</div>
+  <div class="marquee">
+    الحمد لله | سبحان الله | تنبيه: تطبيقات مجانية | اذا احتاجت شي راسلني واتساب: 07766780579
+  </div>
 </div>
+
+<script>
+// الساعة والتاريخ الحية بتوقيت نينوى مع تصميم جذاب
+function updateClock(){
+  let now = new Date();
+  let utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+  let iraqTime = new Date(utc + (3*60*60*1000));
+
+  const days = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+  const dayName = days[iraqTime.getDay()];
+  const date = iraqTime.getDate().toString().padStart(2,'0');
+  const month = (iraqTime.getMonth()+1).toString().padStart(2,'0');
+  const year = iraqTime.getFullYear();
+
+  const hours = iraqTime.getHours().toString().padStart(2,'0');
+  const minutes = iraqTime.getMinutes().toString().padStart(2,'0');
+  const seconds = iraqTime.getSeconds().toString().padStart(2,'0');
+
+  document.getElementById("countdown").innerHTML = `${dayName} ${date}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
+}
+setInterval(updateClock,1000);
+</script>
 
 </body>
 </html>
