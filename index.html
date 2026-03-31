@@ -20,6 +20,7 @@
   --btn4-dark: #ff5722;
   --btn5-dark: #e91e63;
   --btn6-dark: #0d6efd;
+  --clock-color: #00ffff; /* لون الساعة */
 }
 
 body{
@@ -75,7 +76,7 @@ body{
 }
 .count{
   margin-top:5px;
-  color:#ff4d4d;
+  color: var(--clock-color);
   font-weight:bold;
   font-size:16px;
 }
@@ -107,12 +108,11 @@ body{
   transform:scale(1.05);
 }
 
-/* الألوان */
 .btn1{background:#25D366;} 
 .btn3{background:#6610f2;}
 .btn4{background:#ff5722;}
 .btn5{background:#e91e63;}
-.btn6{background:#0d6efd;} /* لون جديد */
+.btn6{background:#0d6efd;} 
 
 .desc{
   font-size:14px;
@@ -164,7 +164,14 @@ body.light .app-card.btn6{background: var(--btn6-light);}
 
 <div class="card">
   <div class="logo-container">
-    <div class="logo">HDMosul Store</div>
+    <div class="logo">
+      HDMosul Store 
+      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="256" cy="256" r="256" fill="#fff"/>
+        <circle cx="256" cy="256" r="220" fill="#00529B"/>
+        <path d="M256 50 L276 190 L400 190 Z" fill="#FFD700"/>
+      </svg>
+    </div>
   </div>
 
   <div class="sublogo">تجريبي</div>
@@ -183,22 +190,22 @@ body.light .app-card.btn6{background: var(--btn6-light);}
 
     <a class="app-card btn3" href="https://workupload.com/file/QN6shgxPdgr" target="_blank">
       <div>تحميل سينمانا لينباك</div>
-      <div class="desc">نسخة مخصصة للشاشات</div>
+      <div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
     </a>
 
     <a class="app-card btn4" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file" target="_blank">
       <div>تحميل 1 IRAQ TV</div>
-      <div class="desc">قنوات ومباريات</div>
+      <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
     </a>
 
     <a class="app-card btn5" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file" target="_blank">
-      <div>تحميل يوتيوب</div>
-      <div class="desc">محدث 2026</div>
+      <div>تحميل يوتيوب لكافة الشاشات</div>
+      <div class="desc">محدث شهر 4 2026</div>
     </a>
 
     <a class="app-card btn3" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file" target="_blank">
-      <div>تحميل جنرال برو</div>
-      <div class="desc">كود: 000</div>
+      <div>تحميل جنرال برو تيفي</div>
+      <div class="desc">خاص للمباريات وقنوات رياضية جميع شبكات | كود التفعيل: 000</div>
     </a>
 
     <a class="app-card btn6" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file" target="_blank">
@@ -211,7 +218,7 @@ body.light .app-card.btn6{background: var(--btn6-light);}
 
 <div class="footer">
   <div class="marquee">
-    الحمد لله | اللهم صلِّ وسلم وبارك على نبينا محمد ﷺ | سبحان الله | تواصل واتساب: 07766780579
+    الحمد لله | اللهم صلِّ وسلم وبارك على نبينا محمد ﷺ | سبحان الله | تنبيه: تطبيقات مجانية | اذا احتاجت شي راسلني واتساب: 07766780579
   </div>
 </div>
 
@@ -221,6 +228,12 @@ function updateClock(){
   let utc = now.getTime() + (now.getTimezoneOffset() * 60000);
   let iraqTime = new Date(utc + (3*60*60*1000));
 
+  const days = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+  const dayName = days[iraqTime.getDay()];
+  const date = iraqTime.getDate().toString().padStart(2,'0');
+  const month = (iraqTime.getMonth()+1).toString().padStart(2,'0');
+  const year = iraqTime.getFullYear();
+
   const hours24 = iraqTime.getHours();
   const hours = (hours24 % 12 || 12).toString().padStart(2,'0');
   const ampm = hours24 >= 12 ? 'PM' : 'AM';
@@ -228,7 +241,7 @@ function updateClock(){
   const minutes = iraqTime.getMinutes().toString().padStart(2,'0');
   const seconds = iraqTime.getSeconds().toString().padStart(2,'0');
 
-  document.getElementById("countdown").innerHTML = `${hours}:${minutes}:${seconds} ${ampm}`;
+  document.getElementById("countdown").innerHTML = `${dayName} ${date}/${month}/${year} - ${hours}:${minutes}:${seconds} ${ampm}`;
 }
 setInterval(updateClock,1000);
 
