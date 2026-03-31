@@ -71,6 +71,13 @@ body{
   font-size:16px;
 }
 
+.match-info{
+  font-size:13px;
+  color:#ffc107;
+  margin-top:5px;
+  line-height:1.6;
+}
+
 .download{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -122,7 +129,6 @@ body{
   color:#000 !important;
 }
 
-/* تأثير التحميل على الزر */
 .loader-number{
   position:absolute;
   top:10px;
@@ -194,6 +200,11 @@ body.light{
   <div class="maint">
     ⚠️ الموقع تحت الصيانة
     <div class="count" id="countdown"></div>
+    <div class="match-info">
+      🇮🇶 العراق 🆚 بوليفيا 🇧🇴<br>
+      🕕 06:00 بتوقيت بغداد<br>
+      📺 على beIN SPORTS 1
+    </div>
   </div>
 
   <div class="download">
@@ -240,6 +251,12 @@ body.light{
       <div class="loader-number"></div>
     </a>
 
+    <a class="app-card btn4" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file" target="_blank">
+      <div>تحميل دراما لايف</div>
+      <div class="desc">يعمل على أضعف نت + كل القنوات | كود التفعيل: 232425</div>
+      <div class="loader-number"></div>
+    </a>
+
   </div>
 </div>
 
@@ -276,7 +293,6 @@ function toggleMode(){
   document.body.classList.toggle('light');
 }
 
-// تحميل على الزر مع عداد 4 ثواني
 document.querySelectorAll('.app-card').forEach(btn=>{
   btn.addEventListener('click', function(e){
     e.preventDefault();
