@@ -14,10 +14,12 @@
   --btn3-light: #3F51B5;
   --btn4-light: #FF9800;
   --btn5-light: #E91E63;
+  --btn6-light: #0d6efd;
   --btn1-dark: #25D366;
   --btn3-dark: #6610f2;
   --btn4-dark: #ff5722;
   --btn5-dark: #e91e63;
+  --btn6-dark: #0d6efd;
 }
 
 body{
@@ -39,7 +41,6 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  transition: all 0.5s ease;
 }
 
 .logo-container{
@@ -54,25 +55,12 @@ body{
   font-weight:900;
   color:#ff4d4d; 
   text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000;
-  animation:logoGlow 2s ease-in-out infinite alternate;
-  transition: all 0.5s ease;
-}
-@keyframes logoGlow{
-  0%{text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000;}
-  50%{text-shadow: 0 0 8px #000, 0 0 14px #000, 0 0 20px #000;}
-  100%{text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000;}
-}
-.logo svg{
-  width:28px;
-  height:28px;
-  vertical-align:middle;
 }
 
 .sublogo{
   color:#ffc107;
   margin-bottom:15px;
   font-size:20px;
-  transition: all 0.5s ease;
 }
 
 .maint{
@@ -84,14 +72,12 @@ body{
   font-size:16px;
   margin-bottom:15px;
   box-shadow:0 0 20px rgba(255,77,77,0.5);
-  transition: all 0.5s ease;
 }
 .count{
   margin-top:5px;
   color:#ff4d4d;
   font-weight:bold;
   font-size:16px;
-  text-shadow:1px 1px 5px rgba(0,0,0,0.7);
 }
 
 .download{
@@ -99,7 +85,6 @@ body{
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:15px;
   width:100%;
-  transition: all 0.5s ease;
 }
 
 .app-card{
@@ -110,7 +95,7 @@ body{
   text-align:center;
   color:#fff;
   cursor:pointer;
-  transition: all 0.5s ease;
+  transition:0.3s;
   box-shadow:0 8px 20px rgba(0,0,0,.3);
   text-decoration:none;
   display:flex;
@@ -120,21 +105,19 @@ body{
 }
 .app-card:hover{
   transform:scale(1.05);
-  box-shadow:0 12px 30px rgba(0,0,0,.5);
 }
 
-/* ألوان الأزرار */
+/* الألوان */
 .btn1{background:#25D366;} 
 .btn3{background:#6610f2;}
 .btn4{background:#ff5722;}
 .btn5{background:#e91e63;}
+.btn6{background:#0d6efd;} /* لون جديد */
 
 .desc{
   font-size:14px;
   color:#ffc107;
   margin-top:5px;
-  line-height:1.2;
-  transition: all 0.5s ease;
 }
 
 .footer{
@@ -142,7 +125,6 @@ body{
   overflow:hidden;
   background:rgba(0,0,0,.2);
   margin-top:20px;
-  transition: all 0.5s ease;
 }
 .marquee{
   display:inline-block;
@@ -151,7 +133,6 @@ body{
   animation:move 90s linear infinite; 
   font-size:18px;
   color:#ffc107;
-  transition: all 0.5s ease;
 }
 @keyframes move{
   0%{transform:translateX(0)}
@@ -168,26 +149,13 @@ body{
   border:none;
   border-radius:5px;
   cursor:pointer;
-  font-weight:bold;
-  z-index:1000;
-  transition: all 0.5s ease;
 }
 
 body.light{
   background: var(--bg-light);
   color: var(--text-light);
 }
-body.light .maint{
-  background: rgba(0,0,0,0.05);
-  border:1px solid rgba(0,0,0,0.2);
-  box-shadow:0 0 20px rgba(0,0,0,0.1);
-}
-body.light .app-card.btn1{background: var(--btn1-light);}
-body.light .app-card.btn3{background: var(--btn3-light);}
-body.light .app-card.btn4{background: var(--btn4-light);}
-body.light .app-card.btn5{background: var(--btn5-light);}
-body.light .desc{color:#111;}
-body.light .footer{background: rgba(0,0,0,0.05);}
+body.light .app-card.btn6{background: var(--btn6-light);}
 </style>
 </head>
 <body>
@@ -196,14 +164,7 @@ body.light .footer{background: rgba(0,0,0,0.05);}
 
 <div class="card">
   <div class="logo-container">
-    <div class="logo">
-      HDMosul Store 
-      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="256" cy="256" r="256" fill="#fff"/>
-        <circle cx="256" cy="256" r="220" fill="#00529B"/>
-        <path d="M256 50 L276 190 L400 190 Z" fill="#FFD700"/>
-      </svg>
-    </div>
+    <div class="logo">HDMosul Store</div>
   </div>
 
   <div class="sublogo">تجريبي</div>
@@ -222,22 +183,27 @@ body.light .footer{background: rgba(0,0,0,0.05);}
 
     <a class="app-card btn3" href="https://workupload.com/file/QN6shgxPdgr" target="_blank">
       <div>تحميل سينمانا لينباك</div>
-      <div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
+      <div class="desc">نسخة مخصصة للشاشات</div>
     </a>
 
     <a class="app-card btn4" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file" target="_blank">
       <div>تحميل 1 IRAQ TV</div>
-      <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
+      <div class="desc">قنوات ومباريات</div>
     </a>
 
     <a class="app-card btn5" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file" target="_blank">
-      <div>تحميل يوتيوب لكافة الشاشات</div>
-      <div class="desc">محدث شهر 4 2026</div>
+      <div>تحميل يوتيوب</div>
+      <div class="desc">محدث 2026</div>
     </a>
 
     <a class="app-card btn3" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file" target="_blank">
-      <div>تحميل جنرال برو تيفي</div>
-      <div class="desc">خاص للمباريات وقنوات رياضية جميع شبكات | كود التفعيل: 000</div>
+      <div>تحميل جنرال برو</div>
+      <div class="desc">كود: 000</div>
+    </a>
+
+    <a class="app-card btn6" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file" target="_blank">
+      <div>تحميل سينمانا بلس</div>
+      <div class="desc">اخف سينمانا شاشات الضعيفة</div>
     </a>
 
   </div>
@@ -245,7 +211,7 @@ body.light .footer{background: rgba(0,0,0,0.05);}
 
 <div class="footer">
   <div class="marquee">
-    الحمد لله | سبحان الله | تنبيه: تطبيقات مجانية | اذا احتاجت شي راسلني واتساب: 07766780579
+    الحمد لله | اللهم صلِّ وسلم وبارك على نبينا محمد ﷺ | سبحان الله | تواصل واتساب: 07766780579
   </div>
 </div>
 
@@ -255,17 +221,14 @@ function updateClock(){
   let utc = now.getTime() + (now.getTimezoneOffset() * 60000);
   let iraqTime = new Date(utc + (3*60*60*1000));
 
-  const days = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
-  const dayName = days[iraqTime.getDay()];
-  const date = iraqTime.getDate().toString().padStart(2,'0');
-  const month = (iraqTime.getMonth()+1).toString().padStart(2,'0');
-  const year = iraqTime.getFullYear();
+  const hours24 = iraqTime.getHours();
+  const hours = (hours24 % 12 || 12).toString().padStart(2,'0');
+  const ampm = hours24 >= 12 ? 'PM' : 'AM';
 
-  const hours = iraqTime.getHours().toString().padStart(2,'0');
   const minutes = iraqTime.getMinutes().toString().padStart(2,'0');
   const seconds = iraqTime.getSeconds().toString().padStart(2,'0');
 
-  document.getElementById("countdown").innerHTML = `${dayName} ${date}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
+  document.getElementById("countdown").innerHTML = `${hours}:${minutes}:${seconds} ${ampm}`;
 }
 setInterval(updateClock,1000);
 
