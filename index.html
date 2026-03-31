@@ -98,14 +98,12 @@ body{
   transform:scale(1.05);
 }
 
-/* الألوان الأصلية */
 .btn1{background:#25D366;} 
 .btn3{background:#6610f2;}
 .btn4{background:#ff5722;}
 .btn5{background:#e91e63;}
 .btn6{background:#0d6efd;} 
 
-/* زر مميز VIP */
 .btnVIP{
   background: linear-gradient(45deg,#FFD700,#ff9800);
   color:#000;
@@ -119,7 +117,6 @@ body{
   margin-top:5px;
 }
 
-/* وصف آخر تطبيق أسود */
 .vip-desc{
   color:#000 !important;
 }
@@ -159,6 +156,37 @@ body.light{
   background: var(--bg-light);
   color: var(--text-light);
 }
+
+/* شاشة التحميل Overlay */
+#loader-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.7);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  font-size:24px;
+  z-index:9999;
+  display:none;
+  flex-direction:column;
+}
+.spinner{
+  border:5px solid #f3f3f3;
+  border-top:5px solid #ff4d4d;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  animation:spin 1s linear infinite;
+  margin-bottom:15px;
+}
+@keyframes spin{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
+}
 </style>
 </head>
 <body>
@@ -182,38 +210,37 @@ body.light{
 
   <div class="download">
 
-    <a class="app-card btn1" href="#">
+    <a class="app-card btn1" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file" target="_blank">
       <div>تحميل برايم تيفي</div>
       <div class="desc">كود التفعيل: 2026</div>
     </a>
 
-    <a class="app-card btn3" href="#">
+    <a class="app-card btn3" href="https://workupload.com/file/QN6shgxPdgr" target="_blank">
       <div>تحميل سينمانا لينباك</div>
       <div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
     </a>
 
-    <a class="app-card btn4" href="#">
+    <a class="app-card btn4" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file" target="_blank">
       <div>تحميل 1 IRAQ TV</div>
-      <div class="desc">مدعوم بجميع شبكات | Android_AppsX</div>
+      <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
     </a>
 
-    <a class="app-card btn5" href="#">
+    <a class="app-card btn5" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file" target="_blank">
       <div>تحميل يوتيوب لكافة الشاشات</div>
       <div class="desc">محدث شهر 4 2026</div>
     </a>
 
-    <a class="app-card btn3" href="#">
+    <a class="app-card btn3" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file" target="_blank">
       <div>تحميل جنرال برو تيفي</div>
-      <div class="desc">كود التفعيل: 000</div>
+      <div class="desc">خاص للمباريات وقنوات رياضية جميع شبكات | كود التفعيل: 000</div>
     </a>
 
-    <a class="app-card btn6" href="#">
+    <a class="app-card btn6" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file" target="_blank">
       <div>تحميل سينمانا بلس</div>
-      <div class="desc">اخف نسخة للشاشات</div>
+      <div class="desc">اخف سينمانا شاشات الضعيفة</div>
     </a>
 
-    <!-- المميز -->
-    <a class="app-card btnVIP" href="#">
+    <a class="app-card btnVIP" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file" target="_blank">
       <div>تحميل موفيز بوكس</div>
       <div class="desc vip-desc">معدل من فريق Android_AppsX + كل VIP مفتوح افضل من نتفلكس</div>
     </a>
@@ -223,8 +250,14 @@ body.light{
 
 <div class="footer">
   <div class="marquee">
-    الحمد لله | اللهم صلِّ وسلم وبارك على نبينا محمد ﷺ | سبحان الله
+    الحمد لله | اللهم صلِّ وسلم وبارك على نبينا محمد ﷺ | سبحان الله | تنبيه: تطبيقات مجانية | اذا احتاجت شي راسلني واتساب: 07766780579
   </div>
+</div>
+
+<!-- شاشة التحميل -->
+<div id="loader-overlay">
+  <div class="spinner"></div>
+  <div>جاري التحميل...</div>
 </div>
 
 <script>
@@ -253,6 +286,20 @@ setInterval(updateClock,1000);
 function toggleMode(){
   document.body.classList.toggle('light');
 }
+
+// تحميل مع انتظار 4 ثواني
+document.querySelectorAll('.app-card').forEach(btn=>{
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    const url = this.href;
+    const loader = document.getElementById('loader-overlay');
+    loader.style.display = 'flex';
+    setTimeout(()=>{
+      loader.style.display = 'none';
+      window.location.href = url;
+    }, 4000); // 4 ثواني
+  });
+});
 </script>
 
 </body>
