@@ -3,108 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HDMosul Store | النسخة الاحترافية</title>
+    <title>HDMosul | المتجر الملكي</title>
     <style>
         :root {
-            --primary-gold: #f1c40f;
-            --accent-cyan: #00fbff;
-            --bg-deep: #030712;
-            --glass-card: rgba(30, 41, 59, 0.5);
-            --border-light: rgba(255, 255, 255, 0.08);
+            --luxury-gold: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --dark-surface: #06090f;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --neon-blue: #00d4ff;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--bg-deep);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--dark-surface);
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(241, 196, 15, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 90% 90%, rgba(0, 251, 255, 0.05) 0%, transparent 50%);
-            color: #f1f5f9;
+                radial-gradient(circle at 0% 0%, rgba(191, 149, 63, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(0, 212, 255, 0.05) 0%, transparent 40%);
+            color: #ffffff;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
         }
 
-        /* الهيدر */
+        /* الهيدر الاحترافي */
         header {
-            padding: 50px 20px 20px;
+            padding: 60px 20px 20px;
             text-align: center;
         }
 
-        .logo-box {
-            display: inline-block;
-            position: relative;
+        .main-logo {
+            width: 110px;
+            filter: drop-shadow(0 0 25px rgba(191, 149, 63, 0.5));
+            transition: 0.5s;
         }
 
-        .logo-box img {
-            width: 90px;
-            filter: drop-shadow(0 0 15px rgba(241, 196, 15, 0.4));
-            margin-bottom: 10px;
-        }
+        .main-logo:hover { transform: scale(1.1); }
 
-        .brand-title {
-            font-size: 2.5rem;
+        .brand-name {
+            font-size: 3rem;
             font-weight: 900;
-            margin: 0;
-            background: linear-gradient(to bottom, #fff, #94a3b8);
+            margin: 15px 0 0;
+            background: var(--luxury-gold);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* لوحة الوقت والحالة */
-        .status-panel {
-            max-width: 700px;
-            margin: 20px auto 40px;
-            background: var(--glass-card);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-light);
-            border-radius: 20px;
-            padding: 15px 30px;
+        /* شريط الحالة والساعة */
+        .premium-bar {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 40px;
+            border-radius: 100px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
-        .maintenance-mode {
-            color: var(--primary-gold);
+        .status-badge {
+            color: #ffcc00;
+            font-size: 0.9rem;
             font-weight: bold;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 0.95rem;
         }
 
-        #clock-display {
-            font-family: 'monospace';
-            font-size: 1.1rem;
-            color: var(--accent-cyan);
-            letter-spacing: 1px;
+        #digital-clock {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--neon-blue);
             direction: ltr;
         }
 
-        /* شبكة التطبيقات */
-        .apps-container {
+        /* شبكة الأزرار الفخمة */
+        .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 0 5% 120px;
-            max-width: 1400px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 0 6% 150px;
+            max-width: 1600px;
             margin: 0 auto;
         }
 
-        .app-item {
-            background: var(--glass-card);
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
-            padding: 35px 20px;
+        .premium-btn {
+            background: linear-gradient(145deg, rgba(30,41,59,0.4), rgba(15,23,42,0.6));
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 35px;
+            padding: 40px 25px;
             text-decoration: none;
-            color: inherit;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -113,226 +108,212 @@
             text-align: center;
         }
 
-        .app-item:hover {
-            transform: translateY(-8px);
-            border-color: var(--item-color);
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3), 0 0 15px var(--item-glow);
+        .premium-btn:hover {
+            transform: translateY(-15px);
+            border-color: rgba(191, 149, 63, 0.5);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 20px rgba(191, 149, 63, 0.1);
         }
 
-        .app-item i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .app-name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .app-info {
-            font-size: 0.85rem;
-            color: #94a3b8;
-            line-height: 1.6;
-        }
-
-        /* مؤقت التحميل */
-        .loader-screen {
+        .premium-btn::after {
+            content: '';
             position: absolute;
-            inset: 0;
-            background: rgba(2, 6, 23, 0.98);
-            display: none;
-            flex-direction: column;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            transition: 0.5s;
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.03);
+            display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 50;
+            font-size: 32px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--item-color);
+            box-shadow: inset 0 0 15px var(--item-glow);
         }
 
-        .loader-screen .seconds {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--primary-gold);
-        }
+        .btn-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; color: #fff; }
+        .btn-desc { font-size: 0.95rem; color: #8e9aaf; line-height: 1.6; }
 
-        /* شريط الأخبار اللانهائي */
-        .marquee-footer {
+        /* شريط الأخبار اللانهائي السلس */
+        .marquee-container {
             position: fixed;
             bottom: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(15px);
-            border-top: 1px solid var(--primary-gold);
-            padding: 12px 0;
-            overflow: hidden;
-            z-index: 1000;
+            background: rgba(2, 6, 12, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 2px solid #b38728;
+            padding: 15px 0;
+            z-index: 9999;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: scroll-left 50s linear infinite;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .marquee-content {
             display: flex;
-            white-space: nowrap;
-            animation: infinite-scroll 45s linear infinite;
-        }
-
-        @keyframes infinite-scroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        .marquee-text {
-            padding: 0 40px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 60px;
+            padding-right: 60px;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
-        .gold-txt { color: var(--primary-gold); }
-        .cyan-txt { color: var(--accent-cyan); }
+        .gold-msg { color: #f1c40f; }
+        .blue-msg { color: #00d4ff; }
 
-        /* ألوان العناصر */
-        .color-gold { --item-color: #f1c40f; --item-glow: rgba(241, 196, 15, 0.2); }
-        .color-orange { --item-color: #e67e22; --item-glow: rgba(230, 126, 34, 0.2); }
-        .color-purple { --item-color: #9b59b6; --item-glow: rgba(155, 89, 182, 0.2); }
-        .color-green { --item-color: #2ecc71; --item-glow: rgba(46, 204, 113, 0.2); }
-        .color-red { --item-color: #e74c3c; --item-glow: rgba(231, 76, 60, 0.2); }
-        .color-blue { --item-color: #3498db; --item-glow: rgba(52, 152, 219, 0.2); }
-        .color-cyan { --item-color: #00fbff; --item-glow: rgba(0, 251, 255, 0.2); }
+        /* المؤقت */
+        .loading-overlay {
+            position: absolute;
+            inset: 0;
+            background: #06090f;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        .timer-val { font-size: 5rem; font-weight: 900; color: #f1c40f; }
 
-        @media (max-width: 600px) {
-            .status-panel { flex-direction: column; gap: 10px; text-align: center; margin: 10px 5% 30px; }
-            .brand-title { font-size: 1.8rem; }
+        /* تخصيص ألوان الأزرار */
+        .c-1 { --item-color: #f1c40f; --item-glow: rgba(241,196,15,0.2); }
+        .c-2 { --item-color: #e67e22; --item-glow: rgba(230,126,34,0.2); }
+        .c-3 { --item-color: #9b59b6; --item-glow: rgba(155,89,182,0.2); }
+        .c-4 { --item-color: #2ecc71; --item-glow: rgba(46,204,113,0.2); }
+        .c-5 { --item-color: #e74c3c; --item-glow: rgba(231,76,60,0.2); }
+        .c-6 { --item-color: #3498db; --item-glow: rgba(52,152,219,0.2); }
+        .c-7 { --item-color: #00fbff; --item-glow: rgba(0,251,255,0.2); }
+        .c-8 { --item-color: #ff5e00; --item-glow: rgba(255,94,0,0.2); }
+
+        @media (max-width: 768px) {
+            .brand-name { font-size: 2.2rem; }
+            .premium-bar { flex-direction: column; border-radius: 25px; width: 90%; gap: 10px; }
+            .apps-grid { grid-template-columns: 1fr; padding-bottom: 120px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-box">
-        <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid">
-        <h1 class="brand-title">HDMosul Store</h1>
-    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="HDMosul" class="main-logo">
+    <h1 class="brand-name">HDMosul Store</h1>
 </header>
 
-<div class="status-panel">
-    <div class="maintenance-mode">
-        <span>⚠️</span> تنبيه: الموقع في مرحلة التحديث الفني
-    </div>
-    <div id="clock-display">جاري التحميل...</div>
+<div class="premium-bar">
+    <div class="status-badge"><span>🛡️</span> الموقع تحت الصيانة وتحديث الروابط</div>
+    <div id="digital-clock">00:00:00 --</div>
 </div>
 
-<div class="apps-container">
-    <a class="app-item color-gold" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file">
-        <div class="loader-screen"><span class="seconds">3</span><span>ثوانٍ للتحميل</span></div>
-        <div class="app-name">يوتيوب الشاشات</div>
-        <div class="app-info">تحديث شهر 4 - 2026<br>خالي من الإعلانات تماماً</div>
+<div class="apps-grid">
+    <a class="premium-btn c-1" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file">
+        <div class="loading-overlay"><span class="timer-val">3</span><span>ثوانٍ للبدء</span></div>
+        <div class="icon-circle">📺</div>
+        <div class="btn-title">يوتيوب الشاشات</div>
+        <div class="btn-desc">محدث أبريل 2026 - بدون إعلانات</div>
     </a>
-
-    <a class="app-item color-orange" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
-        <div class="loader-screen"><span class="seconds">3</span><span>ثوانٍ للتحميل</span></div>
-        <div class="app-name">IRAQ TV 1</div>
-        <div class="app-info">مباريات ومسلسلات ونتفلكس<br>لجميع الشبكات</div>
+    <a class="premium-btn c-2" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
+        <div class="loading-overlay"><span class="timer-val">3</span><span>ثوانٍ للبدء</span></div>
+        <div class="icon-circle">🇮🇶</div>
+        <div class="btn-title">IRAQ TV 1</div>
+        <div class="btn-desc">مباريات ومسلسلات لجميع الشبكات</div>
     </a>
-
-    <a class="app-item color-purple" href="https://workupload.com/file/QN6shgxPdgr">
-        <div class="loader-screen"><span class="seconds">3</span><span>ثوانٍ للتحميل</span></div>
-        <div class="app-name">سينمانا Leanback</div>
-        <div class="app-info">نسخة مخصصة للشاشات<br>سرعة فائقة في التنقل</div>
+    <a class="premium-btn c-3" href="https://workupload.com/file/QN6shgxPdgr">
+        <div class="loading-overlay"><span class="timer-val">3</span><span>ثوانٍ للبدء</span></div>
+        <div class="icon-circle">🎬</div>
+        <div class="btn-title">سينمانا Leanback</div>
+        <div class="btn-desc">نسخة الشاشات والـ TV Box السريعة</div>
     </a>
-
-    <a class="app-item color-green" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file">
-        <div class="loader-screen"><span class="seconds">3</span><span>ثوانٍ للتحميل</span></div>
-        <div class="app-name">برايم تيفي</div>
-        <div class="app-info">تطبيق متوقف حالياً<br>كود التفعيل: 2026</div>
+    <a class="premium-btn c-4" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file">
+        <div class="loading-overlay"><span class="timer-val">3</span><span>ثوانٍ للبدء</span></div>
+        <div class="icon-circle">📡</div>
+        <div class="btn-title">برايم تيفي</div>
+        <div class="btn-desc">متوقف حالياً | الكود: 2026</div>
     </a>
-
-    <a class="app-item color-red" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file">
-        <div class="loader-screen"><span class="seconds">3</span><span>ثوانٍ للتحميل</span></div>
-        <div class="app-name">دراما لايف</div>
-        <div class="app-info">أفضل تطبيق للقنوات المشفرة<br>كود التفعيل: 232425</div>
+    <a class="premium-btn c-5" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file">
+        <div class="loading-overlay"><span class="timer-val">3</span><span>ثوانٍ للبدء</span></div>
+        <div class="icon-circle">🔥</div>
+        <div class="btn-title">دراما لايف</div>
+        <div class="btn-desc">القنوات المشفرة | كود: 232425</div>
     </a>
-
-    <a class="app-item color-gold" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file">
-        <div class="loader-screen"><span class="seconds">3</span><span>ثوانٍ للتحميل</span></div>
-        <div class="app-name">موفيز بوكس VIP</div>
-        <div class="app-info">نسخة معدلة من Android_AppsX<br>بميزات VIP مفتوحة</div>
+    <a class="premium-btn c-1" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file">
+        <div class="loading-overlay"><span class="timer-val">3</span><span>ثوانٍ للبدء</span></div>
+        <div class="icon-circle">⭐</div>
+        <div class="btn-title">موفيز بوكس VIP</div>
+        <div class="btn-desc">معدل من فريق Android_AppsX</div>
     </a>
-
-    <a class="app-item color-blue" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file">
-        <div class="loader-screen"><span class="seconds">3</span><span>ثوانٍ للتحميل</span></div>
-        <div class="app-name">سينمانا بلس</div>
-        <div class="app-info">النسخة الخفيفة<br>للشاشات ذات المواصفات الضعيفة</div>
+    <a class="premium-btn c-6" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file">
+        <div class="loading-overlay"><span class="timer-val">3</span><span>ثوانٍ للبدء</span></div>
+        <div class="icon-circle">🚀</div>
+        <div class="btn-title">سينمانا بلس</div>
+        <div class="btn-desc">النسخة الخفيفة للشاشات الضعيفة</div>
     </a>
-
-    <a class="app-item color-cyan" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file">
-        <div class="loader-screen"><span class="seconds">3</span><span>ثوانٍ للتحميل</span></div>
-        <div class="app-name">جنرال برو تيفي</div>
-        <div class="app-info">خاص للمباريات وقنوات الشبكات<br>كود التفعيل: 000</div>
+    <a class="premium-btn c-7" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file">
+        <div class="loading-overlay"><span class="timer-val">3</span><span>ثوانٍ للبدء</span></div>
+        <div class="icon-circle">⚽</div>
+        <div class="btn-title">جنرال برو تيفي</div>
+        <div class="btn-desc">مباريات وشبكات الموصل | كود: 000</div>
     </a>
 </div>
 
-<div class="marquee-footer">
-    <div class="marquee-content">
-        <span class="marquee-text">
-            <span class="gold-txt">✦ الحمدلله • سبحان الله • الله أكبر • صل على النبي ﷺ • لا إله إلا الله ✦</span>
-            <span class="cyan-txt">تتوفر منظومات بث رقمي (أجدي بوكس - فاملي بوكس - شمس نينوى) بأسعار مناسبة جداً</span>
-            <span class="gold-txt">راسلني واتساب: 07766780579</span>
-            <span class="cyan-txt">HDMosul Store - خيارك الأول في الموصل للتقنية والستلايت</span>
-        </span>
-        <span class="marquee-text">
-            <span class="gold-txt">✦ الحمدلله • سبحان الله • الله أكبر • صل على النبي ﷺ • لا إله إلا الله ✦</span>
-            <span class="cyan-txt">تتوفر منظومات بث رقمي (أجدي بوكس - فاملي بوكس - شمس نينوى) بأسعار مناسبة جداً</span>
-            <span class="gold-txt">راسلني واتساب: 07766780579</span>
-            <span class="cyan-txt">HDMosul Store - خيارك الأول في الموصل للتقنية والستلايت</span>
-        </span>
+<div class="marquee-container">
+    <div class="marquee-track">
+        <div class="marquee-content">
+            <span class="gold-msg">✦ الحمدلله • سبحان الله • الله أكبر • صل على النبي ﷺ ✦</span>
+            <span class="blue-msg">منظومات بث رقمي (أجدي بوكس - فاملي بوكس - شمس نينوى) بأفضل الأسعار</span>
+            <span class="gold-msg">راسلني واتساب: 07766780579</span>
+            <span class="blue-msg">HDMosul Store © 2026 - الموصل - نينوى</span>
+        </div>
+        <div class="marquee-content">
+            <span class="gold-msg">✦ الحمدلله • سبحان الله • الله أكبر • صل على النبي ﷺ ✦</span>
+            <span class="blue-msg">منظومات بث رقمي (أجدي بوكس - فاملي بوكس - شمس نينوى) بأفضل الأسعار</span>
+            <span class="gold-msg">راسلني واتساب: 07766780579</span>
+            <span class="blue-msg">HDMosul Store © 2026 - الموصل - نينوى</span>
+        </div>
     </div>
 </div>
 
 <script>
-    // تحديث الوقت بنظام 12 ساعة
     function updateClock() {
         const now = new Date();
-        const timeOptions = {
+        const options = {
             timeZone: 'Asia/Baghdad',
             hour: '2-digit',
             minute: '2-digit',
             second: '2-digit',
             hour12: true
         };
-        const dateOptions = {
-            timeZone: 'Asia/Baghdad',
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric',
-            weekday: 'long'
-        };
-
-        const timeString = new Intl.DateTimeFormat('ar-IQ', timeOptions).format(now);
-        const dateString = new Intl.DateTimeFormat('ar-IQ', dateOptions).format(now);
-
-        document.getElementById('clock-display').innerHTML = `${dateString} | ${timeString}`;
+        const formatter = new Intl.DateTimeFormat('ar-IQ', options);
+        document.getElementById('digital-clock').innerText = formatter.format(now).replace("م", "PM").replace("ص", "AM");
     }
 
-    // منطق العد التنازلي للتحميل
-    document.querySelectorAll('.app-item').forEach(btn => {
+    document.querySelectorAll('.premium-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
             const link = this.href;
-            const overlay = this.querySelector('.loader-screen');
-            const timerText = this.querySelector('.seconds');
+            const overlay = this.querySelector('.loading-overlay');
+            const timerText = this.querySelector('.timer-val');
             let count = 3;
-
             overlay.style.display = 'flex';
-            const interval = setInterval(() => {
+            const counter = setInterval(() => {
                 count--;
-                if (count > 0) {
-                    timerText.innerText = count;
-                } else {
-                    clearInterval(interval);
+                if(count > 0) timerText.innerText = count;
+                else {
+                    clearInterval(counter);
                     window.location.href = link;
-                    setTimeout(() => { overlay.style.display = 'none'; }, 3000);
+                    setTimeout(() => { overlay.style.display = 'none'; }, 2000);
                 }
             }, 1000);
         });
