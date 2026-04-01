@@ -7,28 +7,128 @@
 
 <style>
 :root { --bg:#0f172a; --gold:#FFD700; }
-body{margin:0;font-family:Arial;background:var(--bg);color:white;text-align:center;}
-.logo{font-size:30px;font-weight:900;color:var(--gold);margin:15px;}
-.maintenance{margin:15px;font-weight:bold;}
-#live-clock{font-size:16px;}
-.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;padding:20px;}
-.card{background:#1e293b;border-radius:15px;padding:20px;position:relative;text-decoration:none;color:white;border:2px solid transparent;transition:0.3s;}
+
+body{
+margin:0;
+font-family:Arial;
+background:var(--bg);
+color:white;
+text-align:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:900;
+color:var(--gold);
+margin:10px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:30px;
+height:30px;
+}
+
+.ticker{
+background:black;
+color:#00ffcc;
+padding:5px;
+font-size:14px;
+overflow:hidden;
+white-space:nowrap;
+}
+
+.ticker span{
+display:inline-block;
+padding-left:100%;
+animation:scroll 12s linear infinite;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
+}
+
+.maintenance{
+margin:10px;
+font-weight:bold;
+}
+
+#live-clock{
+font-size:16px;
+margin-top:5px;
+line-height:1.6;
+}
+
+.apps{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+border-radius:15px;
+padding:20px;
+position:relative;
+text-decoration:none;
+color:white;
+border:2px solid transparent;
+transition:0.3s;
+}
+
 .card:hover{transform:translateY(-5px);}
-.gold{border-color:#f1c40f;} .green{border-color:#2ecc71;} .red{border-color:#e74c3c;}
-.blue{border-color:#3498db;} .purple{border-color:#9b59b6;} .orange{border-color:#e67e22;} .cyan{border-color:#00fbff;}
-.title{font-size:20px;font-weight:900;color:var(--gold);}
+
+.gold{border-color:#f1c40f;}
+.green{border-color:#2ecc71;}
+.red{border-color:#e74c3c;}
+.blue{border-color:#3498db;}
+.purple{border-color:#9b59b6;}
+.orange{border-color:#e67e22;}
+.cyan{border-color:#00fbff;}
+
+.title{
+font-size:20px;
+font-weight:900;
+color:var(--gold);
+}
+
 .desc{font-size:14px;}
-.loader{position:absolute;top:10px;left:10px;background:gold;color:black;width:25px;height:25px;border-radius:50%;display:none;align-items:center;justify-content:center;font-weight:bold;}
+
+.loader{
+position:absolute;
+top:10px;
+left:10px;
+background:gold;
+color:black;
+width:25px;
+height:25px;
+border-radius:50%;
+display:none;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+}
 </style>
 </head>
 
 <body>
 
-<div class="logo">HDMosul Store</div>
+<div class="logo">
+<img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg">
+HDMosul Store
+</div>
+
+<div class="ticker">
+<span>الحمدلله • سبحان الله • الله أكبر • صل على النبي ﷺ</span>
+</div>
 
 <div class="maintenance">
 ⚠️ الموقع تحت الصيانة  
-<br>
 <div id="live-clock">جاري التحميل...</div>
 </div>
 
@@ -85,45 +185,70 @@ body{margin:0;font-family:Arial;background:var(--bg);color:white;text-align:cent
 </div>
 
 <script>
-// مزود الخدمة
-let ispText="جاري التحميل...";
+let ispText="...";
+let connType="...";
 
+// كشف مزود الخدمة
 async function fetchISP(){
  try{
   let r=await fetch('https://ipapi.co/json/');
   let d=await r.json();
-  let org=d.org||"غير متوفر";
 
-  // ترجمة ذكية فقط للمختصر
-  const translations = {
-    "Zain":"زين",
-    "Asiacell":"آسياسيل",
-    "Korek":"كورك",
-    "Fastlink":"فاستلينك"
-  };
+  let org=(d.org || "").toLowerCase();
+  let ispName="غير متوفر";
 
-  let translated=false;
-
-  for(let key in translations){
-    if(org.toLowerCase().includes(key.toLowerCase())){
-      org=translations[key];
-      translated=true;
-      break;
-    }
+  if(org.includes("earthlink") || org.includes("iq networks") || org.includes("earth link")){
+    ispName="ايرثلنك (ألياف ضوئية)";
+  }
+  else if(org.includes("fiber") || org.includes("ftth") || org.includes("fttx")){
+    ispName="كيبل ضوئي (Fiber)";
+  }
+  else if(org.includes("zain")){
+    ispName="زين";
+  }
+  else if(org.includes("asiacell")){
+    ispName="آسياسيل";
+  }
+  else if(org.includes("korek")){
+    ispName="كورك";
+  }
+  else if(org.includes("fastlink")){
+    ispName="فاستلينك";
+  }
+  else if(org.length>0){
+    ispName=d.org;
   }
 
-  ispText=org;
+  ispText=ispName;
+
+  // كشف نوع الاتصال
+  if(navigator.connection && navigator.connection.effectiveType){
+    let type=navigator.connection.effectiveType.toLowerCase();
+    if(type.includes("wifi")){
+      connType="WiFi";
+    } else {
+      connType="بيانات";
+    }
+  } else {
+    connType="غير معروف";
+  }
 
  }catch{
   ispText="غير متوفر";
+  connType="غير معروف";
  }
 }
 
-// الساعة + المزود
+// الوقت + التاريخ + ISP + نوع الاتصال
 function updateClock(){
- let iraq=new Date(new Date().getTime()+(3*60*60*1000+new Date().getTimezoneOffset()*60000));
+ let now=new Date();
+ let iraq=new Date(now.getTime()+(3*60*60*1000+now.getTimezoneOffset()*60000));
+
+ let time=iraq.toLocaleTimeString('ar-EG');
+ let date=iraq.toLocaleDateString('ar-EG',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
  document.getElementById("live-clock").innerHTML=
- iraq.toLocaleTimeString('ar-EG')+" | مزود الخدمة: "+ispText;
+ date+"<br>"+time+" | مزود الخدمة: "+ispText+" | نوع الاتصال: "+connType;
 }
 
 setInterval(updateClock,1000);
