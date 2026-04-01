@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HDMosul Store | الفخامة في عالم التطبيقات</title>
+    <title>HDMosul Store</title>
     <style>
         :root {
             --primary-glow: #f1c40f;
@@ -28,80 +28,47 @@
             overflow-x: hidden;
         }
 
-        /* الهيدر الملكي */
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 30px 60px;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
         }
 
         .brand {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
         }
 
         .brand img {
-            width: 70px;
-            filter: drop-shadow(0 0 10px rgba(241, 196, 15, 0.3));
+            width: 80px;
+            filter: drop-shadow(0 0 15px rgba(241, 196, 15, 0.4));
         }
 
-        .brand-text h1 {
+        .brand h1 {
             margin: 0;
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: 1px;
+            font-size: 35px;
+            font-weight: 900;
             background: linear-gradient(45deg, #fff, var(--primary-glow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .status-badge {
-            background: rgba(241, 196, 15, 0.1);
-            color: var(--primary-glow);
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            border: 1px solid rgba(241, 196, 15, 0.2);
-            text-transform: uppercase;
-        }
-
-        /* لوحة الصيانة والوقت الذكية */
-        .hero-section {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
         .info-panel {
-            display: inline-block;
+            text-align: center;
+            margin: 10px auto 30px;
             background: var(--glass);
             backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
-            padding: 20px 50px;
+            padding: 15px 40px;
             border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            display: table;
         }
 
-        .info-panel h2 {
-            margin: 0;
-            font-size: 18px;
-            color: #94a3b8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
+        #live-clock { font-size: 20px; color: #fff; }
 
-        #live-clock {
-            margin-top: 10px;
-            font-size: 22px;
-            font-weight: 300;
-            color: #fff;
-        }
-
-        /* شبكة التطبيقات الاحترافية */
         .apps-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -118,20 +85,12 @@
             padding: 30px 20px;
             text-decoration: none;
             color: inherit;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.4s;
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        .app-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.05));
-            pointer-events: none;
         }
 
         .app-card:hover {
@@ -141,34 +100,9 @@
             box-shadow: 0 0 30px var(--glow-color);
         }
 
-        .app-icon-placeholder {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--card-color);
-        }
+        .app-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; text-align: center; }
+        .app-desc { font-size: 14px; color: #94a3b8; text-align: center; }
 
-        .app-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .app-desc {
-            font-size: 14px;
-            color: #94a3b8;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        /* عداد التحميل الحديث */
         .download-overlay {
             position: absolute;
             inset: 0;
@@ -180,49 +114,41 @@
             z-index: 10;
         }
 
-        .timer-num {
-            font-size: 48px;
-            font-weight: 900;
-            color: var(--primary-glow);
-        }
+        .timer-num { font-size: 48px; font-weight: 900; color: var(--primary-glow); }
 
-        /* شريط المعلومات السفلي المتحرك */
-        .footer-wrap {
-            margin-top: auto;
-        }
-
+        /* شريط الأذكار والإعلانات (حركة بطيئة جداً) */
         .ticker-modern {
-            background: rgba(241, 196, 15, 0.05);
-            border-top: 1px solid rgba(241, 196, 15, 0.1);
-            padding: 12px 0;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 1px solid var(--glass-border);
+            padding: 18px 0;
             overflow: hidden;
         }
 
-        .ticker-modern span {
+        .ticker-content {
             display: inline-block;
             white-space: nowrap;
-            padding-left: 100%;
-            animation: scroll-left 30s linear infinite;
-            color: var(--primary-glow);
-            font-weight: 500;
-            font-size: 16px;
+            /* زيادة المدة لـ 60 ثانية لجعلها بطيئة جداً */
+            animation: bounce-scroll 60s linear infinite; 
+            font-size: 18px;
         }
 
-        @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+        @keyframes bounce-scroll {
+            0%, 100% { transform: translateX(5%); }
+            50% { transform: translateX(-95%); }
         }
+
+        .ads-text { color: var(--accent-color); font-weight: bold; }
+        .dhikr-text { color: var(--primary-glow); }
 
         footer {
             background: #000;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
+            padding: 20px;
+            text-align: center;
             color: #64748b;
-            font-size: 14px;
+            border-top: 1px solid #1e293b;
         }
 
-        /* ألوان مخصصة لكل بطاقة لسهولة التمييز */
+        /* ألوان البطاقات */
         .c-gold { --card-color: #f1c40f; --glow-color: rgba(241, 196, 15, 0.2); }
         .c-orange { --card-color: #e67e22; --glow-color: rgba(230, 126, 34, 0.2); }
         .c-purple { --card-color: #9b59b6; --glow-color: rgba(155, 89, 182, 0.2); }
@@ -232,7 +158,7 @@
         .c-cyan { --card-color: #00fbff; --glow-color: rgba(0, 251, 255, 0.2); }
 
         @media (max-width: 1200px) { .apps-container { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .apps-container { grid-template-columns: 1fr; } header { padding: 20px; } }
+        @media (max-width: 600px) { .apps-container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -240,121 +166,83 @@
 <header>
     <div class="brand">
         <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="HDMosul">
-        <div class="brand-text">
-            <h1>HDMosul Store</h1>
-            <span class="status-badge">الإصدار الفاخر 2026</span>
-        </div>
-    </div>
-    <div id="isp-display" style="color: var(--accent-color); font-weight: bold;">
-        جاري التعرف على الشبكة...
+        <h1>HDMosul Store</h1>
     </div>
 </header>
 
-<div class="hero-section">
-    <div class="info-panel">
-        <h2>⚠️ نظام الإدارة | حالة المتجر</h2>
-        <div id="live-clock">تحميل البيانات...</div>
-    </div>
+<div class="info-panel">
+    <div id="live-clock">تحميل التاريخ...</div>
 </div>
 
 <div class="apps-container">
     <a class="app-card c-gold" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file">
         <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
-        <div class="app-icon-placeholder">▶️</div>
         <div class="app-title">يوتيوب لكافة الشاشات -</div>
         <div class="app-desc">محدث شهر 4 2026</div>
     </a>
 
     <a class="app-card c-orange" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
         <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
-        <div class="app-icon-placeholder">📺</div>
         <div class="app-title">- IRAQ TV 1</div>
         <div class="app-desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
     </a>
 
     <a class="app-card c-purple" href="https://workupload.com/file/QN6shgxPdgr">
         <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
-        <div class="app-icon-placeholder">🎬</div>
         <div class="app-title">سينمانا لينباك - نسخة</div>
         <div class="app-desc">مخصصة للشاشات وتيفي بوكس سريعة جداً</div>
     </a>
 
     <a class="app-card c-green" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file">
         <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
-        <div class="app-icon-placeholder">💎</div>
         <div class="app-title">برايم تيفي - تطبيق متوقف حاليا</div>
         <div class="app-desc">كود التفعيل: 2026</div>
     </a>
 
     <a class="app-card c-red" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file">
         <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
-        <div class="app-icon-placeholder">⚽</div>
         <div class="app-title">دراما لايف - أكثر شهرة فعلاً</div>
         <div class="app-desc">تطبيق مميز لمشاهدة القنوات كود التفعيل: 232425</div>
     </a>
 
     <a class="app-card c-gold" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file">
         <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
-        <div class="app-icon-placeholder">🔥</div>
         <div class="app-title">موفيز بوكس - معدل من فريق</div>
         <div class="app-desc">Android_AppsX + كل VIP مفتوح أفضل من نتفلكس</div>
     </a>
 
     <a class="app-card c-blue" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file">
         <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
-        <div class="app-icon-placeholder">⭐</div>
         <div class="app-title">سينمانا بلس - اخف</div>
         <div class="app-desc">سينمانا شاشات الضعيفة</div>
     </a>
 
     <a class="app-card c-cyan" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file">
         <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
-        <div class="app-icon-placeholder">⚡</div>
         <div class="app-title">جنرال برو تيفي - خاص</div>
         <div class="app-desc">للمباريات وقنوات رياضية شبكات كود التفعيل: 000</div>
     </a>
 </div>
 
-<div class="footer-wrap">
-    <div class="ticker-modern">
-        <span>الحمدلله • سبحان الله • الله أكبر • صل على النبي ﷺ • لا إله إلا الله • لا حول ولا قوة إلا بالله • أستغفر الله العظيم وأتوب إليه</span>
+<div class="ticker-modern">
+    <div class="ticker-content">
+        <span class="dhikr-text">الحمدلله • سبحان الله • الله أكبر • صل على النبي ﷺ • لا إله إلا الله • لا حول ولا قوة إلا بالله • </span>
+        <span class="ads-text">تتوفر لدينا منظومات بث رقمي بأسعار مناسبة (أجدي بوكس - فاملي بوكس - شمس نينوى) • اشتراكات وتفعيلات بأسعار مناسبة جداً • واتساب: 07766780579 • </span>
     </div>
-    <footer>
-        <div>تم التطوير بواسطة HDMosul Store &copy; 2026</div>
-        <div>الموصل - العراق | جميع الحقوق محفوظة</div>
-    </footer>
 </div>
 
+<footer>
+    <div>تم التطوير بواسطة HDMosul &copy; 2026</div>
+</footer>
+
 <script>
-    // نظام كشف الشبكة المطور
-    async function initNetwork() {
-        try {
-            const res = await fetch('https://ipapi.co/json/');
-            const data = await res.json();
-            const org = (data.org || "").toLowerCase();
-            let isp = data.org || "مزود غير معروف";
-
-            if(org.includes("earthlink")) isp = "ايرثلنك - السرعة القصوى 🚀";
-            else if(org.includes("zain")) isp = "زين العراق - اتصل الآن 📶";
-            else if(org.includes("asiacell")) isp = "آسياسيل - تغطية شاملة";
-            
-            document.getElementById('isp-display').innerHTML = `📡 الشبكة الحالية: ${isp}`;
-        } catch {
-            document.getElementById('isp-display').innerText = "📡 متصل بالإنترنت";
-        }
+    function updateDateTime() {
+        const now = new Date();
+        const days = ['الأحد', 'الأثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+        document.getElementById('live-clock').innerText = 
+            `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()} ${days[now.getDay()]}`;
     }
 
-    // الساعة الرقمية
-    function startClock() {
-        setInterval(() => {
-            const now = new Date();
-            document.getElementById('live-clock').innerText = now.toLocaleTimeString('ar-EG', {
-                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
-            }) + " | " + now.toLocaleDateString('ar-EG');
-        }, 1000);
-    }
-
-    // منطق التحميل والعد التنازلي
     document.querySelectorAll('.app-card').forEach(card => {
         card.addEventListener('click', function(e) {
             e.preventDefault();
@@ -362,23 +250,17 @@
             const overlay = this.querySelector('.download-overlay');
             const timerDisplay = this.querySelector('.timer-num');
             let count = 3;
-
             overlay.style.display = 'flex';
             const timer = setInterval(() => {
                 count--;
-                if(count > 0) {
-                    timerDisplay.innerText = count;
-                } else {
-                    clearInterval(timer);
-                    window.location.href = url;
-                    setTimeout(() => overlay.style.display = 'none', 2000);
-                }
+                if(count > 0) timerDisplay.innerText = count;
+                else { clearInterval(timer); window.location.href = url; }
             }, 1000);
         });
     });
 
-    initNetwork();
-    startClock();
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
 </script>
 
 </body>
