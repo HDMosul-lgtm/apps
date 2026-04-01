@@ -6,75 +6,149 @@
 <title>HDMosul Store</title>
 
 <style>
-/* نفس تصميمك بدون تغيير */
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0f172a;
-  color: white;
-  text-align: center;
-}
-
-.maintenance-panel {
-  margin-top: 20px;
-}
-
-#live-clock {
-  font-size: 18px;
-  font-weight: bold;
-}
+:root { --bg:#0f172a; --gold:#FFD700; }
+body{margin:0;font-family:Arial;background:var(--bg);color:white;text-align:center;}
+.logo{font-size:30px;font-weight:900;color:var(--gold);margin:15px;}
+.maintenance{margin:15px;font-weight:bold;}
+#live-clock{font-size:16px;}
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;padding:20px;}
+.card{background:#1e293b;border-radius:15px;padding:20px;position:relative;text-decoration:none;color:white;border:2px solid transparent;transition:0.3s;}
+.card:hover{transform:translateY(-5px);}
+.gold{border-color:#f1c40f;} .green{border-color:#2ecc71;} .red{border-color:#e74c3c;}
+.blue{border-color:#3498db;} .purple{border-color:#9b59b6;} .orange{border-color:#e67e22;} .cyan{border-color:#00fbff;}
+.title{font-size:20px;font-weight:900;color:var(--gold);}
+.desc{font-size:14px;}
+.loader{position:absolute;top:10px;left:10px;background:gold;color:black;width:25px;height:25px;border-radius:50%;display:none;align-items:center;justify-content:center;font-weight:bold;}
 </style>
 </head>
 
 <body>
 
-<div class="maintenance-panel">
-  <div>⚠️ الموقع تحت الصيانة</div>
-  <div id="live-clock">جاري التحميل...</div>
+<div class="logo">HDMosul Store</div>
+
+<div class="maintenance">
+⚠️ الموقع تحت الصيانة  
+<br>
+<div id="live-clock">جاري التحميل...</div>
+</div>
+
+<div class="apps">
+
+<a class="card gold" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file">
+<div class="title">يوتيوب لكافة الشاشات</div>
+<div class="desc">محدث شهر 4 2026</div>
+<div class="loader"></div>
+</a>
+
+<a class="card orange" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
+<div class="title">IRAQ TV 1</div>
+<div class="desc">مدعوم بجميع الشبكات لمشاهدة المباريات والمسلسلات ونتفلكس</div>
+<div class="loader"></div>
+</a>
+
+<a class="card purple" href="https://workupload.com/file/QN6shgxPdgr">
+<div class="title">سينمانا لينباك</div>
+<div class="desc">نسخة مخصصة للشاشات والتيفي بوكس سريعة جداً</div>
+<div class="loader"></div>
+</a>
+
+<a class="card green" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file">
+<div class="title">برايم تيفي</div>
+<div class="desc">تطبيق متوقف حالياً | كود التفعيل: 2026</div>
+<div class="loader"></div>
+</a>
+
+<a class="card red" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file">
+<div class="title">دراما لايف</div>
+<div class="desc">أفضل تطبيق للقنوات الرياضية | كود: 232425</div>
+<div class="loader"></div>
+</a>
+
+<a class="card gold" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file">
+<div class="title">موفيز بوكس</div>
+<div class="desc">VIP مفتوح + معدل بالكامل أفضل من نتفلكس</div>
+<div class="loader"></div>
+</a>
+
+<a class="card blue" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file">
+<div class="title">سينمانا بلس</div>
+<div class="desc">خفيف جداً ومناسب للشاشات الضعيفة</div>
+<div class="loader"></div>
+</a>
+
+<a class="card cyan" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file">
+<div class="title">جنرال برو</div>
+<div class="desc">قنوات رياضية | كود: 000</div>
+<div class="loader"></div>
+</a>
+
 </div>
 
 <script>
-// نخزن مزود الخدمة مرة وحدة فقط
-let ispText = "جاري التحميل...";
+// مزود الخدمة
+let ispText="جاري التحميل...";
 
 async function fetchISP(){
-  try{
-    const res = await fetch('https://ipapi.co/json/');
-    const data = await res.json();
-    let org = data.org || "غير متوفر";
+ try{
+  let r=await fetch('https://ipapi.co/json/');
+  let d=await r.json();
+  let org=d.org||"غير متوفر";
 
-    const translations = {
-      "Asiacell": "آسياسيل",
-      "Zain": "زين",
-      "Fastlink": "فاستلينك",
-      "Korek": "كورك"
-    };
+  // ترجمة ذكية فقط للمختصر
+  const translations = {
+    "Zain":"زين",
+    "Asiacell":"آسياسيل",
+    "Korek":"كورك",
+    "Fastlink":"فاستلينك"
+  };
 
-    for(let key in translations){
-      if(org.includes(key)){
-        org = translations[key];
-        break;
-      }
+  let translated=false;
+
+  for(let key in translations){
+    if(org.toLowerCase().includes(key.toLowerCase())){
+      org=translations[key];
+      translated=true;
+      break;
     }
-
-    ispText = org;
-
-  }catch{
-    ispText = "غير متوفر";
   }
+
+  ispText=org;
+
+ }catch{
+  ispText="غير متوفر";
+ }
 }
 
-// تحديث الساعة فقط
+// الساعة + المزود
 function updateClock(){
-  let iraq = new Date(new Date().getTime() + (3*60*60*1000 + new Date().getTimezoneOffset()*60000));
-
-  document.getElementById("live-clock").innerHTML =
-    iraq.toLocaleTimeString('ar-EG') +
-    " | مزود الخدمة: " + ispText;
+ let iraq=new Date(new Date().getTime()+(3*60*60*1000+new Date().getTimezoneOffset()*60000));
+ document.getElementById("live-clock").innerHTML=
+ iraq.toLocaleTimeString('ar-EG')+" | مزود الخدمة: "+ispText;
 }
 
-setInterval(updateClock, 1000);
+setInterval(updateClock,1000);
 fetchISP();
+
+// عداد التحميل
+document.querySelectorAll('.card').forEach(btn=>{
+ btn.addEventListener('click',function(e){
+  e.preventDefault();
+  let url=this.href;
+  let loader=this.querySelector('.loader');
+  let c=3;
+  loader.style.display='flex';
+  loader.innerText=c;
+
+  let t=setInterval(()=>{
+   c--;
+   if(c>0) loader.innerText=c;
+   else{
+    clearInterval(t);
+    window.location=url;
+   }
+  },1000);
+ });
+});
 </script>
 
 </body>
