@@ -9,7 +9,7 @@
 :root {
   --bg-dark: linear-gradient(135deg,#0f172a,#1e293b);
   --text-dark: #fff;
-  --clock-color: #FFD700; /* ذهبي */
+  --gold: #FFD700;
 }
 
 body{
@@ -42,12 +42,12 @@ body{
 .logo{
   font-size:48px;
   font-weight:900;
-  color:#FFD700; /* ذهبي */
-  text-shadow: 0 0 3px #FFD700, 0 0 6px #FFD700; /* توهج خفيف */
+  color: var(--gold);
+  /* بدون توهج */
 }
 
 .sublogo{
-  color:#ffc107;
+  color: var(--gold);
   margin-bottom:15px;
   font-size:20px;
 }
@@ -64,10 +64,10 @@ body{
 
 .count{
   margin-top:5px;
-  color: #FFD700; /* ذهبي */
+  color: var(--gold);
   font-weight:bold;
   font-size:18px;
-  text-shadow: 0 0 3px #FFD700, 0 0 6px #FFD700;
+  /* بدون توهج */
 }
 
 .download{
@@ -83,7 +83,7 @@ body{
   font-size:20px;
   font-weight:bold;
   text-align:center;
-  color:#fff;
+  color: var(--gold);
   cursor:pointer;
   transition:0.3s;
   text-decoration:none;
@@ -92,9 +92,9 @@ body{
   justify-content:center;
   min-height:140px;
   position:relative;
-  background: linear-gradient(45deg,#FFD700,#ff9800); /* كل الأزرار ذهبي */
-  color:#000;
-  border:2px solid #fff;
+  background: #000;
+  border:2px solid var(--gold);
+  text-shadow: 0 0 2px #000; /* خفيف لجعل الاسم يظهر */
 }
 
 .app-card:hover{
@@ -103,15 +103,16 @@ body{
 }
 
 .btnYouTube{
-  background:#e91e63; /* يوتيوب أحمر */
+  background:#e91e63;
   color:#fff;
+  text-shadow: none;
 }
 
 .desc{
   font-size:14px;
-  color:#ffc107; /* وصف أصفر */
+  color: var(--gold);
   margin-top:5px;
-  text-shadow: 0 0 2px #000, 0 0 4px #000; /* توهج أسود خفيف */
+  text-shadow: 0 0 2px #000; /* توهج خفيف للوضوح */
 }
 
 .vip-desc{
@@ -147,7 +148,7 @@ body{
   padding-right:100%;
   animation:move 90s linear infinite; 
   font-size:18px;
-  color:#ffc107;
+  color: var(--gold);
 }
 
 @keyframes move{
