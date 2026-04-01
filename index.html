@@ -3,273 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HDMosul Store</title>
+    <title>HDMosul Store | الفخامة في عالم التطبيقات</title>
     <style>
         :root {
-            --bg-color: #0d1b2a;
-            --card-bg: rgba(30, 41, 59, 0.8);
-            --gold: #f1c40f;
-            --footer-bg: #1e3a8a;
+            --primary-glow: #f1c40f;
+            --accent-color: #00fbff;
+            --bg-dark: #050a14;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at top, #1e293b 0%, #0d1b2a 100%);
-            color: white;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(30, 58, 138, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(20, 184, 166, 0.1) 0%, transparent 40%);
+            color: #e2e8f0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            text-align: center;
+            overflow-x: hidden;
         }
 
-        /* الهيدر وشعار ريال مدريد */
+        /* الهيدر الملكي */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 50px;
+            padding: 30px 60px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
         }
 
-        .theme-switch {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 5px 15px;
-            border-radius: 20px;
+        .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 14px;
+            gap: 20px;
         }
 
-        .logo-section { flex-grow: 1; }
-        .logo-section img { width: 55px; vertical-align: middle; }
-        .logo-section h1 { display: inline-block; margin: 0 10px; font-size: 26px; color: var(--gold); vertical-align: middle; }
-        .logo-section .beta { font-size: 14px; color: #94a3b8; }
+        .brand img {
+            width: 70px;
+            filter: drop-shadow(0 0 10px rgba(241, 196, 15, 0.3));
+        }
 
-        /* صندوق الصيانة والوقت */
-        .maintenance-container { margin: 20px 0; }
-        .maintenance-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px 40px;
-            border-radius: 15px;
+        .brand-text h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #fff, var(--primary-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-badge {
+            background: rgba(241, 196, 15, 0.1);
+            color: var(--primary-glow);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            border: 1px solid rgba(241, 196, 15, 0.2);
+            text-transform: uppercase;
+        }
+
+        /* لوحة الصيانة والوقت الذكية */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .info-panel {
             display: inline-block;
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 20px 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
-        .maintenance-box h2 { margin: 0; color: var(--gold); font-size: 20px; }
-        #live-clock { margin-top: 8px; font-size: 14px; color: #cbd5e1; line-height: 1.6; }
 
-        /* شبكة التطبيقات بـ 4 أعمدة */
-        .apps-grid {
+        .info-panel h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #live-clock {
+            margin-top: 10px;
+            font-size: 22px;
+            font-weight: 300;
+            color: #fff;
+        }
+
+        /* شبكة التطبيقات الاحترافية */
+        .apps-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            padding: 20px 50px;
-            flex-grow: 1;
+            gap: 25px;
+            padding: 0 60px 60px;
+            max-width: 1600px;
+            margin: 0 auto;
         }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 20px;
+        .app-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px 20px;
             text-decoration: none;
-            color: white;
-            border: 2px solid transparent;
-            transition: 0.3s;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            min-height: 120px;
+            align-items: center;
         }
-        .card:hover { transform: translateY(-5px); background: rgba(30, 41, 59, 1); }
 
-        .loader-circle {
+        .app-card::before {
+            content: '';
             position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--gold);
-            color: black;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: none;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.05));
+            pointer-events: none;
+        }
+
+        .app-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--card-color);
+            box-shadow: 0 0 30px var(--glow-color);
+        }
+
+        .app-icon-placeholder {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
-            font-size: 12px;
+            font-size: 24px;
+            color: var(--card-color);
         }
 
-        /* ألوان الحدود المتوهجة حسب الصورة */
-        .gold { border-color: #f1c40f; box-shadow: 0 0 10px rgba(241, 196, 15, 0.2); }
-        .orange { border-color: #e67e22; box-shadow: 0 0 10px rgba(230, 126, 34, 0.2); }
-        .purple { border-color: #9b59b6; box-shadow: 0 0 10px rgba(155, 89, 182, 0.2); }
-        .green { border-color: #2ecc71; box-shadow: 0 0 10px rgba(46, 204, 113, 0.2); }
-        .red { border-color: #e74c3c; box-shadow: 0 0 10px rgba(231, 76, 60, 0.2); }
-        .blue { border-color: #3498db; box-shadow: 0 0 10px rgba(52, 152, 219, 0.2); }
-        .cyan { border-color: #00fbff; box-shadow: 0 0 10px rgba(0, 251, 255, 0.2); }
+        .app-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-align: center;
+        }
 
-        .title { font-weight: bold; font-size: 18px; margin-bottom: 8px; color: white; }
-        .desc { font-size: 13px; color: #bdc3c7; line-height: 1.5; text-align: center; }
-
-        /* شريط الأذكار السفلي */
-        .ticker {
-            background: #000;
-            color: #00ffcc;
-            padding: 8px;
+        .app-desc {
             font-size: 14px;
-            overflow: hidden;
-            white-space: nowrap;
-            margin-top: 20px;
+            color: #94a3b8;
+            line-height: 1.6;
+            text-align: center;
         }
-        .ticker span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: scroll 25s linear infinite;
-        }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* التذييل */
+        /* عداد التحميل الحديث */
+        .download-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(5, 10, 20, 0.95);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .timer-num {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--primary-glow);
+        }
+
+        /* شريط المعلومات السفلي المتحرك */
+        .footer-wrap {
+            margin-top: auto;
+        }
+
+        .ticker-modern {
+            background: rgba(241, 196, 15, 0.05);
+            border-top: 1px solid rgba(241, 196, 15, 0.1);
+            padding: 12px 0;
+            overflow: hidden;
+        }
+
+        .ticker-modern span {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: scroll-left 30s linear infinite;
+            color: var(--primary-glow);
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
         footer {
-            background: var(--footer-bg);
-            padding: 12px 50px;
+            background: #000;
+            padding: 20px 60px;
             display: flex;
             justify-content: space-between;
+            color: #64748b;
             font-size: 14px;
         }
 
-        @media (max-width: 1024px) { .apps-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .apps-grid { grid-template-columns: 1fr; } header { padding: 15px; } }
+        /* ألوان مخصصة لكل بطاقة لسهولة التمييز */
+        .c-gold { --card-color: #f1c40f; --glow-color: rgba(241, 196, 15, 0.2); }
+        .c-orange { --card-color: #e67e22; --glow-color: rgba(230, 126, 34, 0.2); }
+        .c-purple { --card-color: #9b59b6; --glow-color: rgba(155, 89, 182, 0.2); }
+        .c-green { --card-color: #2ecc71; --glow-color: rgba(46, 204, 113, 0.2); }
+        .c-red { --card-color: #e74c3c; --glow-color: rgba(231, 76, 60, 0.2); }
+        .c-blue { --card-color: #3498db; --glow-color: rgba(52, 152, 219, 0.2); }
+        .c-cyan { --card-color: #00fbff; --glow-color: rgba(0, 251, 255, 0.2); }
+
+        @media (max-width: 1200px) { .apps-container { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .apps-container { grid-template-columns: 1fr; } header { padding: 20px; } }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="theme-switch">
-            <span>تغيير الوضع</span>
-            <div style="background:#334155; width:35px; height:18px; border-radius:10px; position:relative;">
-                <div style="background:white; width:14px; height:14px; border-radius:50%; position:absolute; left:2px; top:2px;"></div>
-            </div>
-        </div>
-        <div class="logo-section">
-            <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid">
+<header>
+    <div class="brand">
+        <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="HDMosul">
+        <div class="brand-text">
             <h1>HDMosul Store</h1>
-            <span class="beta">تجريبي</span>
-        </div>
-        <div style="width:100px;"></div>
-    </header>
-
-    <div class="maintenance-container">
-        <div class="maintenance-box">
-            <h2>⚠️ الموقع تحت الصيانة</h2>
-            <div id="live-clock">جاري تحميل البيانات...</div>
+            <span class="status-badge">الإصدار الفاخر 2026</span>
         </div>
     </div>
-
-    <div class="apps-grid">
-        <a class="card gold" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file">
-            <div class="loader-circle"></div>
-            <div class="title">يوتيوب لكافة الشاشات -</div>
-            <div class="desc">محدث شهر 4 2026</div>
-        </a>
-
-        <a class="card orange" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
-            <div class="loader-circle"></div>
-            <div class="title">- IRAQ TV 1</div>
-            <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
-        </a>
-
-        <a class="card purple" href="https://workupload.com/file/QN6shgxPdgr">
-            <div class="loader-circle"></div>
-            <div class="title">سينمانا لينباك - نسخة</div>
-            <div class="desc">مخصصة للشاشات وتيفي بوكس سريعة جداً</div>
-        </a>
-
-        <a class="card green" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file">
-            <div class="loader-circle"></div>
-            <div class="title">برايم تيفي - تطبيق متوقف حاليا</div>
-            <div class="desc">كود التفعيل: 2026</div>
-        </a>
-
-        <a class="card red" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file">
-            <div class="loader-circle"></div>
-            <div class="title">دراما لايف - أكثر شهرة فعلاً</div>
-            <div class="desc">تطبيق مميز لمشاهدة القنوات كود التفعيل: 232425</div>
-        </a>
-
-        <a class="card gold" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file">
-            <div class="loader-circle"></div>
-            <div class="title">موفيز بوكس - معدل من فريق</div>
-            <div class="desc">Android_AppsX + كل VIP مفتوح أفضل من نتفلكس</div>
-        </a>
-
-        <a class="card blue" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file">
-            <div class="loader-circle"></div>
-            <div class="title">سينمانا بلس - اخف</div>
-            <div class="desc">سينمانا شاشات الضعيفة</div>
-        </a>
-
-        <a class="card cyan" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file">
-            <div class="loader-circle"></div>
-            <div class="title">جنرال برو تيفي - خاص</div>
-            <div class="desc">للمباريات وقنوات رياضية شبكات كود التفعيل: 000</div>
-        </a>
+    <div id="isp-display" style="color: var(--accent-color); font-weight: bold;">
+        جاري التعرف على الشبكة...
     </div>
+</header>
 
-    <div class="ticker">
-        <span>الحمدلله • سبحان الله • الله أكبر • صل على النبي ﷺ • لا إله إلا الله • لا حول ولا قوة إلا بالله • سبحان الله وبحمده سبحان الله العظيم</span>
+<div class="hero-section">
+    <div class="info-panel">
+        <h2>⚠️ نظام الإدارة | حالة المتجر</h2>
+        <div id="live-clock">تحميل البيانات...</div>
     </div>
+</div>
 
+<div class="apps-container">
+    <a class="app-card c-gold" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file">
+        <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
+        <div class="app-icon-placeholder">▶️</div>
+        <div class="app-title">يوتيوب لكافة الشاشات -</div>
+        <div class="app-desc">محدث شهر 4 2026</div>
+    </a>
+
+    <a class="app-card c-orange" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
+        <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
+        <div class="app-icon-placeholder">📺</div>
+        <div class="app-title">- IRAQ TV 1</div>
+        <div class="app-desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
+    </a>
+
+    <a class="app-card c-purple" href="https://workupload.com/file/QN6shgxPdgr">
+        <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
+        <div class="app-icon-placeholder">🎬</div>
+        <div class="app-title">سينمانا لينباك - نسخة</div>
+        <div class="app-desc">مخصصة للشاشات وتيفي بوكس سريعة جداً</div>
+    </a>
+
+    <a class="app-card c-green" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file">
+        <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
+        <div class="app-icon-placeholder">💎</div>
+        <div class="app-title">برايم تيفي - تطبيق متوقف حاليا</div>
+        <div class="app-desc">كود التفعيل: 2026</div>
+    </a>
+
+    <a class="app-card c-red" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file">
+        <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
+        <div class="app-icon-placeholder">⚽</div>
+        <div class="app-title">دراما لايف - أكثر شهرة فعلاً</div>
+        <div class="app-desc">تطبيق مميز لمشاهدة القنوات كود التفعيل: 232425</div>
+    </a>
+
+    <a class="app-card c-gold" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file">
+        <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
+        <div class="app-icon-placeholder">🔥</div>
+        <div class="app-title">موفيز بوكس - معدل من فريق</div>
+        <div class="app-desc">Android_AppsX + كل VIP مفتوح أفضل من نتفلكس</div>
+    </a>
+
+    <a class="app-card c-blue" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file">
+        <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
+        <div class="app-icon-placeholder">⭐</div>
+        <div class="app-title">سينمانا بلس - اخف</div>
+        <div class="app-desc">سينمانا شاشات الضعيفة</div>
+    </a>
+
+    <a class="app-card c-cyan" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file">
+        <div class="download-overlay"><span class="timer-num">3</span><span>ثوانٍ لبدء التحميل</span></div>
+        <div class="app-icon-placeholder">⚡</div>
+        <div class="app-title">جنرال برو تيفي - خاص</div>
+        <div class="app-desc">للمباريات وقنوات رياضية شبكات كود التفعيل: 000</div>
+    </a>
+</div>
+
+<div class="footer-wrap">
+    <div class="ticker-modern">
+        <span>الحمدلله • سبحان الله • الله أكبر • صل على النبي ﷺ • لا إله إلا الله • لا حول ولا قوة إلا بالله • أستغفر الله العظيم وأتوب إليه</span>
+    </div>
     <footer>
-        <div>الحمد لله</div>
-        <div>صلوا على النبي | العراق - موصل</div>
+        <div>تم التطوير بواسطة HDMosul Store &copy; 2026</div>
+        <div>الموصل - العراق | جميع الحقوق محفوظة</div>
     </footer>
+</div>
 
-    <script>
-        let ispInfo = "جاري الفحص...";
+<script>
+    // نظام كشف الشبكة المطور
+    async function initNetwork() {
+        try {
+            const res = await fetch('https://ipapi.co/json/');
+            const data = await res.json();
+            const org = (data.org || "").toLowerCase();
+            let isp = data.org || "مزود غير معروف";
 
-        async function getISP() {
-            try {
-                let r = await fetch('https://ipapi.co/json/');
-                let d = await r.json();
-                let org = (d.org || "").toLowerCase();
-                if(org.includes("earthlink")) ispInfo = "ايرثلنك (ألياف ضوئية)";
-                else if(org.includes("zain")) ispInfo = "زين العراق";
-                else if(org.includes("asiacell")) ispInfo = "آسياسيل";
-                else if(org.includes("korek")) ispInfo = "كورك تيليكوم";
-                else ispInfo = d.org || "غير معروف";
-            } catch { ispInfo = "غير متوفر"; }
+            if(org.includes("earthlink")) isp = "ايرثلنك - السرعة القصوى 🚀";
+            else if(org.includes("zain")) isp = "زين العراق - اتصل الآن 📶";
+            else if(org.includes("asiacell")) isp = "آسياسيل - تغطية شاملة";
+            
+            document.getElementById('isp-display').innerHTML = `📡 الشبكة الحالية: ${isp}`;
+        } catch {
+            document.getElementById('isp-display').innerText = "📡 متصل بالإنترنت";
         }
+    }
 
-        function updateClock() {
-            let now = new Date();
-            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            let dateStr = now.toLocaleDateString('ar-EG', options);
-            let timeStr = now.toLocaleTimeString('ar-EG');
-            document.getElementById("live-clock").innerHTML = 
-                dateStr + "<br>" + timeStr + " | مزود الخدمة: " + ispInfo;
-        }
+    // الساعة الرقمية
+    function startClock() {
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('live-clock').innerText = now.toLocaleTimeString('ar-EG', {
+                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+            }) + " | " + now.toLocaleDateString('ar-EG');
+        }, 1000);
+    }
 
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', function(e) {
-                e.preventDefault();
-                let url = this.href;
-                let loader = this.querySelector('.loader-circle');
-                let count = 3;
-                loader.style.display = 'flex';
-                loader.innerText = count;
-                let timer = setInterval(() => {
-                    count--;
-                    if(count > 0) loader.innerText = count;
-                    else { clearInterval(timer); window.location.href = url; }
-                }, 1000);
-            });
+    // منطق التحميل والعد التنازلي
+    document.querySelectorAll('.app-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = this.href;
+            const overlay = this.querySelector('.download-overlay');
+            const timerDisplay = this.querySelector('.timer-num');
+            let count = 3;
+
+            overlay.style.display = 'flex';
+            const timer = setInterval(() => {
+                count--;
+                if(count > 0) {
+                    timerDisplay.innerText = count;
+                } else {
+                    clearInterval(timer);
+                    window.location.href = url;
+                    setTimeout(() => overlay.style.display = 'none', 2000);
+                }
+            }, 1000);
         });
+    });
 
-        getISP();
-        setInterval(updateClock, 1000);
-    </script>
+    initNetwork();
+    startClock();
+</script>
+
 </body>
 </html>
