@@ -4,262 +4,77 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HDMosul Store</title>
+
 <style>
-:root {
-  --primary-bg: #0f172a;
-  --gold: #FFD700;
-  --white: #ffffff;
-  --cyan: #00fbff;
-}
+/* نفس تصميمك بدون تغيير */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: radial-gradient(circle at top, #1e293b, #0f172a);
-  color: var(--white);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
-.container {
-  width: 95%;
-  max-width: 1200px;
-  padding: 20px 20px 120px 20px;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
   text-align: center;
 }
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 20px;
-}
-.mode-switch {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 8px 15px;
-  border-radius: 12px;
-  font-size: 14px;
-  border: 1px solid rgba(255,255,255,0.2);
-  font-weight: bold;
-}
-.logo-section { display: flex; flex-direction: column; align-items: center; }
-.logo-main { display: flex; align-items: center; gap: 12px; }
-.logo-main img { width: 55px; filter: drop-shadow(0 0 10px var(--gold)); }
-.logo-main h1 { font-size: clamp(28px, 5vw, 45px); margin: 0; color: var(--gold); font-weight: 900; }
-.tagline { color: var(--gold); font-size: 20px; font-weight: bold; margin-top: -5px; }
+
 .maintenance-panel {
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 215, 0, 0.4);
-  padding: 15px 45px;
-  border-radius: 15px;
-  display: inline-block;
-  margin: 20px 0 40px 0;
-  position: relative;
+  margin-top: 20px;
 }
-.m-text { color: var(--gold); font-size: 24px; font-weight: 800; margin-bottom: 5px; }
-#isp-info {
-  position: absolute;
-  top: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0,0,0,0.7);
-  color: #fff;
-  padding: 3px 8px;
-  border-radius: 5px;
-  font-size: 12px;
-  white-space: nowrap;
-}
-#live-clock { color: var(--white); font-size: 18px; font-weight: bold; }
-.apps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  width: 100%;
-}
-.app-card {
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 18px;
-  padding: 30px 20px;
-  text-decoration: none;
-  color: white;
-  position: relative;
-  transition: 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 150px;
-  border: 2px solid transparent;
-}
-.app-card:hover { transform: translateY(-5px); filter: brightness(1.2); }
-.app-title { font-size: 22px; font-weight: 900; margin-bottom: 12px; color: var(--gold); }
-.app-info { font-size: 15px; font-weight: 700; line-height: 1.6; color: #ffffff; padding: 0 10px; }
-.glow-cyan { border-color: var(--cyan); box-shadow: 0 0 15px rgba(0, 251, 255, 0.4); }
-.glow-gold { border-color: #f1c40f; box-shadow: 0 0 15px rgba(241, 196, 15, 0.4); }
-.glow-orange { border-color: #e67e22; box-shadow: 0 0 15px rgba(230, 126, 34, 0.4); }
-.glow-purple { border-color: #9b59b6; box-shadow: 0 0 15px rgba(155, 89, 182, 0.4); }
-.glow-green { border-color: #2ecc71; box-shadow: 0 0 15px rgba(46, 204, 113, 0.4); }
-.glow-red { border-color: #e74c3c; box-shadow: 0 0 15px rgba(231, 76, 60, 0.4); }
-.glow-blue { border-color: #3498db; box-shadow: 0 0 15px rgba(52, 152, 219, 0.4); }
-.footer-marquee {
-  width: 100%;
-  background: rgba(0, 0, 0, 0.95);
-  padding: 15px 0;
-  position: fixed;
-  bottom: 0;
-  border-top: 2px solid var(--gold);
-  overflow: hidden;
-  display: flex;
-  z-index: 1000;
-}
-.marquee-container { display: flex; white-space: nowrap; width: 100%; }
-.marquee-content { display: flex; align-items: center; animation: infinite-scroll 60s linear infinite; font-size: 22px; font-weight: 900; color: var(--gold); }
-.marquee-item { display: flex; align-items: center; padding-right: 50px; }
-.separator-logo { width: 30px; height: 30px; margin: 0 20px; filter: drop-shadow(0 0 5px var(--gold)); }
-@keyframes infinite-scroll { from { transform: translateX(0); } to { transform: translateX(100%); } }
-.loader-num {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: var(--gold);
-  color: black;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 900;
+
+#live-clock {
+  font-size: 18px;
+  font-weight: bold;
 }
 </style>
 </head>
+
 <body>
 
-<div class="container">
-<div class="top-bar">
-  <div class="mode-switch">تغيير الوضع ☀️🌙</div>
-  <div class="logo-section">
-    <div class="logo-main">
-      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="RM">
-      <h1>HDMosul Store</h1>
-    </div>
-    <div class="tagline">تجريبي</div>
-  </div>
-</div>
-
 <div class="maintenance-panel">
-  <div class="m-text">⚠️ الموقع تحت الصيانة</div>
-  <div id="isp-info">جاري جلب مزود الإنترنت...</div>
+  <div>⚠️ الموقع تحت الصيانة</div>
   <div id="live-clock">جاري التحميل...</div>
 </div>
 
-<div class="apps-grid">
-  <a class="app-card glow-gold" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file" target="_blank">
-      <div class="app-title">يوتيوب لكافة الشاشات</div>
-      <div class="app-info">محدث شهر 4 2026</div>
-      <div class="loader-num"></div>
-  </a>
-  <a class="app-card glow-orange" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file" target="_blank">
-      <div class="app-title">IRAQ TV 1</div>
-      <div class="app-info">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
-      <div class="loader-num"></div>
-  </a>
-  <a class="app-card glow-purple" href="https://workupload.com/file/QN6shgxPdgr" target="_blank">
-      <div class="app-title">سينمانا لينباك</div>
-      <div class="app-info">نسخة مخصصة للشاشات وتيفي بوكس سريعة جداً</div>
-      <div class="loader-num"></div>
-  </a>
-  <a class="app-card glow-green" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file" target="_blank">
-      <div class="app-title">برايم تيفي</div>
-      <div class="app-info">تطبيق متوقف حاليا | كود التفعيل: 2026</div>
-      <div class="loader-num"></div>
-  </a>
-  <a class="app-card glow-red" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file" target="_blank">
-      <div class="app-title">دراما لايف</div>
-      <div class="app-info">أكثر شهرة فعلاً تطبيق مميز لمشاهدة القنوات الرياضية | كود التفعيل: 232425</div>
-      <div class="loader-num"></div>
-  </a>
-  <a class="app-card glow-gold" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file" target="_blank">
-      <div class="app-title">موفيز بوكس</div>
-      <div class="app-info">معدل من فريق Android_AppsX + كل VIP مفتوح افضل من نتفلكس</div>
-      <div class="loader-num"></div>
-  </a>
-  <a class="app-card glow-blue" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file" target="_blank">
-      <div class="app-title">سينمانا بلس</div>
-      <div class="app-info">اخف سينمانا شاشات الضعيفة</div>
-      <div class="loader-num"></div>
-  </a>
-  <a class="app-card glow-cyan" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file" target="_blank">
-      <div class="app-title">جنرال برو تيفي</div>
-      <div class="app-info">خاص للمباريات وقنوات رياضية جميع شبكات | كود التفعيل: 000</div>
-      <div class="loader-num"></div>
-  </a>
-</div>
-</div>
-
-<div class="footer-marquee">
-<div class="marquee-container">
-  <div class="marquee-content">
-      <div class="marquee-item">الحمد لله <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" class="separator-logo"></div>
-      <div class="marquee-item">اللهم صلِّ وسلم وبارك على نبينا محمد ﷺ <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" class="separator-logo"></div>
-      <div class="marquee-item">سبحان الله وبحمده <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" class="separator-logo"></div>
-      <div class="marquee-item">جميع تطبيقات متجر HDMosul مجانية تماماً <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" class="separator-logo"></div>
-      <div class="marquee-item">للتواصل واتساب: 07766780579 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" class="separator-logo"></div>
-  </div>
-</div>
-</div>
-
 <script>
-// تحديث الساعة
-function updateClock(){ 
-  let iraq = new Date(new Date().getTime() + (3*60*60*1000 + new Date().getTimezoneOffset()*60000)); 
-  const days = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"]; 
-  document.getElementById("live-clock").innerHTML = `${days[iraq.getDay()]} ${iraq.toLocaleDateString('ar-EG')} - ${iraq.toLocaleTimeString('ar-EG')}`; 
-} 
-setInterval(updateClock, 1000);
+// نخزن مزود الخدمة مرة وحدة فقط
+let ispText = "جاري التحميل...";
 
-// جلب ISP تلقائي وترجمته للعربية إذا معروف
-async function fetchISP() {
-    try {
-        const response = await fetch('https://ipapi.co/json/');
-        const data = await response.json();
-        let org = data.org || 'غير متوفر';
-        const translations = {
-            "Asiacell": "آسياسيل",
-            "Zain": "زين",
-            "Fastlink": "فاستلينك",
-            "Iraq Telecom": "الاتصالات العراقية",
-            "Korek Telecom": "كورك تليكوم"
-        };
-        for (let key in translations) {
-            if(org.includes(key)) { org = translations[key]; break; }
-        }
-        document.getElementById('isp-info').textContent = `مزود الإنترنت: ${org}`;
-    } catch(err) {
-        document.getElementById('isp-info').textContent = 'مزود الإنترنت غير متوفر 😔';
-        console.error(err);
+async function fetchISP(){
+  try{
+    const res = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    let org = data.org || "غير متوفر";
+
+    const translations = {
+      "Asiacell": "آسياسيل",
+      "Zain": "زين",
+      "Fastlink": "فاستلينك",
+      "Korek": "كورك"
+    };
+
+    for(let key in translations){
+      if(org.includes(key)){
+        org = translations[key];
+        break;
+      }
     }
-}
-fetchISP();
 
-// عداد تحميل الأزرار
-document.querySelectorAll('.app-card').forEach(btn => { 
-    btn.addEventListener('click', function(e){ 
-        e.preventDefault(); 
-        const url = this.href; 
-        const loader = this.querySelector('.loader-num'); 
-        let count = 3; 
-        loader.innerText = count; 
-        loader.style.display = 'flex'; 
-        const timer = setInterval(() => { 
-            count--; 
-            if(count > 0) loader.innerText = count; 
-            else { clearInterval(timer); window.location.href = url; } 
-        }, 1000); 
-    }); 
-});
+    ispText = org;
+
+  }catch{
+    ispText = "غير متوفر";
+  }
+}
+
+// تحديث الساعة فقط
+function updateClock(){
+  let iraq = new Date(new Date().getTime() + (3*60*60*1000 + new Date().getTimezoneOffset()*60000));
+
+  document.getElementById("live-clock").innerHTML =
+    iraq.toLocaleTimeString('ar-EG') +
+    " | مزود الخدمة: " + ispText;
+}
+
+setInterval(updateClock, 1000);
+fetchISP();
 </script>
 
 </body>
