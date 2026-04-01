@@ -83,7 +83,7 @@ body{
   font-size:20px;
   font-weight:bold;
   text-align:center;
-  color:#fff;
+  color:#FFD700; /* اسم التطبيق ذهبي */
   cursor:pointer;
   transition:0.3s;
   text-decoration:none;
@@ -92,42 +92,28 @@ body{
   justify-content:center;
   min-height:140px;
   position:relative;
+  background:#000; /* خلفية سوداء */
+  border:2px solid gold; /* حد ذهبي */
 }
 .app-card:hover{
   transform:scale(1.05);
-  filter: brightness(0.9);
+  box-shadow:0 0 20px gold; /* توهج عند المرور */
 }
 
-/* ألوان أزرار التطبيقات */
-.btn1{background:#25D366;} 
-.btn2{background:#6610f2;}
-.btn3{background:#ff5722;}
-.btn4{background:#e91e63;}
-.btn5{background:#0d6efd;} 
-
-/* مميز موفيز بوكس */
-.btn7{
-  background:#000; /* أسود كامل */
-  color:#FFD700; /* ذهبي */
-  border:2px solid gold;
-  text-shadow: 0 0 3px #000;
-  transition:0.3s;
+.app-card.youtube{
+  background:#ff0000; /* خلفية حمراء ليوتيوب */
+  border:2px solid #fff; /* حد أبيض ليوتيوب */
+  color:#fff; /* اسم التطبيق أبيض */
 }
-.btn7:hover{
-  box-shadow: 0 0 20px gold; /* توهج عند المرور */
-  transform: scale(1.05);
-}
-.btn7 .desc{
-  color:#000 !important; /* وصف أسود */
-  font-size:15px;
-  text-shadow:none !important;
+.app-card.youtube:hover{
+  box-shadow:0 0 20px #ff0000;
 }
 
 .desc{
   font-size:14px;
-  color:#ffc107;
+  color:#FFD700; /* وصف ذهبي */
   margin-top:5px;
-  text-shadow: 0 0 3px #000; /* توهج أسود بسيط */
+  text-shadow:none;
 }
 
 .loader-number{
@@ -206,45 +192,45 @@ body.light{
 
   <div class="download">
 
-    <a class="app-card btn1" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file" target="_blank">
+    <a class="app-card" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file" target="_blank">
       <div>تحميل برايم تيفي</div>
       <div class="desc">تطبيق متوقف حاليا لا تنزله | كود التفعيل: 2026</div>
       <div class="loader-number"></div>
     </a>
 
-    <a class="app-card btn2" href="https://workupload.com/file/QN6shgxPdgr" target="_blank">
+    <a class="app-card" href="https://workupload.com/file/QN6shgxPdgr" target="_blank">
       <div>تحميل سينمانا لينباك</div>
       <div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
       <div class="loader-number"></div>
     </a>
 
-    <a class="app-card btn3" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file" target="_blank">
+    <a class="app-card" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file" target="_blank">
       <div>تحميل 1 IRAQ TV</div>
       <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
       <div class="loader-number"></div>
     </a>
 
-    <a class="app-card btn4" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file" target="_blank">
+    <a class="app-card youtube" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file" target="_blank">
       <div>تحميل يوتيوب لكافة الشاشات</div>
       <div class="desc">محدث شهر 4 2026</div>
       <div class="loader-number"></div>
     </a>
 
-    <a class="app-card btn5" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file" target="_blank">
+    <a class="app-card" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file" target="_blank">
       <div>تحميل جنرال برو تيفي</div>
       <div class="desc">خاص للمباريات وقنوات رياضية جميع شبكات | كود التفعيل: 000</div>
       <div class="loader-number"></div>
     </a>
 
-    <a class="app-card btn6" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file" target="_blank">
+    <a class="app-card" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file" target="_blank">
       <div>تحميل دراما لايف</div>
       <div class="desc">أكثر شهرة فعلاً تطبيق مميز لمشاهدة القنوات الرياضية | كود تفعيل: 232425</div>
       <div class="loader-number"></div>
     </a>
 
-    <a class="app-card btn7" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file" target="_blank">
+    <a class="app-card" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file" target="_blank">
       <div>تحميل موفيز بوكس</div>
-      <div class="desc vip-desc">معدل من فريق Android_AppsX + كل VIP مفتوح افضل من نتفلكس</div>
+      <div class="desc">معدل من فريق Android_AppsX + كل VIP مفتوح افضل من نتفلكس</div>
       <div class="loader-number"></div>
     </a>
 
@@ -253,7 +239,7 @@ body.light{
 
 <div class="footer">
   <div class="marquee">
-    الحمد لله | اللهم صلِّ وسلم وبارك على نبينا محمد ﷺ | سبحان الله | تنبيه: تطبيقات مجانية | اذا احتاجت شي راسلني واتساب: 07766780579 | 🇮🇶 العراق 🆚 بوليفيا 🇧🇴 🕕 06:00 بتوقيت بغداد 📺 على beIN SPORTS 1
+    الحمد لله | اللهم صلِّ وسلم وبارك على نبينا محمد ﷺ | سبحان الله | تنبيه: تطبيقات مجانية | اذا احتاجت شي راسلني واتساب: 07766780579 | 🇮🇶 العراق 🆚 بوليفيا 🕕 06:00 بتوقيت بغداد 📺 على beIN SPORTS 1
   </div>
 </div>
 
