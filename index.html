@@ -11,8 +11,6 @@
 :root {
     --gold: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
     --gold-solid: #d4af37;
-    --dark-royal: #050a14;
-    --velvet-purple: radial-gradient(circle, #2b002b 0%, #1a001a 100%);
     --card-bg: rgba(255, 255, 255, 0.03);
 }
 
@@ -23,9 +21,9 @@ body {
     color: #fff;
     min-height: 100vh;
     overflow-x: hidden;
+    padding-bottom: 80px; /* لضمان عدم تغطية الشريط السفلي للمحتوى */
 }
 
-/* خلفية فخمة بنقشة خفيفة */
 body::before {
     content: "";
     position: fixed;
@@ -37,8 +35,20 @@ body::before {
 
 .top-bar {
     display: flex;
-    justify-content: flex-start;
-    padding: 15px 25px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+/* الساعة الرقمية */
+#liveClock {
+    font-size: 1.8rem;
+    font-weight: 900;
+    background: var(--gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    font-family: monospace; /* لجعل الأرقام ثابتة العرض */
 }
 
 .mode-btn {
@@ -58,125 +68,97 @@ body::before {
 
 .logo-box {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .logo {
-    width: 80px;
+    width: 90px;
     filter: drop-shadow(0 0 15px #d4af37);
     margin-bottom: 10px;
 }
 
 .brand {
-    font-size: 2.8rem;
+    font-size: 3rem;
     font-weight: 900;
     background: var(--gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
-    letter-spacing: 2px;
 }
 
 .sub {
     font-size: 16px;
     color: #d4af37;
     letter-spacing: 5px;
-    margin-top: -5px;
 }
 
 .alert {
-    margin: 30px auto;
+    margin: 20px auto;
     width: fit-content;
-    padding: 12px 40px;
-    border-radius: 5px;
-    background: rgba(0, 0, 0, 0.6);
+    padding: 15px 50px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.7);
     border: 1px solid #d4af37;
-    box-shadow: inset 0 0 10px rgba(212, 175, 55, 0.3);
+    box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.2);
     text-align: center;
     font-weight: bold;
-    color: #fff;
-    position: relative;
 }
 
-.alert::after, .alert::before {
-    content: "◈";
-    color: #d4af37;
-    margin: 0 10px;
-}
-
+/* تنسيق الشبكة لتناسب الشاشات الكبيرة TV */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 40px;
-    max-width: 1400px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px 50px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
 .card {
     background: var(--card-bg);
     border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 15px;
-    padding: 30px;
+    border-radius: 20px;
+    padding: 35px 20px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: 0.4s;
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(15px);
-}
-
-/* تأثير الإطار الذهبي عند التحويم */
-.card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border: 2px solid transparent;
-    border-radius: 15px;
-    transition: 0.5s;
+    backdrop-filter: blur(10px);
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    background: rgba(212, 175, 55, 0.05);
+    transform: scale(1.05);
     border-color: #d4af37;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.5), 0 0 20px rgba(212, 175, 55, 0.2);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
 }
 
-.card:hover::before {
-    border-color: #d4af37;
-    mask-image: linear-gradient(45deg, black, transparent);
-}
-
-/* تمييز البطاقات بألوان فخمة هادئة */
-.card:nth-child(1) { border-right: 4px solid #ff9800; }
-.card:nth-child(2) { border-right: 4px solid #ff3d00; }
-.card:nth-child(3) { border-right: 4px solid #9c27b0; }
-.card:nth-child(4) { border-right: 4px solid #00c853; }
-.card:nth-child(5) { border-right: 4px solid #ff1744; }
-.card:nth-child(6) { border-right: 4px solid #ffc400; }
-.card:nth-child(7) { border-right: 4px solid #2979ff; }
-.card:nth-child(8) { border-right: 4px solid #aa00ff; }
+/* تمييز البطاقات بألوان زاهية للجوانب */
+.card:nth-child(1) { border-right: 5px solid #ff9800; }
+.card:nth-child(2) { border-right: 5px solid #ff3d00; }
+.card:nth-child(3) { border-right: 5px solid #9c27b0; }
+.card:nth-child(4) { border-right: 5px solid #00c853; }
+.card:nth-child(5) { border-right: 5px solid #ff1744; }
+.card:nth-child(6) { border-right: 5px solid #ffc400; }
+.card:nth-child(7) { border-right: 5px solid #2979ff; }
+.card:nth-child(8) { border-right: 5px solid #aa00ff; }
 
 .icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+    font-size: 3.5rem;
+    margin-bottom: 15px;
     display: block;
 }
 
 .title {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 800;
-    margin-bottom: 10px;
-    color: #fff;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 8px;
 }
 
 .desc {
-    font-size: 0.9rem;
-    color: #aaa;
-    line-height: 1.7;
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.6;
 }
 
 .timer {
@@ -185,26 +167,26 @@ body::before {
     display: none;
     justify-content: center;
     align-items: center;
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: 900;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     color: #d4af37;
-    z-index: 10;
+    z-index: 100;
 }
 
 .marquee {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: #000;
     border-top: 2px solid #d4af37;
-    padding: 10px 0;
-    backdrop-filter: blur(10px);
+    padding: 12px 0;
+    z-index: 1000;
 }
 
 .marquee-inner {
     display: flex;
-    animation: scroll 30s linear infinite;
+    animation: scroll 25s linear infinite;
 }
 
 .marquee span {
@@ -212,7 +194,6 @@ body::before {
     white-space: nowrap;
     color: #d4af37;
     font-weight: bold;
-    font-size: 1.1rem;
 }
 
 @keyframes scroll {
@@ -220,9 +201,11 @@ body::before {
     to { transform: translateX(-50%); }
 }
 
+/* تعديلات للشاشات الصغيرة */
 @media (max-width: 768px) {
-    .brand { font-size: 1.8rem; }
-    .grid { padding: 15px; gap: 15px; }
+    .brand { font-size: 2rem; }
+    .grid { padding: 15px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    #liveClock { font-size: 1.2rem; }
 }
 </style>
 </head>
@@ -232,6 +215,7 @@ body::before {
 <header>
     <div class="top-bar">
         <button class="mode-btn">🌙</button>
+        <div id="liveClock">00:00:00</div>
     </div>
 
     <div class="logo-box">
@@ -242,9 +226,9 @@ body::before {
         </div>
     </div>
 
-    <div class="alert">
+    <div class="alert" id="dynamicAlert">
         ⚠️ الموقع تحت الصيانة<br>
-        الأربعاء - 01/04/2026
+        جاري تحميل التاريخ...
     </div>
 </header>
 
@@ -255,14 +239,12 @@ body::before {
         <div class="title">مكتبية تطبيقات 1</div>
         <div class="desc">تحتوي على جميع أنواع التطبيقات</div>
     </div>
-
     <div class="card" data-url="https://mr-store.net/">
         <div class="timer">3</div>
         <div class="icon">📱</div>
         <div class="title">مكتبية تطبيقات 2</div>
         <div class="desc">تحتوي على جميع أنواع التطبيقات</div>
     </div>
-
     <div class="card" data-url="https://401740.hala-web.com/">
         <div class="timer">3</div>
         <div class="icon">📱</div>
@@ -278,49 +260,42 @@ body::before {
         <div class="title">يوتيوب لكافة الشاشات</div>
         <div class="desc">محدث شهر 4 • 2026</div>
     </div>
-
     <div class="card" data-url="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
         <div class="timer">3</div>
         <div class="icon">📡</div>
         <div class="title">IRAQ TV 1</div>
         <div class="desc">مدعوم بجميع الشبكات<br>مباريات ومسلسلات ونتفلكس<br>Android_AppsX</div>
     </div>
-
     <div class="card" data-url="https://workupload.com/file/QN6shgxPdgr">
         <div class="timer">3</div>
         <div class="icon">🎬</div>
         <div class="title">سينمانا لينباك</div>
         <div class="desc">نسخة مخصصة للشاشات<br>وتيفي بوكس سريعة جداً</div>
     </div>
-
     <div class="card" data-url="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file">
         <div class="timer">3</div>
         <div class="icon">🎥</div>
         <div class="title">برايم تيفي</div>
         <div class="desc">تطبيق متوقف حالياً<br>كود التفعيل: 2026</div>
     </div>
-
     <div class="card" data-url="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file">
         <div class="timer">3</div>
         <div class="icon">🔴</div>
         <div class="title">دراما لايف</div>
         <div class="desc">أكثر شهرة فعلاً<br>تطبيق مميز لمشاهدة القنوات<br>كود التفعيل: 232425</div>
     </div>
-
     <div class="card" data-url="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file">
         <div class="timer">3</div>
         <div class="icon">🎞️</div>
         <div class="title">موفيز بوكس VIP</div>
         <div class="desc">معدل من فريق VIP<br>Android_AppsX + كل المميزات<br>مفتوح أفضل من نتفلكس</div>
     </div>
-
     <div class="card" data-url="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file">
         <div class="timer">3</div>
         <div class="icon">💻</div>
         <div class="title">سينمانا بلس</div>
         <div class="desc">أخف نسخة للشاشات الضعيفة</div>
     </div>
-
     <div class="card" data-url="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file">
         <div class="timer">3</div>
         <div class="icon">⚽</div>
@@ -340,6 +315,27 @@ body::before {
 <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3"></audio>
 
 <script>
+// تحديث الوقت والتاريخ تلقائياً بتوقيت بغداد
+function updateClockAndDate() {
+    const now = new Date();
+    
+    // الساعة
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('liveClock').innerText = `${hours}:${minutes}:${seconds}`;
+
+    // التاريخ واليوم (تلقائي)
+    const options = { weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit' };
+    const dateStr = now.toLocaleDateString('ar-IQ', options);
+    document.getElementById('dynamicAlert').innerHTML = `⚠️ الموقع تحت الصيانة<br>${dateStr}`;
+}
+
+// تشغيل التحديث كل ثانية
+setInterval(updateClockAndDate, 1000);
+updateClockAndDate(); // تشغيل فوري عند الفتح
+
+// نظام التوقيت والتحويل (3 ثواني)
 document.querySelectorAll('.card').forEach(c=>{
     c.onclick=()=>{
         document.getElementById('clickSound').play();
