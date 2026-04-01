@@ -29,13 +29,13 @@ gap:10px;
 
 .logo img{
 width:30px;
-height:30px;
 }
 
+/* الشريط المتحرك البطيء */
 .ticker{
 background:black;
 color:#00ffcc;
-padding:5px;
+padding:6px;
 font-size:14px;
 overflow:hidden;
 white-space:nowrap;
@@ -44,7 +44,7 @@ white-space:nowrap;
 .ticker span{
 display:inline-block;
 padding-left:100%;
-animation:scroll 12s linear infinite;
+animation:scroll 120s linear infinite; /* بطيء */
 }
 
 @keyframes scroll{
@@ -52,15 +52,13 @@ animation:scroll 12s linear infinite;
 100%{transform:translateX(-100%);}
 }
 
-.maintenance{
+.net-box{
+background:#111827;
 margin:10px;
-font-weight:bold;
-}
-
-#live-clock{
-font-size:16px;
-margin-top:5px;
-line-height:1.6;
+padding:10px;
+border-radius:10px;
+font-size:14px;
+color:#00ffcc;
 }
 
 .apps{
@@ -74,45 +72,26 @@ padding:20px;
 background:#1e293b;
 border-radius:15px;
 padding:20px;
-position:relative;
 text-decoration:none;
 color:white;
 border:2px solid transparent;
-transition:0.3s;
 }
 
-.card:hover{transform:translateY(-5px);}
-
 .gold{border-color:#f1c40f;}
+.orange{border-color:#e67e22;}
+.purple{border-color:#9b59b6;}
 .green{border-color:#2ecc71;}
 .red{border-color:#e74c3c;}
 .blue{border-color:#3498db;}
-.purple{border-color:#9b59b6;}
-.orange{border-color:#e67e22;}
 .cyan{border-color:#00fbff;}
 
 .title{
 font-size:20px;
-font-weight:900;
 color:var(--gold);
+font-weight:bold;
 }
 
 .desc{font-size:14px;}
-
-.loader{
-position:absolute;
-top:10px;
-left:10px;
-background:gold;
-color:black;
-width:25px;
-height:25px;
-border-radius:50%;
-display:none;
-align-items:center;
-justify-content:center;
-font-weight:bold;
-}
 </style>
 </head>
 
@@ -123,157 +102,97 @@ font-weight:bold;
 HDMosul Store
 </div>
 
+<!-- الشريط المتحرك مع رقم الهاتف + أذكار مؤثرة -->
 <div class="ticker">
-<span>الحمدلله • سبحان الله • الله أكبر • صل على النبي ﷺ</span>
+<span>
+📞 للتواصل: 07766780579 • الحمد لله • سبحان الله • لا إله إلا الله • صل على النبي ﷺ • سبحان الله وبحمده • لا حول ولا قوة إلا بالله • الحمد لله الذي لا يحمد على مكروه سواه
+</span>
 </div>
 
-<div class="maintenance">
-⚠️ الموقع تحت الصيانة  
-<div id="live-clock">جاري التحميل...</div>
+<div class="net-box" id="netInfo">
+جاري فحص الشبكة...
 </div>
 
 <div class="apps">
 
-<a class="card gold" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file">
+<a class="card gold" href="#">
 <div class="title">يوتيوب لكافة الشاشات</div>
 <div class="desc">محدث شهر 4 2026</div>
-<div class="loader"></div>
 </a>
 
-<a class="card orange" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
+<a class="card orange" href="#">
 <div class="title">IRAQ TV 1</div>
-<div class="desc">مدعوم بجميع الشبكات لمشاهدة المباريات والمسلسلات ونتفلكس</div>
-<div class="loader"></div>
+<div class="desc">قنوات + أفلام + نتفلكس</div>
 </a>
 
-<a class="card purple" href="https://workupload.com/file/QN6shgxPdgr">
+<a class="card purple" href="#">
 <div class="title">سينمانا لينباك</div>
-<div class="desc">نسخة مخصصة للشاشات والتيفي بوكس سريعة جداً</div>
-<div class="loader"></div>
+<div class="desc">نسخة مخصصة للشاشات</div>
 </a>
 
-<a class="card green" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file">
+<a class="card green" href="#">
 <div class="title">برايم تيفي</div>
-<div class="desc">تطبيق متوقف حالياً | كود التفعيل: 2026</div>
-<div class="loader"></div>
+<div class="desc">تطبيق متوقف حاليا | كود التفعيل: 2026</div>
 </a>
 
-<a class="card red" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file">
+<a class="card red" href="#">
 <div class="title">دراما لايف</div>
-<div class="desc">أفضل تطبيق للقنوات الرياضية | كود: 232425</div>
-<div class="loader"></div>
+<div class="desc">أكثر شهرة فعلاً تطبيق مميز لمشاهدة القنوات الرياضية | كود التفعيل: 232425</div>
 </a>
 
-<a class="card gold" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file">
+<a class="card gold" href="#">
 <div class="title">موفيز بوكس</div>
-<div class="desc">VIP مفتوح + معدل بالكامل أفضل من نتفلكس</div>
-<div class="loader"></div>
+<div class="desc">معدل من فريق Android_AppsX + كل VIP مفتوح افضل من نتفلكس</div>
 </a>
 
-<a class="card blue" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file">
+<a class="card blue" href="#">
 <div class="title">سينمانا بلس</div>
-<div class="desc">خفيف جداً ومناسب للشاشات الضعيفة</div>
-<div class="loader"></div>
+<div class="desc">اخف سينمانا شاشات الضعيفة</div>
 </a>
 
-<a class="card cyan" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file">
-<div class="title">جنرال برو</div>
-<div class="desc">قنوات رياضية | كود: 000</div>
-<div class="loader"></div>
+<a class="card cyan" href="#">
+<div class="title">جنرال برو تيفي</div>
+<div class="desc">خاص للمباريات وقنوات رياضية جميع شبكات | كود التفعيل: 000</div>
 </a>
 
 </div>
 
 <script>
-let ispText="...";
-let connType="...";
-
-// كشف مزود الخدمة
-async function fetchISP(){
+async function detectNetwork(){
  try{
-  let r=await fetch('https://ipapi.co/json/');
-  let d=await r.json();
+  let res=await fetch('https://ipinfo.io/json?token=demo');
+  let data=await res.json();
 
-  let org=(d.org || "").toLowerCase();
-  let ispName="غير متوفر";
+  let org=data.org || "غير معروف";
+  let isp="غير معروف";
 
-  if(org.includes("earthlink") || org.includes("iq networks") || org.includes("earth link")){
-    ispName="ايرثلنك (ألياف ضوئية)";
-  }
-  else if(org.includes("fiber") || org.includes("ftth") || org.includes("fttx")){
-    ispName="كيبل ضوئي (Fiber)";
-  }
-  else if(org.includes("zain")){
-    ispName="زين";
-  }
-  else if(org.includes("asiacell")){
-    ispName="آسياسيل";
-  }
-  else if(org.includes("korek")){
-    ispName="كورك";
-  }
-  else if(org.includes("fastlink")){
-    ispName="فاستلينك";
-  }
-  else if(org.length>0){
-    ispName=d.org;
+  if(org.includes("Earthlink") || org.includes("IQ"))
+    isp="ايرثلنك (ألياف ضوئية)";
+  else if(org.includes("Zain"))
+    isp="زين";
+  else if(org.includes("Asiacell"))
+    isp="آسياسيل";
+  else if(org.includes("Korek"))
+    isp="كورك";
+  else
+    isp=org;
+
+  let type="غير معروف";
+  if(navigator.connection){
+    let t=navigator.connection.effectiveType;
+    if(t==="4g"||t==="3g") type="بيانات";
+    else type="WiFi";
   }
 
-  ispText=ispName;
-
-  // كشف نوع الاتصال
-  if(navigator.connection && navigator.connection.effectiveType){
-    let type=navigator.connection.effectiveType.toLowerCase();
-    if(type.includes("wifi")){
-      connType="WiFi";
-    } else {
-      connType="بيانات";
-    }
-  } else {
-    connType="غير معروف";
-  }
+  document.getElementById("netInfo").innerHTML=
+  "🌐 مزود الخدمة: "+isp+"<br>📶 نوع الاتصال: "+type;
 
  }catch{
-  ispText="غير متوفر";
-  connType="غير معروف";
+  document.getElementById("netInfo").innerHTML="تعذر كشف الشبكة";
  }
 }
 
-// الوقت + التاريخ + ISP + نوع الاتصال
-function updateClock(){
- let now=new Date();
- let iraq=new Date(now.getTime()+(3*60*60*1000+now.getTimezoneOffset()*60000));
-
- let time=iraq.toLocaleTimeString('ar-EG');
- let date=iraq.toLocaleDateString('ar-EG',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-
- document.getElementById("live-clock").innerHTML=
- date+"<br>"+time+" | مزود الخدمة: "+ispText+" | نوع الاتصال: "+connType;
-}
-
-setInterval(updateClock,1000);
-fetchISP();
-
-// عداد التحميل
-document.querySelectorAll('.card').forEach(btn=>{
- btn.addEventListener('click',function(e){
-  e.preventDefault();
-  let url=this.href;
-  let loader=this.querySelector('.loader');
-  let c=3;
-  loader.style.display='flex';
-  loader.innerText=c;
-
-  let t=setInterval(()=>{
-   c--;
-   if(c>0) loader.innerText=c;
-   else{
-    clearInterval(t);
-    window.location=url;
-   }
-  },1000);
- });
-});
+detectNetwork();
 </script>
 
 </body>
