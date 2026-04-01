@@ -7,15 +7,18 @@
 
 <style>
 :root {
-  --bg-dark: linear-gradient(135deg,#0f172a,#1e293b);
   --text-dark: #fff;
   --gold: #FFD700;
+  --clock-color: #FFD700;
 }
 
 body{
   margin:0;
   font-family:sans-serif;
-  background: var(--bg-dark);
+  /* خلفية ملعب ثلاثي الأبعاد مع تعتيم */
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url('https://cdn.pixabay.com/photo/2017/01/06/19/15/stadium-1950117_1280.jpg') no-repeat center center fixed;
+  background-size: cover;
   color: var(--text-dark);
   display:flex;
   flex-direction:column;
@@ -30,6 +33,8 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
+  background: rgba(0,0,0,0.0); 
+  border-radius: 15px;
 }
 
 .logo-container{
@@ -42,8 +47,7 @@ body{
 .logo{
   font-size:48px;
   font-weight:900;
-  color: var(--gold);
-  /* بدون توهج */
+  color: var(--gold); 
 }
 
 .sublogo{
@@ -57,17 +61,16 @@ body{
   padding:10px 20px;
   border-radius:12px;
   background:rgba(0,0,0,0.3);
-  border:1px solid rgba(255,77,77,0.5);
+  border:1px solid rgba(255,255,255,0.5);
   font-size:16px;
   margin-bottom:15px;
 }
 
 .count{
   margin-top:5px;
-  color: var(--gold);
+  color: var(--clock-color);
   font-weight:bold;
-  font-size:18px;
-  /* بدون توهج */
+  font-size:16px;
 }
 
 .download{
@@ -92,33 +95,31 @@ body{
   justify-content:center;
   min-height:140px;
   position:relative;
-  background: #000;
-  border:2px solid var(--gold);
-  text-shadow: 0 0 2px #000; /* خفيف لجعل الاسم يظهر */
+  background:#000;
 }
-
 .app-card:hover{
   transform:scale(1.05);
   filter: brightness(0.9);
 }
 
-.btnYouTube{
-  background:#e91e63;
-  color:#fff;
-  text-shadow: none;
-}
+.btn1{background:#000;} 
+.btn3{background:#000;}
+.btn4{background:#000;}
+.btn5{background:#ff4d4d;} /* يوتيوب وردي */
+.btn6{background:#000;} 
+.btnVIP{background:#000; color:#FFD700; border:2px solid #FFD700;}
 
 .desc{
   font-size:14px;
   color: var(--gold);
   margin-top:5px;
-  text-shadow: 0 0 2px #000; /* توهج خفيف للوضوح */
 }
 
 .vip-desc{
-  color:#000 !important;
+  color: var(--gold) !important;
 }
 
+/* تأثير التحميل على الزر */
 .loader-number{
   position:absolute;
   top:10px;
@@ -167,6 +168,12 @@ body{
   border-radius:5px;
   cursor:pointer;
 }
+
+body.light{
+  background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('https://cdn.pixabay.com/photo/2017/01/06/19/15/stadium-1950117_1280.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color:#111;
+}
 </style>
 </head>
 <body>
@@ -176,8 +183,7 @@ body{
 <div class="card">
   <div class="logo-container">
     <div class="logo">
-      HDMosul Store 
-      <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" style="width:40px; height:40px; margin-left:10px;">
+      HDMosul Store
     </div>
   </div>
 
@@ -191,49 +197,49 @@ body{
   <div class="download">
 
     <a class="app-card btn1" href="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file" target="_blank">
-      <div>تحميل برايم تيفي</div>
+      <div>برايم تيفي</div>
       <div class="desc">تطبيق متوقف حاليا | كود التفعيل: 2026</div>
       <div class="loader-number"></div>
     </a>
 
     <a class="app-card btn3" href="https://workupload.com/file/QN6shgxPdgr" target="_blank">
-      <div>تحميل سينمانا لينباك</div>
+      <div>سينمانا لينباك</div>
       <div class="desc">نسخة مخصصة للشاشات وتيفي بوكس سريعة جدا</div>
       <div class="loader-number"></div>
     </a>
 
     <a class="app-card btn4" href="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file" target="_blank">
-      <div>تحميل 1 IRAQ TV</div>
+      <div>1 IRAQ TV</div>
       <div class="desc">مدعوم بجميع شبكات لمشاهدة مباريات ومسلسلات ونتفلكس | Android_AppsX</div>
       <div class="loader-number"></div>
     </a>
 
-    <a class="app-card btnYouTube" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file" target="_blank">
-      <div>تحميل يوتيوب لكافة الشاشات</div>
+    <a class="app-card btn5" href="https://www.mediafire.com/file/gehdk9cwwck3gjc/HDMosul.apk/file" target="_blank">
+      <div>يوتيوب لكافة الشاشات</div>
       <div class="desc">محدث شهر 4 2026</div>
       <div class="loader-number"></div>
     </a>
 
     <a class="app-card btn3" href="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file" target="_blank">
-      <div>تحميل جنرال برو تيفي</div>
+      <div>جنرال برو تيفي</div>
       <div class="desc">خاص للمباريات وقنوات رياضية جميع شبكات | كود التفعيل: 000</div>
       <div class="loader-number"></div>
     </a>
 
     <a class="app-card btn6" href="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file" target="_blank">
-      <div>تحميل سينمانا بلس</div>
+      <div>سينمانا بلس</div>
       <div class="desc">اخف سينمانا شاشات الضعيفة</div>
       <div class="loader-number"></div>
     </a>
 
-    <a class="app-card" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file" target="_blank">
-      <div>تحميل موفيز بوكس</div>
-      <div class="desc">معدل من فريق Android_AppsX + كل VIP مفتوح افضل من نتفلكس</div>
+    <a class="app-card btnVIP" href="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file" target="_blank">
+      <div>موفيز بوكس</div>
+      <div class="desc vip-desc">معدل من فريق Android_AppsX + كل VIP مفتوح افضل من نتفلكس</div>
       <div class="loader-number"></div>
     </a>
 
-    <a class="app-card btn5" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file" target="_blank">
-      <div>تحميل دراما لايف</div>
+    <a class="app-card btn4" href="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file" target="_blank">
+      <div>دراما لايف</div>
       <div class="desc">أكثر شهرة فعلاً تطبيق مميز لمشاهدة القنوات الرياضية | كود التفعيل: 232425</div>
       <div class="loader-number"></div>
     </a>
