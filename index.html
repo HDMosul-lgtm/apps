@@ -14,11 +14,9 @@
         }
 
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: 'Cairo', sans-serif;
             background-color: var(--dark-bg);
-            /* خلفية ماربل مع تأثير كربون */
             background-image: 
                 linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
                 url('https://www.transparenttextures.com/patterns/carbon-fibre.png'),
@@ -26,50 +24,22 @@
             background-attachment: fixed;
             background-size: cover;
             color: #fff;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-x: hidden;
+            display: flex; flex-direction: column;
+            min-height: 100vh; overflow-x: hidden;
         }
 
-        header {
-            text-align: center;
-            padding: 20px 0 10px;
-        }
+        header { text-align: center; padding: 20px 0 10px; }
+        .logo { width: 55px; filter: drop-shadow(0 0 10px #d4af37); margin-bottom: 5px; }
+        .brand { font-size: 2.2rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; }
+        .sub-brand { font-size: 10px; letter-spacing: 5px; color: #d4af37; text-transform: uppercase; font-weight: bold; }
 
-        .logo {
-            width: 55px;
-            filter: drop-shadow(0 0 10px #d4af37);
-            margin-bottom: 5px;
-        }
-
-        .brand {
-            font-size: 2.2rem;
-            font-weight: 900;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0;
-        }
-
-        .sub-brand {
-            font-size: 10px;
-            letter-spacing: 5px;
-            color: #d4af37;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        /* حاوية الوقت الفخمة */
         .info-pill {
             background: rgba(0, 0, 0, 0.7);
             border: 1.5px solid #d4af37;
             border-radius: 50px;
             padding: 6px 25px;
             margin: 15px auto;
-            display: flex;
-            gap: 15px;
-            width: fit-content;
+            display: flex; gap: 15px; width: fit-content;
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
             backdrop-filter: blur(10px);
         }
@@ -77,22 +47,10 @@
         #liveDate { font-size: 0.9rem; border-left: 1px solid #d4af37; padding-left: 15px; }
         #liveClock { font-size: 1rem; color: #d4af37; font-weight: bold; font-family: 'monospace'; }
 
-        .main-container {
-            flex: 1;
-            width: 95%;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        .main-container { flex: 1; width: 95%; max-width: 1300px; margin: 0 auto; padding: 20px; }
 
-        /* الشبكات */
-        .grid {
-            display: grid;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .grid-top { grid-template-columns: repeat(3, 1fr); }
+        .grid { display: grid; gap: 15px; margin-bottom: 30px; }
+        .grid-top { grid-template-columns: repeat(4, 1fr); }
         .grid-bottom { grid-template-columns: repeat(4, 1fr); }
 
         .card {
@@ -115,45 +73,22 @@
             box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
         }
 
-        .icon {
-            font-size: 2rem;
-            margin-bottom: 8px;
-            display: block;
-            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4));
-        }
-
+        .icon { font-size: 2rem; margin-bottom: 8px; display: block; filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4)); }
         .title { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
-        .desc { font-size: 0.8rem; color: #aaa; }
+        .desc { font-size: 0.8rem; color: #aaa; line-height: 1.4; }
 
-        /* عداد الثواني */
         .timer-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            font-size: 3rem;
-            font-weight: 900;
-            color: #d4af37;
-            z-index: 10;
+            display: none; justify-content: center; align-items: center;
+            font-size: 3rem; font-weight: 900; color: #d4af37; z-index: 10;
         }
 
-        footer {
-            text-align: center;
-            padding: 25px;
-            border-top: 1px solid var(--gold-border);
-            background: rgba(0,0,0,0.5);
-        }
-
+        footer { text-align: center; padding: 25px; border-top: 1px solid var(--gold-border); background: rgba(0,0,0,0.5); }
         .footer-logo { color: #d4af37; font-weight: bold; font-size: 1.1rem; }
         .prayer { color: #888; font-size: 0.85rem; margin-top: 5px; }
 
-        /* شاشات الجوال */
-        @media (max-width: 768px) {
-            .grid-top, .grid-bottom { grid-template-columns: repeat(2, 1fr); }
-            .brand { font-size: 1.6rem; }
-        }
+        @media (max-width: 992px) { .grid-top, .grid-bottom { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
@@ -174,20 +109,26 @@
         <div class="card" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
             <div class="timer-overlay">3</div>
             <span class="icon">📱</span>
-            <div class="title">مكتبية تطبيقات 1</div>
-            <div class="desc">HDMosul تحتوي على كافة التطبيقات</div>
+            <div class="title">مكتبات التطبيقات 1</div>
+            <div class="desc">HDMosul تحتوي على كافة التطبيقات<br>متجر تابع الى Android_AppsX</div>
         </div>
         <div class="card" onclick="openLink(this, 'https://mr-store.net/')">
             <div class="timer-overlay">3</div>
             <span class="icon">📱</span>
-            <div class="title">مكتبية تطبيقات 2</div>
+            <div class="title">مكتبات التطبيقات 2</div>
             <div class="desc">HDMosul تحتوي على كافة التطبيقات</div>
         </div>
         <div class="card" onclick="openLink(this, 'https://401740.hala-web.com/')">
             <div class="timer-overlay">3</div>
             <span class="icon">📱</span>
-            <div class="title">مكتبية تطبيقات 3</div>
+            <div class="title">مكتبات التطبيقات 3</div>
             <div class="desc">HDMosul تحتوي على كافة التطبيقات</div>
+        </div>
+        <div class="card" onclick="openLink(this, '#')">
+            <div class="timer-overlay">3</div>
+            <span class="icon">📁</span>
+            <div class="title">مكتبات ميديا فاير 4</div>
+            <div class="desc">HDMosul خاص بـ حسام شبكتي</div>
         </div>
     </div>
 
@@ -253,14 +194,11 @@
 <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3"></audio>
 
 <script>
-    // تحديث الوقت والتاريخ بشكل حي
     function updateClock() {
         const now = new Date();
         const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-        
         const dateStr = `${days[now.getDay()]} ${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
         document.getElementById('liveDate').innerText = dateStr;
-
         let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
         let ampm = h >= 12 ? 'PM' : 'AM';
         h = h % 12 || 12;
@@ -270,28 +208,23 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // وظيفة فتح الروابط مع العداد
     function openLink(card, url) {
-        // تشغيل الصوت
         const sound = document.getElementById('clickSound');
         if(sound) sound.play().catch(()=>{});
-
         const overlay = card.querySelector('.timer-overlay');
         let count = 3;
-        
         overlay.style.display = 'flex';
         overlay.innerText = count;
-
         const interval = setInterval(() => {
             count--;
             overlay.innerText = count;
             if(count <= 0) {
                 clearInterval(interval);
-                window.location.href = url;
+                if(url !== '#') window.location.href = url;
+                else overlay.style.display = 'none';
             }
         }, 1000);
     }
 </script>
-
 </body>
 </html>
