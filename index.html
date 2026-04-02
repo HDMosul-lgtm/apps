@@ -35,17 +35,17 @@ body::before {
 
 header {
     flex-shrink: 0;
-    padding: 5px 0; /* تقليل المساحة العلوية جداً */
+    padding: 15px 0 10px; /* زيادة بسيطة في الحشو العلوي */
     text-align: center;
 }
 
 .logo {
-    width: 35px;
+    width: 50px; /* تكبير اللوجو ليناسب الشاشة */
     filter: drop-shadow(0 0 8px #d4af37);
 }
 
 .brand {
-    font-size: 1.6rem;
+    font-size: 2.2rem; /* تكبير اسم المتجر */
     font-weight: 900;
     background: var(--gold);
     -webkit-background-clip: text;
@@ -54,32 +54,32 @@ header {
 }
 
 .sub {
-    font-size: 8px;
+    font-size: 10px;
     color: #d4af37;
-    letter-spacing: 3px;
+    letter-spacing: 5px;
     text-transform: uppercase;
 }
 
 .global-info {
-    margin: 4px auto;
+    margin: 10px auto;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 3px 15px;
+    padding: 8px 25px;
     border-radius: 50px;
     width: fit-content;
     backdrop-filter: blur(10px);
 }
 
-#liveDate { font-size: 0.7rem; color: #fff; margin-left: 10px; border-left: 1px solid #d4af37; padding-left: 10px; }
-#liveClock { font-size: 0.8rem; color: #d4af37; font-weight: bold; font-family: 'Courier New', Courier, monospace; }
+#liveDate { font-size: 0.9rem; color: #fff; margin-left: 15px; border-left: 1px solid #d4af37; padding-left: 15px; }
+#liveClock { font-size: 1.1rem; color: #d4af37; font-weight: bold; font-family: 'Courier New', Courier, monospace; }
 
 .main-content {
     flex: 1;
     overflow-y: auto; 
-    padding: 0 30px 20px; 
+    padding: 0 50px 40px; 
     display: flex;
     flex-direction: column;
-    gap: 8px; /* تقليل الفجوات بين الشبكات */
+    gap: 20px; /* زيادة الفجوة بين الشبكة العلوية والسفلية */
     scroll-behavior: smooth;
 }
 
@@ -87,8 +87,8 @@ header {
 
 .grid {
     display: grid;
-    gap: 8px; /* تقليل الفجوات بين الأزرار */
-    max-width: 1400px;
+    gap: 15px; /* زيادة الفجوات بين الأزرار لملء الشاشة */
+    max-width: 1600px;
     margin: 0 auto;
     width: 100%;
 }
@@ -99,27 +99,27 @@ header {
 .card {
     background: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 6px 4px; /* تصغير الزر لأقصى حد */
+    border-radius: 12px;
+    padding: 18px 15px; /* تكبير الحشو الداخلي لجعل الزر أضخم */
     text-align: center;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.3s;
     position: relative;
     outline: none;
 }
 
 .card:focus, .card:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
     border-color: #d4af37;
-    background: rgba(212, 175, 55, 0.12);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+    background: rgba(212, 175, 55, 0.15);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
 }
 
-.icon { font-size: 1.3rem; margin-bottom: 0px; display: block; }
+.icon { font-size: 2.2rem; margin-bottom: 10px; display: block; } /* تكبير الأيقونة */
 
-/* الحفاظ على أحجام النصوص كما طلبت */
-.title { font-size: 1.05rem; font-weight: 800; margin-bottom: 1px; color: #fff; line-height: 1.1; }
-.desc { font-size: 0.75rem; color: #999; line-height: 1.1; }
+/* أحجام النصوص محسنة للشاشات الكبيرة */
+.title { font-size: 1.2rem; font-weight: 800; margin-bottom: 5px; color: #fff; line-height: 1.2; }
+.desc { font-size: 0.85rem; color: #aaa; line-height: 1.3; }
 
 .timer {
     position: absolute;
@@ -127,25 +127,30 @@ header {
     display: none;
     justify-content: center;
     align-items: center;
-    font-size: 2.2rem;
+    font-size: 3.5rem;
     font-weight: 900;
     background: rgba(0, 0, 0, 0.9);
     color: #d4af37;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 footer {
-    padding: 15px 15px 5px;
+    padding: 30px 15px 20px;
     background: transparent;
     text-align: center;
 }
 
-.footer-info { font-size: 0.9rem; color: #d4af37; font-weight: bold; opacity: 0.8; }
-.prayer { font-size: 0.8rem; color: #777; margin-top: 2px; }
+.footer-info { font-size: 1.1rem; color: #d4af37; font-weight: bold; opacity: 0.9; }
+.prayer { font-size: 0.95rem; color: #888; margin-top: 5px; }
+
+@media (max-width: 1024px) {
+    .grid-bottom { grid-template-columns: repeat(3, 1fr); }
+}
 
 @media (max-width: 768px) {
-    .main-content { padding: 5px 10px 20px; }
+    .main-content { padding: 10px 15px 30px; }
     .grid-bottom, .grid-top { grid-template-columns: repeat(2, 1fr); }
+    .brand { font-size: 1.8rem; }
 }
 </style>
 </head>
@@ -247,7 +252,7 @@ footer {
 function updateGlobalUI() {
     const now = new Date();
     
-    // تعديل صيغة التاريخ المطلوبة: 2026-4-2 الخميس
+    // التاريخ بالصيغة المطلوبة: 2026-4-2 الخميس
     const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
     const formattedDate = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${days[now.getDay()]}`;
     document.getElementById('liveDate').innerText = formattedDate;
