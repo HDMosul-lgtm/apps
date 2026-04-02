@@ -35,61 +35,59 @@ body::before {
 
 header {
     flex-shrink: 0;
-    padding: 10px 0 5px; /* تقليل حشو الرأس لتوفير مساحة */
+    padding: 5px 0; /* تقليل المساحة العلوية جداً */
     text-align: center;
 }
 
 .logo {
-    width: 40px; /* تصغير اللوجو قليلاً */
+    width: 35px;
     filter: drop-shadow(0 0 8px #d4af37);
 }
 
 .brand {
-    font-size: 1.8rem; /* تصغير بسيط للعنوان الرئيسي */
+    font-size: 1.6rem;
     font-weight: 900;
     background: var(--gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1.1;
+    line-height: 1;
 }
 
 .sub {
-    font-size: 9px;
+    font-size: 8px;
     color: #d4af37;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     text-transform: uppercase;
 }
 
 .global-info {
-    margin: 5px auto;
+    margin: 4px auto;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 5px 20px;
+    padding: 3px 15px;
     border-radius: 50px;
     width: fit-content;
     backdrop-filter: blur(10px);
 }
 
-#liveDate { font-size: 0.75rem; color: #fff; margin-left: 10px; border-left: 1px solid #d4af37; padding-left: 10px; }
-#liveClock { font-size: 0.85rem; color: #d4af37; font-weight: bold; font-family: 'Courier New', Courier, monospace; }
+#liveDate { font-size: 0.7rem; color: #fff; margin-left: 10px; border-left: 1px solid #d4af37; padding-left: 10px; }
+#liveClock { font-size: 0.8rem; color: #d4af37; font-weight: bold; font-family: 'Courier New', Courier, monospace; }
 
 .main-content {
     flex: 1;
     overflow-y: auto; 
-    padding: 0 40px 30px; 
+    padding: 0 30px 20px; 
     display: flex;
     flex-direction: column;
-    gap: 10px; /* تقليل الفجوة بين الصفوف */
+    gap: 8px; /* تقليل الفجوات بين الشبكات */
     scroll-behavior: smooth;
 }
 
-.main-content::-webkit-scrollbar {
-    width: 0px;
-}
+.main-content::-webkit-scrollbar { width: 0px; }
 
 .grid {
     display: grid;
-    gap: 10px; /* تقليل الفجوة بين الأزرار */
+    gap: 8px; /* تقليل الفجوات بين الأزرار */
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
@@ -101,28 +99,27 @@ header {
 .card {
     background: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 8px 5px; /* ✅ تصغير الحشو الداخلي لتصغير حجم الزر */
+    border-radius: 8px;
+    padding: 6px 4px; /* تصغير الزر لأقصى حد */
     text-align: center;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.2s;
     position: relative;
     outline: none;
 }
 
 .card:focus, .card:hover {
-    transform: scale(1.04);
+    transform: scale(1.03);
     border-color: #d4af37;
-    background: rgba(212, 175, 55, 0.1);
-    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+    background: rgba(212, 175, 55, 0.12);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
 }
 
-/* ✅ تصغير الأيقونة لتوفير مساحة عمودية */
-.icon { font-size: 1.5rem; margin-bottom: 2px; display: block; }
+.icon { font-size: 1.3rem; margin-bottom: 0px; display: block; }
 
-/* ✅ الحفاظ على حجم خط العناوين والوصف كما طلبت */
-.title { font-size: 1.05rem; font-weight: 800; margin-bottom: 2px; color: #fff; }
-.desc { font-size: 0.75rem; color: #999; line-height: 1.2; }
+/* الحفاظ على أحجام النصوص كما طلبت */
+.title { font-size: 1.05rem; font-weight: 800; margin-bottom: 1px; color: #fff; line-height: 1.1; }
+.desc { font-size: 0.75rem; color: #999; line-height: 1.1; }
 
 .timer {
     position: absolute;
@@ -130,34 +127,24 @@ header {
     display: none;
     justify-content: center;
     align-items: center;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 900;
     background: rgba(0, 0, 0, 0.9);
     color: #d4af37;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 footer {
-    padding: 20px 15px 10px;
+    padding: 15px 15px 5px;
     background: transparent;
     text-align: center;
 }
 
-.footer-info {
-    font-size: 0.9rem;
-    color: #d4af37;
-    font-weight: bold;
-    opacity: 0.8;
-}
-
-.prayer {
-    font-size: 0.8rem;
-    color: #777;
-    margin-top: 5px;
-}
+.footer-info { font-size: 0.9rem; color: #d4af37; font-weight: bold; opacity: 0.8; }
+.prayer { font-size: 0.8rem; color: #777; margin-top: 2px; }
 
 @media (max-width: 768px) {
-    .main-content { padding: 10px 10px 30px; }
+    .main-content { padding: 5px 10px 20px; }
     .grid-bottom, .grid-top { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
@@ -171,7 +158,7 @@ footer {
     <div class="sub">V I P • E X C L U S I V E</div>
     
     <div class="global-info">
-        <span id="liveDate">--/--/----</span>
+        <span id="liveDate">--</span>
         <span id="liveClock">00:00:00 --</span>
     </div>
 </header>
@@ -181,70 +168,70 @@ footer {
         <div class="card" tabindex="0" data-url="https://iraqapps.github.io/tvapps/">
             <div class="timer">3</div><div class="icon">📱</div>
             <div class="title">مكتبية تطبيقات 1</div>
-            <div class="desc">HDMosul تحتوي على جميع أنواع التطبيقات</div>
+            <div class="desc">HDMosul تحتوي على كافة التطبيقات</div>
         </div>
         <div class="card" tabindex="0" data-url="https://mr-store.net/">
             <div class="timer">3</div><div class="icon">📱</div>
             <div class="title">مكتبية تطبيقات 2</div>
-            <div class="desc">HDMosul تحتوي على جميع أنواع التطبيقات</div>
+            <div class="desc">HDMosul تحتوي على كافة التطبيقات</div>
         </div>
         <div class="card" tabindex="0" data-url="https://401740.hala-web.com/">
             <div class="timer">3</div><div class="icon">📱</div>
             <div class="title">مكتبية تطبيقات 3</div>
-            <div class="desc">HDMosul تحتوي على جميع أنواع التطبيقات</div>
+            <div class="desc">HDMosul تحتوي على كافة التطبيقات</div>
         </div>
     </div>
 
     <div class="grid grid-bottom">
         <div class="card" tabindex="0" data-url="https://go.aftvnews.com/28544">
             <div class="timer">3</div><div class="icon">📺</div>
-            <div class="title">يوتيوب لكافة الشاشات</div>
+            <div class="title">يوتيوب الشاشات</div>
             <div class="desc">تحديث أونلاين • بدون توقف</div>
         </div>
         <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
             <div class="timer">3</div><div class="icon">📡</div>
             <div class="title">IRAQ TV 1</div>
-            <div class="desc">HDMosul مدعوم بجميع الشبكات</div>
+            <div class="desc">مدعوم بجميع الشبكات</div>
         </div>
         <div class="card" tabindex="0" data-url="https://workupload.com/file/QN6shgxPdgr">
             <div class="timer">3</div><div class="icon">🎬</div>
             <div class="title">سينمانا لينباك</div>
-            <div class="desc">HDMosul نسخة مخصصة للشاشات</div>
+            <div class="desc">نسخة مخصصة للشاشات</div>
         </div>
         <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file">
             <div class="timer">3</div><div class="icon">🎥</div>
             <div class="title">برايم تيفي</div>
-            <div class="desc">HDMosul كود التفعيل: 2026</div>
+            <div class="desc">كود التفعيل: 2026</div>
         </div>
         <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file">
             <div class="timer">3</div><div class="icon">🔴</div>
             <div class="title">دراما لايف</div>
-            <div class="desc">HDMosul كود التفعيل: 232425</div>
+            <div class="desc">كود التفعيل: 232425</div>
         </div>
         <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file">
             <div class="timer">3</div><div class="icon">🎞️</div>
             <div class="title">موفيز بوكس VIP</div>
-            <div class="desc">HDMosul مفتوح أفضل من نتفلكس</div>
+            <div class="desc">مفتوح أفضل من نتفلكس</div>
         </div>
         <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file">
             <div class="timer">3</div><div class="icon">💻</div>
             <div class="title">سينمانا بلس</div>
-            <div class="desc">HDMosul أخف نسخة للشاشات</div>
+            <div class="desc">أخف نسخة للشاشات</div>
         </div>
         <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file">
             <div class="timer">3</div><div class="icon">⚽</div>
             <div class="title">جنرال برو تيفي</div>
-            <div class="desc">HDMosul كود التفعيل: 000</div>
+            <div class="desc">كود التفعيل: 000</div>
         </div>
         <div class="card" tabindex="0" data-url="https://yassinetv.org/">
             <div class="timer">3</div><div class="icon">📡</div>
             <div class="title">ياسين تيفي</div>
-            <div class="desc">HDMosul الموقع الرسمي</div>
+            <div class="desc">تنزيل من الموقع الرسمي</div>
         </div>
         <div class="card" tabindex="0" data-url="https://ostoratv-app.com/">
             <div class="timer">3</div><div class="icon">📺</div>
             <div class="title">الأسطورة TV</div>
-            <div class="desc">HDMosul الحل النهائي</div>
+            <div class="desc">تطبيق الأسطورة النهائي</div>
         </div>
     </div>
 
@@ -259,8 +246,13 @@ footer {
 <script>
 function updateGlobalUI() {
     const now = new Date();
-    const dateOptions = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
-    document.getElementById('liveDate').innerText = now.toLocaleDateString('ar-EG', dateOptions);
+    
+    // تعديل صيغة التاريخ المطلوبة: 2026-4-2 الخميس
+    const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+    const formattedDate = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${days[now.getDay()]}`;
+    document.getElementById('liveDate').innerText = formattedDate;
+
+    // الساعة
     let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
     let ampm = h >= 12 ? 'PM' : 'AM';
     h = h % 12 || 12;
