@@ -21,7 +21,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden; 
+    overflow: hidden; /* يمنع اهتزاز الصفحة كاملة */
 }
 
 body::before {
@@ -34,64 +34,65 @@ body::before {
 }
 
 header {
-    flex-shrink: 0;
-    padding: 10px 0;
+    flex-shrink: 0; /* يمنع الهيدر من التقلص */
+    padding: 20px 0 10px;
     text-align: center;
-    z-index: 10;
 }
 
 .logo {
-    width: 45px;
+    width: 50px;
     filter: drop-shadow(0 0 8px #d4af37);
 }
 
 .brand {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 900;
     background: var(--gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1.2;
+    line-height: 1;
 }
 
 .sub {
-    font-size: 9px;
+    font-size: 10px;
     color: #d4af37;
     letter-spacing: 5px;
     text-transform: uppercase;
 }
 
 .global-info {
-    margin: 5px auto;
+    margin: 10px auto;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 5px 20px;
+    padding: 8px 30px;
     border-radius: 50px;
     width: fit-content;
     backdrop-filter: blur(10px);
 }
 
-#liveDate { font-size: 0.8rem; color: #fff; margin-left: 10px; border-left: 1px solid #d4af37; padding-left: 10px; }
-#liveClock { font-size: 0.9rem; color: #d4af37; font-weight: bold; font-family: 'Courier New', Courier, monospace; }
+#liveDate { font-size: 0.8rem; color: #fff; margin-left: 15px; border-left: 1px solid #d4af37; padding-left: 15px; }
+#liveClock { font-size: 1rem; color: #d4af37; font-weight: bold; font-family: 'Courier New', Courier, monospace; }
 
+/* المنطقة الوسطى قابلة للتمرير */
 .main-content {
     flex: 1;
+    overflow-y: auto; 
+    padding: 0 50px 100px; /* بادنج سفلي 100 بكسل لضمان ظهور آخر صف */
     display: flex;
     flex-direction: column;
     gap: 15px;
-    padding: 10px 40px 150px; /* مسافة كبيرة جداً في الأسفل لضمان ظهور آخر صف */
-    overflow-y: auto;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
 }
 
-/* إخفاء شريط التمرير لمظهر احترافي */
-.main-content::-webkit-scrollbar { width: 0px; background: transparent; }
+/* إخفاء شريط التمرير */
+.main-content::-webkit-scrollbar {
+    width: 0px;
+}
 
 .grid {
     display: grid;
     gap: 12px;
-    max-width: 1400px;
+    max-width: 1500px;
     margin: 0 auto;
     width: 100%;
 }
@@ -106,22 +107,22 @@ header {
     padding: 15px 10px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: 0.3s;
     position: relative;
-    outline: none;
+    outline: none; /* إزالة إطار المتصفح الافتراضي */
 }
 
-/* التميز عند الوقوف بالريموت */
+/* تأثير عند الوقوف بالريموت */
 .card:focus, .card:hover {
-    transform: scale(1.06);
+    transform: scale(1.05);
     border-color: #d4af37;
-    background: rgba(212, 175, 55, 0.15);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    background: rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
 }
 
-.icon { font-size: 2rem; margin-bottom: 5px; display: block; }
-.title { font-size: 1rem; font-weight: 800; margin-bottom: 3px; color: #fff; }
-.desc { font-size: 0.7rem; color: #aaa; line-height: 1.3; }
+.icon { font-size: 2.2rem; margin-bottom: 5px; display: block; }
+.title { font-size: 1.05rem; font-weight: 800; margin-bottom: 3px; color: #fff; }
+.desc { font-size: 0.75rem; color: #999; line-height: 1.3; }
 
 .timer {
     position: absolute;
@@ -129,30 +130,37 @@ header {
     display: none;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 900;
     background: rgba(0, 0, 0, 0.9);
     color: #d4af37;
     border-radius: 12px;
-    z-index: 20;
 }
 
 footer {
     flex-shrink: 0;
-    padding: 8px;
-    background: rgba(0,0,0,0.95);
+    padding: 15px;
+    background: rgba(0,0,0,0.8);
     text-align: center;
     border-top: 1px solid rgba(212, 175, 55, 0.2);
-    z-index: 100;
 }
 
-.footer-info { font-size: 0.85rem; color: #d4af37; font-weight: bold; }
-.prayer { font-size: 0.75rem; color: #666; margin-top: 2px; }
+.footer-info {
+    font-size: 0.95rem;
+    color: #d4af37;
+    font-weight: bold;
+}
 
-@media (max-width: 1024px) { .grid-bottom { grid-template-columns: repeat(3, 1fr); } }
+.prayer {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 5px;
+}
+
 @media (max-width: 768px) {
-    .grid-top, .grid-bottom { grid-template-columns: repeat(2, 1fr); }
-    .main-content { padding: 10px 15px 120px; }
+    .main-content { padding: 10px 10px 80px; }
+    .grid-bottom, .grid-top { grid-template-columns: repeat(2, 1fr); }
+    .brand { font-size: 1.5rem; }
 }
 </style>
 </head>
@@ -170,7 +178,7 @@ footer {
     </div>
 </header>
 
-<div class="main-content" id="scrollContainer">
+<div class="main-content">
     <div class="grid grid-top">
         <div class="card" tabindex="0" data-url="https://iraqapps.github.io/tvapps/">
             <div class="timer">3</div><div class="icon">📱</div>
@@ -195,7 +203,6 @@ footer {
             <div class="title">يوتيوب لكافة الشاشات</div>
             <div class="desc">تحديث أونلاين • بدون توقف</div>
         </div>
-
         <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
             <div class="timer">3</div><div class="icon">📡</div>
             <div class="title">IRAQ TV 1</div>
@@ -234,12 +241,12 @@ footer {
         <div class="card" tabindex="0" data-url="https://yassinetv.org/">
             <div class="timer">3</div><div class="icon">📡</div>
             <div class="title">ياسين تيفي</div>
-            <div class="desc">HDMosul تنزيل من الموقع الرسمي</div>
+            <div class="desc">HDMosul الموقع الرسمي</div>
         </div>
         <div class="card" tabindex="0" data-url="https://ostoratv-app.com/">
             <div class="timer">3</div><div class="icon">📺</div>
             <div class="title">الأسطورة TV</div>
-            <div class="desc">HDMosul تطبيق الأسطورة TV</div>
+            <div class="desc">HDMosul الحل النهائي</div>
         </div>
     </div>
 </div>
@@ -255,10 +262,7 @@ footer {
 function updateGlobalUI() {
     const now = new Date();
     const dateOptions = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
-    try {
-        document.getElementById('liveDate').innerText = now.toLocaleDateString('ar-EG', dateOptions);
-    } catch(e) { document.getElementById('liveDate').innerText = now.toDateString(); }
-    
+    document.getElementById('liveDate').innerText = now.toLocaleDateString('ar-EG', dateOptions);
     let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
     let ampm = h >= 12 ? 'PM' : 'AM';
     h = h % 12 || 12;
@@ -268,31 +272,27 @@ function updateGlobalUI() {
 setInterval(updateGlobalUI, 1000);
 updateGlobalUI();
 
-function startAction(card) {
-    if (card.classList.contains('locked')) return;
-    card.classList.add('locked');
-    const sound = document.getElementById('clickSound');
-    if(sound) sound.play().catch(()=>{});
-    
-    let t = card.querySelector('.timer'), n = 3;
-    t.style.display = 'flex';
-    t.innerText = n;
-    let i = setInterval(() => {
-        n--; t.innerText = n;
-        if(n == 0) { clearInterval(i); window.location = card.dataset.url; }
-    }, 1000);
-}
-
 document.querySelectorAll('.card').forEach(c => {
-    c.onclick = () => startAction(c);
-    
-    // حل مشكلة التمرير في الريموت: عند الوقوف على الزر، اجعله يظهر في وسط الشاشة
-    c.onfocus = function() {
-        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // تشغيل بالضغط (لمس أو ماوس)
+    c.onclick = () => {
+        document.getElementById('clickSound').play();
+        let t = c.querySelector('.timer'), n = 3;
+        t.style.display = 'flex';
+        t.innerText = n;
+        let i = setInterval(() => {
+            n--; t.innerText = n;
+            if(n == 0) { clearInterval(i); window.location = c.dataset.url; }
+        }, 1000);
     };
 
+    // دعم الريموت: النزول التلقائي عند الوقوف على الزر
+    c.onfocus = () => {
+        c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    // دعم زر OK في الريموت
     c.onkeydown = (e) => {
-        if (e.key === 'Enter' || e.keyCode === 13) startAction(c);
+        if (e.key === "Enter") c.click();
     };
 });
 </script>
