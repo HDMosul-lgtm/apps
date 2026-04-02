@@ -21,7 +21,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: hidden; /* لمنع ظهور شريط التمرير في الخلفية الأساسية */
 }
 
 body::before {
@@ -35,51 +35,63 @@ body::before {
 
 header {
     flex-shrink: 0;
-    padding: 25px 0 10px;
+    padding: 15px 0 5px; /* تقليل الحشو العلوي */
     text-align: center;
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
-    width: 50px;
+    width: 45px;
     filter: drop-shadow(0 0 8px #d4af37);
 }
 
 .brand {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 900;
     background: var(--gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1;
+    line-height: 1.2;
 }
 
 .sub {
-    font-size: 10px;
+    font-size: 9px;
     color: #d4af37;
     letter-spacing: 5px;
     text-transform: uppercase;
 }
 
 .global-info {
-    margin: 10px auto;
+    margin: 8px auto;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 8px 30px;
+    padding: 6px 25px;
     border-radius: 50px;
     width: fit-content;
     backdrop-filter: blur(10px);
 }
 
 #liveDate { font-size: 0.8rem; color: #fff; margin-left: 15px; border-left: 1px solid #d4af37; padding-left: 15px; }
-#liveClock { font-size: 1rem; color: #d4af37; font-weight: bold; font-family: 'Courier New', Courier, monospace; }
+#liveClock { font-size: 0.9rem; color: #d4af37; font-weight: bold; font-family: 'Courier New', Courier, monospace; }
 
 .main-content {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* تغيير من center لمنع التداخل */
     gap: 15px;
-    padding: 0 50px;
+    padding: 20px 50px; /* إضافة حشو علوي */
+    overflow-y: auto; /* جعل المحتوى قابلاً للتمرير إذا كبُر */
+}
+
+/* تخصيص شكل شريط التمرير ليكون مخفياً أو جميلاً */
+.main-content::-webkit-scrollbar {
+    width: 5px;
+}
+.main-content::-webkit-scrollbar-thumb {
+    background: #d4af37;
+    border-radius: 10px;
 }
 
 .grid {
@@ -91,7 +103,10 @@ header {
 }
 
 .grid-top { grid-template-columns: repeat(3, 1fr); }
-.grid-bottom { grid-template-columns: repeat(4, 1fr); }
+.grid-bottom { 
+    grid-template-columns: repeat(4, 1fr); 
+    margin-bottom: 20px; /* مسافة إضافية في الأسفل */
+}
 
 .card {
     background: var(--card-bg);
@@ -126,18 +141,19 @@ header {
     background: rgba(0, 0, 0, 0.9);
     color: #d4af37;
     border-radius: 12px;
+    z-index: 20;
 }
 
 footer {
     flex-shrink: 0;
-    padding: 15px;
-    background: rgba(0,0,0,0.5);
+    padding: 10px;
+    background: rgba(0,0,0,0.8);
     text-align: center;
     border-top: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .footer-info {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #d4af37;
     font-weight: bold;
     display: flex;
@@ -147,14 +163,20 @@ footer {
 }
 
 .prayer {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #666;
-    margin-top: 5px;
+    margin-top: 3px;
+}
+
+@media (max-width: 1024px) {
+    .grid-bottom { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 768px) {
-    .main-content { padding: 10px; overflow-y: auto; }
+    .main-content { padding: 10px; }
+    .grid-top { grid-template-columns: repeat(2, 1fr); }
     .grid-bottom { grid-template-columns: repeat(2, 1fr); }
+    .brand { font-size: 1.5rem; }
 }
 </style>
 </head>
@@ -192,7 +214,6 @@ footer {
     </div>
 
     <div class="grid grid-bottom">
-        <!-- ✅ تم التعديل هنا فقط -->
         <div class="card" data-url="https://go.aftvnews.com/28544">
             <div class="timer">3</div><div class="icon">📺</div>
             <div class="title">يوتيوب لكافة الشاشات</div>
@@ -260,7 +281,11 @@ footer {
 function updateGlobalUI() {
     const now = new Date();
     const dateOptions = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
-    document.getElementById('liveDate').innerText = now.toLocaleDateString('ar-EG', dateOptions);
+    try {
+        document.getElementById('liveDate').innerText = now.toLocaleDateString('ar-EG', dateOptions);
+    } catch(e) {
+        document.getElementById('liveDate').innerText = now.toDateString();
+    }
     
     let h = now.getHours();
     let m = now.getMinutes();
@@ -276,7 +301,9 @@ updateGlobalUI();
 
 document.querySelectorAll('.card').forEach(c=>{
     c.onclick=()=>{
-        document.getElementById('clickSound').play();
+        const sound = document.getElementById('clickSound');
+        if(sound) sound.play().catch(()=>{});
+        
         let t=c.querySelector('.timer');
         let n=3;
         t.style.display='flex';
