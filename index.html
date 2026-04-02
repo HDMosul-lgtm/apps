@@ -21,7 +21,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* لمنع ظهور شريط التمرير في الخلفية الأساسية */
+    overflow: hidden; 
 }
 
 body::before {
@@ -35,7 +35,7 @@ body::before {
 
 header {
     flex-shrink: 0;
-    padding: 15px 0 5px; /* تقليل الحشو العلوي */
+    padding: 15px 0 5px;
     text-align: center;
     position: relative;
     z-index: 10;
@@ -79,19 +79,15 @@ header {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* تغيير من center لمنع التداخل */
+    justify-content: flex-start;
     gap: 15px;
-    padding: 20px 50px; /* إضافة حشو علوي */
-    overflow-y: auto; /* جعل المحتوى قابلاً للتمرير إذا كبُر */
+    padding: 20px 50px 100px; /* تم زيادة الـ padding السفلي لظهور كافة الأزرار */
+    overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
-/* تخصيص شكل شريط التمرير ليكون مخفياً أو جميلاً */
 .main-content::-webkit-scrollbar {
-    width: 5px;
-}
-.main-content::-webkit-scrollbar-thumb {
-    background: #d4af37;
-    border-radius: 10px;
+    width: 0px; /* إخفاء شريط التمرير لمظهر أفضل على الشاشات */
 }
 
 .grid {
@@ -103,10 +99,7 @@ header {
 }
 
 .grid-top { grid-template-columns: repeat(3, 1fr); }
-.grid-bottom { 
-    grid-template-columns: repeat(4, 1fr); 
-    margin-bottom: 20px; /* مسافة إضافية في الأسفل */
-}
+.grid-bottom { grid-template-columns: repeat(4, 1fr); }
 
 .card {
     background: var(--card-bg);
@@ -115,15 +108,17 @@ header {
     padding: 15px 10px;
     text-align: center;
     cursor: pointer;
-    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: 0.3s;
     position: relative;
+    outline: none; /* إزالة الإطار الافتراضي الأزرق */
 }
 
-.card:hover {
-    transform: scale(1.05);
+/* حالة التركيز عند استخدام الريموت */
+.card:focus, .card:hover {
+    transform: scale(1.08);
     border-color: #d4af37;
-    background: rgba(212, 175, 55, 0.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    background: rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
 }
 
 .icon { font-size: 2.2rem; margin-bottom: 5px; display: block; }
@@ -147,9 +142,11 @@ header {
 footer {
     flex-shrink: 0;
     padding: 10px;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.9);
     text-align: center;
     border-top: 1px solid rgba(212, 175, 55, 0.2);
+    position: relative;
+    z-index: 10;
 }
 
 .footer-info {
@@ -173,7 +170,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .main-content { padding: 10px; }
+    .main-content { padding: 10px 10px 80px; }
     .grid-top { grid-template-columns: repeat(2, 1fr); }
     .grid-bottom { grid-template-columns: repeat(2, 1fr); }
     .brand { font-size: 1.5rem; }
@@ -196,17 +193,17 @@ footer {
 
 <div class="main-content">
     <div class="grid grid-top">
-        <div class="card" data-url="https://iraqapps.github.io/tvapps/">
+        <div class="card" tabindex="0" data-url="https://iraqapps.github.io/tvapps/">
             <div class="timer">3</div><div class="icon">📱</div>
             <div class="title">مكتبية تطبيقات 1</div>
             <div class="desc">HDMosul تحتوي على جميع أنواع التطبيقات</div>
         </div>
-        <div class="card" data-url="https://mr-store.net/">
+        <div class="card" tabindex="0" data-url="https://mr-store.net/">
             <div class="timer">3</div><div class="icon">📱</div>
             <div class="title">مكتبية تطبيقات 2</div>
             <div class="desc">HDMosul تحتوي على جميع أنواع التطبيقات</div>
         </div>
-        <div class="card" data-url="https://401740.hala-web.com/">
+        <div class="card" tabindex="0" data-url="https://401740.hala-web.com/">
             <div class="timer">3</div><div class="icon">📱</div>
             <div class="title">مكتبية تطبيقات 3</div>
             <div class="desc">HDMosul تحتوي على جميع أنواع التطبيقات</div>
@@ -214,53 +211,53 @@ footer {
     </div>
 
     <div class="grid grid-bottom">
-        <div class="card" data-url="https://go.aftvnews.com/28544">
+        <div class="card" tabindex="0" data-url="https://go.aftvnews.com/28544">
             <div class="timer">3</div><div class="icon">📺</div>
             <div class="title">يوتيوب لكافة الشاشات</div>
             <div class="desc">تحديث أونلاين • بدون توقف • التحديث ينزل تلقائي</div>
         </div>
 
-        <div class="card" data-url="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
+        <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file">
             <div class="timer">3</div><div class="icon">📡</div>
             <div class="title">IRAQ TV 1</div>
             <div class="desc">HDMosul مدعوم بجميع الشبكات</div>
         </div>
-        <div class="card" data-url="https://workupload.com/file/QN6shgxPdgr">
+        <div class="card" tabindex="0" data-url="https://workupload.com/file/QN6shgxPdgr">
             <div class="timer">3</div><div class="icon">🎬</div>
             <div class="title">سينمانا لينباك</div>
             <div class="desc">HDMosul نسخة مخصصة للشاشات</div>
         </div>
-        <div class="card" data-url="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file">
+        <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file">
             <div class="timer">3</div><div class="icon">🎥</div>
             <div class="title">برايم تيفي</div>
             <div class="desc">HDMosul كود التفعيل: 2026</div>
         </div>
-        <div class="card" data-url="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file">
+        <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file">
             <div class="timer">3</div><div class="icon">🔴</div>
             <div class="title">دراما لايف</div>
             <div class="desc">HDMosul كود التفعيل: 232425</div>
         </div>
-        <div class="card" data-url="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file">
+        <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file">
             <div class="timer">3</div><div class="icon">🎞️</div>
             <div class="title">موفيز بوكس VIP</div>
             <div class="desc">HDMosul مفتوح أفضل من نتفلكس</div>
         </div>
-        <div class="card" data-url="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file">
+        <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file">
             <div class="timer">3</div><div class="icon">💻</div>
             <div class="title">سينمانا بلس</div>
             <div class="desc">HDMosul أخف نسخة للشاشات</div>
         </div>
-        <div class="card" data-url="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file">
+        <div class="card" tabindex="0" data-url="https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file">
             <div class="timer">3</div><div class="icon">⚽</div>
             <div class="title">جنرال برو تيفي</div>
             <div class="desc">HDMosul كود التفعيل: 000</div>
         </div>
-        <div class="card" data-url="https://yassinetv.org/">
+        <div class="card" tabindex="0" data-url="https://yassinetv.org/">
             <div class="timer">3</div><div class="icon">📡</div>
             <div class="title">ياسين تيفي</div>
             <div class="desc">HDMosul تنزيل من خلال موقع رسمي</div>
         </div>
-        <div class="card" data-url="https://ostoratv-app.com/">
+        <div class="card" tabindex="0" data-url="https://ostoratv-app.com/">
             <div class="timer">3</div><div class="icon">📺</div>
             <div class="title">الأسطورة TV</div>
             <div class="desc">HDMosul تطبيق الأسطورة TV هو الحل النهائي!</div>
@@ -299,20 +296,37 @@ function updateGlobalUI() {
 setInterval(updateGlobalUI, 1000);
 updateGlobalUI();
 
-document.querySelectorAll('.card').forEach(c=>{
-    c.onclick=()=>{
-        const sound = document.getElementById('clickSound');
-        if(sound) sound.play().catch(()=>{});
-        
-        let t=c.querySelector('.timer');
-        let n=3;
-        t.style.display='flex';
-        t.innerText=n;
-        let i=setInterval(()=>{
-            n--;
-            t.innerText=n;
-            if(n==0){ clearInterval(i); window.location=c.dataset.url; }
-        },1000);
+// دالة التشغيل الموحدة
+function startAction(card) {
+    if (card.classList.contains('active')) return;
+    card.classList.add('active');
+    
+    const sound = document.getElementById('clickSound');
+    if(sound) sound.play().catch(()=>{});
+    
+    let t = card.querySelector('.timer');
+    let n = 3;
+    t.style.display = 'flex';
+    t.innerText = n;
+    let i = setInterval(() => {
+        n--;
+        t.innerText = n;
+        if(n == 0) { 
+            clearInterval(i); 
+            window.location = card.dataset.url; 
+        }
+    }, 1000);
+}
+
+document.querySelectorAll('.card').forEach(c => {
+    // دعم اللمس والماوس
+    c.onclick = () => startAction(c);
+    
+    // دعم أزرار الريموت (Enter / OK)
+    c.onkeydown = (e) => {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            startAction(c);
+        }
     };
 });
 </script>
