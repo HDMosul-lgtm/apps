@@ -33,6 +33,7 @@
         .brand { font-size: 2.2rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; line-height: 1.1; }
         .sub-brand { font-size: 10px; letter-spacing: 5px; color: #d4af37; text-transform: uppercase; font-weight: bold; margin-top: -5px; }
 
+        /* تعديل الـ Pill ليشمل العداد */
         .info-pill {
             background: rgba(0, 0, 0, 0.7);
             border: 1.5px solid #d4af37;
@@ -40,19 +41,26 @@
             padding: 8px 25px;
             margin: 15px auto;
             display: flex; 
-            gap: 15px; 
+            gap: 20px; 
             width: fit-content;
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
             backdrop-filter: blur(10px);
-            align-items: center; /* لمساواة العناصر عمودياً */
+            align-items: center;
             justify-content: center;
         }
 
-        #liveDate { font-size: 0.9rem; border-left: 1px solid #d4af37; padding-left: 15px; line-height: 1; }
-        #liveClock { font-size: 1rem; color: #d4af37; font-weight: bold; font-family: 'monospace'; line-height: 1; }
+        #liveDate { font-size: 0.9rem; border-left: 1px solid var(--gold-border); padding-left: 15px; line-height: 1; }
+        #liveClock { font-size: 1rem; color: #d4af37; font-weight: bold; font-family: 'monospace'; line-height: 1; border-left: 1px solid var(--gold-border); padding-left: 15px; }
+        
+        /* تصميم العداد الجديد */
+        .visitor-count { font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+        .v-label { color: #aaa; font-size: 0.75rem; font-weight: bold; }
+        #v-number { color: #fff; font-weight: 900; text-shadow: 0 0 5px #d4af37; }
+        .online-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #00ff00; animation: blink 1.5s infinite; }
+
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         .main-container { flex: 1; width: 95%; max-width: 1300px; margin: 0 auto; padding: 20px; }
-
         .grid { display: grid; gap: 15px; margin-bottom: 30px; }
         .grid-top { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
         .grid-bottom { grid-template-columns: repeat(4, 1fr); }
@@ -65,7 +73,7 @@
             text-align: center;
             position: relative;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s architecture;
             backdrop-filter: blur(5px);
             overflow: hidden;
             outline: none;
@@ -106,6 +114,11 @@
     <div class="info-pill">
         <span id="liveClock">00:00:00 PM</span>
         <span id="liveDate">--</span>
+        <div class="visitor-count">
+            <span class="online-dot"></span>
+            <span class="v-label">المتصلون الآن:</span>
+            <span id="v-number">1,240</span>
+        </div>
     </div>
 </header>
 
@@ -223,6 +236,17 @@
     }
     setInterval(updateClock, 1000);
     updateClock();
+
+    // وظيفة تحديث عداد الزوار بشكل وهمي فخم
+    function simulateVisitors() {
+        let baseCount = 1240;
+        setInterval(() => {
+            let change = Math.floor(Math.random() * 5) - 2; // يضيف أو ينقص زوار بشكل عشوائي
+            baseCount += change;
+            document.getElementById('v-number').innerText = baseCount.toLocaleString();
+        }, 3000);
+    }
+    simulateVisitors();
 
     function openLink(card, url) {
         const sound = document.getElementById('clickSound');
