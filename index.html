@@ -28,7 +28,7 @@
             min-height: 100vh; overflow-x: hidden;
         }
 
-        /* تنسيق نافذة الأسعار الجديدة */
+        /* تنسيق نافذة الأسعار الجديدة لتستوعب القائمة الطويلة */
         .price-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
@@ -36,14 +36,25 @@
         }
         .price-modal-content {
             background: #0a0a0a; border: 2px solid #d4af37; border-radius: 20px;
-            padding: 25px; max-width: 450px; width: 90%; text-align: center;
+            padding: 20px; max-width: 450px; width: 92%; text-align: center;
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            display: flex; flex-direction: column;
         }
-        .price-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-        .price-table td { padding: 10px; border-bottom: 1px solid var(--gold-border); font-size: 0.9rem; }
-        .s-name { color: #d4af37; font-weight: bold; text-align: right; }
-        .s-price { color: #fcf6ba; text-align: left; font-weight: 900; }
-        .close-modal-btn { background: var(--gold-gradient); border: none; color: #000; padding: 10px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 15px; font-family: 'Cairo'; }
+        .modal-body {
+            max-height: 55vh; overflow-y: auto; border: 1px solid rgba(212,175,55,0.2); 
+            border-radius: 10px; background: rgba(0,0,0,0.4); margin: 10px 0;
+        }
+        .modal-body::-webkit-scrollbar { width: 5px; }
+        .modal-body::-webkit-scrollbar-track { background: #050505; border-radius: 10px; }
+        .modal-body::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 10px; }
+        
+        .price-table { width: 100%; border-collapse: collapse; }
+        .price-table td { padding: 10px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); font-size: 0.9rem; }
+        .server-header td { background: rgba(212, 175, 55, 0.15); color: #fcf6ba; font-weight: 900; text-align: center; padding: 12px 5px; border-bottom: 2px solid var(--gold-border); font-size: 1rem; }
+        .s-name { color: #ccc; font-weight: bold; text-align: right; }
+        .s-price { color: #d4af37; text-align: left; font-weight: 900; }
+        
+        .close-modal-btn { background: var(--gold-gradient); border: none; color: #000; padding: 10px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 5px; font-family: 'Cairo'; }
 
         header { text-align: center; padding: 20px 0 10px; }
         .logo { width: 55px; filter: drop-shadow(0 0 10px #d4af37); margin-bottom: 2px; }
@@ -112,6 +123,14 @@
         .desc { font-size: 0.8rem; color: #aaa; line-height: 1.4; }
         .desc b { color: #d4af37; }
 
+        /* تنسيقات أزرار التحميل المباشر للأسطورة وشوت */
+        .dual-btn-container { display: flex; gap: 8px; margin-top: 12px; position: relative; z-index: 15; }
+        .download-sub-btn {
+            flex: 1; background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; color: #fcf6ba;
+            padding: 8px 4px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; transition: 0.3s; cursor: pointer;
+        }
+        .download-sub-btn:hover { background: #d4af37; color: #000; }
+
         .timer-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.9);
@@ -131,15 +150,50 @@
 
 <div class="price-modal" id="priceModal">
     <div class="price-modal-content">
-        <h2 style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;">قائمة اشتراكات VIP 💎</h2>
-        <table class="price-table">
-            <tr><td class="s-name">سيرفر ماكس برو (سنة)</td><td class="s-price">25,000 د.ع</td></tr>
-            <tr><td class="s-name">سيرفر دانه العملاق (سنة)</td><td class="s-price">25,000 د.ع</td></tr>
-            <tr><td class="s-name">سيرفر هوك (15 شهر)</td><td class="s-price">20,000 د.ع</td></tr>
-            <tr><td class="s-name">سيرفر Neo 4K (سنة)</td><td class="s-price">30,000 د.ع</td></tr>
-            <tr><td class="s-name">سيرفر دووم DOOM (سنة)</td><td class="s-price">10,000 د.ع</td></tr>
-        </table>
-        <p style="font-size: 0.85rem; color: #ccc;">للاشتراك تواصل عبر التلغرام: <b style="color:#d4af37;">@ooa85</b></p>
+        <h2 style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; margin-top: 5px; margin-bottom: 5px;">قائمة اشتراكات VIP 💎</h2>
+        <p style="color: #ccc; font-size: 0.85rem; margin-top: 0; margin-bottom: 10px;">أسعار الاشتراكات المتوفرة لفتح القنوات المشفرة والمسلسلات والأفلام</p>
+        
+        <div class="modal-body">
+            <table class="price-table">
+                <tr class="server-header"><td colspan="2">⭕ سيرفر ماكس برو</td></tr>
+                <tr><td class="s-name">1 شهر</td><td class="s-price">5,000 د.ع</td></tr>
+                <tr><td class="s-name">3 اشهر</td><td class="s-price">10,000 د.ع</td></tr>
+                <tr><td class="s-name">6 اشهر</td><td class="s-price">15,000 د.ع</td></tr>
+                <tr><td class="s-name">سنة</td><td class="s-price">25,000 د.ع</td></tr>
+
+                <tr class="server-header"><td colspan="2">⭕ سيرفر نوفا</td></tr>
+                <tr><td class="s-name">3 اشهر</td><td class="s-price">5,000 د.ع</td></tr>
+                <tr><td class="s-name">6 اشهر</td><td class="s-price">10,000 د.ع</td></tr>
+                <tr><td class="s-name">سنة</td><td class="s-price">20,000 د.ع</td></tr>
+
+                <tr class="server-header"><td colspan="2" style="line-height: 1.2;">⭕ سيرفر دانه<br><span style="font-size: 0.75rem; color: #fff; font-weight: normal;">(شبيه بسترونك، سيرفر عملاق عالمي)</span></td></tr>
+                <tr><td class="s-name">1 شهر</td><td class="s-price">5,000 د.ع</td></tr>
+                <tr><td class="s-name">3 اشهر</td><td class="s-price">10,000 د.ع</td></tr>
+                <tr><td class="s-name">5 اشهر</td><td class="s-price">14,000 د.ع</td></tr>
+                <tr><td class="s-name">6 اشهر</td><td class="s-price">15,000 د.ع</td></tr>
+                <tr><td class="s-name">سنة</td><td class="s-price">25,000 د.ع</td></tr>
+
+                <tr class="server-header"><td colspan="2">⭕ سيرفر هوك</td></tr>
+                <tr><td class="s-name">1 شهر</td><td class="s-price">3,000 د.ع</td></tr>
+                <tr><td class="s-name">3 اشهر</td><td class="s-price">5,000 د.ع</td></tr>
+                <tr><td class="s-name">6 اشهر</td><td class="s-price">10,000 د.ع</td></tr>
+                <tr><td class="s-name">سنة</td><td class="s-price">15,000 د.ع</td></tr>
+                <tr><td class="s-name">15 شهر</td><td class="s-price">20,000 د.ع</td></tr>
+
+                <tr class="server-header"><td colspan="2">⭕ سيرفر Neo 4K</td></tr>
+                <tr><td class="s-name">1 شهر</td><td class="s-price">5,000 د.ع</td></tr>
+                <tr><td class="s-name">3 اشهر</td><td class="s-price">10,000 د.ع</td></tr>
+                <tr><td class="s-name">6 اشهر</td><td class="s-price">15,000 د.ع</td></tr>
+                <tr><td class="s-name">سنة</td><td class="s-price">30,000 د.ع</td></tr>
+
+                <tr class="server-header"><td colspan="2">⭕ سيرفر دووم DOOM</td></tr>
+                <tr><td class="s-name">3 اشهر</td><td class="s-price">3,000 د.ع</td></tr>
+                <tr><td class="s-name">6 اشهر</td><td class="s-price">5,000 د.ع</td></tr>
+                <tr><td class="s-name">سنة</td><td class="s-price">10,000 د.ع</td></tr>
+            </table>
+        </div>
+
+        <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 5px;">للاشتراك تواصل عبر التلغرام: <b style="color:#d4af37;">@ooa85</b></p>
         <button class="close-modal-btn" onclick="togglePriceModal(false)">إغلاق القائمة</button>
     </div>
 </div>
@@ -236,16 +290,33 @@
             <div class="title">جنرال برو تيفي</div>
             <div class="desc">HDMosul • كود التفعيل: 000</div>
         </div>
-        <div class="card" tabindex="0" onclick="openLink(this, 'https://yassinetv.org/')">
+
+        <div class="card" tabindex="0" onclick="openLink(this, 'https://www.mediafire.com/file/oaqww9cm02ub5i0/Yacine_TV_Gold_v3.5_By_play8store.apk/file')">
             <div class="timer-overlay">3</div><span class="icon">📡</span>
             <div class="title">ياسين تيفي</div>
-            <div class="desc">HDMosul تنزيل من الموقع الرسمي</div>
+            <div class="desc">تنزيل الإصدار الذهبي v3.5 الجديد</div>
         </div>
-        <div class="card" tabindex="0" onclick="openLink(this, 'https://ostoratv-app.com/')">
-            <div class="timer-overlay">3</div><span class="icon">📺</span>
+
+        <div class="card" tabindex="0" style="cursor: default;">
+            <span class="icon">📺</span>
             <div class="title">الأسطورة TV</div>
-            <div class="desc">HDMosul تطبيق الأسطورة النهائي</div>
+            <div class="desc">تحميل مباشر للمشغل والتطبيق</div>
+            <div class="dual-btn-container">
+                <button class="download-sub-btn" onclick="directOpen('https://www.ostora.tv/downloads/ostora_smart_4.9.apk')">تنزيل التطبيق</button>
+                <button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/nv6mly4qyedb0hg/Url_Video_Player_2.0-Apkpure.apk/file')">تنزيل المشغل</button>
+            </div>
         </div>
+
+        <div class="card" tabindex="0" style="cursor: default;">
+            <span class="icon">⚽</span>
+            <div class="title">شوت تيفي</div>
+            <div class="desc">تحميل مباشر للمشغل والتطبيق</div>
+            <div class="dual-btn-container">
+                <button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file')">تنزيل التطبيق</button>
+                <button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">تنزيل المشغل</button>
+            </div>
+        </div>
+
         <div class="card" tabindex="0" onclick="openLink(this, 'https://cartoonzaman.tv/android/CartoonZaman-v-1.0.0.apk')">
             <div class="timer-overlay">3</div><span class="icon">🧸</span>
             <div class="title">كارتون اطفال</div>
@@ -254,8 +325,8 @@
 
         <div class="card vip-trigger" tabindex="0" onclick="togglePriceModal(true)">
             <span class="icon">💎</span>
-            <div class="title" style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">باقات الاشتراك والأسعار</div>
-            <div class="desc">انقر هنا لعرض كافة تفاصيل اشتراكات الـ <b>VIP</b></div>
+            <div class="title" style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">سيرفرات مدفوعة (VIP)</div>
+            <div class="desc">اذا حاب تشترك سيرفرات مدفوعة تفتح القنوات المشفرة والافلام والمسلسلات</div>
         </div>
     </div>
 </div>
@@ -316,6 +387,13 @@
                 window.location.href = url;
             }
         }, 1000);
+    }
+
+    // وظيفة التحميل المباشر للأسطورة وشوت بدون مؤقت
+    function directOpen(url) {
+        const sound = document.getElementById('clickSound');
+        if(sound) sound.play().catch(()=>{});
+        window.location.href = url;
     }
 </script>
 </body>
