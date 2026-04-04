@@ -93,11 +93,36 @@
         .desc { font-size: 0.8rem; color: #aaa; line-height: 1.4; }
         .desc b { color: #d4af37; }
 
+        /* ستايل أزرار التحميل المزدوجة داخل الكارت */
+        .dual-btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            position: relative;
+            z-index: 15;
+        }
+        .download-sub-btn {
+            flex: 1;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid #d4af37;
+            color: #fcf6ba;
+            padding: 8px 5px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .download-sub-btn:hover {
+            background: #d4af37;
+            color: #000;
+        }
+
         .timer-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.9);
             display: none; justify-content: center; align-items: center;
-            font-size: 3rem; font-weight: 900; color: #d4af37; z-index: 10;
+            font-size: 3rem; font-weight: 900; color: #d4af37; z-index: 20;
         }
 
         footer { text-align: center; padding: 25px; border-top: 1px solid var(--gold-border); background: rgba(0,0,0,0.5); }
@@ -217,6 +242,18 @@
             <div class="title">كارتون اطفال</div>
             <div class="desc">من افضل تطبيقات كارتون الاطفال فيه القديم والجديد<br><b>ملاحظة:</b> متوقف حالياً للصيانة</div>
         </div>
+
+        <div class="card" tabindex="0" style="cursor: default;">
+            <div class="timer-overlay">3</div>
+            <span class="icon">⚽</span>
+            <div class="title">شوت تيفي (Yalla Shoot)</div>
+            <div class="desc">HDMosul • التطبيق مع المشغل الخاص به</div>
+            <div class="dual-btn-container">
+                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file')">تحميل التطبيق</div>
+                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">تحميل المشغل</div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -266,6 +303,7 @@
             overlay.innerText = count;
             if(count <= 0) {
                 clearInterval(interval);
+                overlay.style.display = 'none'; // إخفاء العداد بعد الانتهاء
                 window.location.href = url;
             }
         }, 1000);
