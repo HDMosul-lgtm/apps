@@ -46,18 +46,17 @@
         .online-dot { width: 7px; height: 7px; background: #00ff62; border-radius: 50%; box-shadow: 0 0 8px #00ff62; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-        /* الأقسام */
         .tabs-container { display: flex; justify-content: center; gap: 10px; margin: 10px 0 20px; }
         .tab-btn {
             background: rgba(255,255,255,0.05); border: 1px solid var(--gold-border);
             color: #fff; padding: 10px 25px; border-radius: 50px; cursor: pointer;
             font-family: 'Cairo'; font-weight: bold; transition: 0.3s;
         }
-        .tab-btn.active { background: var(--gold-gradient); color: #000; }
-        .tab-content { display: none; }
+        .tab-btn.active { background: var(--gold-gradient); color: #000; box-shadow: 0 0 10px #fcf6ba; }
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
         .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* المودال */
         .price-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
@@ -70,7 +69,7 @@
         .modal-body { max-height: 50vh; overflow-y: auto; margin: 15px 0; border: 1px solid rgba(212,175,55,0.2); border-radius: 10px; }
         .price-table { width: 100%; border-collapse: collapse; }
         .price-table td { padding: 10px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); font-size: 0.9rem; }
-        .server-header { background: rgba(212, 175, 55, 0.1); color: #fcf6ba; font-weight: bold; }
+        .server-header { background: rgba(212, 175, 55, 0.15); color: #fcf6ba; font-weight: bold; }
         .close-btn { background: var(--gold-gradient); border: none; padding: 10px 30px; border-radius: 50px; font-weight: 900; cursor: pointer; font-family: 'Cairo'; }
 
         .main-container { flex: 1; width: 95%; max-width: 1300px; margin: 0 auto; padding: 10px; }
@@ -80,6 +79,7 @@
             background: var(--card-bg); border: 1px solid var(--gold-border); border-radius: 12px;
             padding: 15px; text-align: center; position: relative; cursor: pointer;
             transition: all 0.3s ease; backdrop-filter: blur(5px);
+            display: flex; flex-direction: column; justify-content: center;
         }
         .card:hover { transform: translateY(-5px); background: rgba(212, 175, 55, 0.15); border-color: #fcf6ba; }
 
@@ -100,7 +100,7 @@
             padding: 8px 4px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; cursor: pointer;
         }
 
-        footer { text-align: center; padding: 25px; border-top: 1px solid var(--gold-border); background: rgba(0,0,0,0.5); }
+        footer { text-align: center; padding: 25px; border-top: 1px solid var(--gold-border); margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -110,12 +110,15 @@
         <h2 style="color: #fcf6ba;">قائمة الاشتراكات VIP 💎</h2>
         <div class="modal-body">
             <table class="price-table">
-                <tr class="server-header"><td colspan="2">سيرفر ماكس برو</td></tr>
+                <tr class="server-header"><td colspan="2">سيرفر ماكس برو MAX</td></tr>
                 <tr><td>1 شهر</td><td>5,000 د.ع</td></tr>
                 <tr><td>سنة كاملة</td><td>25,000 د.ع</td></tr>
+                <tr class="server-header"><td colspan="2">سيرفر نوفا NOVA</td></tr>
+                <tr><td>سنة كاملة</td><td>20,000 د.ع</td></tr>
             </table>
         </div>
-        <button class="close-btn" onclick="togglePriceModal(false)">إغلاق</button>
+        <p style="color: #aaa; font-size: 0.8rem;">تواصل معنا: <b>@ooa85</b></p>
+        <button class="close-btn" onclick="togglePriceModal(false)">إغلاق القائمة</button>
     </div>
 </div>
 
@@ -130,7 +133,7 @@
         <div class="visitor-stat">
             <span class="online-dot"></span>
             <span class="v-text">زوار هذا الأسبوع:</span>
-            <span id="v-count">0,000</span>
+            <span id="v-count">2,840</span>
         </div>
     </div>
 </header>
@@ -232,10 +235,26 @@
 
     <div id="store-tab" class="tab-content">
         <div class="grid">
-            <div class="card" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')"><span class="icon">📱</span><div class="title">مكتبات التطبيقات 1</div><div class="desc">متجر تابع الى Android_AppsX</div></div>
-            <div class="card" onclick="openLink(this, 'https://401740.hala-web.com/')"><span class="icon">📱</span><div class="title">مكتبات التطبيقات 2</div><div class="desc">تحتوي على كافة التطبيقات</div></div>
-            <div class="card" onclick="openLink(this, 'https://pixeldrain.com/l/RmnSpDMM#item=1')"><span class="icon">📂</span><div class="title">مكتبات التطبيقات 3</div><div class="desc">متجر بي اكثر من 133 تطبيق</div></div>
-            <div class="card" onclick="togglePriceModal(true)"><span class="icon">💎</span><div class="title">لو تحب تشترك سيرفرات مدفوعة اضغط هكذا</div><div class="desc">HDMosul • عرض جميع باقات الـ VIP</div></div>
+            <div class="card" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
+                <div class="timer-overlay">3</div><span class="icon">📱</span>
+                <div class="title">مكتبات التطبيقات 1</div>
+                <div class="desc">تحتوي على كافة التطبيقات<br>متجر تابع الى Android_AppsX</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://401740.hala-web.com/')">
+                <div class="timer-overlay">3</div><span class="icon">📱</span>
+                <div class="title">مكتبات التطبيقات 2</div>
+                <div class="desc">تحتوي على كافة التطبيقات</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://pixeldrain.com/l/RmnSpDMM#item=1')">
+                <div class="timer-overlay">3</div><span class="icon">📂</span>
+                <div class="title">مكتبات التطبيقات 3</div>
+                <div class="desc">متجر بي اكثر من 133 تطبيق</div>
+            </div>
+            <div class="card" onclick="togglePriceModal(true)">
+                <span class="icon">💎</span>
+                <div class="title">لو تحب تشترك سيرفرات مدفوعة اضغط هكذا</div>
+                <div class="desc">HDMosul • عرض جميع باقات الـ VIP وسيرفرات القنوات المشفرة والافلام والمسلسلات الحديثة بجودات عالية</div>
+            </div>
         </div>
     </div>
 </div>
@@ -251,21 +270,27 @@
         let ampm = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
         document.getElementById('liveClock').innerText = `${h}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s} ${ampm}`;
     }
+
     function switchTab(evt, tabId) {
         document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
         evt.currentTarget.classList.add('active');
     }
+
     function togglePriceModal(show) { document.getElementById('priceModal').style.display = show ? 'flex' : 'none'; }
+
     function openLink(card, url) {
         const overlay = card.querySelector('.timer-overlay');
+        if(!overlay) { window.location.href = url; return; }
         let count = 3; overlay.style.display = 'flex';
+        overlay.innerText = count;
         const interval = setInterval(() => {
             count--; overlay.innerText = count;
             if(count <= 0) { clearInterval(interval); window.location.href = url; }
         }, 1000);
     }
+
     function directOpen(url) { window.location.href = url; }
     setInterval(updateClock, 1000); updateClock();
 </script>
