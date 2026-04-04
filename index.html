@@ -11,6 +11,7 @@
             --dark-bg: #050505;
             --card-bg: rgba(255, 255, 255, 0.03);
             --gold-border: rgba(212, 175, 55, 0.4);
+            --nav-bg: rgba(10, 10, 10, 0.8);
         }
 
         body {
@@ -26,19 +27,90 @@
             color: #fff;
             display: flex; flex-direction: column;
             min-height: 100vh; overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* التصنيفات الجديدة */
+        /* القائمة العلوية الفخمة الجديدة */
+        .luxury-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--gold-border);
+            padding: 10px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: auto;
+            padding: 5px 15px;
+            white-space: nowrap;
+        }
+
+        /* اخفاء سكرول القائمة في الموبايل */
+        .nav-container::-webkit-scrollbar { display: none; }
+
+        .nav-item {
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid transparent;
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .nav-item i { font-style: normal; }
+
+        .nav-item:hover, .nav-item.active {
+            background: var(--gold-gradient);
+            color: #000;
+            border-color: #fcf6ba;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .nav-item.vip-btn {
+            border: 1px solid #bf953f;
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
+            50% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
+            100% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
+        }
+
+        /* تعديلات العناوين لتناسب التصميم الجديد */
         .section-title {
-            text-align: right;
-            margin: 20px 10px 10px;
-            padding-right: 15px;
-            border-right: 4px solid #d4af37;
-            font-size: 1.4rem;
+            text-align: center;
+            margin: 40px 0 20px;
+            font-size: 1.6rem;
             font-weight: 900;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gold-gradient);
+            margin: 10px auto;
+            border-radius: 10px;
         }
 
         .price-modal {
@@ -68,21 +140,21 @@
         
         .close-modal-btn { background: var(--gold-gradient); border: none; color: #000; padding: 10px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 5px; font-family: 'Cairo'; }
 
-        header { text-align: center; padding: 20px 0 10px; }
-        .logo { width: 55px; filter: drop-shadow(0 0 10px #d4af37); margin-bottom: 2px; }
-        .brand { font-size: 2.2rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; line-height: 1.1; }
-        .sub-brand { font-size: 10px; letter-spacing: 5px; color: #d4af37; text-transform: uppercase; font-weight: bold; margin-top: -5px; }
+        header { text-align: center; padding: 30px 0 20px; }
+        .logo { width: 65px; filter: drop-shadow(0 0 15px #d4af37); margin-bottom: 5px; }
+        .brand { font-size: 2.5rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; line-height: 1.1; }
+        .sub-brand { font-size: 12px; letter-spacing: 6px; color: #d4af37; text-transform: uppercase; font-weight: bold; margin-top: -5px; }
 
         .info-pill {
             background: rgba(0, 0, 0, 0.7);
             border: 1.5px solid #d4af37;
             border-radius: 50px;
-            padding: 8px 20px;
-            margin: 15px auto;
+            padding: 10px 25px;
+            margin: 20px auto;
             display: flex; 
-            gap: 15px; 
+            gap: 20px; 
             width: fit-content;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
             backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
@@ -90,29 +162,29 @@
         }
 
         #liveDate { font-size: 0.85rem; border-left: 1px solid var(--gold-border); padding-left: 15px; line-height: 1; }
-        #liveClock { font-size: 0.95rem; color: #d4af37; font-weight: bold; font-family: 'monospace'; line-height: 1; border-left: 1px solid var(--gold-border); padding-left: 15px; }
+        #liveClock { font-size: 1rem; color: #d4af37; font-weight: bold; font-family: 'monospace'; line-height: 1; border-left: 1px solid var(--gold-border); padding-left: 15px; }
         
         .visitor-stat { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; }
-        .online-dot { width: 7px; height: 7px; background: #00ff62; border-radius: 50%; box-shadow: 0 0 8px #00ff62; animation: pulse 2s infinite; }
+        .online-dot { width: 8px; height: 8px; background: #00ff62; border-radius: 50%; box-shadow: 0 0 8px #00ff62; animation: pulse 2s infinite; }
         .v-text { color: #aaa; font-weight: 400; }
         #v-count { color: #fff; font-weight: 900; letter-spacing: 0.5px; }
 
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
         .main-container { flex: 1; width: 95%; max-width: 1300px; margin: 0 auto; padding: 20px; }
-        .grid { display: grid; gap: 15px; margin-bottom: 30px; }
-        .grid-top { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-        .grid-bottom { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .grid { display: grid; gap: 20px; margin-bottom: 50px; }
+        .grid-top { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .grid-bottom { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--gold-border);
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: 15px;
+            padding: 20px;
             text-align: center;
             position: relative;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             backdrop-filter: blur(5px);
             overflow: hidden;
             outline: none;
@@ -122,23 +194,21 @@
         }
 
         .card:hover, .card:focus {
-            transform: translateY(-5px);
-            background: rgba(212, 175, 55, 0.15);
+            transform: translateY(-8px);
+            background: rgba(212, 175, 55, 0.1);
             border-color: #fcf6ba;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
         }
 
-        .vip-trigger { border: 2px dashed #bf953f; background: rgba(191, 149, 63, 0.05); }
-
-        .icon { font-size: 2rem; margin-bottom: 8px; display: block; filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4)); }
-        .title { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
-        .desc { font-size: 0.8rem; color: #aaa; line-height: 1.4; }
+        .icon { font-size: 2.5rem; margin-bottom: 12px; display: block; filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4)); }
+        .title { font-size: 1.2rem; font-weight: 800; margin-bottom: 6px; color: #fff; }
+        .desc { font-size: 0.85rem; color: #aaa; line-height: 1.5; }
         .desc b { color: #d4af37; }
 
-        .dual-btn-container { display: flex; gap: 8px; margin-top: 12px; position: relative; z-index: 15; }
+        .dual-btn-container { display: flex; gap: 8px; margin-top: 15px; position: relative; z-index: 15; }
         .download-sub-btn {
             flex: 1; background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; color: #fcf6ba;
-            padding: 8px 4px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; transition: 0.3s; cursor: pointer;
+            padding: 10px 5px; border-radius: 8px; font-size: 0.8rem; font-weight: bold; transition: 0.3s; cursor: pointer;
         }
         .download-sub-btn:hover { background: #d4af37; color: #000; }
 
@@ -146,15 +216,20 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.9);
             display: none; justify-content: center; align-items: center;
-            font-size: 3rem; font-weight: 900; color: #d4af37; z-index: 10;
+            font-size: 3.5rem; font-weight: 900; color: #d4af37; z-index: 10;
         }
 
-        footer { text-align: center; padding: 25px; border-top: 1px solid var(--gold-border); background: rgba(0,0,0,0.5); }
-        .footer-logo { color: #d4af37; font-weight: bold; font-size: 1.1rem; }
-        .prayer { color: #888; font-size: 0.85rem; margin-top: 5px; }
+        footer { text-align: center; padding: 40px; border-top: 1px solid var(--gold-border); background: rgba(0,0,0,0.7); margin-top: 50px; }
+        .footer-logo { color: #d4af37; font-weight: bold; font-size: 1.2rem; letter-spacing: 1px; }
+        .prayer { color: #888; font-size: 0.9rem; margin-top: 8px; }
 
         @media (max-width: 992px) { .grid-top, .grid-bottom { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .info-pill { flex-direction: column; border-radius: 20px; gap: 10px; } #liveDate, #liveClock { border: none; padding: 0; } }
+        @media (max-width: 650px) { 
+            .grid-top, .grid-bottom { grid-template-columns: 1fr; } 
+            .info-pill { flex-direction: column; border-radius: 20px; gap: 10px; padding: 15px; } 
+            #liveDate, #liveClock { border: none; padding: 0; }
+            .brand { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -225,9 +300,17 @@
     </div>
 </header>
 
+<nav class="luxury-nav">
+    <div class="nav-container">
+        <a href="#store-section" class="nav-item active"><i>🛒</i> المتجر والاشتراكات</a>
+        <a href="#apps-section" class="nav-item"><i>🆓</i> التطبيقات المجانية</a>
+        <a href="javascript:void(0)" class="nav-item vip-btn" onclick="togglePriceModal(true)"><i>💎</i> اشتراكات VIP</a>
+    </div>
+</nav>
+
 <div class="main-container">
     
-    <div class="section-title">متجر التطبيقات والاشتراكات</div>
+    <div id="store-section" class="section-title">متجر التطبيقات والاشتراكات</div>
     <div class="grid grid-top">
         <div class="card" tabindex="0" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
             <div class="timer-overlay">3</div><span class="icon">📱</span>
@@ -244,14 +327,9 @@
             <div class="title">مكتبات التطبيقات 3</div>
             <div class="desc">متجر بي اكثر من 133 تطبيق</div>
         </div>
-        <div class="card vip-trigger" tabindex="0" onclick="togglePriceModal(true)">
-            <span class="icon">💎</span>
-            <div class="title" style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">سيرفرات مدفوعة (VIP)</div>
-            <div class="desc">اذا حاب تشترك سيرفرات مدفوعة تفتح القنوات المشفرة والافلام والمسلسلات</div>
-        </div>
     </div>
 
-    <div class="section-title">التطبيقات المجانية</div>
+    <div id="apps-section" class="section-title">التطبيقات المجانية</div>
     <div class="grid grid-bottom">
         <div class="card" tabindex="0" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A7%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
             <div class="timer-overlay">3</div><span class="icon">🇮🇶</span>
@@ -364,18 +442,12 @@
         document.getElementById('liveClock').innerText = `${h}:${m}:${s} ${ampm}`;
     }
 
-    // وظيفة العداد الذكي المحدثة
     function setWeeklyVisitors() {
         const now = new Date();
         const base = 2150;
-        
-        // زيادة بناءً على مرور 12 ساعة
         const hoursPassed = now.getHours() + (now.getDay() * 24);
-        const incrementalGain = Math.floor(hoursPassed / 12) * 45; // يزداد 45 زائر كل 12 ساعة
-        
-        // طرح بسيط كل 24 ساعة (عند الفجر مثلاً)
+        const incrementalGain = Math.floor(hoursPassed / 12) * 45; 
         const dailyDrop = now.getHours() < 4 ? 20 : 0; 
-
         const finalCount = base + incrementalGain - dailyDrop;
         document.getElementById('v-count').innerText = finalCount.toLocaleString();
     }
@@ -386,8 +458,19 @@
         document.getElementById('priceModal').style.display = show ? 'flex' : 'none';
     }
 
+    // إدارة حالة القائمة النشطة
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            navItems.forEach(i => i.classList.remove('active'));
+            if(!this.classList.contains('vip-btn')) this.classList.add('active');
+            const sound = document.getElementById('clickSound');
+            if(sound) sound.play().catch(()=>{});
+        });
+    });
+
     setInterval(updateClock, 1000);
-    setInterval(setWeeklyVisitors, 60000); // تحديث العداد كل دقيقة
+    setInterval(setWeeklyVisitors, 60000);
     updateClock();
     setWeeklyVisitors();
 
