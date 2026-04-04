@@ -17,166 +17,191 @@
             margin: 0; padding: 0;
             font-family: 'Cairo', sans-serif;
             background-color: var(--dark-bg);
-            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            color: #fff; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
+                url('https://www.transparenttextures.com/patterns/carbon-fibre.png'),
+                url('https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=2070&auto=format&fit=crop');
+            background-attachment: fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex; flex-direction: column;
+            min-height: 100vh; overflow-x: hidden;
         }
 
-        /* نافذة الأسعار المنبثقة */
-        .modal {
+        /* نافذة الأسعار (المودال) */
+        .price-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.92); backdrop-filter: blur(15px);
             display: none; justify-content: center; align-items: center; z-index: 10000;
         }
         .modal-content {
-            background: #0a0a0a; border: 2px solid #d4af37; border-radius: 20px;
-            padding: 25px; max-width: 500px; width: 90%; max-height: 85vh; overflow-y: auto;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); text-align: center;
+            background: #0a0a0a; border: 2px solid #d4af37; border-radius: 25px;
+            padding: 30px 20px; text-align: center; max-width: 450px; width: 90%;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
         }
-        .modal-h { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 1.5rem; margin-bottom: 20px; }
+        .price-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .price-table td { padding: 10px; border-bottom: 1px solid var(--gold-border); font-size: 0.9rem; }
+        .server-title { color: #d4af37; font-weight: bold; text-align: right; }
+        .server-price { color: #fcf6ba; font-weight: 900; text-align: left; }
 
-        /* تنسيق الجداول داخل المودال */
-        .price-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9rem; }
-        .price-table th { background: rgba(212, 175, 55, 0.2); color: #fcf6ba; padding: 10px; border: 1px solid var(--gold-border); }
-        .price-table td { padding: 8px; border: 1px solid var(--gold-border); text-align: center; }
-        .server-name { color: #d4af37; font-weight: bold; text-align: right !important; padding-right: 15px !important; }
+        header { text-align: center; padding: 25px 0; }
+        .logo { width: 60px; filter: drop-shadow(0 0 10px #d4af37); margin-bottom: 5px; }
+        .brand { font-size: 2.5rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; }
+        
+        .info-pill {
+            background: rgba(0, 0, 0, 0.7); border: 1.5px solid #d4af37; border-radius: 50px;
+            padding: 10px 25px; margin: 20px auto; display: flex; gap: 20px; width: fit-content;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); backdrop-filter: blur(10px); align-items: center;
+        }
 
-        .close-btn { background: var(--gold-gradient); border: none; color: #000; padding: 10px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-
-        header { text-align: center; padding: 20px; }
-        .brand { font-size: 2.2rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; }
-        .info-pill { background: rgba(0,0,0,0.6); border: 1px solid #d4af37; border-radius: 50px; padding: 8px 20px; margin: 15px auto; display: flex; gap: 15px; width: fit-content; align-items: center; font-size: 0.8rem; }
-
-        .filter-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-        .filter-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--gold-border); color: #fff; padding: 8px 20px; border-radius: 30px; cursor: pointer; font-weight: 700; transition: 0.3s; }
-        .filter-btn.active { background: var(--gold-gradient); color: #000; border-color: transparent; }
-
-        .main-container { width: 95%; max-width: 1200px; margin: 0 auto; flex: 1; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .filter-container { display: flex; justify-content: center; gap: 10px; margin: 15px auto 25px; flex-wrap: wrap; }
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gold-border); color: #fff;
+            padding: 8px 22px; border-radius: 30px; cursor: pointer; font-size: 0.9rem; font-weight: 700; transition: 0.3s;
+        }
+        .filter-btn.active { background: var(--gold-gradient); color: #000; box-shadow: 0 0 12px rgba(212, 175, 55, 0.5); }
+        
+        .main-container { flex: 1; width: 95%; max-width: 1300px; margin: 0 auto; padding: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 
         .card {
-            background: var(--card-bg); border: 1px solid var(--gold-border); border-radius: 12px;
-            padding: 15px; text-align: center; position: relative; cursor: pointer; transition: 0.3s;
+            background: var(--card-bg); border: 1px solid var(--gold-border); border-radius: 15px;
+            padding: 20px; text-align: center; position: relative; cursor: pointer;
+            transition: 0.3s; backdrop-filter: blur(5px); overflow: hidden;
         }
         .card.hidden { display: none; }
-        .card:hover { transform: translateY(-5px); background: rgba(212, 175, 55, 0.1); }
+        .card:hover { transform: translateY(-5px); background: rgba(212, 175, 55, 0.1); border-color: #fcf6ba; }
 
-        .vip-trigger-card { border: 2px dashed #bf953f; background: rgba(191, 149, 63, 0.05); }
-        .vip-trigger-card:hover { background: rgba(191, 149, 63, 0.2); }
-
-        .icon { font-size: 2rem; margin-bottom: 5px; display: block; }
-        .title { font-size: 1.1rem; font-weight: 800; margin-bottom: 5px; }
-        .desc { font-size: 0.8rem; color: #aaa; }
+        .icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+        .title { font-size: 1.2rem; font-weight: 800; margin-bottom: 6px; }
+        .desc { font-size: 0.85rem; color: #aaa; line-height: 1.5; }
         .desc b { color: #d4af37; }
 
-        .timer-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; font-size: 3rem; font-weight: 900; color: #d4af37; z-index: 20; border-radius: 12px; }
-        
-        .dual-btn-container { display: flex; gap: 5px; margin-top: 10px; }
-        .sub-btn { flex: 1; background: rgba(212,175,55,0.1); border: 1px solid #d4af37; color: #fcf6ba; padding: 6px; border-radius: 5px; font-size: 0.75rem; cursor: pointer; }
+        .dual-btn-container { display: flex; gap: 10px; margin-top: 15px; }
+        .sub-btn { flex: 1; background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; color: #fcf6ba; padding: 8px; border-radius: 8px; font-size: 0.8rem; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .sub-btn:hover { background: #d4af37; color: #000; }
 
-        footer { text-align: center; padding: 20px; border-top: 1px solid var(--gold-border); font-size: 0.9rem; }
+        .timer-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9); display: none; justify-content: center; align-items: center;
+            font-size: 3rem; font-weight: 900; color: #d4af37; z-index: 20;
+        }
+
+        .vip-card { border: 2px dashed #bf953f; background: rgba(191, 149, 63, 0.05); margin-top: 10px; }
+
+        footer { text-align: center; padding: 30px; border-top: 1px solid var(--gold-border); margin-top: 40px; }
     </style>
 </head>
 <body>
 
-<div class="modal" id="priceModal">
+<div class="price-modal" id="priceModal">
     <div class="modal-content">
-        <div class="modal-h">باقات الاشتراك المميزة 💎</div>
+        <h2 style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;">قائمة اشتراكات VIP 💎</h2>
         <table class="price-table">
-            <tr><th>السيرفر</th><th>المدة</th><th>السعر</th></tr>
-            <tr><td class="server-name">ماكس برو</td><td>سنة كاملة</td><td>25 ألف</td></tr>
-            <tr><td class="server-name">نوفا</td><td>سنة كاملة</td><td>20 ألف</td></tr>
-            <tr><td class="server-name">دانه العملاق</td><td>سنة كاملة</td><td>25 ألف</td></tr>
-            <tr><td class="server-name">هوك</td><td>15 شهر</td><td>20 ألف</td></tr>
-            <tr><td class="server-name">Neo 4K</td><td>سنة كاملة</td><td>30 ألف</td></tr>
-            <tr><td class="server-name">دووم DOOM</td><td>سنة كاملة</td><td>10 ألف</td></tr>
+            <tr><td class="server-title">سيرفر ماكس برو (سنة)</td><td class="server-price">25,000 د.ع</td></tr>
+            <tr><td class="server-title">سيرفر دانه العملاق (سنة)</td><td class="server-price">25,000 د.ع</td></tr>
+            <tr><td class="server-title">سيرفر هوك (15 شهر)</td><td class="server-price">20,000 د.ع</td></tr>
+            <tr><td class="server-title">سيرفر Neo 4K (سنة)</td><td class="server-price">30,000 د.ع</td></tr>
+            <tr><td class="server-title">سيرفر دووم (سنة)</td><td class="server-price">10,000 د.ع</td></tr>
         </table>
-        <div style="color: #aaa; font-size: 0.85rem; margin-bottom: 15px;">
-            للتفعيل تواصل مع <b>أ. علي</b> عبر التلغرام: <br>
-            <span style="color: #fcf6ba; font-size: 1.2rem;">@ooa85</span>
-        </div>
-        <button class="close-btn" onclick="closeModal()">إغلاق القائمة</button>
+        <div style="margin-bottom: 20px; color: #aaa;">للتواصل: <b style="color:#fff">@ooa85</b></div>
+        <button class="sub-btn" style="padding: 12px 40px;" onclick="toggleModal(false)">إغلاق القائمة</button>
     </div>
 </div>
 
 <header>
+    <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" class="logo">
     <h1 class="brand">HDMosul Store</h1>
     <div class="info-pill">
-        <span id="liveClock">00:00:00 PM</span>
+        <span id="liveClock" style="color:#d4af37; font-weight:bold;">00:00:00</span>
+        <span id="liveDate">--</span>
         <span>زوار اليوم: <b id="v-count">0</b></span>
     </div>
+
     <div class="filter-container">
-        <button class="filter-btn active" onclick="filterApps('free', this)">تطبيقات مجانية 📱</button>
+        <button class="filter-btn active" onclick="filterApps('all', this)">عرض الكل 🌐</button>
+        <button class="filter-btn" onclick="filterApps('free', this)">تطبيقات مجانية 📱</button>
         <button class="filter-btn" onclick="filterApps('store', this)">مكتبات الاندرويد 🛍️</button>
     </div>
 </header>
 
 <div class="main-container">
-    <div class="grid" id="storeGrid">
-        <div class="card hidden" data-cat="store" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
-            <div class="timer-overlay">3</div><span class="icon">📱</span>
+    <div class="grid">
+        
+        <div class="card" data-cat="store" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
+            <div class="timer-overlay">3</div><span class="icon">📂</span>
             <div class="title">مكتبة التطبيقات 1</div>
-            <div class="desc">متجر Android_AppsX</div>
+            <div class="desc">متجر شامل لكافة تطبيقات الاندرويد</div>
         </div>
-    </div>
 
-    <div class="grid" id="freeGrid">
-        <div class="card" data-cat="free" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A7%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
+        <div class="card" data-cat="free" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A1%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
             <div class="timer-overlay">3</div><span class="icon">🇮🇶</span>
             <div class="title">واحد بغداد TV</div>
-            <div class="desc">تفعيل: <b>B1, B2...</b></div>
+            <div class="desc">تفعيل مجاني: <b>B1, B2, B3</b></div>
         </div>
 
         <div class="card" data-cat="free" onclick="openLink(this, 'https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file')">
             <div class="timer-overlay">3</div><span class="icon">⚽</span>
             <div class="title">جنرال برو</div>
-            <div class="desc">كود التفعيل: <b>000</b></div>
+            <div class="desc">كود التفعيل: <b>000</b> • HDMosul</div>
+        </div>
+
+        <div class="card" data-cat="free" onclick="openLink(this, 'https://go.aftvnews.com/28544')">
+            <div class="timer-overlay">3</div><span class="icon">📺</span>
+            <div class="title">يوتيوب الشاشات</div>
+            <div class="desc">نسخة بدون إعلانات تدعم تسجيل الدخول</div>
         </div>
 
         <div class="card" data-cat="free">
             <span class="icon">👑</span>
             <div class="title">الأسطورة TV</div>
-            <div class="desc">تحميل مباشر للمشغل والتطبيق</div>
+            <div class="desc">تنزيل التطبيق والمشغل مباشرة</div>
             <div class="dual-btn-container">
-                <button class="sub-btn" onclick="directOpen('https://www.ostora.tv/downloads/ostora_smart_4.9.apk')">التطبيق</button>
-                <button class="sub-btn" onclick="directOpen('https://www.mediafire.com/file/nv6mly4qyedb0hg/Url_Video_Player_2.0-Apkpure.apk/file')">المشغل</button>
+                <button class="sub-btn" onclick="window.location.href='https://www.ostora.tv/downloads/ostora_smart_4.9.apk'">التطبيق</button>
+                <button class="sub-btn" onclick="window.location.href='https://www.mediafire.com/file/nv6mly4qyedb0hg/Url_Video_Player_2.0-Apkpure.apk/file'">المشغل</button>
             </div>
         </div>
 
         <div class="card" data-cat="free">
-            <span class="icon">⚽</span>
+            <span class="icon">⚡</span>
             <div class="title">شوت تيفي</div>
-            <div class="desc">تحميل مباشر للمشغل والتطبيق</div>
+            <div class="desc">البث المباشر بدون تقطيع</div>
             <div class="dual-btn-container">
-                <button class="sub-btn" onclick="directOpen('https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file')">التطبيق</button>
-                <button class="sub-btn" onclick="directOpen('https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">المشغل</button>
+                <button class="sub-btn" onclick="window.location.href='https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file'">التطبيق</button>
+                <button class="sub-btn" onclick="window.location.href='https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file'">المشغل</button>
             </div>
         </div>
 
-        <div class="card vip-trigger-card" data-cat="free" onclick="openModal()">
+        <div class="card vip-card" data-cat="all" onclick="toggleModal(true)">
             <span class="icon">💎</span>
-            <div class="title" style="color: #fcf6ba;">الاشتراكات المدفوعة (VIP)</div>
-            <div class="desc">اضغط هنا لعرض قائمة الأسعار والسيرفرات</div>
+            <div class="title">باقات الاشتراك والأسعار</div>
+            <div class="desc">انقر هنا لعرض كافة السيرفرات المتاحة <b>(VIP)</b></div>
         </div>
+
     </div>
 </div>
 
 <footer>
-    <div>HDMosul © 2026 - لا تنسونا من صالح دعائكم</div>
+    <div style="color:#d4af37; font-weight:bold;">HDMosul Store © 2026</div>
+    <div style="color:#666; font-size:0.8rem; margin-top:5px;">لا تنسونا من صالح دعائكم</div>
 </footer>
 
 <script>
-    function openModal() { document.getElementById('priceModal').style.display = 'flex'; }
-    function closeModal() { document.getElementById('priceModal').style.display = 'none'; }
+    function toggleModal(show) {
+        document.getElementById('priceModal').style.display = show ? 'flex' : 'none';
+    }
 
     function filterApps(category, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         document.querySelectorAll('.card').forEach(card => {
-            card.classList.toggle('hidden', card.getAttribute('data-cat') !== category);
+            if (category === 'all' || card.getAttribute('data-cat') === category) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
         });
     }
-
-    function directOpen(url) { window.location.href = url; }
 
     function openLink(card, url) {
         const overlay = card.querySelector('.timer-overlay');
@@ -184,19 +209,25 @@
         overlay.style.display = 'flex';
         overlay.innerText = count;
         const interval = setInterval(() => {
-            count--; overlay.innerText = count;
-            if(count <= 0) { clearInterval(interval); overlay.style.display = 'none'; window.location.href = url; }
+            count--;
+            overlay.innerText = count;
+            if(count <= 0) {
+                clearInterval(interval);
+                overlay.style.display = 'none';
+                window.location.href = url;
+            }
         }, 1000);
     }
 
     function updateClock() {
         const now = new Date();
-        document.getElementById('liveClock').innerText = now.toLocaleTimeString('en-US');
+        document.getElementById('liveClock').innerText = now.toLocaleTimeString('en-GB');
+        document.getElementById('liveDate').innerText = now.toLocaleDateString('ar-EG');
     }
-    setInterval(updateClock, 1000);
-    document.getElementById('v-count').innerText = (5200 + Math.floor(Math.random()*100)).toLocaleString();
     
-    window.onload = () => filterApps('free', document.querySelector('.filter-btn.active'));
+    setInterval(updateClock, 1000);
+    updateClock();
+    document.getElementById('v-count').innerText = (4500 + Math.floor(Math.random()*200)).toLocaleString();
 </script>
 </body>
 </html>
