@@ -8,142 +8,123 @@
     <style>
         :root {
             --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 70%, #aa771c 100%);
-            --dark-bg: #050505;
-            --card-bg: rgba(15, 15, 15, 0.6);
-            --gold-border: rgba(212, 175, 55, 0.5);
-            --vip-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            --dark-bg: #0a0a0a;
+            --card-bg: #151515;
+            --gold-border: rgba(212, 175, 55, 0.4);
         }
 
         body {
             margin: 0; padding: 0;
             font-family: 'Cairo', sans-serif;
             background-color: var(--dark-bg);
-            background-image: 
-                linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
-                url('https://www.transparenttextures.com/patterns/carbon-fibre.png'),
-                url('https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=2070&auto=format&fit=crop');
-            background-attachment: fixed;
-            background-size: cover;
+            /* استبدال الصور الثقيلة بخلفية CSS خفيفة وسريعة */
+            background-image: radial-gradient(circle at top, #1a1a1a 0%, #050505 100%);
             color: #fff;
             display: flex; flex-direction: column;
             min-height: 100vh; overflow-x: hidden;
         }
 
-        header { text-align: center; padding: 30px 0 10px; }
-        .logo { width: 70px; filter: drop-shadow(0 0 15px #d4af37); margin-bottom: 5px; transition: 0.5s; }
-        .logo:hover { transform: rotateY(180deg); }
-        .brand { font-size: 2.8rem; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; line-height: 1.1; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-        .sub-brand { font-size: 12px; letter-spacing: 7px; color: #d4af37; text-transform: uppercase; font-weight: bold; margin-top: -5px; opacity: 0.8; }
+        header { text-align: center; padding: 20px 0 10px; }
+        .logo { width: 65px; filter: drop-shadow(0 0 8px #d4af37); margin-bottom: 5px; }
+        
+        .brand { 
+            font-size: 2.5rem; font-weight: 900; 
+            background: var(--gold-gradient); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            margin: 0; line-height: 1.1; 
+        }
+        
+        .sub-brand { font-size: 11px; letter-spacing: 6px; color: #d4af37; text-transform: uppercase; font-weight: bold; margin-top: -2px; opacity: 0.8; }
 
         .info-pill {
-            background: rgba(20, 20, 20, 0.8); border: 1px solid #d4af37; border-radius: 50px;
-            padding: 10px 25px; margin: 20px auto; display: flex; gap: 20px; width: fit-content;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid var(--gold-border); 
+            border-radius: 50px;
+            padding: 8px 20px; margin: 15px auto; display: flex; gap: 15px; width: fit-content;
             align-items: center; justify-content: center; flex-wrap: wrap;
         }
 
-        #liveDate { font-size: 0.9rem; border-left: 1px solid var(--gold-border); padding-left: 15px; color: #eee; }
-        #liveClock { font-size: 1rem; color: #fcf6ba; font-weight: bold; font-family: 'monospace'; border-left: 1px solid var(--gold-border); padding-left: 15px; text-shadow: 0 0 5px rgba(212, 175, 55, 0.5); }
-        .visitor-stat { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
-        .online-dot { width: 8px; height: 8px; background: #00ff62; border-radius: 50%; box-shadow: 0 0 10px #00ff62; animation: pulse 2s infinite; }
-        
-        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
+        #liveDate { font-size: 0.85rem; border-left: 1px solid var(--gold-border); padding-left: 12px; color: #ccc; }
+        #liveClock { font-size: 0.95rem; color: #fcf6ba; font-weight: bold; font-family: 'monospace'; border-left: 1px solid var(--gold-border); padding-left: 12px; }
+        .visitor-stat { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; }
+        .online-dot { width: 7px; height: 7px; background: #00ff62; border-radius: 50%; box-shadow: 0 0 5px #00ff62; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
-        .tabs-container { display: flex; justify-content: center; gap: 15px; margin: 20px 0 30px; }
+        .tabs-container { display: flex; justify-content: center; gap: 12px; margin: 15px 0 25px; }
         .tab-btn {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--gold-border);
-            color: #d4af37; padding: 12px 35px; border-radius: 12px; cursor: pointer;
-            font-family: 'Cairo'; font-weight: bold; transition: 0.4s; font-size: 1rem;
-            backdrop-filter: blur(5px);
+            background: transparent; border: 1px solid var(--gold-border);
+            color: #d4af37; padding: 10px 25px; border-radius: 10px; cursor: pointer;
+            font-family: 'Cairo'; font-weight: bold; transition: 0.2s;
         }
-        .tab-btn.active { background: var(--gold-gradient); color: #000; box-shadow: 0 0 25px rgba(188, 149, 63, 0.4); border-color: #fcf6ba; transform: translateY(-2px); }
-        .tab-content { display: none; animation: fadeIn 0.5s ease; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-btn.active { background: var(--gold-gradient); color: #000; border-color: #fcf6ba; }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* تجميل البطاقات (الأصناف) */
-        .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        .grid { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
         
         .card {
             background: var(--card-bg); 
             border: 1px solid var(--gold-border); 
-            border-radius: 20px;
-            padding: 25px 20px; 
+            border-radius: 15px;
+            padding: 20px; 
             text-align: center; 
             position: relative; 
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            backdrop-filter: blur(10px);
+            transition: transform 0.2s, border-color 0.2s; 
             display: flex; 
             flex-direction: column; 
             justify-content: center;
-            overflow: hidden;
-            box-shadow: var(--vip-shadow);
-        }
-
-        /* تأثير اللمعان المتحرك */
-        .card::before {
-            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
-            transform: rotate(45deg); transition: 0.6s; pointer-events: none;
         }
 
         .card:hover { 
-            transform: translateY(-10px) scale(1.02); 
+            transform: translateY(-5px); 
             border-color: #fcf6ba;
-            background: rgba(30, 30, 30, 0.8);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+            background: #1c1c1c;
         }
-        
-        .card:hover::before { left: 100%; }
 
-        .icon { font-size: 2.8rem; margin-bottom: 12px; display: block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); transition: 0.3s; }
-        .card:hover .icon { transform: scale(1.1); }
-        
-        .title { font-size: 1.25rem; font-weight: 900; margin-bottom: 8px; color: #fcf6ba; letter-spacing: 0.5px; }
-        .desc { font-size: 0.85rem; color: #bbb; line-height: 1.6; }
-        .desc b { color: #d4af37; background: rgba(212, 175, 55, 0.1); padding: 0 5px; border-radius: 4px; }
+        .icon { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+        .title { font-size: 1.15rem; font-weight: 800; margin-bottom: 6px; color: #fcf6ba; }
+        .desc { font-size: 0.85rem; color: #aaa; line-height: 1.5; }
+        .desc b { color: #d4af37; }
 
-        /* زر الاشتراك الخاص */
         .vip-card {
-            background: linear-gradient(145deg, rgba(20,20,20,0.9), rgba(40,30,10,0.9)) !important;
-            border: 2px solid #d4af37 !important;
+            background: linear-gradient(145deg, #151515, #251e0a) !important;
+            border: 1px solid #d4af37 !important;
         }
 
         .timer-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.92); display: none; justify-content: center; align-items: center;
-            font-size: 4rem; font-weight: 900; color: #fcf6ba; z-index: 10;
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.9); display: none; justify-content: center; align-items: center;
+            font-size: 3.5rem; font-weight: 900; color: #fcf6ba; z-index: 10; border-radius: 15px;
         }
 
-        .dual-btn-container { display: flex; gap: 10px; margin-top: 15px; }
+        .dual-btn-container { display: flex; gap: 8px; margin-top: 12px; }
         .download-sub-btn {
-            flex: 1; background: rgba(212, 175, 55, 0.05); border: 1.5px solid #d4af37; color: #fcf6ba;
-            padding: 10px 5px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; cursor: pointer;
-            transition: 0.3s;
+            flex: 1; background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; color: #fcf6ba;
+            padding: 8px 4px; border-radius: 8px; font-size: 0.8rem; font-weight: bold; cursor: pointer;
         }
-        .download-sub-btn:hover { background: var(--gold-gradient); color: #000; transform: scale(1.05); }
+        .download-sub-btn:hover { background: var(--gold-gradient); color: #000; }
 
-        /* Modal Styling */
+        /* Modal */
         .price-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.96); backdrop-filter: blur(20px);
-            display: none; justify-content: center; align-items: center; z-index: 10000;
+            background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 10000;
         }
         .price-modal-content {
-            background: #0a0a0a; border: 2px solid #d4af37; border-radius: 30px;
-            padding: 30px; max-width: 480px; width: 92%; text-align: center;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
+            background: #0f0f0f; border: 2px solid #d4af37; border-radius: 20px;
+            padding: 25px; max-width: 420px; width: 90%; text-align: center;
         }
-        .modal-body { max-height: 55vh; overflow-y: auto; margin: 20px 0; border: 1px solid rgba(212,175,55,0.2); border-radius: 15px; background: rgba(255,255,255,0.02); }
+        .modal-body { max-height: 50vh; overflow-y: auto; margin: 15px 0; border: 1px solid rgba(212,175,55,0.2); border-radius: 10px; }
         .price-table { width: 100%; border-collapse: collapse; }
-        .price-table td { padding: 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); font-size: 1rem; }
-        .server-header { background: rgba(212, 175, 55, 0.2); color: #fcf6ba; font-weight: bold; text-transform: uppercase; }
-        .close-btn { background: var(--gold-gradient); border: none; padding: 12px 40px; border-radius: 12px; font-weight: 900; cursor: pointer; font-family: 'Cairo'; margin-top: 10px; }
+        .price-table td { padding: 12px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); font-size: 0.95rem; }
+        .server-header { background: rgba(212, 175, 55, 0.15); color: #fcf6ba; font-weight: bold; }
+        .close-btn { background: var(--gold-gradient); border: none; padding: 10px 30px; border-radius: 8px; font-weight: 900; cursor: pointer; font-family: 'Cairo'; }
 
-        .main-container { flex: 1; width: 95%; max-width: 1300px; margin: 0 auto; padding: 20px; }
-        footer { text-align: center; padding: 40px; border-top: 1px solid rgba(212, 175, 55, 0.2); margin-top: 40px; opacity: 0.8; }
+        .main-container { flex: 1; width: 95%; max-width: 1200px; margin: 0 auto; padding: 10px; }
+        footer { text-align: center; padding: 30px; border-top: 1px solid rgba(212, 175, 55, 0.1); margin-top: 20px; opacity: 0.7; }
     </style>
 </head>
 <body>
@@ -160,8 +141,8 @@
                 <tr><td>سنة كاملة</td><td>20,000 د.ع</td></tr>
             </table>
         </div>
-        <p style="color: #aaa; font-size: 0.9rem;">تواصل معنا فوراً: <b>@ooa85</b></p>
-        <button class="close-btn" onclick="togglePriceModal(false)">إغلاق القائمة</button>
+        <p style="color: #aaa; font-size: 0.85rem;">تواصل معنا: <b>@ooa85</b></p>
+        <button class="close-btn" onclick="togglePriceModal(false)">إغلاق</button>
     </div>
 </div>
 
@@ -175,15 +156,15 @@
         <span id="liveDate">--</span>
         <div class="visitor-stat">
             <span class="online-dot"></span>
-            <span class="v-text">الزوار النشطون:</span>
             <span id="v-count" style="color: #d4af37; font-weight: bold;">2,840</span>
+            <span class="v-text">زائر نشط</span>
         </div>
     </div>
 </header>
 
 <div class="tabs-container">
-    <button class="tab-btn active" onclick="switchTab(event, 'free-apps-tab')">التطبيقات الذكية</button>
-    <button class="tab-btn" onclick="switchTab(event, 'store-tab')">المتجر الحصري</button>
+    <button class="tab-btn active" onclick="switchTab(event, 'free-apps-tab')">التطبيقات</button>
+    <button class="tab-btn" onclick="switchTab(event, 'store-tab')">المتجر</button>
 </div>
 
 <div class="main-container">
@@ -213,7 +194,7 @@
             <div class="card" onclick="openLink(this, 'https://workupload.com/file/QN6shgxPdgr')">
                 <div class="timer-overlay">3</div><span class="icon">🎬</span>
                 <div class="title">سينمانا لينباك</div>
-                <div class="desc">HDMosul نسخة مخصصة للشاشات الضخمة</div>
+                <div class="desc">HDMosul نسخة مخصصة للشاشات</div>
             </div>
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file')">
                 <div class="timer-overlay">3</div><span class="icon">🎥</span>
@@ -248,7 +229,7 @@
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/oaqww9cm02ub5i0/Yacine_TV_Gold_v3.5_By_play8store.apk/file')">
                 <div class="timer-overlay">3</div><span class="icon">🏆</span>
                 <div class="title">ياسين تيفي</div>
-                <div class="desc">HDMosul الإصدار الذهبي v3.5 الفخم</div>
+                <div class="desc">HDMosul الإصدار الذهبي v3.5 الجديد</div>
             </div>
             <div class="card" style="cursor: default;">
                 <span class="icon">🔥</span>
@@ -271,7 +252,7 @@
             <div class="card" onclick="openLink(this, 'https://cartoonzaman.tv/android/CartoonZaman-v-1.0.0.apk')">
                 <div class="timer-overlay">3</div><span class="icon">🧸</span>
                 <div class="title">كارتون اطفال</div>
-                <div class="desc">أفضل تطبيقات الكرتون (قديم وجديد)<br><b>ملاحظة:</b> صيانة مؤقتة</div>
+                <div class="desc">أفضل تطبيقات الكرتون (قديم وجديد)<br><b>ملاحظة:</b> صيانة</div>
             </div>
         </div>
     </div>
@@ -302,7 +283,7 @@
     </div>
 </div>
 
-<footer><div style="color: #d4af37; font-weight: bold; font-size: 1.1rem; letter-spacing: 2px;">HDMosul • PREMIUM EXPERIENCE • 2026</div></footer>
+<footer><div style="color: #d4af37; font-weight: bold;">HDMosul • PREMIUM • 2026</div></footer>
 
 <script>
     function updateClock() {
