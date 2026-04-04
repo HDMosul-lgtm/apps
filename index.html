@@ -86,6 +86,8 @@
             padding: 7px 18px; border-radius: 30px; cursor: pointer; font-size: 0.85rem; font-weight: 700; transition: 0.3s;
         }
         .filter-btn.active { background: var(--gold-gradient); color: #000; border-color: transparent; box-shadow: 0 0 12px rgba(212, 175, 55, 0.5); }
+        
+        .filter-btn.vip-special { border-color: #bf953f; color: #fcf6ba; background: rgba(191, 149, 63, 0.1); }
 
         .main-container { flex: 1; width: 95%; max-width: 1300px; margin: 0 auto; padding: 10px; }
         .grid { display: grid; gap: 15px; margin-bottom: 30px; }
@@ -101,7 +103,6 @@
         .card.hidden { display: none; }
         .card:hover { transform: translateY(-5px); background: rgba(212, 175, 55, 0.15); border-color: #fcf6ba; box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); }
 
-        /* VIP Card Specific Styling */
         .card[data-cat="vip"] { border-style: double; border-width: 2px; }
         .price-list { list-style: none; padding: 0; margin: 10px 0; font-size: 0.85rem; text-align: right; border-top: 1px solid var(--gold-border); padding-top: 10px; }
         .price-list li { display: flex; justify-content: space-between; margin-bottom: 5px; padding: 2px 5px; border-radius: 4px; }
@@ -160,10 +161,10 @@
     </div>
 
     <div class="filter-container">
-        <button class="filter-btn active" onclick="filterApps('free', this)">الكل</button>
-        <button class="filter-btn" onclick="filterApps('free', this)">تطبيقات مجانية 📱</button>
-        <button class="filter-btn" onclick="filterApps('store', this)">متجر التطبيقات 🛍️</button>
-        <button class="filter-btn" onclick="filterApps('vip', this)">اشتراكات VIP 💎</button>
+        <button class="filter-btn active" onclick="filterApps('free', this)">تطبيقات مجانية 📱</button>
+        <button class="filter-btn" onclick="filterApps('store', this)">مكتبات الاندرويد 🛍️</button>
+        <button class="filter-btn" onclick="filterApps('all', this)">عرض الكل 🌐</button>
+        <button class="filter-btn vip-special" onclick="filterApps('vip', this)">الاشتراكات المدفوعة 💎</button>
     </div>
 </header>
 
@@ -334,13 +335,12 @@
         </div>
 
         <div class="card" data-cat="free" style="cursor: default;">
-            <div class="timer-overlay">3</div>
             <span class="icon">👑</span>
             <div class="title">الأسطورة TV</div>
             <div class="desc">التطبيق + المشغل الخاص به</div>
             <div class="dual-btn-container">
-                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.ostora.tv/downloads/ostora_smart_4.9.apk')">تنزيل التطبيق</div>
-                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/nv6mly4qyedb0hg/Url_Video_Player_2.0-Apkpure.apk/file#')">تنزيل المشغل</div>
+                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.ostora.tv/downloads/ostora_smart_4.9.apk', true)">تنزيل التطبيق</div>
+                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/nv6mly4qyedb0hg/Url_Video_Player_2.0-Apkpure.apk/file#', true)">تنزيل المشغل</div>
             </div>
         </div>
 
@@ -351,13 +351,12 @@
         </div>
 
         <div class="card" data-cat="free" style="cursor: default;">
-            <div class="timer-overlay">3</div>
             <span class="icon">⚽</span>
             <div class="title">شوت تيفي</div>
             <div class="desc">التطبيق + المشغل الخاص به</div>
             <div class="dual-btn-container">
-                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file')">تنزيل التطبيق</div>
-                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">تنزيل المشغل</div>
+                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file', true)">تنزيل التطبيق</div>
+                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file', true)">تنزيل المشغل</div>
             </div>
         </div>
     </div>
@@ -375,32 +374,25 @@
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const cards = document.querySelectorAll('.card');
+        
         cards.forEach(card => {
             const cat = card.getAttribute('data-cat');
-            if (category === 'free' || category === 'all') {
-                if (cat === 'free') {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
+            if (category === 'all') {
+                card.classList.remove('hidden');
+            } else if (cat === category) {
+                card.classList.remove('hidden');
             } else {
-                if (cat === category) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
+                card.classList.add('hidden');
             }
         });
     }
 
-    // عرض نافذة VIP
     function openVipModal() {
         const sound = document.getElementById('clickSound');
         if(sound) sound.play().catch(()=>{});
         document.getElementById('vipModal').style.display = 'flex';
     }
 
-    // إغلاق نافذة VIP
     function closeVipModal() {
         document.getElementById('vipModal').style.display = 'none';
     }
@@ -435,10 +427,23 @@
         filterApps('free', document.querySelector('.filter-btn.active'));
     };
 
-    function openLink(card, url) {
+    // تعديل الوظيفة لدعم التحميل المباشر
+    function openLink(card, url, skipTimer = false) {
         const sound = document.getElementById('clickSound');
         if(sound) sound.play().catch(()=>{});
+        
+        // إذا كان التطبيق مستثنى من المؤقت
+        if(skipTimer) {
+            window.location.href = url;
+            return;
+        }
+
         const overlay = card.querySelector('.timer-overlay');
+        if(!overlay) { // حماية في حال عدم وجود الطبقة
+            window.location.href = url;
+            return;
+        }
+
         let count = 3;
         overlay.style.display = 'flex';
         overlay.innerText = count;
