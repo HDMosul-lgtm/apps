@@ -133,12 +133,31 @@
     <div class="filter-container">
         <button class="filter-btn active" onclick="filterApps('free', this)">الكل</button>
         <button class="filter-btn" onclick="filterApps('free', this)">تطبيقات مجانية 📱</button>
+        <button class="filter-btn" onclick="filterApps('store', this)">متجر التطبيقات 🛍️</button>
         <button class="filter-btn" onclick="filterApps('vip', this)">اشتراكات VIP 💎</button>
     </div>
 </header>
 
 <div class="main-container">
     
+    <div class="grid grid-top">
+        <div class="card" data-cat="store" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
+            <div class="timer-overlay">3</div><span class="icon">📱</span>
+            <div class="title">مكتبات التطبيقات 1</div>
+            <div class="desc">متجر تابع الى Android_AppsX</div>
+        </div>
+        <div class="card" data-cat="store" onclick="openLink(this, 'https://401740.hala-web.com/')">
+            <div class="timer-overlay">3</div><span class="icon">📱</span>
+            <div class="title">مكتبات التطبيقات 2</div>
+            <div class="desc">تحتوي على كافة التطبيقات</div>
+        </div>
+        <div class="card" data-cat="store" onclick="openLink(this, 'https://pixeldrain.com/l/RmnSpDMM#item=1')">
+            <div class="timer-overlay">3</div><span class="icon">📂</span>
+            <div class="title">مكتبات التطبيقات 3</div>
+            <div class="desc">متجر بي اكثر من 133 تطبيق</div>
+        </div>
+    </div>
+
     <div class="grid grid-bottom">
         <div class="card" data-cat="vip" onclick="openLink(this, 'https://t.me/ooa85')">
             <div class="timer-overlay">3</div><span class="icon">⭕</span>
@@ -210,24 +229,6 @@
             <div class="desc">للتواصل معي عبر التلغرام: <b>@ooa85</b> (أخوكم أ. علي)</div>
             <div class="desc" style="margin-top:10px; font-weight: bold; color: #fff;">💳 طرق الدفع المتوفرة:</div>
             <div class="desc">ماستر كارد • زين كاش • رصيد آسيا</div>
-        </div>
-    </div>
-
-    <div class="grid grid-top">
-        <div class="card" data-cat="free" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
-            <div class="timer-overlay">3</div><span class="icon">📱</span>
-            <div class="title">مكتبات التطبيقات 1</div>
-            <div class="desc">متجر تابع الى Android_AppsX</div>
-        </div>
-        <div class="card" data-cat="free" onclick="openLink(this, 'https://401740.hala-web.com/')">
-            <div class="timer-overlay">3</div><span class="icon">📱</span>
-            <div class="title">مكتبات التطبيقات 2</div>
-            <div class="desc">تحتوي على كافة التطبيقات</div>
-        </div>
-        <div class="card" data-cat="free" onclick="openLink(this, 'https://pixeldrain.com/l/RmnSpDMM#item=1')">
-            <div class="timer-overlay">3</div><span class="icon">📂</span>
-            <div class="title">مكتبات التطبيقات 3</div>
-            <div class="desc">متجر بي اكثر من 133 تطبيق</div>
         </div>
     </div>
 
@@ -337,24 +338,26 @@
 <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3"></audio>
 
 <script>
-    // تعديل منطق الفلترة ليناسب طلبك
     function filterApps(category, btn) {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
             const cat = card.getAttribute('data-cat');
-            // إذا تم اختيار 'free' أو 'all'، سنظهر فقط الـ free
+            // إذا اخترنا 'all' أو 'free' سنعرض فقط المجانية
             if (category === 'free' || category === 'all') {
                 if (cat === 'free') {
                     card.classList.remove('hidden');
                 } else {
                     card.classList.add('hidden');
                 }
-            } else if (cat === category) {
-                card.classList.remove('hidden');
             } else {
-                card.classList.add('hidden');
+                // يعرض الصنف المختار حصراً (vip أو store)
+                if (cat === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
             }
         });
     }
@@ -384,8 +387,8 @@
     setInterval(updateClock, 1000);
     updateClock();
     setDailyVisitors();
-    
-    // تشغيل الفلترة الافتراضية عند التحميل لعرض المجاني فقط
+
+    // تشغيل الفلترة الافتراضية عند التحميل لعرض التطبيقات المجانية
     window.onload = function() {
         filterApps('free', document.querySelector('.filter-btn.active'));
     };
