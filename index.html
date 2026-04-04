@@ -84,10 +84,10 @@
             background: #1c1c1c;
         }
 
-        /* تمييز المكتبة الأولى */
+        /* تمييز المكتبة الأولى في المتجر */
         .special-library {
             border: 2px solid #fcf6ba !important;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
             background: linear-gradient(145deg, #1a1a1a, #2a220a) !important;
             animation: borderGlow 3s infinite;
         }
@@ -175,64 +175,50 @@
 </header>
 
 <div class="tabs-container">
-    <button class="tab-btn active" onclick="switchTab(event, 'sports-tab')">قسم الرياضة</button>
-    <button class="tab-btn" onclick="switchTab(event, 'movies-tab')">أفلام ومسلسلات</button>
-    <button class="tab-btn" onclick="switchTab(event, 'apps-tab')">أدوات وشروحات</button>
+    <button class="tab-btn active" onclick="switchTab(event, 'all-tab')">الكل</button>
     <button class="tab-btn" onclick="switchTab(event, 'store-tab')">المتجر</button>
+    <button class="tab-btn" onclick="switchTab(event, 'sports-tab')">الرياضة</button>
+    <button class="tab-btn" onclick="switchTab(event, 'movies-tab')">أفلام ومسلسلات</button>
 </div>
 
 <div class="main-container">
     
-    <div id="sports-tab" class="tab-content active">
+    <div id="all-tab" class="tab-content active">
         <div class="grid">
             <div class="card" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A7%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
                 <div class="timer-overlay">3</div><span class="icon">🇮🇶</span>
                 <div class="title">واحد بغداد TV</div>
-                <div class="desc">بث مباشر للمباريات • تفعيل تلقائي أو: <b>B1, B2...</b></div>
+                <div class="desc">بث مباشر للمباريات والترفيه</div>
             </div>
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/s0upy40qhf3e8qw/MAXTVPRO-7.0-v2000-vpn.apk/file')">
                 <div class="timer-overlay">3</div><span class="icon">🛰️</span>
                 <div class="title">MAXTVPRO</div>
-                <div class="desc">مفعل سنة • للكيبل الضوئي<br><b>U:</b> 18885076681336</div>
+                <div class="desc">مفعل سنة • للكيبل الضوئي</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://go.aftvnews.com/28544')">
+                <div class="timer-overlay">3</div><span class="icon">📺</span>
+                <div class="title">يوتيوب الشاشات</div>
+                <div class="desc">بدون إعلانات مزعجة</div>
             </div>
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file')">
                 <div class="timer-overlay">3</div><span class="icon">📡</span>
                 <div class="title">IRAQ TV 1</div>
-                <div class="desc">بث رياضي مدعوم بجميع الشبكات</div>
+                <div class="desc">مدعوم بجميع الشبكات</div>
             </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">⚽</span>
-                <div class="title">جنرال برو تيفي</div>
-                <div class="desc">كود التفعيل الحصري: <b>000</b></div>
-            </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/oaqww9cm02ub5i0/Yacine_TV_Gold_v3.5_By_play8store.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">🏆</span>
-                <div class="title">ياسين تيفي</div>
-                <div class="desc">الإصدار الذهبي v3.5 الجديد</div>
-            </div>
-            <div class="card" style="cursor: default;">
-                <span class="icon">⚽</span>
-                <div class="title">شوت تيفي</div>
-                <div class="desc">بث مباشر بدون تقطيع</div>
-                <div class="dual-btn-container">
-                    <button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file')">التطبيق</button>
-                    <button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">المشغل</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="movies-tab" class="tab-content">
-        <div class="grid">
             <div class="card" onclick="openLink(this, 'https://workupload.com/file/QN6shgxPdgr')">
                 <div class="timer-overlay">3</div><span class="icon">🎬</span>
                 <div class="title">سينمانا لينباك</div>
-                <div class="desc">نسخة مخصصة للشاشات والبوكس</div>
+                <div class="desc">نسخة مخصصة للشاشات</div>
             </div>
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file')">
                 <div class="timer-overlay">3</div><span class="icon">🎥</span>
                 <div class="title">برايم تيفي</div>
                 <div class="desc">كود التفعيل: <b>2026</b></div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/ypf4t4i08kopf9c/XP+Player_4.1.2.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">💻</span>
+                <div class="title">XP IPTV</div>
+                <div class="desc">الأكثر استقراراً حالياً</div>
             </div>
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file')">
                 <div class="timer-overlay">3</div><span class="icon">🔴</span>
@@ -242,41 +228,31 @@
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file')">
                 <div class="timer-overlay">3</div><span class="icon">🎞️</span>
                 <div class="title">موفيز بوكس VIP</div>
-                <div class="desc">مكتبة أفلام تتفوق على نتفلكس</div>
+                <div class="desc">أحدث الأفلام والمسلسلات</div>
             </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">⚡</span>
-                <div class="title">سينمانا بلس</div>
-                <div class="desc">النسخة الأخف والأسرع لمشاهدة الأفلام</div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">⚽</span>
+                <div class="title">جنرال برو تيفي</div>
+                <div class="desc">كود التفعيل: <b>000</b></div>
             </div>
-            <div class="card" onclick="openLink(this, 'https://cartoonzaman.tv/android/CartoonZaman-v-1.0.0.apk')">
-                <div class="timer-overlay">3</div><span class="icon">🧸</span>
-                <div class="title">كارتون اطفال</div>
-                <div class="desc">أفضل تطبيقات الكرتون (قديم وجديد)</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="apps-tab" class="tab-content">
-        <div class="grid">
-            <div class="card" onclick="openLink(this, 'https://go.aftvnews.com/28544')">
-                <div class="timer-overlay">3</div><span class="icon">📺</span>
-                <div class="title">يوتيوب الشاشات</div>
-                <div class="desc">تحديث أونلاين • بدون إعلانات مزعجة</div>
-            </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/ypf4t4i08kopf9c/XP+Player_4.1.2.apk/file')">
-                <div class="timer-overlay: 3"></div><span class="icon">💻</span>
-                <div class="title">XP IPTV</div>
-                <div class="desc">التطبيق الأكثر استقراراً لتشغيل الروابط</div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/oaqww9cm02ub5i0/Yacine_TV_Gold_v3.5_By_play8store.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">🏆</span>
+                <div class="title">ياسين تيفي</div>
+                <div class="desc">الإصدار الذهبي v3.5</div>
             </div>
             <div class="card" style="cursor: default;">
                 <span class="icon">🔥</span>
                 <div class="title">الأسطورة TV</div>
-                <div class="desc">التطبيق الغني عن التعريف</div>
+                <div class="desc">التطبيق والمشغل معاً</div>
                 <div class="dual-btn-container">
                     <button class="download-sub-btn" onclick="directOpen('https://www.ostora.tv/downloads/ostora_smart_4.9.apk')">التطبيق</button>
                     <button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/nv6mly4qyedb0hg/Url_Video_Player_2.0-Apkpure.apk/file')">المشغل</button>
                 </div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://cartoonzaman.tv/android/CartoonZaman-v-1.0.0.apk')">
+                <div class="timer-overlay">3</div><span class="icon">🧸</span>
+                <div class="title">كارتون اطفال</div>
+                <div class="desc">عالم الكرتون والأنمي</div>
             </div>
         </div>
     </div>
@@ -284,9 +260,9 @@
     <div id="store-tab" class="tab-content">
         <div class="grid">
             <div class="card special-library" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
-                <div class="timer-overlay">3</div><span class="icon">⭐</span>
+                <div class="timer-overlay">3</div><span class="icon">👑</span>
                 <div class="title">مكتبة التطبيقات VIP</div>
-                <div class="desc">المكتبة الأولى والأكثر تميزاً وحصرية</div>
+                <div class="desc">المكتبة الأولى: حصرية وشاملة جداً</div>
             </div>
             <div class="card" onclick="openLink(this, 'https://401740.hala-web.com/')">
                 <div class="timer-overlay">3</div><span class="icon">📂</span>
@@ -301,7 +277,61 @@
             <div class="card vip-card" onclick="togglePriceModal(true)">
                 <span class="icon">💰</span>
                 <div class="title">الاشتراكات المدفوعة 💸</div>
-                <div class="desc">سيرفرات VIP ثابتة بأسعار رمزية جداً</div>
+                <div class="desc">سيرفرات ثابتة بأسعار رمزية</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sports-tab" class="tab-content">
+        <div class="grid">
+            <div class="card" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A7%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
+                <div class="timer-overlay">3</div><span class="icon">🇮🇶</span>
+                <div class="title">واحد بغداد TV</div>
+                <div class="desc">بث مباريات مباشر</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">⚽</span>
+                <div class="title">جنرال برو تيفي</div>
+                <div class="desc">مباريات بدون تقطيع</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/oaqww9cm02ub5i0/Yacine_TV_Gold_v3.5_By_play8store.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">🏆</span>
+                <div class="title">ياسين تيفي</div>
+                <div class="desc">الناقل الرسمي للمباريات</div>
+            </div>
+            <div class="card" style="cursor: default;">
+                <span class="icon">⚽</span>
+                <div class="title">شوت تيفي</div>
+                <div class="desc">بث مباشر للمباريات</div>
+                <div class="dual-btn-container">
+                    <button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file')">التطبيق</button>
+                    <button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">المشغل</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="movies-tab" class="tab-content">
+        <div class="grid">
+            <div class="card" onclick="openLink(this, 'https://workupload.com/file/QN6shgxPdgr')">
+                <div class="timer-overlay">3</div><span class="icon">🎬</span>
+                <div class="title">سينمانا لينباك</div>
+                <div class="desc">أضخم مكتبة أفلام عراقية</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">🎥</span>
+                <div class="title">برايم تيفي</div>
+                <div class="desc">أفلام ومسلسلات عالمية</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">🎞️</span>
+                <div class="title">موفيز بوكس VIP</div>
+                <div class="desc">منافس نتفلكس الأقوى</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://cartoonzaman.tv/android/CartoonZaman-v-1.0.0.apk')">
+                <div class="timer-overlay">3</div><span class="icon">🧸</span>
+                <div class="title">كارتون اطفال</div>
+                <div class="desc">قديم وجديد الأنمي</div>
             </div>
         </div>
     </div>
