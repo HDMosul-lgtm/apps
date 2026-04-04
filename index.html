@@ -62,13 +62,16 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 100px;
-            padding: 12px 25px; margin: 25px auto; 
+            padding: 12px 30px; margin: 25px auto; 
             display: flex; gap: 20px; width: fit-content;
             box-shadow: var(--card-shadow);
+            align-items: center; /* لضمان استقامة العناصر */
+            justify-content: center;
         }
 
         #liveClock { color: #fff2a1; font-weight: 900; font-family: 'monospace'; font-size: 1.1rem; }
-        .online-dot { width: 10px; height: 10px; background: #00ff62; border-radius: 50%; box-shadow: 0 0 10px #00ff62; animation: pulse 2s infinite; }
+        #liveDate { color: #e0e0e0; font-weight: 600; font-size: 0.95rem; }
+        .dhikr { color: var(--metallic-gold); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.5px; }
 
         /* 📑 Tabs Design */
         .tabs-container { 
@@ -119,16 +122,6 @@
         }
         .card:hover::before { left: 100%; }
 
-        /* ✨ Special Highlighting */
-        .special-library {
-            border: 2px solid transparent !important;
-            background-image: linear-gradient(#0a0a0a, #0a0a0a), var(--royal-gold) !important;
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-            animation: border-dance 4s linear infinite;
-        }
-        @keyframes border-dance { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(20deg); } }
-
         .icon { font-size: 3rem; margin-bottom: 15px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); transition: 0.3s; }
         .card:hover .icon { transform: scale(1.2) rotate(5deg); }
 
@@ -142,6 +135,13 @@
         }
         .vip-card .title, .vip-card .desc { color: #000 !important; font-weight: 700; }
         .vip-card .desc { opacity: 0.8; }
+
+        .special-library {
+            border: 2px solid transparent !important;
+            background-image: linear-gradient(#0a0a0a, #0a0a0a), var(--royal-gold) !important;
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+        }
 
         /* ⏲️ Timer Overlay */
         .timer-overlay {
@@ -178,8 +178,6 @@
         }
 
         footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(212, 175, 55, 0.05); margin-top: 40px; }
-        
-        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
     </style>
 </head>
 <body>
@@ -211,11 +209,7 @@
         <span style="color: rgba(212,175,55,0.4)">|</span>
         <span id="liveDate">--</span>
         <span style="color: rgba(212,175,55,0.4)">|</span>
-        <div class="visitor-stat">
-            <span class="online-dot"></span>
-            <span id="v-count" style="color: var(--metallic-gold); font-weight: bold; margin: 0 5px;">--</span>
-            <span style="font-size: 0.8rem; opacity: 0.7;">عضو نشط حالياً 🔥</span>
-        </div>
+        <span class="dhikr">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</span>
     </div>
 </header>
 
@@ -231,17 +225,17 @@
             <div class="card" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A7%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
                 <div class="timer-overlay">3</div><span class="icon">🇮🇶</span>
                 <div class="title">واحد بغداد TV</div>
-                <div class="desc">تفعيل تلقائي (احذف قوائم التشغيل وأعد الفتح) أو استخدم الأكواد: <b>B1, B2, B3, B4, B5, B6</b></div>
+                <div class="desc">تفعيل تلقائي أو استخدم الأكواد: <b>B1, B2, B3, B4, B5, B6</b></div>
             </div>
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/s0upy40qhf3e8qw/MAXTVPRO-7.0-v2000-vpn.apk/file')">
                 <div class="timer-overlay">3</div><span class="icon">🛰️</span>
                 <div class="title">MAXTVPRO</div>
-                <div class="desc">مفعل لمدة سنة • مخصص للكيبل الضوئي<br><b>U:</b> 18885076681336<br><b>P:</b> 14648237268240</div>
+                <div class="desc">مفعل لمدة سنة • مخصص للكيبل الضوئي<br><b>U:</b> 18885076681336</div>
             </div>
             <div class="card" onclick="openLink(this, 'https://go.aftvnews.com/28544')">
                 <div class="timer-overlay">3</div><span class="icon">📺</span>
                 <div class="title">يوتيوب الشاشات</div>
-                <div class="desc">HDMosul • تحديث أونلاين • تجربة بدون إعلانات نهائياً 🚫</div>
+                <div class="desc">HDMosul • تحديث أونلاين • بدون إعلانات نهائياً 🚫</div>
             </div>
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file')">
                 <div class="timer-overlay">3</div><span class="icon">📡</span>
@@ -258,36 +252,7 @@
                 <div class="title">برايم تيفي</div>
                 <div class="desc">HDMosul • كود التفعيل الذهبي: <b>2026</b> 🔑</div>
             </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/ypf4t4i08kopf9c/XP+Player_4.1.2.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">💻</span>
-                <div class="title">XP IPTV</div>
-                <div class="desc">HDMosul • التطبيق الأكثر ثباتاً واستقراراً لعام 2026</div>
-            </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">🔴</span>
-                <div class="title">دراما لايف</div>
-                <div class="desc">HDMosul • كود التفعيل الشامل: <b>232425</b></div>
-            </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">🎞️</span>
-                <div class="title">موفيز بوكس VIP</div>
-                <div class="desc">مكتبة أفلام خرافية تتفوق على المنصات العالمية 🌟</div>
-            </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">⚡</span>
-                <div class="title">سينمانا بلس</div>
-                <div class="desc">HDMosul • النسخة البرق "الأخف والأسرع" للأجهزة الضعيفة</div>
-            </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">⚽</span>
-                <div class="title">جنرال برو تيفي</div>
-                <div class="desc">HDMosul • كود التفعيل الحصري للنخبة: <b>000</b></div>
-            </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/oaqww9cm02ub5i0/Yacine_TV_Gold_v3.5_By_play8store.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">🏆</span>
-                <div class="title">ياسين تيفي</div>
-                <div class="desc">HDMosul • الإصدار الذهبي v3.5 الأحدث على الإطلاق</div>
-            </div>
+            
             <div class="card" style="cursor: default;">
                 <span class="icon">🔥</span>
                 <div class="title">الأسطورة TV</div>
@@ -324,10 +289,31 @@
                     <button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">المشغل ⚙️</button>
                 </div>
             </div>
+
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/ypf4t4i08kopf9c/XP+Player_4.1.2.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">💻</span>
+                <div class="title">XP IPTV</div>
+                <div class="desc">HDMosul • التطبيق الأكثر ثباتاً واستقراراً لعام 2026</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">🔴</span>
+                <div class="title">دراما لايف</div>
+                <div class="desc">HDMosul • كود التفعيل الشامل: <b>232425</b></div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">🎞️</span>
+                <div class="title">موفيز بوكس VIP</div>
+                <div class="desc">مكتبة أفلام خرافية تتفوق على المنصات العالمية 🌟</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">⚽</span>
+                <div class="title">جنرال برو تيفي</div>
+                <div class="desc">HDMosul • كود التفعيل الحصري للنخبة: <b>000</b></div>
+            </div>
             <div class="card" onclick="openLink(this, 'https://cartoonzaman.tv/android/CartoonZaman-v-1.0.0.apk')">
                 <div class="timer-overlay">3</div><span class="icon">🧸</span>
                 <div class="title">كارتون اطفال</div>
-                <div class="desc">عالم الترفيه للأطفال (قديم وجديد)<br><b style="color:#ff4444">حالة الخادم:</b> صيانة مؤقتة 🛠️</div>
+                <div class="desc">عالم الترفيه للأطفال (قديم وجديد) 🛠️</div>
             </div>
         </div>
     </div>
@@ -337,22 +323,17 @@
             <div class="card special-library" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
                 <div class="timer-overlay">3</div><span class="icon">📱</span>
                 <div class="title">مكتبة التطبيقات (1)</div>
-                <div class="desc">المتجر المتكامل من Android_AppsX • كل ما تحتاجه في مكان واحد</div>
+                <div class="desc">المتجر المتكامل من Android_AppsX</div>
             </div>
             <div class="card" onclick="openLink(this, 'https://401740.hala-web.com/')">
                 <div class="timer-overlay">3</div><span class="icon">📂</span>
                 <div class="title">مكتبة التطبيقات (2)</div>
-                <div class="desc">أرشيف شامل يحتوي على كافة التطبيقات الأساسية والهامة</div>
-            </div>
-            <div class="card" onclick="openLink(this, 'https://pixeldrain.com/l/RmnSpDMM#item=1')">
-                <div class="timer-overlay">3</div><span class="icon">🚀</span>
-                <div class="title">مكتبة التطبيقات (3)</div>
-                <div class="desc">أكثر من 133 تطبيق مختار بعناية فائقة لمحترفي الشاشات</div>
+                <div class="desc">أرشيف شامل لكافة التطبيقات الهامة</div>
             </div>
             <div class="card vip-card" onclick="togglePriceModal(true)" style="cursor:pointer">
                 <span class="icon">💰</span>
-                <div class="title">اشترك الآن في السيرفرات المدفوعة 💸</div>
-                <div class="desc">احصل على جودة 4K وثبات مطلق بأسعار رمزية جداً.. اضغط للتفاصيل ✨</div>
+                <div class="title">اشترك في السيرفرات المدفوعة 💸</div>
+                <div class="desc">جودة 4K وثبات مطلق.. اضغط للتفاصيل ✨</div>
             </div>
         </div>
     </div>
@@ -363,7 +344,7 @@
     <div style="background: var(--royal-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 1.2rem; letter-spacing: 2px;">
         HDMosul • PREMIUM STORE • 2026
     </div>
-    <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 10px;">جميع الحقوق محفوظة - تجربة ترفيهية ملكية 👑</p>
+    <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 10px;">جميع الحقوق محفوظة 👑</p>
 </footer>
 
 <script>
@@ -378,12 +359,6 @@
         let ampm = h >= 12 ? 'PM' : 'AM'; 
         h = h % 12 || 12;
         document.getElementById('liveClock').innerText = `${h}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s} ${ampm}`;
-    }
-
-    function updateVisitors() {
-        const min = 150, max = 580;
-        const count = Math.floor(Math.random() * (max - min + 1)) + min;
-        document.getElementById('v-count').innerText = count.toLocaleString();
     }
 
     function switchTab(evt, tabId) {
@@ -413,8 +388,6 @@
 
     setInterval(updateClock, 1000); 
     updateClock();
-    updateVisitors();
-    setInterval(updateVisitors, 300000); // تحديث كل 5 دقائق لمظهر "نشط"
 </script>
 
 </body>
