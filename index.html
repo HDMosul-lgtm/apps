@@ -87,8 +87,6 @@
         }
         .filter-btn.active { background: var(--gold-gradient); color: #000; border-color: transparent; box-shadow: 0 0 12px rgba(212, 175, 55, 0.5); }
         
-        .filter-btn.vip-special { border-color: #bf953f; color: #fcf6ba; background: rgba(191, 149, 63, 0.1); }
-
         .main-container { flex: 1; width: 95%; max-width: 1300px; margin: 0 auto; padding: 10px; }
         .grid { display: grid; gap: 15px; margin-bottom: 30px; }
         .grid-top { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
@@ -103,7 +101,7 @@
         .card.hidden { display: none; }
         .card:hover { transform: translateY(-5px); background: rgba(212, 175, 55, 0.15); border-color: #fcf6ba; box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); }
 
-        .card[data-cat="vip"] { border-style: double; border-width: 2px; }
+        .card[data-cat="vip"] { border: 2px double #bf953f; }
         .price-list { list-style: none; padding: 0; margin: 10px 0; font-size: 0.85rem; text-align: right; border-top: 1px solid var(--gold-border); padding-top: 10px; }
         .price-list li { display: flex; justify-content: space-between; margin-bottom: 5px; padding: 2px 5px; border-radius: 4px; }
         .price-list li:nth-child(odd) { background: rgba(212, 175, 55, 0.1); }
@@ -164,7 +162,6 @@
         <button class="filter-btn active" onclick="filterApps('free', this)">تطبيقات مجانية 📱</button>
         <button class="filter-btn" onclick="filterApps('store', this)">مكتبات الاندرويد 🛍️</button>
         <button class="filter-btn" onclick="filterApps('all', this)">عرض الكل 🌐</button>
-        <button class="filter-btn vip-special" onclick="filterApps('vip', this)">الاشتراكات المدفوعة 💎</button>
     </div>
 </header>
 
@@ -189,80 +186,8 @@
     </div>
 
     <div class="grid grid-bottom">
-        <div class="card" data-cat="vip" onclick="openVipModal()">
-            <span class="icon">⭕</span>
-            <div class="title">سيرفر ماكس برو</div>
-            <ul class="price-list">
-                <li><span>1 شهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>3 اشهر</span> <span class="price-val">10 الف</span></li>
-                <li><span>6 اشهر</span> <span class="price-val">15 الف</span></li>
-                <li><span>سنة كاملة</span> <span class="price-val">25 الف</span></li>
-            </ul>
-        </div>
-
-        <div class="card" data-cat="vip" onclick="openVipModal()">
-            <span class="icon">⭕</span>
-            <div class="title">سيرفر نوفا</div>
-            <ul class="price-list">
-                <li><span>3 اشهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>6 اشهر</span> <span class="price-val">10 الف</span></li>
-                <li><span>سنة كاملة</span> <span class="price-val">20 الف</span></li>
-            </ul>
-        </div>
-
-        <div class="card" data-cat="vip" onclick="openVipModal()">
-            <span class="icon">💎</span>
-            <div class="title">سيرفر دانه (العملاق)</div>
-            <ul class="price-list">
-                <li><span>شهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>3 اشهر</span> <span class="price-val">10 الف</span></li>
-                <li><span>5 اشهر</span> <span class="price-val">14 الف</span></li>
-                <li><span>سنة كاملة</span> <span class="price-val">25 الف</span></li>
-            </ul>
-        </div>
-
-        <div class="card" data-cat="vip" onclick="openVipModal()">
-            <span class="icon">🦅</span>
-            <div class="title">سيرفر هوك</div>
-            <ul class="price-list">
-                <li><span>3 اشهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>6 اشهر</span> <span class="price-val">10 الف</span></li>
-                <li><span>سنة</span> <span class="price-val">15 الف</span></li>
-                <li><span>15 شهر</span> <span class="price-val">20 الف</span></li>
-            </ul>
-        </div>
-
-        <div class="card" data-cat="vip" onclick="openVipModal()">
-            <span class="icon">🌟</span>
-            <div class="title">Neo 4K سيرفر</div>
-            <ul class="price-list">
-                <li><span>1 شهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>3 اشهر</span> <span class="price-val">10 الف</span></li>
-                <li><span>6 اشهر</span> <span class="price-val">15 الف</span></li>
-                <li><span>سنة كاملة</span> <span class="price-val">30 الف</span></li>
-            </ul>
-        </div>
-
-        <div class="card" data-cat="vip" onclick="openVipModal()">
-            <span class="icon">💀</span>
-            <div class="title">سيرفر دووم DOOM</div>
-            <ul class="price-list">
-                <li><span>3 اشهر</span> <span class="price-val">3 الف</span></li>
-                <li><span>6 اشهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>سنة كاملة</span> <span class="price-val">10 الف</span></li>
-            </ul>
-        </div>
-
-        <div class="card" data-cat="vip" style="grid-column: 1 / -1; background: rgba(212, 175, 55, 0.05);" onclick="openVipModal()">
-            <div class="title" style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">طلب الاشتراك والتفعيل</div>
-            <div class="desc">للتواصل معي عبر التلغرام: <b>@ooa85</b> (أخوكم أ. علي)</div>
-            <div class="desc" style="margin-top:10px; font-weight: bold; color: #fff;">💳 طرق الدفع المتوفرة:</div>
-            <div class="desc">ماستر كارد • زين كاش • رصيد آسيا</div>
-        </div>
-    </div>
-
-    <div class="grid grid-bottom">
-        <div class="card" data-cat="free" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A7%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
+        
+        <div class="card" data-cat="free" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A1%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
             <div class="timer-overlay">3</div><span class="icon">🇮🇶</span>
             <div class="title">واحد بغداد TV</div>
             <div class="desc">تفعيل: <b>B1, B2, B3...</b></div>
@@ -337,28 +262,65 @@
         <div class="card" data-cat="free" style="cursor: default;">
             <span class="icon">👑</span>
             <div class="title">الأسطورة TV</div>
-            <div class="desc">التطبيق + المشغل الخاص به</div>
+            <div class="desc">تنزيل مباشر بدون مؤقت</div>
             <div class="dual-btn-container">
-                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.ostora.tv/downloads/ostora_smart_4.9.apk', true)">تنزيل التطبيق</div>
-                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/nv6mly4qyedb0hg/Url_Video_Player_2.0-Apkpure.apk/file#', true)">تنزيل المشغل</div>
+                <div class="download-sub-btn" onclick="directOpen('https://www.ostora.tv/downloads/ostora_smart_4.9.apk')">تنزيل التطبيق</div>
+                <div class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/nv6mly4qyedb0hg/Url_Video_Player_2.0-Apkpure.apk/file#')">تنزيل المشغل</div>
             </div>
-        </div>
-
-        <div class="card" data-cat="free" style="filter: grayscale(0.6); pointer-events: none;">
-            <span class="icon">🧸</span>
-            <div class="title">كارتون اطفال</div>
-            <div class="desc">متوقف حالياً للصيانة</div>
         </div>
 
         <div class="card" data-cat="free" style="cursor: default;">
             <span class="icon">⚽</span>
             <div class="title">شوت تيفي</div>
-            <div class="desc">التطبيق + المشغل الخاص به</div>
+            <div class="desc">تنزيل مباشر بدون مؤقت</div>
             <div class="dual-btn-container">
-                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file', true)">تنزيل التطبيق</div>
-                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file', true)">تنزيل المشغل</div>
+                <div class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file')">تنزيل التطبيق</div>
+                <div class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">تنزيل المشغل</div>
             </div>
         </div>
+
+        <div class="card" data-cat="free" onclick="openVipModal()">
+            <span class="icon">⭕</span>
+            <div class="title">سيرفر ماكس برو</div>
+            <ul class="price-list">
+                <li><span>1 شهر</span> <span class="price-val">5 الف</span></li>
+                <li><span>سنة كاملة</span> <span class="price-val">25 الف</span></li>
+            </ul>
+        </div>
+
+        <div class="card" data-cat="free" onclick="openVipModal()">
+            <span class="icon">💎</span>
+            <div class="title">سيرفر دانه (العملاق)</div>
+            <ul class="price-list">
+                <li><span>3 اشهر</span> <span class="price-val">10 الف</span></li>
+                <li><span>سنة كاملة</span> <span class="price-val">25 الف</span></li>
+            </ul>
+        </div>
+
+        <div class="card" data-cat="free" onclick="openVipModal()">
+            <span class="icon">🦅</span>
+            <div class="title">سيرفر هوك</div>
+            <ul class="price-list">
+                <li><span>3 اشهر</span> <span class="price-val">5 الف</span></li>
+                <li><span>سنة</span> <span class="price-val">15 الف</span></li>
+            </ul>
+        </div>
+
+        <div class="card" data-cat="free" onclick="openVipModal()">
+            <span class="icon">🌟</span>
+            <div class="title">Neo 4K سيرفر</div>
+            <ul class="price-list">
+                <li><span>6 اشهر</span> <span class="price-val">15 الف</span></li>
+                <li><span>سنة كاملة</span> <span class="price-val">30 الف</span></li>
+            </ul>
+        </div>
+
+        <div class="card" data-cat="free" style="grid-column: 1 / -1; background: rgba(212, 175, 55, 0.05); border: 2px solid #bf953f;" onclick="openVipModal()">
+            <div class="title" style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.4rem;">قسم الاشتراكات والاتصال 💎</div>
+            <div class="desc">للتواصل مع أ. علي عبر التلغرام: <b>@ooa85</b></div>
+            <div class="desc" style="margin-top:5px; color: #fcf6ba;">ماستر كارد • زين كاش • رصيد آسيا</div>
+        </div>
+
     </div>
 </div>
 
@@ -394,6 +356,7 @@
     }
 
     function closeVipModal() {
+        document.getElementById('vipModal').style.none = 'none';
         document.getElementById('vipModal').style.display = 'none';
     }
 
@@ -411,39 +374,20 @@
 
     function setDailyVisitors() {
         const now = new Date();
-        const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
-        const base = 4800 + (dayOfYear * 30);
-        const fluctuation = Math.sin(dayOfYear) * 150; 
-        const hourly = now.getHours() * 20;
-        const finalCount = Math.floor(base + fluctuation + hourly);
-        document.getElementById('v-count').innerText = finalCount.toLocaleString();
+        const base = 4800 + (Math.floor(now.getTime()/10000000) % 500);
+        document.getElementById('v-count').innerText = base.toLocaleString();
     }
 
-    setInterval(updateClock, 1000);
-    updateClock();
-    setDailyVisitors();
-
-    window.onload = function() {
-        filterApps('free', document.querySelector('.filter-btn.active'));
-    };
-
-    // تعديل الوظيفة لدعم التحميل المباشر
-    function openLink(card, url, skipTimer = false) {
+    function directOpen(url) {
         const sound = document.getElementById('clickSound');
         if(sound) sound.play().catch(()=>{});
-        
-        // إذا كان التطبيق مستثنى من المؤقت
-        if(skipTimer) {
-            window.location.href = url;
-            return;
-        }
+        window.location.href = url;
+    }
 
+    function openLink(card, url) {
+        const sound = document.getElementById('clickSound');
+        if(sound) sound.play().catch(()=>{});
         const overlay = card.querySelector('.timer-overlay');
-        if(!overlay) { // حماية في حال عدم وجود الطبقة
-            window.location.href = url;
-            return;
-        }
-
         let count = 3;
         overlay.style.display = 'flex';
         overlay.innerText = count;
@@ -457,6 +401,14 @@
             }
         }, 1000);
     }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+    setDailyVisitors();
+
+    window.onload = function() {
+        filterApps('free', document.querySelector('.filter-btn.active'));
+    };
 </script>
 </body>
 </html>
