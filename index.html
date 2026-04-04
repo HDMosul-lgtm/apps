@@ -28,7 +28,19 @@
             min-height: 100vh; overflow-x: hidden;
         }
 
-        /* تنسيق نافذة الأسعار الجديدة لتستوعب القائمة الطويلة */
+        /* التصنيفات الجديدة */
+        .section-title {
+            text-align: right;
+            margin: 20px 10px 10px;
+            padding-right: 15px;
+            border-right: 4px solid #d4af37;
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .price-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
@@ -123,7 +135,6 @@
         .desc { font-size: 0.8rem; color: #aaa; line-height: 1.4; }
         .desc b { color: #d4af37; }
 
-        /* تنسيقات أزرار التحميل المباشر للأسطورة وشوت */
         .dual-btn-container { display: flex; gap: 8px; margin-top: 12px; position: relative; z-index: 15; }
         .download-sub-btn {
             flex: 1; background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; color: #fcf6ba;
@@ -215,6 +226,8 @@
 </header>
 
 <div class="main-container">
+    
+    <div class="section-title">متجر التطبيقات والاشتراكات</div>
     <div class="grid grid-top">
         <div class="card" tabindex="0" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
             <div class="timer-overlay">3</div><span class="icon">📱</span>
@@ -231,8 +244,14 @@
             <div class="title">مكتبات التطبيقات 3</div>
             <div class="desc">متجر بي اكثر من 133 تطبيق</div>
         </div>
+        <div class="card vip-trigger" tabindex="0" onclick="togglePriceModal(true)">
+            <span class="icon">💎</span>
+            <div class="title" style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">سيرفرات مدفوعة (VIP)</div>
+            <div class="desc">اذا حاب تشترك سيرفرات مدفوعة تفتح القنوات المشفرة والافلام والمسلسلات</div>
+        </div>
     </div>
 
+    <div class="section-title">التطبيقات المجانية</div>
     <div class="grid grid-bottom">
         <div class="card" tabindex="0" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A7%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
             <div class="timer-overlay">3</div><span class="icon">🇮🇶</span>
@@ -322,12 +341,6 @@
             <div class="title">كارتون اطفال</div>
             <div class="desc">من افضل تطبيقات كارتون الاطفال فيه القديم والجديد<br><b>ملاحظة:</b> متوقف حالياً للصيانة</div>
         </div>
-
-        <div class="card vip-trigger" tabindex="0" onclick="togglePriceModal(true)">
-            <span class="icon">💎</span>
-            <div class="title" style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">سيرفرات مدفوعة (VIP)</div>
-            <div class="desc">اذا حاب تشترك سيرفرات مدفوعة تفتح القنوات المشفرة والافلام والمسلسلات</div>
-        </div>
     </div>
 </div>
 
@@ -351,17 +364,22 @@
         document.getElementById('liveClock').innerText = `${h}:${m}:${s} ${ampm}`;
     }
 
+    // وظيفة العداد الذكي المحدثة
     function setWeeklyVisitors() {
         const now = new Date();
-        const startOfYear = new Date(now.getFullYear(), 0, 1);
-        const weekNumber = Math.ceil((((now - startOfYear) / 86400000) + startOfYear.getDay() + 1) / 7);
         const base = 2150;
-        const variation = Math.round(Math.sin(weekNumber) * 650); 
-        const finalCount = base + variation;
+        
+        // زيادة بناءً على مرور 12 ساعة
+        const hoursPassed = now.getHours() + (now.getDay() * 24);
+        const incrementalGain = Math.floor(hoursPassed / 12) * 45; // يزداد 45 زائر كل 12 ساعة
+        
+        // طرح بسيط كل 24 ساعة (عند الفجر مثلاً)
+        const dailyDrop = now.getHours() < 4 ? 20 : 0; 
+
+        const finalCount = base + incrementalGain - dailyDrop;
         document.getElementById('v-count').innerText = finalCount.toLocaleString();
     }
 
-    // وظيفة فتح وإغلاق قائمة الأسعار
     function togglePriceModal(show) {
         const sound = document.getElementById('clickSound');
         if(sound) sound.play().catch(()=>{});
@@ -369,6 +387,7 @@
     }
 
     setInterval(updateClock, 1000);
+    setInterval(setWeeklyVisitors, 60000); // تحديث العداد كل دقيقة
     updateClock();
     setWeeklyVisitors();
 
@@ -389,7 +408,6 @@
         }, 1000);
     }
 
-    // وظيفة التحميل المباشر للأسطورة وشوت بدون مؤقت
     function directOpen(url) {
         const sound = document.getElementById('clickSound');
         if(sound) sound.play().catch(()=>{});
