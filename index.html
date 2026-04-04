@@ -56,7 +56,7 @@
             text-transform: uppercase; font-weight: 700; opacity: 0.9;
         }
 
-        /* 📊 Info Pill - Glassmorphism */
+        /* 📊 Info Pill - Updated */
         .info-pill {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -65,7 +65,7 @@
             padding: 12px 30px; margin: 25px auto; 
             display: flex; gap: 20px; width: fit-content;
             box-shadow: var(--card-shadow);
-            align-items: center; /* لضمان استقامة العناصر */
+            align-items: center;
             justify-content: center;
         }
 
@@ -207,7 +207,7 @@
     <div class="info-pill">
         <span id="liveClock">00:00:00 PM</span>
         <span style="color: rgba(212,175,55,0.4)">|</span>
-        <span id="liveDate">--</span>
+        <span id="liveDate">--:--</span>
         <span style="color: rgba(212,175,55,0.4)">|</span>
         <span class="dhikr">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</span>
     </div>
@@ -252,7 +252,37 @@
                 <div class="title">برايم تيفي</div>
                 <div class="desc">HDMosul • كود التفعيل الذهبي: <b>2026</b> 🔑</div>
             </div>
-            
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/ypf4t4i08kopf9c/XP+Player_4.1.2.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">💻</span>
+                <div class="title">XP IPTV</div>
+                <div class="desc">HDMosul • التطبيق الأكثر ثباتاً واستقراراً لعام 2026</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">🔴</span>
+                <div class="title">دراما لايف</div>
+                <div class="desc">HDMosul • كود التفعيل الشامل: <b>232425</b></div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">🎞️</span>
+                <div class="title">موفيز بوكس VIP</div>
+                <div class="desc">مكتبة أفلام خرافية تتفوق على المنصات العالمية 🌟</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">⚡</span>
+                <div class="title">سينمانا بلس</div>
+                <div class="desc">HDMosul • النسخة البرق "الأخف والأسرع" للأجهزة الضعيفة</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">⚽</span>
+                <div class="title">جنرال برو تيفي</div>
+                <div class="desc">HDMosul • كود التفعيل الحصري للنخبة: <b>000</b></div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/oaqww9cm02ub5i0/Yacine_TV_Gold_v3.5_By_play8store.apk/file')">
+                <div class="timer-overlay">3</div><span class="icon">🏆</span>
+                <div class="title">ياسين تيفي</div>
+                <div class="desc">HDMosul • الإصدار الذهبي v3.5 الأحدث على الإطلاق</div>
+            </div>
+
             <div class="card" style="cursor: default;">
                 <span class="icon">🔥</span>
                 <div class="title">الأسطورة TV</div>
@@ -289,27 +319,6 @@
                     <button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">المشغل ⚙️</button>
                 </div>
             </div>
-
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/ypf4t4i08kopf9c/XP+Player_4.1.2.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">💻</span>
-                <div class="title">XP IPTV</div>
-                <div class="desc">HDMosul • التطبيق الأكثر ثباتاً واستقراراً لعام 2026</div>
-            </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">🔴</span>
-                <div class="title">دراما لايف</div>
-                <div class="desc">HDMosul • كود التفعيل الشامل: <b>232425</b></div>
-            </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">🎞️</span>
-                <div class="title">موفيز بوكس VIP</div>
-                <div class="desc">مكتبة أفلام خرافية تتفوق على المنصات العالمية 🌟</div>
-            </div>
-            <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file')">
-                <div class="timer-overlay">3</div><span class="icon">⚽</span>
-                <div class="title">جنرال برو تيفي</div>
-                <div class="desc">HDMosul • كود التفعيل الحصري للنخبة: <b>000</b></div>
-            </div>
             <div class="card" onclick="openLink(this, 'https://cartoonzaman.tv/android/CartoonZaman-v-1.0.0.apk')">
                 <div class="timer-overlay">3</div><span class="icon">🧸</span>
                 <div class="title">كارتون اطفال</div>
@@ -329,6 +338,11 @@
                 <div class="timer-overlay">3</div><span class="icon">📂</span>
                 <div class="title">مكتبة التطبيقات (2)</div>
                 <div class="desc">أرشيف شامل لكافة التطبيقات الهامة</div>
+            </div>
+            <div class="card" onclick="openLink(this, 'https://pixeldrain.com/l/RmnSpDMM#item=1')">
+                <div class="timer-overlay">3</div><span class="icon">🚀</span>
+                <div class="title">مكتبة التطبيقات (3)</div>
+                <div class="desc">أكثر من 133 تطبيق مختار بعناية فائقة لمحترفي الشاشات</div>
             </div>
             <div class="card vip-card" onclick="togglePriceModal(true)" style="cursor:pointer">
                 <span class="icon">💰</span>
