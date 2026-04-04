@@ -57,77 +57,45 @@
         .v-text { color: #aaa; font-weight: 400; }
         #v-count { color: #fff; font-weight: 900; letter-spacing: 0.5px; }
 
-        /* أزرار الفلترة الجديدة */
         .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 10px auto 25px;
-            flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 8px; margin: 10px auto 20px; flex-wrap: wrap;
         }
         .filter-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--gold-border);
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 700;
-            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gold-border); color: #fff;
+            padding: 7px 18px; border-radius: 30px; cursor: pointer; font-size: 0.85rem; font-weight: 700; transition: 0.3s;
         }
-        .filter-btn.active {
-            background: var(--gold-gradient);
-            color: #000;
-            border-color: transparent;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-        }
+        .filter-btn.active { background: var(--gold-gradient); color: #000; border-color: transparent; box-shadow: 0 0 12px rgba(212, 175, 55, 0.5); }
 
-        .main-container { flex: 1; width: 95%; max-width: 1300px; margin: 0 auto; padding: 20px; }
+        .main-container { flex: 1; width: 95%; max-width: 1300px; margin: 0 auto; padding: 10px; }
         .grid { display: grid; gap: 15px; margin-bottom: 30px; }
         .grid-top { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
         .grid-bottom { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--gold-border);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s, opacity 0.4s, box-shadow 0.3s;
-            backdrop-filter: blur(5px);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            background: var(--card-bg); border: 1px solid var(--gold-border); border-radius: 12px;
+            padding: 15px; text-align: center; position: relative; cursor: pointer;
+            transition: all 0.3s ease; backdrop-filter: blur(5px); overflow: hidden;
+            display: flex; flex-direction: column; justify-content: center;
         }
-        .card.hidden { display: none; opacity: 0; transform: scale(0.9); }
+        .card.hidden { display: none; }
 
-        .card:hover {
-            transform: translateY(-5px);
-            background: rgba(212, 175, 55, 0.15);
-            border-color: #fcf6ba;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
-        }
+        .card:hover { transform: translateY(-5px); background: rgba(212, 175, 55, 0.15); border-color: #fcf6ba; box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); }
 
         .icon { font-size: 2rem; margin-bottom: 8px; display: block; filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.4)); }
         .title { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
         .desc { font-size: 0.8rem; color: #aaa; line-height: 1.4; }
         .desc b { color: #d4af37; }
 
-        .dual-btn-container { display: flex; gap: 10px; margin-top: 12px; position: relative; z-index: 15; }
+        .dual-btn-container { display: flex; gap: 8px; margin-top: 12px; position: relative; z-index: 15; }
         .download-sub-btn {
             flex: 1; background: rgba(212, 175, 55, 0.1); border: 1px solid #d4af37; color: #fcf6ba;
-            padding: 8px 5px; border-radius: 6px; font-size: 0.75rem; font-weight: bold; transition: 0.3s; cursor: pointer;
+            padding: 8px 4px; border-radius: 6px; font-size: 0.7rem; font-weight: bold; transition: 0.3s; cursor: pointer;
         }
         .download-sub-btn:hover { background: #d4af37; color: #000; }
 
         .timer-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: none; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.9); display: none; justify-content: center; align-items: center;
             font-size: 3rem; font-weight: 900; color: #d4af37; z-index: 20;
         }
 
@@ -158,6 +126,7 @@
 
     <div class="filter-container">
         <button class="filter-btn active" onclick="filterApps('all', this)">الكل</button>
+        <button class="filter-btn" onclick="filterApps('store', this)">متاجر التطبيقات 📱</button>
         <button class="filter-btn" onclick="filterApps('sports', this)">رياضة ⚽</button>
         <button class="filter-btn" onclick="filterApps('movies', this)">أفلام ومسلسلات 🎬</button>
     </div>
@@ -165,24 +134,24 @@
 
 <div class="main-container">
     <div class="grid grid-top">
-        <div class="card" data-cat="all" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
+        <div class="card" data-cat="store" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
             <div class="timer-overlay">3</div><span class="icon">📱</span>
             <div class="title">مكتبات التطبيقات 1</div>
             <div class="desc">متجر تابع الى Android_AppsX</div>
         </div>
-        <div class="card" data-cat="all" onclick="openLink(this, 'https://401740.hala-web.com/')">
+        <div class="card" data-cat="store" onclick="openLink(this, 'https://401740.hala-web.com/')">
             <div class="timer-overlay">3</div><span class="icon">📱</span>
             <div class="title">مكتبات التطبيقات 2</div>
             <div class="desc">تحتوي على كافة التطبيقات</div>
         </div>
-        <div class="card" data-cat="all" onclick="openLink(this, 'https://pixeldrain.com/l/RmnSpDMM#item=1')">
+        <div class="card" data-cat="store" onclick="openLink(this, 'https://pixeldrain.com/l/RmnSpDMM#item=1')">
             <div class="timer-overlay">3</div><span class="icon">📂</span>
             <div class="title">مكتبات التطبيقات 3</div>
             <div class="desc">متجر بي اكثر من 133 تطبيق</div>
         </div>
     </div>
 
-    <div class="grid grid-bottom" id="appsGrid">
+    <div class="grid grid-bottom">
         <div class="card" data-cat="sports" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A7%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
             <div class="timer-overlay">3</div><span class="icon">🇮🇶</span>
             <div class="title">واحد بغداد TV</div>
@@ -193,6 +162,18 @@
             <div class="timer-overlay">3</div><span class="icon">🛰️</span>
             <div class="title">MAXTVPRO</div>
             <div class="desc">مفعل لمدة سنة • للكيبل الضوئي</div>
+        </div>
+
+        <div class="card" data-cat="movies" onclick="openLink(this, 'https://go.aftvnews.com/28544')">
+            <div class="timer-overlay">3</div><span class="icon">📺</span>
+            <div class="title">يوتيوب الشاشات</div>
+            <div class="desc">HDMosul • تحديث أونلاين</div>
+        </div>
+
+        <div class="card" data-cat="sports" onclick="openLink(this, 'https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file')">
+            <div class="timer-overlay">3</div><span class="icon">📡</span>
+            <div class="title">IRAQ TV 1</div>
+            <div class="desc">HDMosul مدعوم بجميع الشبكات</div>
         </div>
 
         <div class="card" data-cat="movies" onclick="openLink(this, 'https://workupload.com/file/QN6shgxPdgr')">
@@ -207,32 +188,62 @@
             <div class="desc">كود التفعيل: 2026</div>
         </div>
 
+        <div class="card" data-cat="sports" onclick="openLink(this, 'https://www.mediafire.com/file/ypf4t4i08kopf9c/XP+Player_4.1.2.apk/file')">
+            <div class="timer-overlay">3</div><span class="icon">📺</span>
+            <div class="title">XP IPTV</div>
+            <div class="desc">تطبيق اشتهر جديد للشاشات</div>
+        </div>
+
+        <div class="card" data-cat="sports" onclick="openLink(this, 'https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file')">
+            <div class="timer-overlay">3</div><span class="icon">🔴</span>
+            <div class="title">دراما لايف</div>
+            <div class="desc">كود التفعيل: 232425</div>
+        </div>
+
         <div class="card" data-cat="movies" onclick="openLink(this, 'https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file')">
             <div class="timer-overlay">3</div><span class="icon">🎞️</span>
             <div class="title">موفيز بوكس VIP</div>
             <div class="desc">مفتوح أفضل من نتفلكس</div>
         </div>
 
+        <div class="card" data-cat="movies" onclick="openLink(this, 'https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file')">
+            <div class="timer-overlay">3</div><span class="icon">💻</span>
+            <div class="title">سينمانا بلس</div>
+            <div class="desc">HDMosul أخف نسخة للشاشات</div>
+        </div>
+
+        <div class="card" data-cat="sports" onclick="openLink(this, 'https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file')">
+            <div class="timer-overlay">3</div><span class="icon">⚽</span>
+            <div class="title">جنرال برو تيفي</div>
+            <div class="desc">كود التفعيل: 000</div>
+        </div>
+
         <div class="card" data-cat="sports" onclick="openLink(this, 'https://www.mediafire.com/file/oaqww9cm02ub5i0/Yacine_TV_Gold_v3.5_By_play8store.apk/file')">
             <div class="timer-overlay">3</div><span class="icon">📡</span>
             <div class="title">ياسين تيفي</div>
-            <div class="desc">الإصدار الذهبي v3.5</div>
+            <div class="desc">تنزيل الإصدار الذهبي v3.5 الجديد</div>
         </div>
 
-        <div class="card" data-cat="sports" style="cursor: not-allowed; opacity: 0.8; border-style: dashed;">
+        <div class="card" data-cat="sports" style="cursor: not-allowed; border-style: dashed;">
             <span class="icon">⚙️</span>
             <div class="title">الأسطورة TV</div>
             <div class="desc"><b style="color: #ff4d4d;">جاري التعديل</b></div>
+        </div>
+
+        <div class="card" data-cat="movies" style="filter: grayscale(0.6); pointer-events: none;">
+            <span class="icon">🧸</span>
+            <div class="title">كارتون اطفال</div>
+            <div class="desc">متوقف حالياً للصيانة</div>
         </div>
 
         <div class="card" data-cat="sports" style="cursor: default;">
             <div class="timer-overlay">3</div>
             <span class="icon">⚽</span>
             <div class="title">شوت تيفي</div>
-            <div class="desc">التطبيق + المشغل</div>
+            <div class="desc">التطبيق + المشغل الخاص به</div>
             <div class="dual-btn-container">
-                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file')">التطبيق</div>
-                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">المشغل</div>
+                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file')">تنزيل التطبيق</div>
+                <div class="download-sub-btn" onclick="openLink(this.closest('.card'), 'https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">تنزيل المشغل</div>
             </div>
         </div>
     </div>
@@ -246,16 +257,13 @@
 <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3"></audio>
 
 <script>
-    // نظام الفلترة
     function filterApps(category, btn) {
-        // تحديث شكل الأزرار
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
-        // تصفية الكروت
-        const cards = document.querySelectorAll('.grid-bottom .card, .grid-top .card');
+        const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
-            if (category === 'all' || card.getAttribute('data-cat') === category) {
+            const cat = card.getAttribute('data-cat');
+            if (category === 'all' || cat === category) {
                 card.classList.remove('hidden');
             } else {
                 card.classList.add('hidden');
@@ -263,7 +271,6 @@
         });
     }
 
-    // ساعة الوقت
     function updateClock() {
         const now = new Date();
         const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
@@ -276,18 +283,14 @@
         document.getElementById('liveClock').innerText = `${h}:${m}:${s} ${ampm}`;
     }
 
-    // عداد الزوار المتغير يومياً
     function setDailyVisitors() {
         const now = new Date();
-        const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
-        
-        // معادلة ذكية: قاعدة أساسية 3000 + (زيادة كبيرة بناء على الأيام) + (تذبذب طفيف صعوداً ونزولاً)
-        const baseIncrease = dayOfYear * 15; // زيادة يومية ثابتة
-        const wave = Math.sin(dayOfYear) * 80; // تذبذب (نقصان وزيادة بسيطة)
-        const randomFactor = (now.getHours() * 10); // زيادة خلال ساعات اليوم
-        
-        const finalCount = 3500 + baseIncrease + wave + randomFactor;
-        document.getElementById('v-count').innerText = Math.floor(finalCount).toLocaleString();
+        const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+        const base = 4800 + (dayOfYear * 30);
+        const fluctuation = Math.sin(dayOfYear) * 150; 
+        const hourly = now.getHours() * 20;
+        const finalCount = Math.floor(base + fluctuation + hourly);
+        document.getElementById('v-count').innerText = finalCount.toLocaleString();
     }
 
     setInterval(updateClock, 1000);
