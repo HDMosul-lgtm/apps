@@ -28,7 +28,26 @@
             min-height: 100vh; overflow-x: hidden;
         }
 
-        /* نافذة الـ VIP المنبثقة */
+        /* نافذة قائمة الـ VIP الشاملة المنبثقة */
+        .vip-list-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
+            display: none; justify-content: center; align-items: flex-start; 
+            z-index: 9000; overflow-y: auto; padding: 30px 10px;
+        }
+        .vip-list-content {
+            width: 100%; max-width: 1200px; margin: auto;
+            animation: modalFade 0.3s ease-out; position: relative;
+        }
+        .close-list-btn {
+            background: rgba(255, 255, 255, 0.05); border: 1px solid var(--gold-border);
+            color: #fff; padding: 10px 30px; border-radius: 30px; font-weight: 900;
+            cursor: pointer; transition: 0.3s; margin: 0 auto 25px auto; display: block;
+            font-family: 'Cairo', sans-serif; font-size: 1rem;
+        }
+        .close-list-btn:hover { background: var(--gold-gradient); color: #000; transform: scale(1.05); }
+
+        /* نافذة التواصل المصغرة (التلغرام) */
         .vip-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.92); backdrop-filter: blur(15px);
@@ -144,6 +163,85 @@
     </div>
 </div>
 
+<div class="vip-list-modal" id="vipListModal">
+    <div class="vip-list-content">
+        <button class="close-list-btn" onclick="closeVipList()">✖ إغلاق والعودة للتطبيقات المجانية</button>
+        
+        <div class="grid grid-bottom">
+            <div class="card" data-cat="vip" onclick="openVipModal()">
+                <span class="icon">⭕</span>
+                <div class="title">سيرفر ماكس برو</div>
+                <ul class="price-list">
+                    <li><span>1 شهر</span> <span class="price-val">5 الف</span></li>
+                    <li><span>3 اشهر</span> <span class="price-val">10 الف</span></li>
+                    <li><span>6 اشهر</span> <span class="price-val">15 الف</span></li>
+                    <li><span>سنة كاملة</span> <span class="price-val">25 الف</span></li>
+                </ul>
+            </div>
+
+            <div class="card" data-cat="vip" onclick="openVipModal()">
+                <span class="icon">⭕</span>
+                <div class="title">سيرفر نوفا</div>
+                <ul class="price-list">
+                    <li><span>3 اشهر</span> <span class="price-val">5 الف</span></li>
+                    <li><span>6 اشهر</span> <span class="price-val">10 الف</span></li>
+                    <li><span>سنة كاملة</span> <span class="price-val">20 الف</span></li>
+                </ul>
+            </div>
+
+            <div class="card" data-cat="vip" onclick="openVipModal()">
+                <span class="icon">💎</span>
+                <div class="title">سيرفر دانه (العملاق)</div>
+                <ul class="price-list">
+                    <li><span>شهر</span> <span class="price-val">5 الف</span></li>
+                    <li><span>3 اشهر</span> <span class="price-val">10 الف</span></li>
+                    <li><span>5 اشهر</span> <span class="price-val">14 الف</span></li>
+                    <li><span>سنة كاملة</span> <span class="price-val">25 الف</span></li>
+                </ul>
+            </div>
+
+            <div class="card" data-cat="vip" onclick="openVipModal()">
+                <span class="icon">🦅</span>
+                <div class="title">سيرفر هوك</div>
+                <ul class="price-list">
+                    <li><span>3 اشهر</span> <span class="price-val">5 الف</span></li>
+                    <li><span>6 اشهر</span> <span class="price-val">10 الف</span></li>
+                    <li><span>سنة</span> <span class="price-val">15 الف</span></li>
+                    <li><span>15 شهر</span> <span class="price-val">20 الف</span></li>
+                </ul>
+            </div>
+
+            <div class="card" data-cat="vip" onclick="openVipModal()">
+                <span class="icon">🌟</span>
+                <div class="title">Neo 4K سيرفر</div>
+                <ul class="price-list">
+                    <li><span>1 شهر</span> <span class="price-val">5 الف</span></li>
+                    <li><span>3 اشهر</span> <span class="price-val">10 الف</span></li>
+                    <li><span>6 اشهر</span> <span class="price-val">15 الف</span></li>
+                    <li><span>سنة كاملة</span> <span class="price-val">30 الف</span></li>
+                </ul>
+            </div>
+
+            <div class="card" data-cat="vip" onclick="openVipModal()">
+                <span class="icon">💀</span>
+                <div class="title">سيرفر دووم DOOM</div>
+                <ul class="price-list">
+                    <li><span>3 اشهر</span> <span class="price-val">3 الف</span></li>
+                    <li><span>6 اشهر</span> <span class="price-val">5 الف</span></li>
+                    <li><span>سنة كاملة</span> <span class="price-val">10 الف</span></li>
+                </ul>
+            </div>
+
+            <div class="card" data-cat="vip" style="grid-column: 1 / -1; background: rgba(212, 175, 55, 0.05);" onclick="openVipModal()">
+                <div class="title" style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">طلب الاشتراك والتفعيل</div>
+                <div class="desc">للتواصل معي عبر التلغرام: <b>@ooa85</b> (أخوكم أ. علي)</div>
+                <div class="desc" style="margin-top:10px; font-weight: bold; color: #fff;">💳 طرق الدفع المتوفرة:</div>
+                <div class="desc">ماستر كارد • زين كاش • رصيد آسيا</div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <header>
     <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" class="logo">
     <h1 class="brand">HDMosul Store</h1>
@@ -163,7 +261,6 @@
         <button class="filter-btn active" onclick="filterApps('free', this)">الكل</button>
         <button class="filter-btn" onclick="filterApps('free', this)">تطبيقات مجانية 📱</button>
         <button class="filter-btn" onclick="filterApps('store', this)">متجر التطبيقات 🛍️</button>
-        <button class="filter-btn" onclick="filterApps('vip', this)">اشتراكات VIP 💎</button>
     </div>
 </header>
 
@@ -188,79 +285,13 @@
     </div>
 
     <div class="grid grid-bottom">
-        <div class="card" data-cat="vip" onclick="openVipModal()">
-            <span class="icon">⭕</span>
-            <div class="title">سيرفر ماكس برو</div>
-            <ul class="price-list">
-                <li><span>1 شهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>3 اشهر</span> <span class="price-val">10 الف</span></li>
-                <li><span>6 اشهر</span> <span class="price-val">15 الف</span></li>
-                <li><span>سنة كاملة</span> <span class="price-val">25 الف</span></li>
-            </ul>
-        </div>
-
-        <div class="card" data-cat="vip" onclick="openVipModal()">
-            <span class="icon">⭕</span>
-            <div class="title">سيرفر نوفا</div>
-            <ul class="price-list">
-                <li><span>3 اشهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>6 اشهر</span> <span class="price-val">10 الف</span></li>
-                <li><span>سنة كاملة</span> <span class="price-val">20 الف</span></li>
-            </ul>
-        </div>
-
-        <div class="card" data-cat="vip" onclick="openVipModal()">
+        
+        <div class="card" data-cat="free" onclick="openVipList()" style="background: rgba(212, 175, 55, 0.05); border: 1px dashed var(--gold-border);">
             <span class="icon">💎</span>
-            <div class="title">سيرفر دانه (العملاق)</div>
-            <ul class="price-list">
-                <li><span>شهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>3 اشهر</span> <span class="price-val">10 الف</span></li>
-                <li><span>5 اشهر</span> <span class="price-val">14 الف</span></li>
-                <li><span>سنة كاملة</span> <span class="price-val">25 الف</span></li>
-            </ul>
+            <div class="title">اشتراكات VIP المدفوعة</div>
+            <div class="desc">إذا كنت ترغب باشتراكات مدفوعة (اختياري)، <b>اضغط هنا</b> للتعرف على الباقات والأسعار.</div>
         </div>
 
-        <div class="card" data-cat="vip" onclick="openVipModal()">
-            <span class="icon">🦅</span>
-            <div class="title">سيرفر هوك</div>
-            <ul class="price-list">
-                <li><span>3 اشهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>6 اشهر</span> <span class="price-val">10 الف</span></li>
-                <li><span>سنة</span> <span class="price-val">15 الف</span></li>
-                <li><span>15 شهر</span> <span class="price-val">20 الف</span></li>
-            </ul>
-        </div>
-
-        <div class="card" data-cat="vip" onclick="openVipModal()">
-            <span class="icon">🌟</span>
-            <div class="title">Neo 4K سيرفر</div>
-            <ul class="price-list">
-                <li><span>1 شهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>3 اشهر</span> <span class="price-val">10 الف</span></li>
-                <li><span>6 اشهر</span> <span class="price-val">15 الف</span></li>
-                <li><span>سنة كاملة</span> <span class="price-val">30 الف</span></li>
-            </ul>
-        </div>
-
-        <div class="card" data-cat="vip" onclick="openVipModal()">
-            <span class="icon">💀</span>
-            <div class="title">سيرفر دووم DOOM</div>
-            <ul class="price-list">
-                <li><span>3 اشهر</span> <span class="price-val">3 الف</span></li>
-                <li><span>6 اشهر</span> <span class="price-val">5 الف</span></li>
-                <li><span>سنة كاملة</span> <span class="price-val">10 الف</span></li>
-            </ul>
-        </div>
-
-        <div class="card" data-cat="vip" style="grid-column: 1 / -1; background: rgba(212, 175, 55, 0.05);" onclick="openVipModal()">
-            <div class="title" style="background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">طلب الاشتراك والتفعيل</div>
-            <div class="desc">للتواصل معي عبر التلغرام: <b>@ooa85</b> (أخوكم أ. علي)</div>
-            <div class="desc" style="margin-top:10px; font-weight: bold; color: #fff;">💳 طرق الدفع المتوفرة:</div>
-            <div class="desc">ماستر كارد • زين كاش • رصيد آسيا</div>
-        </div>
-    </div>
-
-    <div class="grid grid-bottom">
         <div class="card" data-cat="free" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A7%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
             <div class="timer-overlay">3</div><span class="icon">🇮🇶</span>
             <div class="title">واحد بغداد TV</div>
@@ -393,14 +424,26 @@
         });
     }
 
-    // عرض نافذة VIP
+    // عرض قائمة الـ VIP الكاملة
+    function openVipList() {
+        const sound = document.getElementById('clickSound');
+        if(sound) sound.play().catch(()=>{});
+        document.getElementById('vipListModal').style.display = 'flex';
+    }
+
+    // إغلاق قائمة الـ VIP الكاملة
+    function closeVipList() {
+        document.getElementById('vipListModal').style.display = 'none';
+    }
+
+    // عرض نافذة التواصل المصغرة
     function openVipModal() {
         const sound = document.getElementById('clickSound');
         if(sound) sound.play().catch(()=>{});
         document.getElementById('vipModal').style.display = 'flex';
     }
 
-    // إغلاق نافذة VIP
+    // إغلاق نافذة التواصل
     function closeVipModal() {
         document.getElementById('vipModal').style.display = 'none';
     }
