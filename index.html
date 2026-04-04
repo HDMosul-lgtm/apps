@@ -17,7 +17,6 @@
             margin: 0; padding: 0;
             font-family: 'Cairo', sans-serif;
             background-color: var(--dark-bg);
-            /* استبدال الصور الثقيلة بخلفية CSS خفيفة وسريعة */
             background-image: radial-gradient(circle at top, #1a1a1a 0%, #050505 100%);
             color: #fff;
             display: flex; flex-direction: column;
@@ -156,7 +155,7 @@
         <span id="liveDate">--</span>
         <div class="visitor-stat">
             <span class="online-dot"></span>
-            <span id="v-count" style="color: #d4af37; font-weight: bold;">2,840</span>
+            <span id="v-count" style="color: #d4af37; font-weight: bold;">--</span>
             <span class="v-text">زائر نشط</span>
         </div>
     </div>
@@ -286,13 +285,29 @@
 <footer><div style="color: #d4af37; font-weight: bold;">HDMosul • PREMIUM • 2026</div></footer>
 
 <script>
+    // تحديث الساعة حسب توقيت جهاز المستخدم المحلي
     function updateClock() {
         const now = new Date();
         const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-        document.getElementById('liveDate').innerText = `${days[now.getDay()]} ${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+        
+        // جلب التاريخ المحلي
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('liveDate').innerText = now.toLocaleDateString('ar-EG', options);
+        
+        // جلب الوقت المحلي
         let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
-        let ampm = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
+        let ampm = h >= 12 ? 'PM' : 'AM'; 
+        h = h % 12 || 12;
         document.getElementById('liveClock').innerText = `${h}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s} ${ampm}`;
+    }
+
+    // نظام عداد الزوار الذكي (بين 5 و 431)
+    function updateVisitors() {
+        const min = 5;
+        const max = 431;
+        // توليد رقم عشوائي ضمن النطاق المطلوب
+        const count = Math.floor(Math.random() * (max - min + 1)) + min;
+        document.getElementById('v-count').innerText = count.toLocaleString();
     }
 
     function switchTab(evt, tabId) {
@@ -316,7 +331,14 @@
     }
 
     function directOpen(url) { window.location.href = url; }
-    setInterval(updateClock, 1000); updateClock();
+    
+    // تشغيل الوظائف
+    setInterval(updateClock, 1000); 
+    updateClock();
+    
+    // تحديث عداد الزوار كل ساعة (أو عند فتح الصفحة)
+    updateVisitors();
+    setInterval(updateVisitors, 3600000); 
 </script>
 </body>
 </html>
