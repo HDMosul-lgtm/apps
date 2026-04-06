@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>HDMosul Store - VIP Maintenance</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
@@ -21,28 +21,34 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh; /* طول الشاشة بالضبط */
+            width: 100vw;
             font-family: 'Cairo', sans-serif;
             color: #fff;
-            overflow: hidden;
-            /* خلفية رخامية داكنة وهادئة */
+            overflow: hidden; /* يمنع التمرير نهائياً */
             background-image: radial-gradient(circle at center, #151515 0%, #050505 100%);
         }
 
         .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
             width: 90%;
             max-width: 600px;
+            max-height: 95vh; /* لضمان عدم خروج المحتوى عن الشاشة */
+            padding-top: 40px; /* مساحة للتاج */
             animation: fadeIn 1.5s ease-out;
         }
 
-        /* الشعار الملكي المتحرك */
+        /* الشعار الملكي - تم تصغيره ليتناسب مع الطول */
         .royal-badge {
             position: relative;
-            width: clamp(150px, 30vw, 220px);
-            height: clamp(150px, 30vw, 220px);
-            margin: 0 auto 40px;
-            padding: 10px;
+            width: clamp(120px, 25vh, 200px); /* يعتمد الآن على ارتفاع الشاشة vh */
+            height: clamp(120px, 25vh, 200px);
+            margin: 0 auto 20px;
+            padding: 8px;
             background: var(--gold-gradient);
             border-radius: 50%;
             box-shadow: 0 0 30px rgba(184, 134, 11, 0.4);
@@ -59,99 +65,77 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            border: 2px solid rgba(255, 242, 161, 0.2);
         }
 
-        /* التاج العلوي */
         .crown-icon {
             position: absolute;
-            top: -45px;
+            top: -35px; /* تم تقريب المسافة */
             left: 50%;
             transform: translateX(-50%);
-            font-size: clamp(50px, 10vw, 70px);
+            font-size: clamp(40px, 8vh, 60px);
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));
             z-index: 10;
         }
 
-        /* أيقونات الصيانة المتحركة */
         .gear-svg {
-            width: 60%;
+            width: 55%;
             fill: var(--soft-gold);
             animation: rotateGear 8s linear infinite;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
         }
 
         .wrench-icon {
             position: absolute;
-            font-size: clamp(30px, 6vw, 45px);
+            font-size: clamp(25px, 5vh, 40px);
             color: #fff;
             z-index: 5;
             animation: wrenchMove 3s ease-in-out infinite;
         }
 
-        /* النصوص */
         .brand-name {
-            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-size: clamp(1.5rem, 6vh, 2.5rem);
             font-weight: 900;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 10px 0;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            margin: 5px 0;
         }
 
         .coming-soon {
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-size: clamp(1.2rem, 5vh, 2rem);
             color: #ffffff;
             font-weight: 700;
-            margin: 20px 0;
-            letter-spacing: 1px;
-            text-shadow: 0 0 15px rgba(255,255,255,0.2);
+            margin: 10px 0;
         }
 
         .sub-text {
             color: #888;
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            line-height: 1.6;
-            max-width: 450px;
-            margin: 0 auto 30px;
+            font-size: clamp(0.8rem, 2.5vh, 1rem);
+            line-height: 1.4;
+            max-width: 400px;
+            margin: 0 auto 20px;
         }
 
-        /* خط الختم السفلي */
         .footer-line {
             height: 2px;
-            width: 60%;
+            width: 50%;
             margin: 0 auto;
             background: var(--gold-gradient);
-            border-radius: 2px;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
-        /* الأنيميشن (الحركات) */
-        @keyframes rotateGear {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .footer-tag {
+            margin-top: 15px;
+            font-weight: 700;
+            color: var(--soft-gold);
+            font-size: clamp(0.6rem, 2vh, 0.8rem);
+            letter-spacing: 2px;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes wrenchMove {
-            0%, 100% { transform: rotate(-10deg); }
-            50% { transform: rotate(20deg) scale(1.1); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* تحسينات الشاشات الكبيرة جداً */
-        @media (min-width: 1400px) {
-            .container { transform: scale(1.2); }
-        }
+        /* الأنيميشن */
+        @keyframes rotateGear { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes wrenchMove { 0%, 100% { transform: rotate(-10deg); } 50% { transform: rotate(20deg); } }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
@@ -169,17 +153,14 @@
         </div>
 
         <h1 class="brand-name">HDMosul Store</h1>
-        
         <div class="coming-soon">قريباً نعود</div>
 
         <p class="sub-text">
-            نعمل حالياً على تطوير الأنظمة وصيانة الروابط لتقديم أفضل تجربة VIP لمشتركينا. نشكر صبركم.
+            نعمل على صيانة الروابط لتقديم أفضل تجربة VIP. نشكر صبركم.
         </p>
 
         <div class="footer-line"></div>
-        <p style="margin-top: 20px; font-weight: 700; color: var(--soft-gold); font-size: 0.8rem; letter-spacing: 2px;">
-            PREMIUM EXPERIENCE • 2026
-        </p>
+        <p class="footer-tag">PREMIUM EXPERIENCE • 2026</p>
     </div>
 
 </body>
