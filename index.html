@@ -3,114 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HDMosul Store - RM Maintenance</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@900&display=swap" rel="stylesheet">
+    <title>HDMosul Store - VIP Maintenance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold-royal: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --madrid-blue: #003366;
-            --deep-black: #050505;
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --deep-black: #080808;
+            --soft-gold: #d4af37;
         }
+
+        * { box-sizing: border-box; }
 
         body {
-            margin: 0; padding: 0;
+            margin: 0;
+            padding: 0;
             background-color: var(--deep-black);
-            display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; font-family: 'Cairo', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Cairo', sans-serif;
+            color: #fff;
             overflow: hidden;
+            /* خلفية رخامية داكنة وهادئة */
+            background-image: radial-gradient(circle at center, #151515 0%, #050505 100%);
         }
 
-        /* حاوية الشعار المركزية */
-        .maintenance-wrapper {
-            position: relative;
+        .container {
             text-align: center;
-            width: 100%;
-            max-width: 500px;
-            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            animation: fadeIn 1.5s ease-out;
         }
 
-        /* شعار ريال مدريد البرمجي */
-        .rm-crest {
+        /* الشعار الملكي المتحرك */
+        .royal-badge {
             position: relative;
-            width: clamp(180px, 40vw, 280px);
-            height: clamp(180px, 40vw, 280px);
-            margin: 0 auto;
+            width: clamp(150px, 30vw, 220px);
+            height: clamp(150px, 30vw, 220px);
+            margin: 0 auto 40px;
+            padding: 10px;
+            background: var(--gold-gradient);
             border-radius: 50%;
-            background: var(--gold-royal);
-            padding: 8px;
-            box-shadow: 0 0 50px rgba(179, 135, 40, 0.3);
+            box-shadow: 0 0 30px rgba(184, 134, 11, 0.4);
             animation: float 4s ease-in-out infinite;
         }
 
-        .inner-circle {
-            width: 100%; height: 100%;
-            background: #fff;
+        .inner-badge {
+            background: #0d0d0d;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
             overflow: hidden;
-            border: 4px solid var(--madrid-blue);
-            display: flex; justify-content: center; align-items: center;
+            border: 2px solid rgba(255, 242, 161, 0.2);
         }
 
-        /* الخط المائل الخاص بالشعار */
-        .diagonal-stripe {
+        /* التاج العلوي */
+        .crown-icon {
             position: absolute;
-            width: 150%; height: 40px;
-            background: var(--madrid-blue);
-            transform: rotate(-45deg);
-            z-index: 1;
-        }
-
-        /* التاج الملكي */
-        .crown {
-            position: absolute;
-            top: -45px; left: 50%;
+            top: -45px;
+            left: 50%;
             transform: translateX(-50%);
-            font-size: clamp(50px, 12vw, 80px);
+            font-size: clamp(50px, 10vw, 70px);
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));
             z-index: 10;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
         }
 
-        /* الترس المتحرك (أداة الصيانة) */
-        .maintenance-gear {
+        /* أيقونات الصيانة المتحركة */
+        .gear-svg {
+            width: 60%;
+            fill: var(--soft-gold);
+            animation: rotateGear 8s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+
+        .wrench-icon {
             position: absolute;
-            bottom: -10px; right: 10px;
-            width: clamp(60px, 15vw, 100px);
-            height: clamp(60px, 15vw, 100px);
-            background: var(--gold-royal);
-            clip-path: polygon(50% 0%, 61% 10%, 75% 10%, 75% 25%, 90% 39%, 90% 50%, 90% 61%, 75% 75%, 75% 90%, 61% 90%, 50% 100%, 39% 90%, 25% 90%, 25% 75%, 10% 61%, 10% 50%, 10% 39%, 25% 25%, 25% 10%, 39% 10%);
-            display: flex; justify-content: center; align-items: center;
-            animation: rotateGear 6s linear infinite;
-            z-index: 20;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            font-size: clamp(30px, 6vw, 45px);
+            color: #fff;
+            z-index: 5;
+            animation: wrenchMove 3s ease-in-out infinite;
         }
 
-        .gear-center {
-            width: 30%; height: 30%;
-            background: var(--deep-black);
-            border-radius: 50%;
-        }
-
-        /* نصوص توضيحية فخمة */
-        .store-name {
-            margin-top: 50px;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
+        /* النصوص */
+        .brand-name {
+            font-size: clamp(1.8rem, 5vw, 3rem);
             font-weight: 900;
-            background: var(--gold-royal);
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
+            margin: 10px 0;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
         }
 
-        .status-text {
-            color: #666;
-            font-size: clamp(0.8rem, 2vw, 1rem);
-            letter-spacing: 5px;
-            margin-top: 10px;
-            font-weight: bold;
+        .coming-soon {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            color: #ffffff;
+            font-weight: 700;
+            margin: 20px 0;
+            letter-spacing: 1px;
+            text-shadow: 0 0 15px rgba(255,255,255,0.2);
         }
 
-        /* الأنيميشن */
+        .sub-text {
+            color: #888;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            line-height: 1.6;
+            max-width: 450px;
+            margin: 0 auto 30px;
+        }
+
+        /* خط الختم السفلي */
+        .footer-line {
+            height: 2px;
+            width: 60%;
+            margin: 0 auto;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+
+        /* الأنيميشن (الحركات) */
         @keyframes rotateGear {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -121,30 +138,48 @@
             50% { transform: translateY(-15px); }
         }
 
-        /* استجابة الشاشات الكبيرة */
-        @media (min-width: 1200px) {
-            .maintenance-wrapper { transform: scale(1.2); }
+        @keyframes wrenchMove {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(20deg) scale(1.1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* تحسينات الشاشات الكبيرة جداً */
+        @media (min-width: 1400px) {
+            .container { transform: scale(1.2); }
         }
     </style>
 </head>
 <body>
 
-    <div class="maintenance-wrapper">
-        <div class="crown">👑</div>
+    <div class="container">
+        <div class="crown-icon">👑</div>
 
-        <div class="rm-crest">
-            <div class="inner-circle">
-                <div class="diagonal-stripe"></div>
-                <span style="z-index: 2; font-size: 50px; color: #003366; font-weight: 900; opacity: 0.8;">MCF</span>
-            </div>
-            
-            <div class="maintenance-gear">
-                <div class="gear-center"></div>
+        <div class="royal-badge">
+            <div class="inner-badge">
+                <svg class="gear-svg" viewBox="0 0 24 24">
+                    <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.85,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z"/>
+                </svg>
+                <div class="wrench-icon">🔧</div>
             </div>
         </div>
 
-        <h1 class="store-name">HDMosul Store</h1>
-        <p class="status-text">UNDER MAINTENANCE • 2026</p>
+        <h1 class="brand-name">HDMosul Store</h1>
+        
+        <div class="coming-soon">قريباً نعود</div>
+
+        <p class="sub-text">
+            نعمل حالياً على تطوير الأنظمة وصيانة الروابط لتقديم أفضل تجربة VIP لمشتركينا. نشكر صبركم.
+        </p>
+
+        <div class="footer-line"></div>
+        <p style="margin-top: 20px; font-weight: 700; color: var(--soft-gold); font-size: 0.8rem; letter-spacing: 2px;">
+            PREMIUM EXPERIENCE • 2026
+        </p>
     </div>
 
 </body>
