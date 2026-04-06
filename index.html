@@ -127,9 +127,10 @@ box-shadow: 0 20px 40px rgba(0,0,0,0.8), var(--gold-glow);
 .telegram-card {
 background: #0d0d0d !important;
 border: 2px solid rgba(212, 175, 55, 0.3) !important;
+cursor: pointer;
 }
 
-/* تنسيق يوزر القناة المميز (غير أزرق) */
+/* تنسيق يوزر القناة المميز */
 .username-badge {
 background: #000;
 color: var(--metallic-gold);
@@ -144,6 +145,14 @@ box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
 text-shadow: 0 0 5px rgba(0,0,0,0.5);
 animation: pulse-gold 2s infinite;
 letter-spacing: 1px;
+transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* إضافة حركة ناعمة للتكبير */
+}
+
+/* حالة التكبير عند الضغط */
+.username-badge.active-zoom {
+  transform: scale(1.5) !important;
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.8) !important;
+  z-index: 100;
 }
 
 @keyframes pulse-gold {
@@ -602,7 +611,7 @@ footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(212,
 <div class="desc">HDMosul • أرشيف شامل يحتوي على كافة التطبيقات الهامة</div>
 </div>
 
-<div class="card telegram-card" onclick="directOpen('https://t.me/HDMosul')">
+<div class="card telegram-card" onclick="toggleUsernameZoom(this)">
 <span class="icon">📢</span>
 <div class="title">قناة تلكرام المتجر</div>
 <div class="username-badge">@HDMosul</div>
@@ -654,6 +663,12 @@ const interval = setInterval(() => {
 count--; overlay.innerText = count;
 if(count <= 0) { clearInterval(interval); directOpen(url); overlay.style.display = 'none'; }
 }, 1000);
+}
+
+// الوظيفة الجديدة لتكبير اليوزر فقط
+function toggleUsernameZoom(card) {
+  const badge = card.querySelector('.username-badge');
+  badge.classList.toggle('active-zoom');
 }
 
 function directOpen(url) { 
