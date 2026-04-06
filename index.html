@@ -123,25 +123,33 @@ box-shadow: 0 20px 40px rgba(0,0,0,0.8), var(--gold-glow);
 }
 .card:hover::before { left: 100%; }
 
-/* تنسيق بطاقة التلكرام الجديد */
+/* تنسيق بطاقة التلكرام */
 .telegram-card {
-background: var(--telegram-blue) !important;
-border-color: rgba(255, 255, 255, 0.4) !important;
+background: #0d0d0d !important;
+border: 2px solid rgba(212, 175, 55, 0.3) !important;
 }
-.telegram-card .title { color: #fff !important; font-weight: 800; }
-.telegram-card .desc { color: rgba(255, 255, 255, 0.8) !important; }
 
+/* تنسيق يوزر القناة المميز (غير أزرق) */
 .username-badge {
-background: rgba(255, 255, 255, 0.2);
-color: #fff;
-padding: 5px 15px;
-border-radius: 50px;
+background: #000;
+color: var(--metallic-gold);
+padding: 8px 25px;
+border-radius: 12px;
 display: inline-block;
-margin: 10px auto;
+margin: 15px auto;
 font-weight: 900;
-font-size: 1.2rem;
-border: 1px solid rgba(255, 255, 255, 0.3);
-backdrop-filter: blur(5px);
+font-size: 1.3rem;
+border: 2px solid var(--metallic-gold);
+box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+text-shadow: 0 0 5px rgba(0,0,0,0.5);
+animation: pulse-gold 2s infinite;
+letter-spacing: 1px;
+}
+
+@keyframes pulse-gold {
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+  50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); }
+  100% { transform: scale(1); box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
 }
 
 .icon { font-size: 3rem; margin-bottom: 15px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); transition: 0.3s; }
@@ -151,18 +159,18 @@ backdrop-filter: blur(5px);
 .desc { font-size: 0.9rem; color: #888; line-height: 1.6; }
 .desc b { color: var(--metallic-gold); background: rgba(212,175,55,0.1); padding: 2px 6px; border-radius: 4px; }
 
-.vip-card {
-background: var(--royal-gold) !important;
-color: #000 !important;
-}
-.vip-card .title, .vip-card .desc { color: #000 !important; font-weight: 700; }
-.vip-card .desc { opacity: 0.8; }
-
+/* تنسيق مكتبة تطبيقات 1 المميز */
 .special-library {
-border: 2px solid transparent !important;
-background-image: linear-gradient(#0a0a0a, #0a0a0a), var(--royal-gold) !important;
-background-origin: border-box;
-background-clip: content-box, border-box;
+border: 2px solid var(--metallic-gold) !important;
+background: linear-gradient(145deg, #1a1a1a, #050505) !important;
+box-shadow: 0 0 30px rgba(212, 175, 55, 0.25) !important;
+position: relative;
+}
+.special-library::after {
+  content: 'PREMIUM';
+  position: absolute; top: 10px; right: 10px;
+  background: var(--royal-gold); color: #000;
+  font-size: 10px; font-weight: 900; padding: 2px 8px; border-radius: 4px;
 }
 
 .timer-overlay {
@@ -594,11 +602,11 @@ footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(212,
 <div class="desc">HDMosul • أرشيف شامل يحتوي على كافة التطبيقات الهامة</div>
 </div>
 
-<div class="card telegram-card" style="cursor: default;">
-<span class="icon">🔹</span>
+<div class="card telegram-card" onclick="directOpen('https://t.me/HDMosul')">
+<span class="icon">📢</span>
 <div class="title">قناة تلكرام المتجر</div>
 <div class="username-badge">@HDMosul</div>
-<div class="desc">HDMosul • تابعنا للحصول على أحدث التحديثات والسيرفرات الحصرية والمباشرة</div>
+<div class="desc">HDMosul • تابعنا للحصول على تحديثات تخص التطبيقات او ابلاغنا عن وجود مشكلة في تطبيقات او روابط</div>
 </div>
 
 </div>
