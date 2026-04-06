@@ -6,178 +6,175 @@
     <title>HDMosul Store - VIP Maintenance</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        /* تعريف الألوان الملكية */
         :root {
-            --gold-gradient: linear-gradient(145deg, #c5a059 0%, #fff2a1 50%, #ad7a27 100%);
-            --deep-dark: #0a0a0a;
-            --border-gold: #8a6d3b;
+            --gold-primary: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --dark-metal: #0f0f0f;
+            --bg-deep: #050505;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: #050505;
-            /* خلفية توحي بمعدن مصقول وراقي */
-            background-image: 
-                radial-gradient(circle at 50% 50%, #151515 0%, #050505 100%);
-            height: 100vh;
+            background-color: var(--bg-deep);
+            color: #ffffff;
+            font-family: 'Cairo', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Cairo', sans-serif;
-            color: #fff;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* خلفية هادئة جداً وغير مزعجة */
+            background-image: radial-gradient(circle at center, #111 0%, #050505 100%);
         }
 
-        /* اللوحة الرئيسية المذهبة */
-        .vip-frame {
+        /* الحاوية الرئيسية المرنة */
+        .main-wrapper {
+            width: 95%;
+            max-width: 800px; /* للشاشات الكبيرة */
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* لوحة الـ VIP */
+        .vip-card {
             position: relative;
-            width: 90%;
-            max-width: 650px;
-            background: #111111;
-            padding: 4px; /* لإنشاء الإطار */
-            background-image: var(--gold-gradient);
-            border-radius: 5px;
-            box-shadow: 0 30px 60px rgba(0,0,0,1), 0 0 20px rgba(173, 122, 39, 0.2);
+            width: 100%;
+            background: var(--dark-metal);
+            border-radius: 15px;
+            padding: 3px; /* لعمل الإطار الذهبي */
+            background-image: var(--gold-primary);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
         }
 
         .inner-content {
-            background: #0f0f0f;
-            padding: 50px 30px;
-            border-radius: 2px;
+            background: #0a0a0a;
+            border-radius: 12px;
+            padding: 60px 40px;
             text-align: center;
-            position: relative;
-            /* لمسة "برش" معدني خفيفة */
-            background-image: repeating-linear-gradient(rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 2px);
         }
 
-        /* شعار التاج أو النادي */
-        .top-crown {
-            width: 70px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px #d4af37);
-        }
-
-        .brand-title {
-            font-size: 3rem;
+        /* تنسيق الشعار */
+        .logo-area { font-size: 50px; margin-bottom: 10px; }
+        
+        .brand-name {
+            font-size: clamp(2rem, 5vw, 3.5rem); /* حجم خط مرن يناسب كل الشاشات */
             font-weight: 900;
             margin: 0;
-            background: var(--gold-gradient);
+            background: var(--gold-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
         }
 
-        .brand-sub {
-            font-size: 14px;
-            color: var(--border-gold);
-            letter-spacing: 10px;
-            text-transform: uppercase;
+        .exclusive-tag {
+            font-size: clamp(10px, 2vw, 14px);
+            color: #d4af37;
+            letter-spacing: 8px;
             font-weight: 700;
             margin-bottom: 40px;
             display: block;
         }
 
-        /* أيقونة الصيانة الاحترافية */
-        .maintenance-gear-box {
+        /* أيقونة التحديث */
+        .icon-box {
+            margin: 30px 0;
             position: relative;
-            display: inline-block;
-            margin-bottom: 30px;
+        }
+        
+        .gear-svg {
+            width: clamp(80px, 15vw, 120px);
+            fill: #d4af37;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
         }
 
-        .big-gear {
-            font-size: 80px;
-            color: #d4af37;
-            display: inline-block;
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
-        }
-
-        /* النصوص */
+        /* نصوص الحالة */
         .status-title {
-            font-size: 2rem;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
             color: #fff2a1;
             font-weight: 800;
             margin-bottom: 20px;
         }
 
         .status-desc {
-            font-size: 1.15rem;
+            font-size: clamp(0.95rem, 2vw, 1.25rem);
             line-height: 1.8;
-            color: #ccc;
+            color: #b0b0b0;
             margin-bottom: 40px;
-            max-width: 500px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .highlight {
-            color: #fff;
-            border-bottom: 2px solid #ad7a27;
-            padding-bottom: 2px;
-        }
+        .highlight { color: #fff; font-weight: 700; border-bottom: 1px solid #ad7a27; }
 
-        /* البار السفلي الصلب */
-        .footer-bar {
-            background: linear-gradient(to right, transparent, #ad7a27, transparent);
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
+        /* شريط التذييل الذهبي الصلب */
+        .footer-strip {
+            background: var(--gold-primary);
             color: #000;
-            background-color: #d4af37; /* لون صلب */
-            border-radius: 4px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 900;
+            font-size: clamp(0.8rem, 2vw, 1.1rem);
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 15px;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* أيقونات صغيرة تدل على العمل */
-        .tool-icon {
-            font-size: 1.2rem;
+        /* تحسينات لشاشات الموبايل الصغيرة */
+        @media (max-width: 480px) {
+            .inner-content { padding: 40px 20px; }
+            .exclusive-tag { letter-spacing: 4px; }
+            .footer-strip { flex-direction: column; gap: 5px; }
         }
 
-        /* لمعان خفيف جداً (ثابت) */
-        .inner-content::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
-            pointer-events: none;
+        /* تحسينات لشاشات التلفزيون الكبيرة جداً */
+        @media (min-width: 1500px) {
+            .main-wrapper { max-width: 1000px; }
+            .inner-content { padding: 80px 60px; }
         }
-
     </style>
 </head>
 <body>
 
-    <div class="vip-frame">
-        <div class="inner-content">
-            
-            <div style="font-size: 40px; margin-bottom: 10px;">👑</div>
-            
-            <h1 class="brand-title">HDMosul Store</h1>
-            <span class="brand-sub">VIP • EXCLUSIVE</span>
+    <div class="main-wrapper">
+        <div class="vip-card">
+            <div class="inner-content">
+                
+                <div class="logo-area">👑</div>
+                
+                <h1 class="brand-name">HDMosul Store</h1>
+                <span class="exclusive-tag">PREMIUM VIP EXCLUSIVE</span>
 
-            <div class="maintenance-gear-box">
-                <div class="big-gear">⚙️</div>
+                <div class="icon-box">
+                    <svg class="gear-svg" viewBox="0 0 24 24">
+                        <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.85,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z"/>
+                    </svg>
+                </div>
+
+                <div class="status-title">صيانة وتحديث الأنظمة 🛠️</div>
+                
+                <p class="status-desc">
+                    نعتذر لعملائنا الكرام، المتجر في وضع الصيانة حالياً لرفع <span class="highlight">أحدث النسخ الحصرية</span> وتطوير السيرفرات.
+                    <br><br>
+                    سنكون متاحين من جديد <span class="highlight">خلال ساعات قليلة</span> بإصدارات أكثر قوة وثباتاً.
+                </p>
+
+                <div class="footer-strip">
+                    <span>💎 VIP PREMIUM EXCLUSIVE</span>
+                    <span style="opacity: 0.5;">|</span>
+                    <span>فريق HDMosul Store</span>
+                </div>
+
+                <div style="margin-top: 30px; font-size: 11px; color: #444; font-weight: bold;">
+                    LAST UPDATE: 2026-04-06 12:05 PM
+                </div>
             </div>
-
-            <div class="status-title">تحديث تقني طارئ 🛠️</div>
-            
-            <p class="status-desc">
-                نعتذر لمشتركينا الكرام، المتجر مغلق مؤقتاً لأعمال <span class="highlight">صيانة وتحسين</span> روابط التطبيقات الجديدة.
-                <br><br>
-                المتجر سيعود للعمل بالكامل <span class="highlight">خلال ساعات قليلة</span>.
-            </p>
-
-            <div class="footer-bar">
-                <span class="tool-icon">🔧</span>
-                <span>VIP PREMIUM EXCLUSIVE • فريق HDMosul Store</span>
-                <span class="tool-icon">🛠️</span>
-            </div>
-
-            <p style="font-size: 0.75rem; color: #555; margin-top: 20px; font-weight: bold;">
-                6 أبريل 2026 • 12:05 مساءً
-            </p>
         </div>
     </div>
 
