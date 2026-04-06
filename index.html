@@ -13,6 +13,7 @@
 --glass-bg: rgba(255, 255, 255, 0.03);
 --card-shadow: 0 15px 35px rgba(0,0,0,0.5);
 --gold-glow: 0 0 15px rgba(212, 175, 55, 0.2);
+--telegram-blue: linear-gradient(135deg, #24A1DE 0%, #0088cc 100%);
 }
 
 body {
@@ -121,6 +122,27 @@ border-color: var(--metallic-gold);
 box-shadow: 0 20px 40px rgba(0,0,0,0.8), var(--gold-glow);
 }
 .card:hover::before { left: 100%; }
+
+/* تنسيق بطاقة التلكرام الجديد */
+.telegram-card {
+background: var(--telegram-blue) !important;
+border-color: rgba(255, 255, 255, 0.4) !important;
+}
+.telegram-card .title { color: #fff !important; font-weight: 800; }
+.telegram-card .desc { color: rgba(255, 255, 255, 0.8) !important; }
+
+.username-badge {
+background: rgba(255, 255, 255, 0.2);
+color: #fff;
+padding: 5px 15px;
+border-radius: 50px;
+display: inline-block;
+margin: 10px auto;
+font-weight: 900;
+font-size: 1.2rem;
+border: 1px solid rgba(255, 255, 255, 0.3);
+backdrop-filter: blur(5px);
+}
 
 .icon { font-size: 3rem; margin-bottom: 15px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); transition: 0.3s; }
 .card:hover .icon { transform: scale(1.2) rotate(5deg); }
@@ -571,16 +593,14 @@ footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(212,
 <div class="title">مكتبة التطبيقات (2)</div>
 <div class="desc">HDMosul • أرشيف شامل يحتوي على كافة التطبيقات الهامة</div>
 </div>
-<div class="card" onclick="openLink(this, 'https://pixeldrain.com/l/RmnSpDMM#item=1')">
-<div class="timer-overlay">3</div><span class="icon">🚀</span>
-<div class="title">مكتبة التطبيقات (3)</div>
-<div class="desc">HDMosul • أكثر من 133 تطبيق مختار بعناية فائقة</div>
+
+<div class="card telegram-card" style="cursor: default;">
+<span class="icon">🔹</span>
+<div class="title">قناة تلكرام المتجر</div>
+<div class="username-badge">@HDMosul</div>
+<div class="desc">HDMosul • تابعنا للحصول على أحدث التحديثات والسيرفرات الحصرية والمباشرة</div>
 </div>
-<div class="card vip-card" onclick="togglePriceModal(true)" style="cursor:pointer">
-<span class="icon">💰</span>
-<div class="title">اشترك الآن في السيرفرات المدفوعة 💸</div>
-<div class="desc">HDMosul • احصل على جودة 4K وثبات مطلق بأسعار رمزية.. اضغط للتفاصيل ✨</div>
-</div>
+
 </div>
 </div>
 </div>
@@ -614,7 +634,7 @@ evt.currentTarget.classList.add('active');
 
 function togglePriceModal(show) { 
 const modal = document.getElementById('priceModal');
-modal.style.display = show ? 'flex' : 'none'; 
+if (modal) modal.style.display = show ? 'flex' : 'none'; 
 }
 
 function openLink(card, url) {
