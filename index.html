@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,76 +14,403 @@
 --card-shadow: 0 15px 35px rgba(0,0,0,0.5);
 --gold-glow: 0 0 15px rgba(212, 175, 55, 0.2);
 --telegram-blue: linear-gradient(135deg, #24A1DE 0%, #0088cc 100%);
-}body { margin: 0; padding: 0; font-family: 'Cairo', sans-serif; background-color: var(--deep-black); background-image: radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 20%); color: #e0e0e0; min-height: 100vh; overflow-x: hidden; }
+}
 
-header { text-align: center; padding: 40px 0 20px; background: linear-gradient(to bottom, rgba(212,175,55,0.05), transparent); position: relative; }
+body {
+margin: 0; padding: 0;
+font-family: 'Cairo', sans-serif;
+background-color: var(--deep-black);
+background-image: 
+radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
+radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 20%);
+color: #e0e0e0;
+min-height: 100vh;
+overflow-x: hidden;
+}
 
-.maintenance-badge{ position:absolute; top:10px; left:10px; background: var(--royal-gold); color:#000; font-weight:900; padding:8px 15px; border-radius:12px; box-shadow: var(--gold-glow); }
+header { 
+text-align: center; 
+padding: 40px 0 20px;
+background: linear-gradient(to bottom, rgba(212,175,55,0.05), transparent);
+}
 
-.logo { width: 85px; filter: drop-shadow(0 0 15px #d4af37); margin-bottom: 15px; transition: transform 0.5s ease; } .logo:hover { transform: rotateY(360deg); }
+.logo { 
+width: 85px; 
+filter: drop-shadow(0 0 15px #d4af37); 
+margin-bottom: 15px;
+transition: transform 0.5s ease;
+}
+.logo:hover { transform: rotateY(360deg); }
 
-.brand { font-size: 3rem; font-weight: 900; background: var(--royal-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; letter-spacing: -1px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+.brand { 
+font-size: 3rem; font-weight: 900; 
+background: var(--royal-gold); 
+-webkit-background-clip: text; 
+-webkit-text-fill-color: transparent; 
+margin: 0; letter-spacing: -1px;
+filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
 
-.sub-brand { font-size: 12px; letter-spacing: 8px; color: var(--metallic-gold); text-transform: uppercase; font-weight: 700; opacity: 0.9; }
+.sub-brand { 
+font-size: 12px; letter-spacing: 8px; color: var(--metallic-gold); 
+text-transform: uppercase; font-weight: 700; opacity: 0.9;
+}
 
-.info-pill { display:none; }
+.info-pill {
+background: var(--glass-bg);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(212, 175, 55, 0.3);
+border-radius: 100px;
+padding: 15px 20px; margin: 25px auto; 
+display: flex; gap: 15px; 
+width: 90%; max-width: 800px; 
+box-shadow: var(--card-shadow);
+align-items: center;
+justify-content: space-evenly;
+flex-wrap: wrap;
+}
 
-.tabs-container { display: flex; justify-content: center; gap: 15px; margin: 30px auto; padding: 0 20px; max-width: 600px; }
+.moving-notice-container {
+    width: 100%;
+    background: rgba(212, 175, 55, 0.05);
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    overflow: hidden;
+    padding: 10px 0;
+    margin: 10px 0 20px;
+    white-space: nowrap;
+}
 
-.tab-btn { flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(212, 175, 55, 0.2); color: #aaa; padding: 15px 20px; border-radius: 15px; cursor: pointer; font-family: 'Cairo'; font-weight: 700; font-size: 1.1rem; transition: all 0.3s; }
+.moving-text {
+    display: inline-block;
+    padding-right: 100%;
+    animation: marquee 20s linear infinite;
+    color: #fff2a1;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
 
-.tab-btn.active { background: var(--royal-gold); color:#000; }
+@keyframes marquee {
+    0% { transform: translate(100%, 0); }
+    100% { transform: translate(-100%, 0); }
+}
 
-.grid { display: grid; gap: 25px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); padding: 20px; }
+#liveClock { color: #fff2a1; font-weight: 900; font-family: 'monospace'; font-size: 1.3rem; }
+#liveDate { color: #e0e0e0; font-weight: 600; font-size: 1.1rem; }
+.dhikr { color: var(--metallic-gold); font-weight: 700; font-size: 1.3rem; letter-spacing: 0.5px; }
 
-.card { background: linear-gradient(145deg, #121212 0%, #080808 100%); border: 1px solid rgba(212, 175, 55, 0.15); border-radius: 24px; padding: 30px 20px; text-align: center; position: relative; box-shadow: var(--card-shadow); }
+.tabs-container { 
+display: flex; justify-content: center; gap: 15px; margin: 30px auto; padding: 0 20px;
+max-width: 600px; 
+}
 
-.icon { font-size: 3rem; margin-bottom: 15px; } .title { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; color:#fff; } .desc { font-size: 0.9rem; color:#aaa; line-height:1.6; }
+.tab-btn {
+flex: 1; 
+background: rgba(255,255,255,0.02); 
+border: 1px solid rgba(212, 175, 55, 0.2);
+color: #aaa; padding: 15px 20px; border-radius: 15px; cursor: pointer;
+font-family: 'Cairo'; font-weight: 700; font-size: 1.1rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-.maintenance-note{ margin-top:12px; color:#fff2a1; font-weight:700; background: rgba(212,175,55,0.08); padding:10px; border-radius:10px; border:1px solid rgba(212,175,55,0.2); }
+.tab-btn:hover { background: rgba(212, 175, 55, 0.1); color: #fff; }
+.tab-btn.active { 
+background: var(--royal-gold); color: #000; 
+border-color: #fff; transform: scale(1.05);
+box-shadow: 0 10px 20px rgba(173, 122, 39, 0.3);
+}
 
-.dual-btn-container { display:flex; gap:10px; margin-top:18px; } .download-sub-btn { flex:1; background: rgba(212,175,55,0.1); border:1px solid var(--metallic-gold); color:#fff; padding:12px; border-radius:12px; font-weight:bold; cursor:pointer; }
+.grid { 
+display: grid; gap: 25px; 
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+padding: 20px;
+}
 
-footer { text-align:center; padding:50px 20px; margin-top:40px; } </style>
+.card {
+background: linear-gradient(145deg, #121212 0%, #080808 100%);
+border: 1px solid rgba(212, 175, 55, 0.15);
+border-radius: 24px;
+padding: 30px 20px; text-align: center; position: relative;
+transition: all 0.4s ease; overflow: hidden;
+display: flex; flex-direction: column; justify-content: center;
+box-shadow: var(--card-shadow);
+}
 
+/* علامة الصيانة الجديدة */
+.maintenance-mode {
+    cursor: not-allowed !important;
+    filter: grayscale(0.5);
+    opacity: 0.8;
+}
+
+.maintenance-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    border-radius: 24px;
+}
+
+.maintenance-tag {
+    background: var(--royal-gold);
+    color: #000;
+    font-weight: 900;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    box-shadow: 0 0 15px rgba(212,175,55,0.4);
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.card::before {
+content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+transition: 0.5s;
+}
+
+.card:hover:not(.maintenance-mode) { 
+transform: translateY(-10px) scale(1.02);
+border-color: var(--metallic-gold);
+box-shadow: 0 20px 40px rgba(0,0,0,0.8), var(--gold-glow);
+}
+
+.username-badge {
+background: #000;
+color: var(--metallic-gold);
+padding: 8px 25px;
+border-radius: 12px;
+display: inline-block;
+margin: 15px auto;
+font-weight: 900;
+font-size: 1.3rem;
+border: 2px solid var(--metallic-gold);
+box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+animation: pulse-gold 2s infinite;
+}
+
+.icon { font-size: 3rem; margin-bottom: 15px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); transition: 0.3s; }
+.card:hover:not(.maintenance-mode) .icon { transform: scale(1.2) rotate(5deg); }
+
+.title { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; color: #fff; letter-spacing: 0.5px; }
+.desc { font-size: 0.9rem; color: #888; line-height: 1.6; }
+.desc b { color: var(--metallic-gold); background: rgba(212,175,55,0.1); padding: 2px 6px; border-radius: 4px; }
+
+.special-library {
+border: 2px solid var(--metallic-gold) !important;
+background: linear-gradient(145deg, #1a1a1a, #050505) !important;
+box-shadow: 0 0 30px rgba(212, 175, 55, 0.25) !important;
+position: relative;
+}
+
+.dual-btn-container { display: flex; gap: 10px; margin-top: 18px; position: relative; z-index: 10; }
+.download-sub-btn {
+flex: 1; background: rgba(212, 175, 55, 0.1); border: 1px solid var(--metallic-gold); 
+color: #fff; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer;
+transition: 0.3s;
+}
+.download-sub-btn:hover { background: var(--royal-gold); color: #000; transform: translateY(-2px); }
+
+.price-modal {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 10000;
+backdrop-filter: blur(15px);
+}
+.price-modal-content {
+background: #111; border: 1px solid var(--metallic-gold); border-radius: 30px;
+padding: 35px; max-width: 450px; width: 90%; text-align: center; box-shadow: 0 0 50px rgba(212,175,55,0.2);
+}
+.close-btn { 
+background: var(--royal-gold); border: none; padding: 15px 40px; border-radius: 15px; 
+font-weight: 900; cursor: pointer; margin-top: 20px; width: 100%;
+}
+
+footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(212, 175, 55, 0.05); margin-top: 40px; }
+</style>
 </head>
-<body><header>
-<div class="maintenance-badge">🛠️ الموقع تحت الصيانة</div>
+<body>
+
+<div class="price-modal" id="priceModal">
+<div class="price-modal-content">
+<h2 style="color: var(--metallic-gold); margin-top: 0; font-size: 1.8rem;">💎 اشتراكات النخبة VIP 💎</h2>
+<button class="close-btn" onclick="togglePriceModal(false)">إغلاق النافذة ✖️</button>
+</div>
+</div>
+
+<header>
 <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" class="logo" alt="logo">
 <h1 class="brand">HDMosul Store</h1>
 <div class="sub-brand">👑 V I P • E X C L U S I V E 👑</div>
-</header><div class="tabs-container">
-<button class="tab-btn active">💎 الكل</button>
-<button class="tab-btn">🏪 المتجر الملكي</button>
-</div><div class="main-container" style="max-width:1300px;margin:0 auto;">
-<div class="grid"><div class="card" onclick="maintenanceMsg()">
-<div class="icon">🇮🇶</div>
-<div class="title">واحد بغداد TV</div>
-<div class="desc">HDMosul</div>
-<div class="maintenance-note">⏳ جاري تحديث روابط التحميل بشكل فخم جداً</div>
-</div><div class="card" style="cursor:default;">
-<div class="icon">🔥</div>
-<div class="title">تطبيقات بمشغل</div>
-<div class="desc">هذه التطبيقات تعمل بشكل طبيعي بدون تغيير</div>
-<div class="dual-btn-container">
-<button class="download-sub-btn" onclick="directOpen('#')">تحميل</button>
-<button class="download-sub-btn" onclick="directOpen('#')">المشغل</button>
+<div class="info-pill">
+<span id="liveClock">00:00:00 PM</span>
+<span style="color: rgba(212,175,55,0.4)">|</span>
+<span id="liveDate">--:--</span>
+<span style="color: rgba(212,175,55,0.4)">|</span>
+<span class="dhikr">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</span>
 </div>
-</div><div class="card" onclick="maintenanceMsg()">
-<div class="icon">🎬</div>
-<div class="title">باقي التطبيقات</div>
-<div class="desc">تم إيقاف التحميل مؤقتاً</div>
-<div class="maintenance-note">🛠️ جاري تحديث روابط التحميل</div>
-</div></div>
-</div><footer>
-HDMosul • MAINTENANCE MODE
-</footer><script>
-function maintenanceMsg(){
-alert('🚧 روابط التحميل قيد التحديث حالياً');
+</header>
+
+<div class="moving-notice-container">
+    <div class="moving-text">
+        ✨ تنبيه: بعض التطبيقات قيد التحديث والتحسين لضمان أفضل تجربة مشاهدة لنخبة مشتركي HDMosul.. شكراً لثقتكم! ✨
+    </div>
+</div>
+
+<div class="tabs-container">
+<button class="tab-btn active" onclick="switchTab(event, 'all-tab')">💎 الكل</button>
+<button class="tab-btn" onclick="switchTab(event, 'store-tab')">🏪 المتجر الملكي</button>
+</div>
+
+<div class="main-container" style="max-width: 1300px; margin: 0 auto;">
+<div id="all-tab" class="tab-content active" style="display: block;">
+<div class="grid">
+
+<div class="card maintenance-mode">
+    <div class="maintenance-overlay">
+        <span style="font-size: 2rem; margin-bottom: 5px;">⚙️</span>
+        <div class="maintenance-tag">قيد التحديث</div>
+    </div>
+    <span class="icon">🇮🇶</span>
+    <div class="title">واحد بغداد TV</div>
+    <div class="desc">HDMosul • جاري تحسين السيرفرات</div>
+</div>
+
+<div class="card maintenance-mode">
+    <div class="maintenance-overlay"><div class="maintenance-tag">قيد التحديث</div></div>
+    <span class="icon">📺</span>
+    <div class="title">الماكر تيفي</div>
+    <div class="desc">HDMosul • تحديث جديد قريباً</div>
+</div>
+
+<div class="card maintenance-mode">
+    <div class="maintenance-overlay"><div class="maintenance-tag">قيد التحديث</div></div>
+    <span class="icon">📱</span>
+    <div class="title">الاحمد TV</div>
+    <div class="desc">HDMosul • سيتم توفير أكواد جديدة</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">🔥</span>
+<div class="title">الأسطورة TV</div>
+<div class="desc">HDMosul • يجب تحميل المشغل والتطبيق معاً</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://www.ostora.tv/downloads/ostora_smart_4.9.apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/nv6mly4qyedb0hg/Url_Video_Player_2.0-Apkpure.apk/file')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">📡</span>
+<div class="title">Be Live TV Plus</div>
+<div class="desc">HDMosul • تجربة مشاهدة فريدة</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/BE%20LIVE%20PLUS_1.15.apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/BL%20PLAYER%20PRO_1.15.apk')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card maintenance-mode">
+    <div class="maintenance-overlay"><div class="maintenance-tag">قيد التحديث</div></div>
+    <span class="icon">⚽</span>
+    <div class="title">Hagma Live</div>
+    <div class="desc">HDMosul • صيانة دورية</div>
+</div>
+
+<div class="card maintenance-mode">
+    <div class="maintenance-overlay"><div class="maintenance-tag">قيد التحديث</div></div>
+    <span class="icon">🎬</span>
+    <div class="title">NETFLY</div>
+    <div class="desc">HDMosul • جاري فحص الروابط</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">👨‍✈️</span>
+<div class="title">كابتن تيفي CAPTAIN</div>
+<div class="desc">HDMosul • قيادة ترفيهية شاملة</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/Captin%20TV_1.2.apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/CaptinTV%20Player_1.2.apk')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card maintenance-mode">
+    <div class="maintenance-overlay"><div class="maintenance-tag">قيد التحديث</div></div>
+    <span class="icon">🏆</span>
+    <div class="title">ياسين تيفي</div>
+    <div class="desc">HDMosul • تحديث الإصدار الذهبي</div>
+</div>
+
+</div>
+</div>
+
+<div id="store-tab" class="tab-content" style="display: none;">
+<div class="grid">
+<div class="card special-library" onclick="directOpen('https://iraqapps.github.io/tvapps/')">
+<span class="icon">📱</span>
+<div class="title">مكتبة التطبيقات (1)</div>
+<div class="desc">HDMosul • المتجر المتكامل</div>
+</div>
+
+<div class="card special-library" onclick="directOpen('https://www.mediafire.com/folder/2bkh3bfov6km4/')">
+<span class="icon">📂</span>
+<div class="title">مكتبة التطبيقات (2)</div>
+<div class="desc">HDMosul • تحديثات يومية</div>
+</div>
+
+<div class="card telegram-card" onclick="directOpen('mailto:pqkbgfcn688@gmail.com')">
+<span class="icon">📧</span>
+<div class="title">الإبلاغ عن المشاكل</div>
+<div class="username-badge" style="font-size: 0.9rem; padding: 8px 15px;">pqkbgfcn688@gmail.com</div>
+</div>
+</div>
+</div>
+</div>
+
+<footer>
+<div style="background: var(--royal-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 1.2rem; letter-spacing: 2px;">
+HDMosul • PREMIUM STORE • 2026
+</div>
+<p style="font-size: 0.8rem; opacity: 0.5; margin-top: 10px;">جميع الحقوق محفوظة - تجربة ترفيهية ملكية 👑</p>
+</footer>
+
+<script>
+function updateClock() {
+const now = new Date();
+const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+const dayName = days[now.getDay()];
+const dateStr = `${dayName} ${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+document.getElementById('liveDate').innerText = dateStr;
+let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+let ampm = h >= 12 ? 'PM' : 'AM'; 
+h = h % 12 || 12;
+document.getElementById('liveClock').innerText = `${h}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s} ${ampm}`;
 }
 
-function directOpen(url){
-if(url && url !== '#') window.open(url,'_blank');
+function switchTab(evt, tabId) {
+document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+document.getElementById(tabId).style.display = 'block';
+evt.currentTarget.classList.add('active');
 }
-</script></body>
+
+function directOpen(url) { 
+const win = window.open(url, '_blank');
+if (win) { win.focus(); } else { window.location.href = url; }
+}
+
+window.onload = function() {
+updateClock();
+setInterval(updateClock, 1000); 
+};
+</script>
+</body>
 </html>
