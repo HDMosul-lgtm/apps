@@ -105,30 +105,28 @@ padding: 30px 20px; text-align: center; position: relative;
 transition: all 0.4s ease; overflow: hidden;
 display: flex; flex-direction: column; justify-content: center;
 box-shadow: var(--card-shadow);
-cursor: wait; /* تغيير شكل المؤشر للتنبيه بالتوقف */
 }
 
 .icon { font-size: 3rem; margin-bottom: 15px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); }
 .title { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; color: #fff; }
-.desc { font-size: 0.9rem; color: #ffcc00; line-height: 1.6; font-weight: bold; }
+.desc { font-size: 0.9rem; color: #888; line-height: 1.6; }
 
 .vip-card {
 background: var(--royal-gold) !important;
 color: #000 !important;
-cursor: pointer !important; /* السماح بالضغط على الدعم الفني فقط */
 }
 .vip-card .title, .vip-card .desc { color: #000 !important; font-weight: 900; }
 
 .timer-overlay {
 position: absolute; top: 0; left: 0; width: 100%; height: 100%;
 background: rgba(0, 0, 0, 0.85); display: none; justify-content: center; align-items: center;
-font-size: 1.5rem; font-weight: 900; color: #fff; z-index: 10; text-align: center; padding: 10px;
+font-size: 1.5rem; font-weight: 900; color: #fff; z-index: 10;
 }
 
 .dual-btn-container { display: flex; gap: 10px; margin-top: 18px; }
 .download-sub-btn {
-flex: 1; background: rgba(255, 0, 0, 0.1); border: 1px solid #ff4444; 
-color: #fff; padding: 12px; border-radius: 12px; font-weight: bold; cursor: not-allowed;
+flex: 1; background: rgba(212, 175, 55, 0.1); border: 1px solid var(--metallic-gold); 
+color: #fff; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer;
 }
 
 footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(212, 175, 55, 0.05); margin-top: 40px; }
@@ -160,215 +158,220 @@ footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(212,
     <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🇮🇶</span>
 <div class="title">واحد بغداد TV</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🎬</span>
 <div class="title">تطبيق NETFLY</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🛰️</span>
 <div class="title">MAXTVPRO</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">📺</span>
 <div class="title">يوتيوب الشاشات</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">📡</span>
 <div class="title">IRAQ TV 1</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🦁</span>
 <div class="title">تطبيق الباشا</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">💎</span>
 <div class="title">بيست تيفي Best TV</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🏟️</span>
 <div class="title">تطبيق كتلان</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🌀</span>
 <div class="title">ريمو تيفي REMO</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🎭</span>
 <div class="title">تطبيق شاهد</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">⚡</span>
 <div class="title">زيرو تيفي ZERO</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🎥</span>
 <div class="title">ايجي فيلم EgyFilm</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🌐</span>
 <div class="title">لوب لايف Loop Live Tv</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">📲</span>
 <div class="title">Casr X Tv</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">💎</span>
 <div class="title">1001 الشرقية</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🎞️</span>
 <div class="title">موفيز هب</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🛠️</span>
 <div class="title">المهندس تيفي</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">✨</span>
 <div class="title">Reezn TV</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🏆</span>
 <div class="title">Almnsa Vip</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🌙</span>
 <div class="title">OzTV</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">⚽</span>
 <div class="title">ريتو تيفي Rito Tv</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🎬</span>
 <div class="title">سينمانا لينباك</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🎥</span>
 <div class="title">برايم تيفي</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">💻</span>
 <div class="title">XP IPTV</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🔴</span>
 <div class="title">دراما لايف</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🎞️</span>
 <div class="title">موفيز بوكس VIP</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">⚡</span>
 <div class="title">سينمانا بلس</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">⚽</span>
 <div class="title">جنرال برو تيفي</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <div class="timer-overlay">تحديث...</div><span class="icon">🏆</span>
 <div class="title">ياسين تيفي</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <span class="icon">🔥</span>
 <div class="title">الأسطورة TV</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 <div class="dual-btn-container">
-<button class="download-sub-btn">توقف مؤقت</button>
-<button class="download-sub-btn">توقف مؤقت</button>
+<button class="download-sub-btn" style="cursor:not-allowed; opacity:0.5;">توقف مؤقت</button>
+<button class="download-sub-btn" style="cursor:not-allowed; opacity:0.5;">توقف مؤقت</button>
 </div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <span class="icon">👨‍✈️</span>
 <div class="title">كابتن تيفي CAPTAIN</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 <div class="dual-btn-container">
-<button class="download-sub-btn">توقف مؤقت</button>
+<button class="download-sub-btn" style="cursor:not-allowed; opacity:0.5;">توقف مؤقت</button>
 </div>
 </div>
 
 <div class="card" onclick="showUpdateMsg(this)">
 <span class="icon">🧸</span>
 <div class="title">كارتون اطفال</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc" style="color:#ffcc00; font-weight:bold;">جاري تحديث رابط تنزيل</div>
 </div>
 </div>
 </div>
 
 <div id="store-tab" class="tab-content" style="display: none;">
 <div class="grid">
-<div class="card special-library" onclick="showUpdateMsg(this)">
-<div class="timer-overlay">تحديث...</div><span class="icon">📱</span>
+    <div class="card special-library" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
+<div class="timer-overlay">3</div><span class="icon">📱</span>
 <div class="title">مكتبة التطبيقات (1)</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc">HDMosul • المتجر المتكامل من Android_AppsX</div>
 </div>
-<div class="card" onclick="showUpdateMsg(this)">
-<div class="timer-overlay">تحديث...</div><span class="icon">📂</span>
+<div class="card" onclick="openLink(this, 'https://401740.hala-web.com/')">
+<div class="timer-overlay">3</div><span class="icon">📂</span>
 <div class="title">مكتبة التطبيقات (2)</div>
-<div class="desc">جاري تحديث رابط تنزيل</div>
+<div class="desc">HDMosul • أرشيف شامل يحتوي على كافة التطبيقات الهامة</div>
+</div>
+<div class="card" onclick="openLink(this, 'https://pixeldrain.com/l/RmnSpDMM#item=1')">
+<div class="timer-overlay">3</div><span class="icon">🚀</span>
+<div class="title">مكتبة التطبيقات (3)</div>
+<div class="desc">HDMosul • أكثر من 133 تطبيق مختار بعناية فائقة</div>
 </div>
 
 <div class="card vip-card" onclick="location.href='mailto:pqkbgfcn688@gmail.com'" style="cursor:pointer">
@@ -408,15 +411,30 @@ document.getElementById(tabId).style.display = 'block';
 evt.currentTarget.classList.add('active');
 }
 
-// وظيفة جديدة لعرض رسالة التحديث ومنع الدخول
+// وظيفة الفتح للمكتبات التي تعمل
+function openLink(card, url) {
+const overlay = card.querySelector('.timer-overlay');
+if(!overlay) { directOpen(url); return; }
+let count = 3; overlay.style.display = 'flex';
+overlay.innerText = count;
+const interval = setInterval(() => {
+count--; overlay.innerText = count;
+if(count <= 0) { clearInterval(interval); directOpen(url); overlay.style.display = 'none'; }
+}, 1000);
+}
+
+function directOpen(url) { 
+const win = window.open(url, '_blank');
+if (win) { win.focus(); } else { window.location.href = url; }
+}
+
+// رسالة التحديث للتطبيقات المتوقفة
 function showUpdateMsg(card) {
 const overlay = card.querySelector('.timer-overlay');
 if(overlay) {
     overlay.style.display = 'flex';
     overlay.innerText = "جاري تحديث الروابط...";
     setTimeout(() => { overlay.style.display = 'none'; }, 2000);
-} else {
-    alert("عذراً، الروابط متوقفة حالياً للصيانة وتحديث الروابط.");
 }
 }
 
