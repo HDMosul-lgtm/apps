@@ -1,309 +1,720 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HDMosul Store - The Royal Elite</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --royal-gold: linear-gradient(135deg, #c5a059 0%, #fff2a1 50%, #ad7a27 100%);
-            --gold-solid: #d4af37;
-            --deep-black: #080808;
-            --premium-card: rgba(255, 255, 255, 0.03);
-            --gold-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HDMosul Store - VIP Global LUXURY</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+--royal-gold: linear-gradient(135deg, #c5a059 0%, #fff2a1 50%, #ad7a27 100%);
+--metallic-gold: #d4af37;
+--deep-black: #050505;
+--glass-bg: rgba(255, 255, 255, 0.03);
+--card-shadow: 0 15px 35px rgba(0,0,0,0.5);
+--gold-glow: 0 0 15px rgba(212, 175, 55, 0.2);
+--telegram-blue: linear-gradient(135deg, #24A1DE 0%, #0088cc 100%);
+}
 
-        body {
-            margin: 0; padding: 0;
-            font-family: 'Cairo', sans-serif;
-            background-color: var(--deep-black);
-            background-image: 
-                radial-gradient(circle at 50% -20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
-                linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
-            color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+body {
+margin: 0; padding: 0;
+font-family: 'Cairo', sans-serif;
+background-color: var(--deep-black);
+background-image: 
+radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
+radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 20%);
+color: #e0e0e0;
+min-height: 100vh;
+overflow-x: hidden;
+}
 
-        /* الهيدر الملكي */
-        header { text-align: center; padding: 50px 0 30px; position: relative; }
-        .logo { 
-            width: 100px; 
-            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5)); 
-            margin-bottom: 20px;
-            transition: 0.5s;
-        }
-        .logo:hover { transform: rotateY(180deg); }
+header { 
+text-align: center; 
+padding: 40px 0 20px;
+background: linear-gradient(to bottom, rgba(212,175,55,0.05), transparent);
+}
 
-        .brand { 
-            font-size: 3.5rem; 
-            font-weight: 900; 
-            background: var(--royal-gold); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            margin: 0;
-            letter-spacing: -1px;
-        }
-        .sub-brand { 
-            font-size: 14px; 
-            letter-spacing: 10px; 
-            color: var(--gold-solid); 
-            text-transform: uppercase; 
-            font-weight: 700; 
-            margin-top: 5px;
-            opacity: 0.8;
-        }
+.logo { 
+width: 85px; 
+filter: drop-shadow(0 0 15px #d4af37); 
+margin-bottom: 15px;
+transition: transform 0.5s ease;
+}
+.logo:hover { transform: rotateY(360deg); }
 
-        /* شريط المعلومات */
-        .info-pill {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 18px 30px; 
-            margin: 30px auto; 
-            display: flex; gap: 25px; 
-            width: fit-content;
-            box-shadow: var(--gold-shadow);
-        }
-        #liveClock { color: #fff2a1; font-weight: 900; font-size: 1.4rem; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-        #liveDate { color: #ccc; font-weight: 600; }
-        .dhikr { color: var(--gold-solid); font-weight: 700; border-right: 2px solid rgba(212, 175, 55, 0.3); padding-right: 20px; }
+.brand { 
+font-size: 3rem; font-weight: 900; 
+background: var(--royal-gold); 
+-webkit-background-clip: text; 
+-webkit-text-fill-color: transparent; 
+margin: 0; letter-spacing: -1px;
+filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
 
-        /* الأقسام */
-        .section-title {
-            text-align: center;
-            margin: 50px 0 30px;
-            font-size: 1.8rem;
-            color: #fff;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--royal-gold);
-            margin: 10px auto;
-        }
+.sub-brand { 
+font-size: 12px; letter-spacing: 8px; color: var(--metallic-gold); 
+text-transform: uppercase; font-weight: 700; opacity: 0.9;
+}
 
-        /* شبكة الكروت */
-        .grid { 
-            display: grid; 
-            gap: 30px; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.info-pill {
+background: var(--glass-bg);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(212, 175, 55, 0.3);
+border-radius: 100px;
+padding: 15px 20px; margin: 25px auto; 
+display: flex; gap: 15px; 
+width: 90%; max-width: 800px; 
+box-shadow: var(--card-shadow);
+align-items: center;
+justify-content: space-evenly;
+flex-wrap: wrap;
+}
 
-        .card {
-            background: linear-gradient(145deg, rgba(30, 30, 30, 0.4) 0%, rgba(10, 10, 10, 0.8) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 30px; 
-            padding: 40px 30px; 
-            text-align: center; 
-            position: relative;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            overflow: hidden;
-            backdrop-filter: blur(5px);
-        }
+/* التنسيق الجديد للملاحظة المتحركة */
+.moving-notice-container {
+    width: 100%;
+    background: rgba(212, 175, 55, 0.05);
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+    overflow: hidden;
+    padding: 10px 0;
+    margin: 10px 0 20px;
+    white-space: nowrap;
+}
 
-        .card::before {
-            content: '';
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--royal-gold);
-            opacity: 0; transition: 0.4s; z-index: 0;
-        }
+.moving-text {
+    display: inline-block;
+    padding-right: 100%;
+    animation: marquee 20s linear infinite;
+    color: #fff2a1;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
 
-        .card:hover { 
-            transform: translateY(-15px); 
-            border-color: var(--gold-solid);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8), var(--gold-shadow);
-        }
+@keyframes marquee {
+    0% { transform: translate(100%, 0); }
+    100% { transform: translate(-100%, 0); }
+}
 
-        .card:hover .icon { transform: scale(1.2) rotate(5deg); }
-        
-        .card-content { position: relative; z-index: 1; }
+#liveClock { color: #fff2a1; font-weight: 900; font-family: 'monospace'; font-size: 1.3rem; }
+#liveDate { color: #e0e0e0; font-weight: 600; font-size: 1.1rem; }
+.dhikr { color: var(--metallic-gold); font-weight: 700; font-size: 1.3rem; letter-spacing: 0.5px; }
 
-        .icon { 
-            font-size: 4rem; 
-            margin-bottom: 20px; 
-            display: block; 
-            transition: 0.4s;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-        }
+.tabs-container { 
+display: flex; justify-content: center; gap: 15px; margin: 30px auto; padding: 0 20px;
+max-width: 600px; 
+}
 
-        .title { font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: 10px; }
-        .desc { font-size: 1rem; color: #aaa; line-height: 1.6; }
+.tab-btn {
+flex: 1; 
+background: rgba(255,255,255,0.02); 
+border: 1px solid rgba(212, 175, 55, 0.2);
+color: #aaa; padding: 15px 20px; border-radius: 15px; cursor: pointer;
+font-family: 'Cairo'; font-weight: 700; font-size: 1.1rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        /* عداد التحميل الملكي */
-        .timer-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95); 
-            display: none; justify-content: center; align-items: center;
-            flex-direction: column;
-            z-index: 100;
-        }
-        .timer-num {
-            font-size: 6rem; font-weight: 900; 
-            background: var(--royal-gold);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: pulse 1s infinite;
-        }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+.tab-btn:hover { background: rgba(212, 175, 55, 0.1); color: #fff; }
+.tab-btn.active { 
+background: var(--royal-gold); color: #000; 
+border-color: #fff; transform: scale(1.05);
+box-shadow: 0 10px 20px rgba(173, 122, 39, 0.3);
+}
 
-        /* قسم الصيانة */
-        .maintenance-grid { opacity: 0.6; }
-        .maint-badge {
-            background: #222;
-            color: var(--gold-solid);
-            padding: 5px 15px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 900;
-            border: 1px solid var(--gold-solid);
-            margin-bottom: 15px;
-            display: inline-block;
-        }
+.grid { 
+display: grid; gap: 25px; 
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+padding: 20px;
+}
 
-        footer { text-align: center; padding: 60px 20px; margin-top: 50px; border-top: 1px solid rgba(212, 175, 55, 0.1); }
+.card {
+background: linear-gradient(145deg, #121212 0%, #080808 100%);
+border: 1px solid rgba(212, 175, 55, 0.15);
+border-radius: 24px;
+padding: 30px 20px; text-align: center; position: relative;
+transition: all 0.4s ease; overflow: hidden;
+display: flex; flex-direction: column; justify-content: center;
+box-shadow: var(--card-shadow);
+}
 
-        /* ماركي متحرك */
-        .news-bar {
-            background: rgba(212, 175, 55, 0.1);
-            padding: 12px 0;
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            overflow: hidden;
-        }
-        .news-text {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 25s linear infinite;
-            color: #fff2a1;
-            font-weight: 700;
-        }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+.card::before {
+content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+transition: 0.5s;
+}
 
-    </style>
+.card:hover { 
+transform: translateY(-10px) scale(1.02);
+border-color: var(--metallic-gold);
+box-shadow: 0 20px 40px rgba(0,0,0,0.8), var(--gold-glow);
+}
+.card:hover::before { left: 100%; }
+
+.telegram-card {
+background: #0d0d0d !important;
+border: 2px solid rgba(212, 175, 55, 0.3) !important;
+cursor: pointer;
+}
+
+.username-badge {
+background: #000;
+color: var(--metallic-gold);
+padding: 8px 25px;
+border-radius: 12px;
+display: inline-block;
+margin: 15px auto;
+font-weight: 900;
+font-size: 1.3rem;
+border: 2px solid var(--metallic-gold);
+box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+text-shadow: 0 0 5px rgba(0,0,0,0.5);
+animation: pulse-gold 2s infinite;
+letter-spacing: 1px;
+transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.username-badge.active-zoom {
+  transform: scale(1.5) !important;
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.8) !important;
+  z-index: 100;
+}
+
+@keyframes pulse-gold {
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+  50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); }
+  100% { transform: scale(1); box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); }
+}
+
+.icon { font-size: 3rem; margin-bottom: 15px; filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5)); transition: 0.3s; }
+.card:hover .icon { transform: scale(1.2) rotate(5deg); }
+
+.title { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; color: #fff; letter-spacing: 0.5px; }
+.desc { font-size: 0.9rem; color: #888; line-height: 1.6; }
+.desc b { color: var(--metallic-gold); background: rgba(212,175,55,0.1); padding: 2px 6px; border-radius: 4px; }
+
+.special-library {
+border: 2px solid var(--metallic-gold) !important;
+background: linear-gradient(145deg, #1a1a1a, #050505) !important;
+box-shadow: 0 0 30px rgba(212, 175, 55, 0.25) !important;
+position: relative;
+}
+.special-library::after {
+  content: 'PREMIUM';
+  position: absolute; top: 10px; right: 10px;
+  background: var(--royal-gold); color: #000;
+  font-size: 10px; font-weight: 900; padding: 2px 8px; border-radius: 4px;
+}
+
+.timer-overlay {
+position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0, 0, 0, 0.95); display: none; justify-content: center; align-items: center;
+font-size: 4rem; font-weight: 900; color: var(--metallic-gold); z-index: 10;
+}
+
+.dual-btn-container { display: flex; gap: 10px; margin-top: 18px; }
+.download-sub-btn {
+flex: 1; background: rgba(212, 175, 55, 0.1); border: 1px solid var(--metallic-gold); 
+color: #fff; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer;
+transition: 0.3s;
+}
+.download-sub-btn:hover { background: var(--royal-gold); color: #000; transform: translateY(-2px); }
+
+.price-modal {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 10000;
+backdrop-filter: blur(15px);
+}
+.price-modal-content {
+background: #111; border: 1px solid var(--metallic-gold); border-radius: 30px;
+padding: 35px; max-width: 450px; width: 90%; text-align: center; box-shadow: 0 0 50px rgba(212,175,55,0.2);
+}
+.price-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+.price-table td { padding: 15px; background: rgba(255,255,255,0.03); border-radius: 10px; }
+.server-header { background: var(--royal-gold) !important; color: #000 !important; font-weight: 900; }
+.close-btn { 
+background: var(--royal-gold); border: none; padding: 15px 40px; border-radius: 15px; 
+font-weight: 900; cursor: pointer; margin-top: 20px; width: 100%;
+}
+
+footer { text-align: center; padding: 50px 20px; border-top: 1px solid rgba(212, 175, 55, 0.05); margin-top: 40px; }
+</style>
 </head>
 <body>
 
+<div class="price-modal" id="priceModal">
+<div class="price-modal-content">
+<h2 style="color: var(--metallic-gold); margin-top: 0; font-size: 1.8rem;">💎 اشتراكات النخبة VIP 💎</h2>
+<div style="max-height: 50vh; overflow-y: auto;">
+<table class="price-table">
+<tr class="server-header"><td colspan="2">سيرفر ماكس برو MAX 🚀</td></tr>
+<tr><td>1 شهر</td><td style="color:var(--metallic-gold)">5,000 د.ع</td></tr>
+<tr><td>سنة كاملة</td><td style="color:var(--metallic-gold)">25,000 د.ع</td></tr>
+<tr class="server-header"><td colspan="2">سيرفر نوفا NOVA ✨</td></tr>
+<tr><td>سنة كاملة</td><td style="color:var(--metallic-gold)">20,000 د.ع</td></tr>
+</table>
+</div>
+<p style="color: #aaa; margin: 20px 0;">تواصل مع الإدارة: <b style="color:var(--metallic-gold)">@ooa85</b></p>
+<button class="close-btn" onclick="togglePriceModal(false)">إغلاق النافذة ✖️</button>
+</div>
+</div>
+
 <header>
-    <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" class="logo">
-    <h1 class="brand">HDMosul Store</h1>
-    <div class="sub-brand">👑 The Royal Global Luxury 👑</div>
-    
-    <div class="info-pill">
-        <span class="dhikr">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</span>
-        <span id="liveClock">00:00:00 PM</span>
-        <span id="liveDate">--:--</span>
-    </div>
+<img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" class="logo" alt="logo">
+<h1 class="brand">HDMosul Store</h1>
+<div class="sub-brand">👑 V I P • E X C L U S I V E 👑</div>
+<div class="info-pill">
+<span id="liveClock">00:00:00 PM</span>
+<span style="color: rgba(212,175,55,0.4)">|</span>
+<span id="liveDate">--:--</span>
+<span style="color: rgba(212,175,55,0.4)">|</span>
+<span class="dhikr">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</span>
+</div>
 </header>
 
-<div class="news-bar">
-    <div class="news-text">
-        ✨ مرحباً بكم في النسخة الملكية المطورة.. جميع المتاجر تعمل الآن بكفاءة عالية ✨ صيانة دورية لقسم التطبيقات الخارجية ✨ ترقبوا المفاجآت القادمة ✨
+<div class="moving-notice-container">
+    <div class="moving-text">
+        ✨ قريباً.. سيتم رفع مكتبة تطبيقات متكاملة وحصرية لنخبة المشتركين في متجر HDMosul.. انتظرونا! ✨
     </div>
 </div>
 
-<div class="section-title">المتاجر الملكية</div>
+<div class="tabs-container">
+<button class="tab-btn active" onclick="switchTab(event, 'all-tab')">💎 الكل</button>
+<button class="tab-btn" onclick="switchTab(event, 'store-tab')">🏪 المتجر الملكي</button>
+</div>
+
+<div class="main-container" style="max-width: 1300px; margin: 0 auto;">
+<div id="all-tab" class="tab-content active" style="display: block;">
 <div class="grid">
-    <div class="card" onclick="startTimer('https://iraqapps.github.io/tvapps/')">
-        <div class="timer-overlay" id="timer1">
-            <div class="timer-num">3</div>
-            <div style="color: var(--gold-solid); font-weight: 700;">جاري فتح المتجر الملكي...</div>
-        </div>
-        <div class="card-content">
-            <span class="icon">💎</span>
-            <div class="title">مكتبة التطبيقات VIP</div>
-            <div class="desc">المتجر الأول والحصري لأجهزة الأندرويد والشاشات الذكية بنسخ معدلة وفخمة.</div>
-        </div>
-    </div>
-
-    <div class="card" onclick="startTimer('https://www.mediafire.com/folder/2bkh3bfov6km4/')">
-        <div class="timer-overlay" id="timer2">
-            <div class="timer-num">3</div>
-            <div style="color: var(--gold-solid); font-weight: 700;">جاري الاتصال بالسيرفر...</div>
-        </div>
-        <div class="card-content">
-            <span class="icon">🏆</span>
-            <div class="title">سيرفر النخبة العالمي</div>
-            <div class="desc">مركز التحديثات المباشرة والملفات النادرة لجميع الأجهزة والاشتراكات.</div>
-        </div>
-    </div>
+<div class="card" onclick="openLink(this, 'https://github.com/used4/FuratTV/releases/download/%D9%88%D8%A7%D8%AD%D8%AF%D8%A8%D8%BA%D8%AF%D8%A7%D8%AF/1Baghdad.apk')">
+<div class="timer-overlay">3</div><span class="icon">🇮🇶</span>
+<div class="title">واحد بغداد TV</div>
+<div class="desc">HDMosul • تفعيل تلقائي (احذف قوائم التشغيل وأعد الفتح) أو استخدم الأكواد: <b>B1, B2, B3, B4, B5, B6</b></div>
 </div>
 
-<div class="section-title" style="opacity: 0.5;">قسم التطبيقات والخدمات</div>
-<div class="grid maintenance-grid">
-    <div class="card" style="cursor: default;">
-        <div class="card-content">
-            <div class="maint-badge">⚙️ تحت الصيانة</div>
-            <span class="icon">📡</span>
-            <div class="title">باقة القنوات المباشرة</div>
-            <div class="desc">نعمل على تحديث السيرفرات لضمان أعلى جودة بث بدون تقطيع.</div>
-        </div>
-    </div>
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/o322dtnlsavz1fe/base(2).apk/file')">
+<div class="timer-overlay">3</div><span class="icon">📺</span>
+<div class="title">الماكر تيفي</div>
+<div class="desc">HDMosul • إصدار جديد للمشاهدة القنوات والافلام والمسلسلات</div>
+</div>
 
-    <div class="card" style="cursor: default;">
-        <div class="card-content">
-            <div class="maint-badge">⚙️ قيد التحديث</div>
-            <span class="icon">🎬</span>
-            <div class="title">مكتبة الأفلام والسينما</div>
-            <div class="desc">سيتم إضافة أحدث الإصدارات العالمية قريباً جداً في هذا القسم.</div>
-        </div>
-    </div>
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/Elahmad_3.0.apk')">
+<div class="timer-overlay">3</div><span class="icon">📱</span>
+<div class="title">الاحمد TV</div>
+<div class="desc">HDMosul • كود التفعيل الخاص بالتطبيق: <b>123123</b></div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/Hagma%20Live_1.0.apk')">
+<div class="timer-overlay">3</div><span class="icon">⚽</span>
+<div class="title">Hagma Live</div>
+<div class="desc">HDMosul • تطبيق مخصص لمتابعة أقوى المباريات المباشرة</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/f3dfpk1bssfjdg3/NETFLY_v3.0.0HDMosul.apk/file')">
+<div class="timer-overlay">3</div><span class="icon">🎬</span>
+<div class="title">تطبيق NETFLY</div>
+<div class="desc">HDMosul • ✅ نسخة مفتوحة كل مميزات VIP <br>⚠️ ملاحظة: عند التثبيت اضغط على <b>More details</b> ثم <b>Install anyway</b></div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/NETFLY_3.0.0_TV.apk')">
+<div class="timer-overlay">3</div><span class="icon">🖥️</span>
+<div class="title">Netfly TV</div>
+<div class="desc">HDMosul • نسخة شاشات حديثة آخر اصدار معدل</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/s0upy40qhf3e8qw/MAXTVPRO-7.0-v2000-vpn.apk/file')">
+<div class="timer-overlay">3</div><span class="icon">🛰️</span>
+<div class="title">MAXTVPRO</div>
+<div class="desc">HDMosul • مفعل لمدة سنة • مخصص للكيبل الضوئي<br><b>U:</b> 18885076681336<br><b>P:</b> 14648237268240</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://go.aftvnews.com/28544')">
+<div class="timer-overlay">3</div><span class="icon">📺</span>
+<div class="title">يوتيوب الشاشات</div>
+<div class="desc">HDMosul • تحديث أونلاين • تجربة بدون إعلانات نهائياً 🚫</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/yesmovies%20v2.4.4%20vip.apk')">
+<div class="timer-overlay">3</div><span class="icon">🎥</span>
+<div class="title">YesMovies</div>
+<div class="desc">HDMosul • منصة ترفيهية متكاملة لمشاهدة الأفلام والمسلسلات</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/88qtupol3xihhk7/1+IRAQ+TV+_v1.apk/file')">
+<div class="timer-overlay">3</div><span class="icon">📡</span>
+<div class="title">IRAQ TV 1</div>
+<div class="desc">HDMosul • إصدار حصري • مدعوم على جميع الشبكات</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/ALBASHA TV v5.0.3 mod.apk')">
+<div class="timer-overlay">3</div><span class="icon">🦁</span>
+<div class="title">تطبيق الباشا</div>
+<div class="desc">HDMosul • تجربة مشاهدة ملكية لأقوى القنوات العربية والعالمية</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/best%20TV%20v9.8%20pro.apk')">
+<div class="timer-overlay">3</div><span class="icon">💎</span>
+<div class="title">بيست تيفي Best TV</div>
+<div class="desc">HDMosul • الأفضل دائماً لمتابعة المحتوى الترفيهي بجودة فائقة</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/Catalan%20tv%20pro%20v2.0.0.apk')">
+<div class="timer-overlay">3</div><span class="icon">🏟️</span>
+<div class="title">تطبيق كتلان</div>
+<div class="desc">HDMosul • مخصص لعشاق الإثارة والرياضة والدراما الحصرية</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/remo%20TV_4.8.apk')">
+<div class="timer-overlay">3</div><span class="icon">🌀</span>
+<div class="title">ريمو تيفي REMO</div>
+<div class="desc">HDMosul • كود تفعيل: <b>5050</b> • سرعة في الأداء وتنوع ضخم في المكتبة</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/MBC%20Shahid_7.117.0.apk')">
+<div class="timer-overlay">3</div><span class="icon">🎭</span>
+<div class="title">تطبيق شاهد</div>
+<div class="desc">HDMosul • النسخة الخاصة بالشاشات لمتابعة أحدث المسلسلات</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/ZeroTv%20v1.1.11%20vip.apk')">
+<div class="timer-overlay">3</div><span class="icon">⚡</span>
+<div class="title">زيرو تيفي ZERO</div>
+<div class="desc">HDMosul • البساطة والقوة في تطبيق واحد للبث المباشر</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://go.aftvnews.com/3837203')">
+<div class="timer-overlay">3</div><span class="icon">🎥</span>
+<div class="title">ايجي فيلم EgyFilm</div>
+<div class="desc">HDMosul • اشتراك pro مفتوح ⚙️ إصدار v1.2.0</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/i12un9q59lxjhhc/Loop-+Live.apk/file')">
+<div class="timer-overlay">3</div><span class="icon">🌐</span>
+<div class="title">لوب لايف Loop Live Tv</div>
+<div class="desc">HDMosul • اشتراك pro مفتوح ✔️ بث مباشر بدون اعلانات</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://go.aftvnews.com/7784773')">
+<div class="timer-overlay">3</div><span class="icon">📲</span>
+<div class="title">Casr X Tv</div>
+<div class="desc">HDMosul • كود التفعيل: <b>2222</b> • تحديثات تلقائياً</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/344ek8vaw9h7s8j/1001_tv_v2.32.5_HDMosul.apk/file')">
+<div class="timer-overlay">3</div><span class="icon">💎</span>
+<div class="title">1001 الشرقية</div>
+<div class="desc">HDMosul • إشتراك Pro مدفوع مفتوح • منزوع الإعلانات</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/MOVIES_HUB_v2.1.6b.apk')">
+<div class="timer-overlay">3</div><span class="icon">🎞️</span>
+<div class="title">موفيز هب</div>
+<div class="desc">HDMosul • بديل نتفليكس الأول للأفلام والمسلسلات</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/AlMohandis_TV_v2.0.4.apk')">
+<div class="timer-overlay">3</div><span class="icon">🛠️</span>
+<div class="title">المهندس تيفي</div>
+<div class="desc">HDMosul • لمشاهدة القنوات المشفرة نسخة pro المميزة</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/Reezn%20v1.9.0.apk')">
+<div class="timer-overlay">3</div><span class="icon">✨</span>
+<div class="title">Reezn TV</div>
+<div class="desc">HDMosul • بث مباشر ومكتبة سينمائية ضخمة</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/Almnsa%20tv%20v9.8.apk')">
+<div class="timer-overlay">3</div><span class="icon">🏆</span>
+<div class="title">Almnsa Vip</div>
+<div class="desc">HDMosul • المنصة vip لعشاق القنوات والمباريات الحصرية</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/OzTV_3.4.6.apk')">
+<div class="timer-overlay">3</div><span class="icon">🌙</span>
+<div class="title">OzTV</div>
+<div class="desc">HDMosul • لمشاهدة القنوات ومسلسلات رمضان بجودة عالية</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/ritotv%20v3.5%20mobilltna.apk')">
+<div class="timer-overlay">3</div><span class="icon">⚽</span>
+<div class="title">ريتو تيفي Rito Tv</div>
+<div class="desc">HDMosul • لمشاهدة المباريات • كود التفعيل: 1070</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://workupload.com/file/QN6shgxPdgr')">
+<div class="timer-overlay">3</div><span class="icon">🎬</span>
+<div class="title">سينمانا لينباك</div>
+<div class="desc">HDMosul • النسخة الفخمة والمخصصة لشاشات Smart TV</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/wi2ngm2mohy0ust/PrimeTV+v1.6.0.apk/file')">
+<div class="timer-overlay">3</div><span class="icon">🎥</span>
+<div class="title">برايم تيفي</div>
+<div class="desc">HDMosul • كود التفعيل الذهبي: <b>2026</b> 🔑</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://go.aftvnews.com/5753320')">
+<div class="timer-overlay">3</div><span class="icon">💻</span>
+<div class="title">XP IPTV</div>
+<div class="desc">HDMosul • التطبيق الأكثر ثباتاً لعام 2026</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/3migqb3k0j2v7ft/dramalive.apk/file')">
+<div class="timer-overlay">3</div><span class="icon">🔴</span>
+<div class="title">دراما لايف</div>
+<div class="desc">HDMosul • كود التفعيل الشامل: <b>232425</b></div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/9cus8veh6dsc0rv/MovieBox+(VIP)+v3.0.13.apk/file')">
+<div class="timer-overlay">3</div><span class="icon">🎞️</span>
+<div class="title">موفيز بوكس VIP</div>
+<div class="desc">HDMosul • مكتبة أفلام خرافية تتفوق على المنصات العالمية 🌟</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/eawaddcjvn8xt67/HDMosulسينمانالشاشات.apk/file')">
+<div class="timer-overlay">3</div><span class="icon">⚡</span>
+<div class="title">سينمانا بلس</div>
+<div class="desc">HDMosul • النسخة البرق "الأخف والأسرع" للأجهزة الضعيفة</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/fxdefxvmemjkicy/جنرال+برو+موصل+اجدي.apk/file')">
+<div class="timer-overlay">3</div><span class="icon">⚽</span>
+<div class="title">جنرال برو تيفي</div>
+<div class="desc">HDMosul • كود التفعيل الحصري للنخبة: <b>000</b></div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/oaqww9cm02ub5i0/Yacine_TV_Gold_v3.5_By_play8store.apk/file')">
+<div class="timer-overlay">3</div><span class="icon">🏆</span>
+<div class="title">ياسين تيفي</div>
+<div class="desc">HDMosul • الإصدار الذهبي v3.5 الأحدث على الإطلاق</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">🔥</span>
+<div class="title">الأسطورة TV</div>
+<div class="desc">HDMosul • يجب تحميل المشغل والتطبيق معاً لعمل الخدمة</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://www.ostora.tv/downloads/ostora_smart_4.9.apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/nv6mly4qyedb0hg/Url_Video_Player_2.0-Apkpure.apk/file')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">📡</span>
+<div class="title">Be Live TV Plus</div>
+<div class="desc">HDMosul • تجربة مشاهدة فريدة (يجب تحميل المشغل والتطبيق)</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/BE%20LIVE%20PLUS_1.15.apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/BL%20PLAYER%20PRO_1.15.apk')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">✨</span>
+<div class="title">نوفا تيفي NovaTV</div>
+<div class="desc">HDMosul • النسخة البريميوم Premium (يجب تحميل المشغل)</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/NovaTV%20v2.4.0%20(Premium).apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/VLC%20for%20Android_3.7.0%20Beta%201.apk')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">👨‍✈️</span>
+<div class="title">كابتن تيفي CAPTAIN</div>
+<div class="desc">HDMosul • قيادة ترفيهية شاملة للمحتوى العالمي</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/Captin%20TV_1.2.apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/CaptinTV%20Player_1.2.apk')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">🏅</span>
+<div class="title">سبورت إكس SPORT X</div>
+<div class="desc">HDMosul • القمة في نقل الأحداث الرياضية المباشرة</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/SportzX%20v2.0%20(Premium).apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/SportzX%20v2.0%20(Premium).apk')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">🎯</span>
+<div class="title">بيست جول BEST GOAL</div>
+<div class="desc">HDMosul • هدفك الأول لمتابعة الدوريات العالمية</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/Bestgoal%20Tv_2.0.3.apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/Besto%20player_1.3.3.apk')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">⏳</span>
+<div class="title">تايم ماتش TIME MATCH</div>
+<div class="desc">HDMosul • كود تفعيل: <b>1111</b> • دقة وروعة البث في تطبيق واحد</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/Time%20Match_9.9.apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/Houda%20Player_5.6.apk')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">🦸‍♂️</span>
+<div class="title">تطبيق البطل</div>
+<div class="desc">HDMosul • المحتوى الجبار للبث المباشر والمكتبة المحدثة</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/Elbatal%20TV%20v2.9.4%20Vip.apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/ELPlayer_1.4.apk')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">🌈</span>
+<div class="title">تطبيق هواي HAWAY</div>
+<div class="desc">HDMosul • عالم من الترفيه يجمع كل ما تتمناه</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/Hawaay%20tv%20v1.2.apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/MV%20PLAYER%20v2.9.apk')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">🌟</span>
+<div class="title">AYA TV Pro</div>
+<div class="desc">HDMosul • مشاهدة مميزة لعشاق القنوات والبث المباشر</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/AYA%20TV_3.15.apk')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://s2.mobiltna.com/dl/Apps/CaptinTV%20Player_1.2.apk')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">🎬</span>
+<div class="title">أوسكار تيفي</div>
+<div class="desc">HDMosul • عالم الأنمي والكرتون والأفلام والمسلسلات</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://go.aftvnews.com/5473489')">تحميل التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://go.aftvnews.com/2538647')">تحميل المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">🌐</span>
+<div class="title">شبكتي برو للشاشات</div>
+<div class="desc">HDMosul • يدعم ايرثلنك والشبكات الأخرى • اختر الإصدار</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://go.aftvnews.com/1453372')">شاشات حديثة 🚀</button>
+<button class="download-sub-btn" onclick="directOpen('https://go.aftvnews.com/8813570')">شاشات قديمة 📺</button>
+</div>
+</div>
+
+<div class="card" style="cursor: default;">
+<span class="icon">⚽</span>
+<div class="title">شوت تيفي</div>
+<div class="desc">HDMosul • بث مباشر للمباريات بجودات متعددة</div>
+<div class="dual-btn-container">
+<button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/croermdkv8hc0rv/YallaShoot.apk/file')">التطبيق 📱</button>
+<button class="download-sub-btn" onclick="directOpen('https://www.mediafire.com/file/j0hfd4lt6948jw9/xpola-player.apk/file')">المشغل ⚙️</button>
+</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://cartoonzaman.tv/android/CartoonZaman-v-1.0.0.apk')">
+<div class="timer-overlay">3</div><span class="icon">🧸</span>
+<div class="title">كارتون اطفال</div>
+<div class="desc">HDMosul • عالم الترفيه للأطفال (قديم وجديد) <b style="color:#ff4444">حالة الخادم:</b> صيانة مؤقتة 🛠️</div>
+</div>
+</div>
+</div>
+
+<div id="store-tab" class="tab-content" style="display: none;">
+<div class="grid">
+<div class="card special-library" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
+<div class="timer-overlay">3</div><span class="icon">📱</span>
+<div class="title">مكتبة التطبيقات (1)</div>
+<div class="desc">HDMosul • المتجر المتكامل من Android_AppsX</div>
+</div>
+
+<div class="card special-library" onclick="openLink(this, 'https://www.mediafire.com/folder/2bkh3bfov6km4/%D8%A8%D8%B1%D8%A7%D9%85%D8%AC%2B%D9%84%D9%84%D8%B4%D8%A7%D8%B4%D8%A7%D8%AA%2B%D9%88%D8%A7%D9%84%D9%85%D9%88%D8%A8%D8%A7%D9%8A%D9%84?fbclid=IwT01FWARCeR9leHRuA2FlbQIxMABzcnRjBmFwcF9pZAwzNTA2ODU1MzE3MjgAAR4IfBrHkXO2zszAFx1MGncqqxQqbg3vn797Fu11hW9Gg5gk9YwzaxAdgvsRgg_aem_ZmFrZWR1bW15MTZieXRlcw')">
+<div class="timer-overlay">3</div><span class="icon">📂</span>
+<div class="title">مكتبة التطبيقات (2) omarit89</div>
+<div class="desc">HDMosul • يتيوبر يحب يرفع لكم تطبيقات محدث بشكل يومي واسبوعي</div>
+</div>
+
+<div class="card" onclick="openLink(this, 'https://401740.hala-web.com/')">
+<div class="timer-overlay">3</div><span class="icon">📂</span>
+<div class="title">مكتبة التطبيقات (3)</div>
+<div class="desc">HDMosul • أرشيف شامل يحتوي على كافة التطبيقات الهامة</div>
+</div>
+
+<div class="card telegram-card" onclick="directOpen('mailto:pqkbgfcn688@gmail.com')">
+<span class="icon">📧</span>
+<div class="title">الإبلاغ عن المشاكل</div>
+<div class="username-badge" style="font-size: 0.9rem; padding: 8px 15px;">pqkbgfcn688@gmail.com</div>
+<div class="desc">HDMosul • تواصل معنا عبر البريد الإلكتروني للإبلاغ عن أي روابط معطلة أو مشاكل في تطبيقات المتجر</div>
+</div>
+
+</div>
+</div>
 </div>
 
 <footer>
-    <div style="font-weight: 900; color: var(--gold-solid); font-size: 1.2rem;">HDMosul • ROYAL STORE 2026</div>
-    <p style="font-size: 0.9rem; opacity: 0.6; margin-top: 10px;">👑 التصميم مخصص للنخبة - جميع الحقوق محفوظة 👑</p>
+<div style="background: var(--royal-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 1.2rem; letter-spacing: 2px;">
+HDMosul • PREMIUM STORE • 2026
+</div>
+<p style="font-size: 0.8rem; opacity: 0.5; margin-top: 10px;">جميع الحقوق محفوظة - تجربة ترفيهية ملكية 👑</p>
 </footer>
 
 <script>
-    // تحديث الوقت والتاريخ
-    function updateClock() {
-        const now = new Date();
-        const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-        document.getElementById('liveDate').innerText = `${days[now.getDay()]} ${now.toLocaleDateString('ar-EG')}`;
-        
-        let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
-        let ampm = h >= 12 ? 'PM' : 'AM';
-        h = h % 12 || 12;
-        
-        document.getElementById('liveClock').innerText = 
-            `${h}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s} ${ampm}`;
-    }
+function updateClock() {
+const now = new Date();
+const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+const dayName = days[now.getDay()];
+const dateStr = `${dayName} ${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+document.getElementById('liveDate').innerText = dateStr;
+let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+let ampm = h >= 12 ? 'PM' : 'AM'; 
+h = h % 12 || 12;
+document.getElementById('liveClock').innerText = `${h}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s} ${ampm}`;
+}
 
-    // نظام العداد الملكي
-    function startTimer(url) {
-        const card = event.currentTarget;
-        const overlay = card.querySelector('.timer-overlay');
-        const timerNum = overlay.querySelector('.timer-num');
-        
-        overlay.style.display = 'flex';
-        let count = 3;
-        timerNum.innerText = count;
+function switchTab(evt, tabId) {
+document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+document.getElementById(tabId).style.display = 'block';
+evt.currentTarget.classList.add('active');
+}
 
-        const interval = setInterval(() => {
-            count--;
-            timerNum.innerText = count;
-            if (count <= 0) {
-                clearInterval(interval);
-                window.open(url, '_blank');
-                setTimeout(() => { overlay.style.display = 'none'; }, 500);
-            }
-        }, 1000);
-    }
+function togglePriceModal(show) { 
+const modal = document.getElementById('priceModal');
+if (modal) modal.style.display = show ? 'flex' : 'none'; 
+}
 
-    window.onload = function() {
-        updateClock();
-        setInterval(updateClock, 1000);
-    };
+function openLink(card, url) {
+const overlay = card.querySelector('.timer-overlay');
+if(!overlay) { directOpen(url); return; }
+let count = 3; overlay.style.display = 'flex';
+overlay.innerText = count;
+const interval = setInterval(() => {
+count--; overlay.innerText = count;
+if(count <= 0) { clearInterval(interval); directOpen(url); overlay.style.display = 'none'; }
+}, 1000);
+}
+
+function toggleUsernameZoom(card) {
+  const badge = card.querySelector('.username-badge');
+  if(badge) badge.classList.toggle('active-zoom');
+}
+
+function directOpen(url) { 
+const win = window.open(url, '_blank');
+if (win) { win.focus(); } else { window.location.href = url; }
+}
+
+window.onload = function() {
+updateClock();
+setInterval(updateClock, 1000); 
+};
 </script>
-
 </body>
-</html>
+    </html>
