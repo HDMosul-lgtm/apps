@@ -7,151 +7,175 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent-color: #00d2ff; /* Diamond Blue */
-            --glass-white: rgba(255, 255, 255, 0.05);
-            --deep-dark: #08090b;
-            --platinum-text: #e0e6ed;
-            --border-glow: 0 0 15px rgba(0, 210, 255, 0.2);
-            --card-grad: linear-gradient(145deg, #13161a 0%, #0a0b0d 100%);
+            --deep-black: #050505;
+            --platinum-light: #e2e8f0;
+            --platinum-dark: #94a3b8;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --card-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            --card-gradient: linear-gradient(145deg, #16181a 0%, #0b0c0d 100%);
+            --hover-gradient: linear-gradient(145deg, #1e2226 0%, #111315 100%);
         }
 
         body {
             margin: 0; padding: 0;
             font-family: 'Cairo', sans-serif;
-            background-color: var(--deep-dark);
+            background-color: var(--deep-black);
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(0, 210, 255, 0.05) 0%, transparent 25%),
-                radial-gradient(circle at 85% 85%, rgba(0, 210, 255, 0.05) 0%, transparent 25%);
-            color: var(--platinum-text);
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 20%);
+            color: var(--platinum-light);
             min-height: 100vh;
             overflow-x: hidden;
         }
 
         header {
             text-align: center;
-            padding: 50px 0 20px;
-            background: linear-gradient(to bottom, rgba(0,210,255,0.05), transparent);
+            padding: 40px 0 20px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.03), transparent);
+        }
+
+        /* إضافة شعار ريال مدريد */
+        .logo {
+            width: 90px;
+            filter: drop-shadow(0 5px 15px rgba(255,255,255,0.2));
+            margin-bottom: 15px;
         }
 
         .brand {
-            font-size: 3.5rem; font-weight: 900;
-            background: linear-gradient(135deg, #fff 0%, #00d2ff 50%, #0072ff 100%);
+            font-size: 3rem; font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 0%, #a8b2c1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0; letter-spacing: -1px;
-            filter: drop-shadow(0 5px 15px rgba(0,210,255,0.3));
         }
 
         .sub-brand {
-            font-size: 13px; letter-spacing: 10px; color: var(--accent-color);
-            text-transform: uppercase; font-weight: 700; opacity: 0.8;
-            margin-top: 10px;
+            font-size: 13px; letter-spacing: 8px; color: var(--platinum-dark);
+            text-transform: uppercase; font-weight: 700; opacity: 0.9; margin-top: 5px;
         }
 
         .info-pill {
-            background: var(--glass-white);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 210, 255, 0.3);
-            border-radius: 50px;
-            padding: 15px 30px; margin: 30px auto;
-            display: flex; gap: 20px;
-            width: 90%; max-width: 900px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            align-items: center; justify-content: space-evenly; flex-wrap: wrap;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            padding: 15px 25px; margin: 25px auto;
+            display: flex; gap: 15px;
+            width: 95%; max-width: 900px;
+            box-shadow: var(--card-shadow);
+            align-items: center;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
         }
 
-        #liveClock { color: #00d2ff; font-weight: 900; font-family: 'monospace'; font-size: 1.4rem; }
-        #liveDate { color: #fff; font-weight: 700; }
-        .dhikr { color: #fff; opacity: 0.9; font-weight: 700; font-size: 1.1rem; }
+        #liveClock { color: #ffffff; font-weight: 900; font-family: 'monospace'; font-size: 1.2rem; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        #liveDate { color: var(--platinum-dark); font-weight: 700; font-size: 1rem; }
+        .dhikr { color: var(--platinum-light); font-weight: 700; font-size: 1.1rem; }
 
-        .tabs-container { display: flex; justify-content: center; gap: 15px; margin: 30px auto; padding: 0 20px; }
+        .tabs-container {
+            display: flex; justify-content: center; gap: 15px; margin: 30px auto; padding: 0 20px;
+        }
 
         .tab-btn {
             flex: 1; max-width: 250px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(0, 210, 255, 0.1);
-            color: #777; padding: 16px; border-radius: 20px; cursor: pointer;
-            font-family: 'Cairo'; font-weight: 700; transition: all 0.3s ease;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            color: var(--platinum-dark); padding: 15px; border-radius: 15px; cursor: pointer;
+            font-family: 'Cairo'; font-weight: 700; font-size: 1.1rem; transition: all 0.3s ease;
         }
 
         .tab-btn.active {
-            background: linear-gradient(135deg, #00d2ff, #0072ff);
-            color: #fff; box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
-            border: none;
+            background: var(--platinum-light); color: #000;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
         }
 
         .grid {
             display: grid; gap: 25px;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            padding: 20px; max-width: 1400px; margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            padding: 20px;
+            max-width: 1400px; margin: 0 auto;
         }
 
         .card {
-            background: var(--card-grad);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 28px;
-            padding: 30px; text-align: center; position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden; display: flex; flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: var(--card-gradient);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 25px; text-align: center; position: relative;
+            transition: all 0.4s ease; overflow: hidden;
+            display: flex; flex-direction: column;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-color);
-            box-shadow: var(--border-glow);
+        .card:hover { 
+            transform: translateY(-5px); 
+            background: var(--hover-gradient);
+            border-color: rgba(255,255,255,0.3); 
         }
 
         .luxury-btn {
-            background: #1a1d23;
-            border: 1px solid rgba(0, 210, 255, 0.4);
-            color: #fff; padding: 14px; border-radius: 16px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 1px solid var(--glass-border);
+            color: var(--platinum-light); padding: 12px; border-radius: 12px;
             font-weight: 700; cursor: pointer; margin-top: 15px;
-            transition: all 0.3s; z-index: 2;
+            transition: all 0.3s; position: relative; overflow: hidden;
+            font-family: 'Cairo', sans-serif;
         }
 
-        .card:hover .luxury-btn {
-            background: linear-gradient(135deg, #00d2ff, #0072ff);
+        .card:hover .luxury-btn { background: var(--platinum-light); color: #000; }
+        
+        .instant-btn {
+            background: #ffffff !important;
+            color: #000 !important;
             border: none;
+            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
         }
 
-        /* إصلاح العداد والرسالة */
+        /* إصلاح رسالة الصلاة لتظهر كاملة */
         .timer-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(8, 9, 11, 0.98);
-            display: none; flex-direction: column;
-            justify-content: center; align-items: center; padding: 25px;
-            text-align: center; z-index: 100; border-radius: 28px;
+            background: rgba(5, 5, 5, 0.96); display: none; flex-direction: column;
+            justify-content: center; align-items: center; padding: 20px;
+            text-align: center; z-index: 100; border-radius: 24px;
             box-sizing: border-box;
         }
 
         .prayer-msg { 
-            font-size: 1.1rem; color: #00d2ff; font-weight: 700; 
-            margin-bottom: 20px; line-height: 1.6;
+            font-size: 1.1rem; /* تكبير الخط قليلاً */
+            color: #ffffff; 
+            font-weight: 800; 
+            margin-bottom: 15px; 
+            line-height: 1.6;
+            white-space: normal; /* السماح بالتفاف النص */
+            word-wrap: break-word;
             width: 100%;
         }
+        .count-down { font-size: 3rem; font-weight: 900; color: var(--platinum-dark); }
 
-        .count-down { font-size: 3.5rem; font-weight: 900; color: #fff; }
+        .store-card {
+            background: linear-gradient(145deg, #111827, #030712) !important;
+            border: 1px solid #334155 !important;
+        }
 
-        .icon { font-size: 3rem; margin-bottom: 15px; }
-        .title { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
-        .desc { font-size: 0.95rem; color: #94a3b8; margin-bottom: 20px; min-height: 45px; }
+        .icon { font-size: 2.8rem; margin-bottom: 10px; filter: drop-shadow(0 0 5px rgba(255,255,255,0.1)); }
+        .title { font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
+        .desc { font-size: 0.9rem; color: var(--platinum-dark); margin-bottom: 15px; min-height: 40px; }
 
-        footer { text-align: center; padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05); }
-
-        .instant-btn { background: #00d2ff !important; color: #000 !important; font-weight: 900; }
+        footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1px solid var(--glass-border); color: var(--platinum-dark); }
     </style>
 </head>
 <body>
 
 <header>
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="Real Madrid Logo" class="logo">
     <h1 class="brand">HDMosul Store</h1>
-    <div class="sub-brand">💎 P L A T I N U M • E X C L U S I V E 💎</div>
+    <div class="sub-brand">👑 V I P • E X C L U S I V E 👑</div>
 </header>
 
 <div class="info-pill">
     <div id="liveClock">00:00:00 PM</div>
-    <div id="liveDate">...</div>
+    <div id="liveDate">التاريخ</div>
     <div class="dhikr">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</div>
 </div>
 
@@ -163,214 +187,217 @@
 <div id="apps-tab" class="tab-content">
     <div class="grid">
         
-        <div class="card" onclick="openLink(this, 'https://aftv.news/5473489')">
-            <div class="timer-overlay">
-                <div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div>
-                <div class="count-down">4</div>
-            </div>
-            <span class="icon">💎</span>
-            <div class="title">أوسكار تيفي Oscar TV</div>
-            <div class="desc">سينمانا جميع شبكات نسخة جميلة جدا • HDMosul</div>
-            <div style="display:flex; gap:10px;">
-                <button class="luxury-btn" style="flex:1; pointer-events: none;">تحميل التطبيق</button>
-                <button class="luxury-btn instant-btn" style="flex:1; position: relative; z-index: 101;" onclick="event.stopPropagation(); window.open('https://aftv.news/2538647', '_blank')">تحميل المشغل ⚡</button>
-            </div>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://aftv.news/5473489')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">💎</span> 
+            <div class="title">أوسكار تيفي Oscar TV</div> 
+            <div class="desc">سينمانا جميع شبكات نسخة جميلة جدا • HDMosul</div> 
+            <div style="display:flex; gap:10px; position: relative; z-index: 10;"> 
+                <button class="luxury-btn" style="flex:1; pointer-events: none;">تحميل التطبيق</button> 
+                <button class="luxury-btn instant-btn" style="flex:1; pointer-events: auto;" onclick="event.stopPropagation(); event.preventDefault(); window.open('https://aftv.news/2538647', '_blank')">تحميل المشغل</button> 
+            </div> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258A%25D9%2581.apk/file')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">🎬</span>
-            <div class="title">دراما لايف</div>
-            <div class="desc">تحديث جديد - كود الدخول: 232425 • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل التطبيق VIP</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258A%25D9%2581.apk/file')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">🎬</span> 
+            <div class="title">دراما لايف</div> 
+            <div class="desc">تحديث جديد - كود الدخول: 232425 • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل التطبيق VIP</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/x0r8u9cu37gzu5a/MovieBox+-+Family+(VIP).apk/file')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">🎥</span>
-            <div class="title">MovieBox VIP</div>
-            <div class="desc">سينمانا جميع شبكات • بدون إعلانات • عائلي • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل النسخة المدفوعة</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/x0r8u9cu37gzu5a/MovieBox+-+Family+(VIP).apk/file')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">🎥</span> 
+            <div class="title">MovieBox VIP</div> 
+            <div class="desc">سينمانا جميع شبكات • بدون إعلانات • عائلي • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل النسخة المدفوعة</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://github.com/oneiraq/onetv_update/raw/refs/heads/main/1_iraq_tv_v1.apk')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">📡</span>
-            <div class="title">1 IRAQ TV</div>
-            <div class="desc">قنوات رياضية وبث مباشر لجميع الشبكات • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل مباشر</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://github.com/oneiraq/onetv_update/raw/refs/heads/main/1_iraq_tv_v1.apk')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">📡</span> 
+            <div class="title">1 IRAQ TV</div> 
+            <div class="desc">قنوات رياضية وبث مباشر لجميع الشبكات • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل مباشر</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://raw.githubusercontent.com/iraqapps/tvapps/refs/heads/main/apps/New-release-protected.3.0.1.apk')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">🌟</span>
-            <div class="title">تطبيق المنصة New</div>
-            <div class="desc">يلزم تسجيل دخول من موبايل مسح باركود QR • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل الإصدار الجديد</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://raw.githubusercontent.com/iraqapps/tvapps/refs/heads/main/apps/New-release-protected.3.0.1.apk')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">🌟</span> 
+            <div class="title">تطبيق المنصة New</div> 
+            <div class="desc">يلزم تسجيل دخول من موبايل مسح باركود QR • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل الإصدار الجديد</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://github.com/1ffu1/toflex.com/raw/refs/heads/main/toflex/%D8%B4%D9%88.apk')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">🔥</span>
-            <div class="title">تطبيق شو SHOW</div>
-            <div class="desc">رياضة متنوعة • أفلام • مسلسلات • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل الآن</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://github.com/1ffu1/toflex.com/raw/refs/heads/main/toflex/%D8%B4%D9%88.apk')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">🔥</span> 
+            <div class="title">تطبيق شو SHOW</div> 
+            <div class="desc">رياضة متنوعة • أفلام • مسلسلات • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل الآن</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/HiTV%20v3.13.3%20Vip.apk')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">💫</span>
-            <div class="title">هاي تي في HiTv</div>
-            <div class="desc">سينمانا متنوع محدث بأحدث الأفلام • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل v3.13.3</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/HiTV%20v3.13.3%20Vip.apk')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">💫</span> 
+            <div class="title">هاي تي في HiTv</div> 
+            <div class="desc">سينمانا متنوع محدث بأحدث الأفلام • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل v3.13.3</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/MBC%20Shahid%20v7.117%20vip.apk')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">👑</span>
-            <div class="title">شاهد Shahid VIP</div>
-            <div class="desc">نسخة مهكرة مدفوعة بالكامل لشاشات الأندرويد • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل النسخة الملكية</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/MBC%20Shahid%20v7.117%20vip.apk')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">👑</span> 
+            <div class="title">شاهد Shahid VIP</div> 
+            <div class="desc">نسخة مهكرة مدفوعة بالكامل لشاشات الأندرويد • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل النسخة الملكية</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://genraltv.dev')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">⚡</span>
-            <div class="title">جنرال تيفي PRO</div>
-            <div class="desc">متنوع رياضة سينمانا • كود التفعيل: 000 • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">الموقع الرسمي للتحميل</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://genraltv.dev')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">⚡</span> 
+            <div class="title">جنرال تيفي PRO</div> 
+            <div class="desc">متنوع رياضة سينمانا • كود التفعيل: 000 • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">الموقع الرسمي للتحميل</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://github.com/yuliskov/SmartTubeNext/releases/download/latest/smarttube_stable.apk')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">📽️</span>
-            <div class="title">يوتيوب الشاشات</div>
-            <div class="desc">بدون إعلانات • يحدث تلقائي • لجميع الشاشات • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل SmartTube</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://github.com/yuliskov/SmartTubeNext/releases/download/latest/smarttube_stable.apk')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">📽️</span> 
+            <div class="title">يوتيوب الشاشات</div> 
+            <div class="desc">بدون إعلانات • يحدث تلقائي • لجميع الشاشات • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل SmartTube</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/07q9jpraaqcrt7o/EgybestTV_v2.0.apk/file')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">🍿</span>
-            <div class="title">تطبيق EgyBest</div>
-            <div class="desc">سينمانا نسخة مخصصة للشاشات فقط • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل v2.0</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/07q9jpraaqcrt7o/EgybestTV_v2.0.apk/file')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">🍿</span> 
+            <div class="title">تطبيق EgyBest</div> 
+            <div class="desc">سينمانا نسخة مخصصة للشاشات فقط • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل v2.0</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/NETFLY%20v3.0.0%20TV%20vip.apk')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">🎞️</span>
-            <div class="title">تطبيق NETFLY</div>
-            <div class="desc">سينمانا منوع نسخة VIP سريعة جداً • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل v3.0.0</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/NETFLY%20v3.0.0%20TV%20vip.apk')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">🎞️</span> 
+            <div class="title">تطبيق NETFLY</div> 
+            <div class="desc">سينمانا منوع نسخة VIP سريعة جداً • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل v3.0.0</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/Reezn_1.9.3.apk')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">🌀</span>
-            <div class="title">Reezn TV</div>
-            <div class="desc">سينمانا متنوع نسخة جديدة كلياً • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل مباشر</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/Reezn_1.9.3.apk')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">🌀</span> 
+            <div class="title">Reezn TV</div> 
+            <div class="desc">سينمانا متنوع نسخة جديدة كلياً • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل مباشر</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/87vqd9o61a5my3d/UXP_2.7.apk/file')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">🚀</span>
-            <div class="title">تطبيق UXP</div>
-            <div class="desc">الأفضل لجميع الشبكات • سينمانا ورياضة • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل الإصدار 2.7</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/87vqd9o61a5my3d/UXP_2.7.apk/file')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">🚀</span> 
+            <div class="title">تطبيق UXP</div> 
+            <div class="desc">الأفضل لجميع الشبكات • سينمانا ورياضة • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل الإصدار 2.7</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/Cinemana_Leanback%20v4.5.9_New.apk')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">📺</span>
-            <div class="title">Cinemana CBOX</div>
-            <div class="desc">نسخة شاشات وتيفي بوكس • شبكة ايرثلنك حصراً • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل Leanback</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/Cinemana_Leanback%20v4.5.9_New.apk')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">📺</span> 
+            <div class="title">Cinemana CBOX</div> 
+            <div class="desc">نسخة شاشات وتيفي بوكس • شبكة ايرثلنك حصراً • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل Leanback</button> 
+        </div> 
 
-        <div class="card" onclick="openLink(this, 'https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/cinemanaplustv.apk')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">🔋</span>
-            <div class="title">Cinemana Plus</div>
-            <div class="desc">للشاشات الضعيفة • يعمل فقط على ايرثلنك • HDMosul</div>
-            <button class="luxury-btn" style="pointer-events: none;">تحميل النسخة الخفيفة</button>
-        </div>
+        <div class="card" onclick="openLink(this, 'https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/cinemanaplustv.apk')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">🔋</span> 
+            <div class="title">Cinemana Plus</div> 
+            <div class="desc">للشاشات الضعيفة • يعمل فقط على ايرثلنك • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">تحميل النسخة الخفيفة</button> 
+        </div> 
 
     </div>
 </div>
 
 <div id="store-tab" class="tab-content" style="display: none;">
     <div class="grid">
-        <div class="card" style="border-color: #444;" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">📂</span>
-            <div class="title">مكتبة التطبيقات (1)</div>
-            <div class="desc">HDMosul • المتجر المتكامل من Android_AppsX</div>
-            <button class="luxury-btn" style="pointer-events: none;">دخول المكتبة</button>
-        </div>
-        <div class="card" style="border-color: #444;" onclick="openLink(this, 'https://401740.hala-web.com/')">
-            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
-            <span class="icon">📁</span>
-            <div class="title">مكتبة التطبيقات (2)</div>
-            <div class="desc">HDMosul • أرشيف شامل لكافة التطبيقات الهامة</div>
-            <button class="luxury-btn" style="pointer-events: none;">دخول المكتبة</button>
-        </div>
-        <div class="card" onclick="location.href='mailto:pqkbgfcn688@gmail.com'">
-            <span class="icon">🛠️</span>
-            <div class="title">الدعم الفني</div>
-            <div class="desc">للإبلاغ عن الأعطال: pqkbgfcn688@gmail.com</div>
-        </div>
+        <div class="card store-card" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">📂</span> 
+            <div class="title">مكتبة التطبيقات (1)</div> 
+            <div class="desc">HDMosul • المتجر المتكامل من Android_AppsX • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">دخول المكتبة</button> 
+        </div> 
+
+        <div class="card store-card" onclick="openLink(this, 'https://401740.hala-web.com/')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">📁</span> 
+            <div class="title">مكتبة التطبيقات (2)</div> 
+            <div class="desc">HDMosul • أرشيف شامل لكافة التطبيقات الهامة • HDMosul</div> 
+            <button class="luxury-btn" style="pointer-events: none;">دخول المكتبة</button> 
+        </div> 
+
+        <div class="card store-card" onclick="location.href='mailto:pqkbgfcn688@gmail.com'" style="cursor:pointer"> 
+            <span class="icon">🛠️</span> 
+            <div class="title">الدعم الفني</div> 
+            <div class="desc">للإبلاغ عن الأعطال: pqkbgfcn688@gmail.com • HDMosul</div> 
+        </div> 
     </div>
 </div>
 
 <footer>
-    <p>HDMosul • PLATINUM STORE • 2026</p>
-    <p>تجربة ترفيهية ملكية - جميع الحقوق محفوظة 💎</p>
+    <p>HDMosul • PREMIUM STORE • 2026</p>
+    <p>جميع الحقوق محفوظة - تجربة ترفيهية ملكية 👑</p>
 </footer>
 
 <script>
-    function updateClock() {
-        const now = new Date();
-        let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
-        let ampm = h >= 12 ? 'PM' : 'AM';
-        h = h % 12 || 12;
-        document.getElementById('liveClock').innerText = `${h}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s} ${ampm}`;
-        const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-        document.getElementById('liveDate').innerText = `${days[now.getDay()]} ${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}`;
-    }
+function updateClock() { 
+    const now = new Date(); 
+    let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds(); 
+    let ampm = h >= 12 ? 'PM' : 'AM'; 
+    h = h % 12 || 12; 
+    document.getElementById('liveClock').innerText = `${h}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s} ${ampm}`; 
+    const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت']; 
+    const dayName = days[now.getDay()]; 
+    const year = now.getFullYear(); 
+    const month = now.getMonth() + 1; 
+    const date = now.getDate(); 
+    document.getElementById('liveDate').innerText = `${dayName} ${year}-${month}-${date}`; 
+} 
 
-    function switchTab(evt, tabId) {
-        document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(tabId).style.display = 'block';
-        evt.currentTarget.classList.add('active');
-    }
+function switchTab(evt, tabId) { 
+    document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none'); 
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); 
+    document.getElementById(tabId).style.display = 'block'; 
+    evt.currentTarget.classList.add('active'); 
+} 
 
-    function openLink(card, url) {
-        if(card.dataset.running === "true") return;
-        const overlay = card.querySelector('.timer-overlay');
-        const countDisplay = overlay.querySelector('.count-down');
-        card.dataset.running = "true";
-        let count = 4;
-        overlay.style.display = 'flex';
-        countDisplay.innerText = count;
-        const interval = setInterval(() => {
-            count--;
-            countDisplay.innerText = count;
-            if(count <= 0) {
-                clearInterval(interval);
-                overlay.style.display = 'none';
-                card.dataset.running = "false";
-                window.open(url, '_blank');
-            }
-        }, 1000);
-    }
+function openLink(card, url) { 
+    if(card.dataset.running === "true") return; 
+    const overlay = card.querySelector('.timer-overlay'); 
+    const countDisplay = overlay.querySelector('.count-down'); 
+    card.dataset.running = "true"; 
+    let count = 4; 
+    overlay.style.display = 'flex'; 
+    countDisplay.innerText = count; 
+    const interval = setInterval(() => { 
+        count--; 
+        countDisplay.innerText = count; 
+        if(count <= 0) { 
+            clearInterval(interval); 
+            overlay.style.display = 'none'; 
+            card.dataset.running = "false"; 
+            window.open(url, '_blank'); 
+        } 
+    }, 1000); 
+} 
 
-    window.onload = function() {
-        updateClock();
-        setInterval(updateClock, 1000);
-    };
+window.onload = function() { 
+    updateClock(); 
+    setInterval(updateClock, 1000); 
+}; 
 </script>
 
 </body>
