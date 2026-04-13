@@ -58,17 +58,18 @@ background: var(--glass-bg);
 backdrop-filter: blur(10px);
 border: 1px solid rgba(212, 175, 55, 0.3);
 border-radius: 100px;
-padding: 15px 20px; margin: 25px auto; 
+padding: 15px 25px; margin: 25px auto; 
 display: flex; gap: 15px; 
-width: 90%; max-width: 800px; 
+width: 95%; max-width: 900px; 
 box-shadow: var(--card-shadow);
 align-items: center;
 justify-content: space-evenly;
 flex-wrap: wrap;
 }
 
-#liveClock { color: #fff2a1; font-weight: 900; font-family: 'monospace'; font-size: 1.3rem; }
-.dhikr { color: var(--metallic-gold); font-weight: 700; font-size: 1.3rem; }
+#liveClock { color: #fff2a1; font-weight: 900; font-family: 'monospace'; font-size: 1.2rem; }
+#liveDate { color: #ffffff; font-weight: 700; font-size: 1rem; }
+.dhikr { color: var(--metallic-gold); font-weight: 700; font-size: 1.1rem; }
 
 .tabs-container { 
 display: flex; justify-content: center; gap: 15px; margin: 30px auto; padding: 0 20px;
@@ -113,7 +114,6 @@ border: 1px solid var(--metallic-gold);
 color: #fff; padding: 12px; border-radius: 12px;
 font-weight: 700; cursor: pointer; margin-top: 15px;
 transition: all 0.3s; position: relative; overflow: hidden;
-pointer-events: none; /* جعل الزر شكلي لأن الكارت هو الذي ينفذ الأمر */
 }
 
 .card:hover .luxury-btn { background: var(--royal-gold); color: #000; }
@@ -149,6 +149,8 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
 <div class="info-pill">
 <span id="liveClock">00:00:00 PM</span>
 <span style="color: rgba(212,175,55,0.4)">|</span>
+<span id="liveDate">التاريخ</span>
+<span style="color: rgba(212,175,55,0.4)">|</span>
 <span class="dhikr">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</span>
 </div>
 </header>
@@ -161,14 +163,15 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
 <div class="main-container">
     <div id="all-tab" class="tab-content">
         <div class="grid">
+            
             <div class="card" onclick="openLink(this, 'https://aftv.news/5473489')">
                 <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
                 <span class="icon">💎</span>
                 <div class="title">أوسكار تيفي Oscar TV</div>
                 <div class="desc">سينمانا جميع شبكات نسخة جميلة جدا • HDMosul</div>
                 <div style="display:flex; gap:10px;">
-                    <button class="luxury-btn" style="flex:1">تحميل التطبيق</button>
-                    <button class="luxury-btn" style="flex:1; pointer-events: auto;" onclick="event.stopPropagation(); openLink(this.closest('.card'), 'https://aftv.news/2538647')">تحميل المشغل</button>
+                    <button class="luxury-btn" style="flex:1; pointer-events: none;">تحميل التطبيق</button>
+                    <button class="luxury-btn" style="flex:1; position: relative; z-index: 101;" onclick="event.stopPropagation(); window.open('https://aftv.news/2538647', '_blank')">تحميل المشغل</button>
                 </div>
             </div>
 
@@ -177,7 +180,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">🎬</span>
                 <div class="title">دراما لايف</div>
                 <div class="desc">تحديث جديد - كود الدخول: 232425 • HDMosul</div>
-                <button class="luxury-btn">تحميل التطبيق VIP</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل التطبيق VIP</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/x0r8u9cu37gzu5a/MovieBox+-+Family+(VIP).apk/file')">
@@ -185,7 +188,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">🎥</span>
                 <div class="title">MovieBox VIP</div>
                 <div class="desc">سينمانا جميع شبكات • بدون إعلانات • عائلي • HDMosul</div>
-                <button class="luxury-btn">تحميل النسخة المدفوعة</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل النسخة المدفوعة</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://github.com/oneiraq/onetv_update/raw/refs/heads/main/1_iraq_tv_v1.apk')">
@@ -193,7 +196,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">📡</span>
                 <div class="title">1 IRAQ TV</div>
                 <div class="desc">قنوات رياضية وبث مباشر لجميع الشبكات • HDMosul</div>
-                <button class="luxury-btn">تحميل مباشر</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل مباشر</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://raw.githubusercontent.com/iraqapps/tvapps/refs/heads/main/apps/New-release-protected.3.0.1.apk')">
@@ -201,7 +204,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">🌟</span>
                 <div class="title">تطبيق المنصة New</div>
                 <div class="desc">يلزم تسجيل دخول من موبايل مسح باركود QR • HDMosul</div>
-                <button class="luxury-btn">تحميل الإصدار الجديد</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل الإصدار الجديد</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://github.com/1ffu1/toflex.com/raw/refs/heads/main/toflex/%D8%B4%D9%88.apk')">
@@ -209,7 +212,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">🔥</span>
                 <div class="title">تطبيق شو SHOW</div>
                 <div class="desc">رياضة متنوعة • أفلام • مسلسلات • HDMosul</div>
-                <button class="luxury-btn">تحميل الآن</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل الآن</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/HiTV%20v3.13.3%20Vip.apk')">
@@ -217,7 +220,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">💫</span>
                 <div class="title">هاي تي في HiTv</div>
                 <div class="desc">سينمانا متنوع محدث بأحدث الأفلام • HDMosul</div>
-                <button class="luxury-btn">تحميل v3.13.3</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل v3.13.3</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/MBC%20Shahid%20v7.117%20vip.apk')">
@@ -225,7 +228,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">👑</span>
                 <div class="title">شاهد Shahid VIP</div>
                 <div class="desc">نسخة مهكرة مدفوعة بالكامل لشاشات الأندرويد • HDMosul</div>
-                <button class="luxury-btn">تحميل النسخة الملكية</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل النسخة الملكية</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://genraltv.dev')">
@@ -233,7 +236,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">⚡</span>
                 <div class="title">جنرال تيفي PRO</div>
                 <div class="desc">متنوع رياضة سينمانا • كود التفعيل: 000 • HDMosul</div>
-                <button class="luxury-btn">الموقع الرسمي للتحميل</button>
+                <button class="luxury-btn" style="pointer-events: none;">الموقع الرسمي للتحميل</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://github.com/yuliskov/SmartTubeNext/releases/download/latest/smarttube_stable.apk')">
@@ -241,7 +244,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">📽️</span>
                 <div class="title">يوتيوب الشاشات</div>
                 <div class="desc">بدون إعلانات • يحدث تلقائي • لجميع الشاشات • HDMosul</div>
-                <button class="luxury-btn">تحميل SmartTube</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل SmartTube</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/07q9jpraaqcrt7o/EgybestTV_v2.0.apk/file')">
@@ -249,7 +252,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">🍿</span>
                 <div class="title">تطبيق EgyBest</div>
                 <div class="desc">سينمانا نسخة مخصصة للشاشات فقط • HDMosul</div>
-                <button class="luxury-btn">تحميل v2.0</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل v2.0</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/NETFLY%20v3.0.0%20TV%20vip.apk')">
@@ -257,7 +260,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">🎞️</span>
                 <div class="title">تطبيق NETFLY</div>
                 <div class="desc">سينمانا منوع نسخة VIP سريعة جداً • HDMosul</div>
-                <button class="luxury-btn">تحميل v3.0.0</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل v3.0.0</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/Reezn_1.9.3.apk')">
@@ -265,7 +268,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">🌀</span>
                 <div class="title">Reezn TV</div>
                 <div class="desc">سينمانا متنوع نسخة جديدة كلياً • HDMosul</div>
-                <button class="luxury-btn">تحميل مباشر</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل مباشر</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://www.mediafire.com/file/87vqd9o61a5my3d/UXP_2.7.apk/file')">
@@ -273,7 +276,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">🚀</span>
                 <div class="title">تطبيق UXP</div>
                 <div class="desc">الأفضل لجميع الشبكات • سينمانا ورياضة • HDMosul</div>
-                <button class="luxury-btn">تحميل الإصدار 2.7</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل الإصدار 2.7</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/Cinemana_Leanback%20v4.5.9_New.apk')">
@@ -281,7 +284,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">📺</span>
                 <div class="title">Cinemana CBOX</div>
                 <div class="desc">نسخة شاشات وتيفي بوكس • شبكة ايرثلنك حصراً • HDMosul</div>
-                <button class="luxury-btn">تحميل Leanback</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل Leanback</button>
             </div>
 
             <div class="card" onclick="openLink(this, 'https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/cinemanaplustv.apk')">
@@ -289,7 +292,7 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">🔋</span>
                 <div class="title">Cinemana Plus</div>
                 <div class="desc">للشاشات الضعيفة • يعمل فقط على ايرثلنك • HDMosul</div>
-                <button class="luxury-btn">تحميل النسخة الخفيفة</button>
+                <button class="luxury-btn" style="pointer-events: none;">تحميل النسخة الخفيفة</button>
             </div>
         </div>
     </div>
@@ -301,14 +304,14 @@ footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1
                 <span class="icon">📂</span>
                 <div class="title">مكتبة التطبيقات (1)</div>
                 <div class="desc">HDMosul • المتجر المتكامل من Android_AppsX • HDMosul</div>
-                <button class="luxury-btn">دخول المكتبة</button>
+                <button class="luxury-btn" style="pointer-events: none;">دخول المكتبة</button>
             </div>
             <div class="card store-card" onclick="openLink(this, 'https://401740.hala-web.com/')">
                 <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div>
                 <span class="icon">📁</span>
                 <div class="title">مكتبة التطبيقات (2)</div>
                 <div class="desc">HDMosul • أرشيف شامل لكافة التطبيقات الهامة • HDMosul</div>
-                <button class="luxury-btn">دخول المكتبة</button>
+                <button class="luxury-btn" style="pointer-events: none;">دخول المكتبة</button>
             </div>
             <div class="card store-card" onclick="location.href='mailto:pqkbgfcn688@gmail.com'" style="cursor:pointer">
                 <span class="icon">🛠️</span>
@@ -329,10 +332,20 @@ HDMosul • PREMIUM STORE • 2026
 <script>
 function updateClock() {
     const now = new Date();
+    
+    // الوقت
     let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
     let ampm = h >= 12 ? 'PM' : 'AM'; 
     h = h % 12 || 12;
     document.getElementById('liveClock').innerText = `${h}:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s} ${ampm}`;
+    
+    // التاريخ (مثال: الاثنين 2026-4-13)
+    const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+    const dayName = days[now.getDay()];
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const date = now.getDate();
+    document.getElementById('liveDate').innerText = `${dayName} ${year}-${month}-${date}`;
 }
 
 function switchTab(evt, tabId) {
@@ -343,7 +356,6 @@ function switchTab(evt, tabId) {
 }
 
 function openLink(card, url) {
-    // منع التداخل إذا كان العداد يعمل بالفعل
     if(card.dataset.running === "true") return;
     
     const overlay = card.querySelector('.timer-overlay');
