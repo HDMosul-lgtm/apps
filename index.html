@@ -97,7 +97,6 @@
             max-width: 1400px; margin: 0 auto;
         }
 
-        /* تعديل الكارت لدعم التركيز بالريموت (focus) */
         .card {
             background: var(--card-gradient);
             border: 1px solid var(--glass-border);
@@ -107,7 +106,7 @@
             display: flex; flex-direction: column;
             box-shadow: var(--card-shadow);
             cursor: pointer;
-            outline: none; /* إخفاء الإطار الافتراضي البشع للشاشات */
+            outline: none;
         }
 
         .card:hover, .card:focus { 
@@ -171,6 +170,18 @@
         .desc { font-size: 0.9rem; color: var(--platinum-dark); margin-bottom: 15px; min-height: 40px; }
 
         footer { text-align: center; padding: 50px 20px; margin-top: 40px; border-top: 1px solid var(--glass-border); color: var(--platinum-dark); }
+
+        /* ستايل زر Premiere المخصص */
+        .premiere-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%) !important;
+            color: #000 !important;
+            border: none !important;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+        .card:hover .premiere-btn, .card:focus .premiere-btn {
+            background: #fff !important;
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body>
@@ -195,6 +206,14 @@
 <div id="apps-tab" class="tab-content">
     <div class="grid">
         
+        <div class="card" tabindex="0" onclick="openLink(this, 'https://www.mediafire.com/file/6in2lqix8yhyznr/Hydra+4K+@NIGANPRO.apk/file')" onkeypress="handleEnter(event, this, 'https://www.mediafire.com/file/6in2lqix8yhyznr/Hydra+4K+@NIGANPRO.apk/file')"> 
+            <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
+            <span class="icon">💠</span> 
+            <div class="title">Hydra 4K</div> 
+            <div class="desc">كود تفعيل سنة (كيبل ضوئي)<br>User: hananthabit | Pass: iptvhd2024@@</div> 
+            <button class="luxury-btn premiere-btn" style="pointer-events: none;" tabindex="-1">تحميل PREMIERE 🏆</button> 
+        </div>
+
         <div class="card" tabindex="0" onclick="openLink(this, 'https://aftv.news/5473489')" onkeypress="handleEnter(event, this, 'https://aftv.news/5473489')"> 
             <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
             <span class="icon">💎</span> 
@@ -206,7 +225,7 @@
             </div> 
         </div> 
 
-        <div class="card" tabindex="0" onclick="openLink(this, 'https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258A%25D9%2581.apk/file')" onkeypress="handleEnter(event, this, 'https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258A%25D9%2581.apk/file')"> 
+        <div class="card" tabindex="0" onclick="openLink(this, 'https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258I%25D9%2581.apk/file')" onkeypress="handleEnter(event, this, 'https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258I%25D9%2581.apk/file')"> 
             <div class="timer-overlay"><div class="prayer-msg">لا تجعل المشاهدة والتطبيقات تلهيك عن الصلاة وذكر الله</div><div class="count-down">4</div></div> 
             <span class="icon">🎬</span> 
             <div class="title">دراما لايف</div> 
@@ -382,7 +401,6 @@ function switchTab(evt, tabId) {
     evt.currentTarget.classList.add('active'); 
 } 
 
-// دالة إضافية مخصصة للشاشات (عند الضغط على زر OK في الريموت)
 function handleEnter(event, element, url) {
     if(event.key === 'Enter') {
         openLink(element, url);
@@ -404,7 +422,6 @@ function openLink(card, url) {
             clearInterval(interval); 
             overlay.style.display = 'none'; 
             card.dataset.running = "false"; 
-            // تعديل جذري للشاشات: يتم التحويل في نفس الشاشة ولا يفتح علامة تبويب جديدة
             window.location.href = url; 
         } 
     }, 1000); 
@@ -417,4 +434,4 @@ window.onload = function() {
 </script>
 
 </body>
-                </html>
+</html>
