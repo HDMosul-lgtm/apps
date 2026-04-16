@@ -5,312 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HDMosul Store • VIP</title>
     
-    <!-- خطوط وأيقونات -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Playfair+Display:wght@700;900&family=Cormorant+Garamond:wght@700&family=Tajawal:wght@700;900&family=El+Messiri:wght@700&family=Amiri:wght@700&family=Reem+Kufi:wght@700&family=Almarai:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* ================ المتغيرات ================ */
         :root {
-            --primary-color: #00529f;
-            --secondary-color: #febd11;
-            --bg-gradient-start: #f5f7fa;
-            --bg-gradient-end: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #0a1a2b;
-            --border-color: #febd11;
-            --btn-radius: 50px;
-            --btn-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --title-font-family: 'Cairo', sans-serif;
+            --primary: #00529f; --secondary: #febd11; --bg: #f5f7fa; --card: #ffffff; --text: #0a1a2b;
+            --radius: 12px; --shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        /* ================ الثيمات ================ */
-        [data-theme="madrid"] {
-            --primary-color: #00529f;
-            --secondary-color: #febd11;
-            --bg-gradient-start: #f5f7fa;
-            --bg-gradient-end: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #0a1a2b;
-            --border-color: #febd11;
-            --btn-radius: 50px;
-            --btn-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --title-font-family: 'Cairo', sans-serif;
-        }
-        [data-theme="blue"] {
-            --primary-color: #1a73e8;
-            --secondary-color: #8ab4f8;
-            --bg-gradient-start: #e8f0fe;
-            --bg-gradient-end: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #202124;
-            --border-color: #1a73e8;
-            --btn-radius: 50px;
-            --btn-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --title-font-family: 'Tajawal', sans-serif;
-        }
-        [data-theme="black-gold"] {
-            --primary-color: #ffd700;
-            --secondary-color: #1a1a1a;
-            --bg-gradient-start: #0a0a0a;
-            --bg-gradient-end: #1a1a1a;
-            --card-bg: #2a2a2a;
-            --text-color: #ffffff;
-            --border-color: #ffd700;
-            --btn-radius: 8px;
-            --btn-shadow: 0 8px 0 rgba(0,0,0,0.3);
-            --title-font-family: 'Playfair Display', serif;
-        }
-        [data-theme="green"] {
-            --primary-color: #2e7d32;
-            --secondary-color: #a5d6a7;
-            --bg-gradient-start: #e8f5e9;
-            --bg-gradient-end: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #1b5e20;
-            --border-color: #4caf50;
-            --btn-radius: 50px;
-            --btn-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --title-font-family: 'El Messiri', sans-serif;
-        }
-        [data-theme="red"] {
-            --primary-color: #c62828;
-            --secondary-color: #ef9a9a;
-            --bg-gradient-start: #ffebee;
-            --bg-gradient-end: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #b71c1c;
-            --border-color: #f44336;
-            --btn-radius: 50px;
-            --btn-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            --title-font-family: 'Amiri', serif;
-        }
-        [data-theme="purple"] {
-            --primary-color: #6a1b9a;
-            --secondary-color: #ce93d8;
-            --bg-gradient-start: #f3e5f5;
-            --bg-gradient-end: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #4a148c;
-            --border-color: #ab47bc;
-            --btn-radius: 30px;
-            --btn-shadow: inset 0 2px 5px rgba(255,255,255,0.5), 0 5px 15px rgba(106,27,154,0.3);
-            --title-font-family: 'Reem Kufi', sans-serif;
-        }
-        [data-theme="orange"] {
-            --primary-color: #e65100;
-            --secondary-color: #ffb74d;
-            --bg-gradient-start: #fff3e0;
-            --bg-gradient-end: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #bf360c;
-            --border-color: #ff9800;
-            --btn-radius: 4px;
-            --btn-shadow: 0 10px 20px rgba(230,81,0,0.3);
-            --title-font-family: 'Almarai', sans-serif;
-        }
-        [data-theme="cyan"] {
-            --primary-color: #00838f;
-            --secondary-color: #80deea;
-            --bg-gradient-start: #e0f7fa;
-            --bg-gradient-end: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #004d40;
-            --border-color: #00acc1;
-            --btn-radius: 30px;
-            --btn-shadow: 0 5px 15px rgba(0,131,143,0.2);
-            --title-font-family: 'Tajawal', sans-serif;
-        }
-        [data-theme="royal-gold"] {
-            --primary-color: #b8860b;
-            --secondary-color: #ffd700;
-            --bg-gradient-start: #fdf6e3;
-            --bg-gradient-end: #fff8e7;
-            --card-bg: #ffffff;
-            --text-color: #5c4308;
-            --border-color: #daa520;
-            --btn-radius: 50px;
-            --btn-shadow: 0 8px 20px rgba(218,165,32,0.4), 0 2px 5px rgba(255,215,0,0.5);
-            --title-font-family: 'Cormorant Garamond', serif;
-        }
-        [data-theme="midnight"] {
-            --primary-color: #1a237e;
-            --secondary-color: #7986cb;
-            --bg-gradient-start: #121858;
-            --bg-gradient-end: #1a237e;
-            --card-bg: #283593;
-            --text-color: #e8eaf6;
-            --border-color: #5c6bc0;
-            --btn-radius: 8px;
-            --btn-shadow: inset 0 1px 3px rgba(255,255,255,0.2), 0 6px 12px rgba(0,0,0,0.4);
-            --title-font-family: 'Playfair Display', serif;
-        }
-        [data-theme="emerald"] {
-            --primary-color: #004d40;
-            --secondary-color: #80cbc4;
-            --bg-gradient-start: #e0f2f1;
-            --bg-gradient-end: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #1d3d3a;
-            --border-color: #4db6ac;
-            --btn-radius: 50px;
-            --btn-shadow: 0 8px 20px rgba(0,150,136,0.3);
-            --title-font-family: 'El Messiri', sans-serif;
-        }
-        [data-theme="silver"] {
-            --primary-color: #607d8b;
-            --secondary-color: #cfd8dc;
-            --bg-gradient-start: #eceff1;
-            --bg-gradient-end: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #37474f;
-            --border-color: #90a4ae;
-            --btn-radius: 50px;
-            --btn-shadow: 0 5px 15px rgba(96,125,139,0.2), inset 0 0 0 1px rgba(255,255,255,0.8);
-            --title-font-family: 'Cairo', sans-serif;
-        }
-        [data-theme="velvet"] {
-            --primary-color: #4a0e1c;
-            --secondary-color: #d4af37;
-            --bg-gradient-start: #2d0812;
-            --bg-gradient-end: #4a0e1c;
-            --card-bg: #6b1a2a;
-            --text-color: #f5e6d3;
-            --border-color: #b8860b;
-            --btn-radius: 50px;
-            --btn-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 1px 3px rgba(255,215,0,0.3);
-            --title-font-family: 'Cormorant Garamond', serif;
-        }
-        [data-theme="midnight-blue"] {
-            --primary-color: #0a192f;
-            --secondary-color: #64ffda;
-            --bg-gradient-start: #020c1b;
-            --bg-gradient-end: #0a192f;
-            --card-bg: #112240;
-            --text-color: #ccd6f6;
-            --border-color: #64ffda;
-            --btn-radius: 4px;
-            --btn-shadow: 0 4px 0 #020c1b, 0 8px 20px rgba(100,255,218,0.2);
-            --title-font-family: 'Playfair Display', serif;
-        }
-        [data-theme="champagne"] {
-            --primary-color: #b59d7e;
-            --secondary-color: #f3e5ab;
-            --bg-gradient-start: #fdfbf7;
-            --bg-gradient-end: #f5efe6;
-            --card-bg: #ffffff;
-            --text-color: #5a4a3a;
-            --border-color: #d4af37;
-            --btn-radius: 50px;
-            --btn-shadow: 0 8px 20px rgba(181,157,126,0.3), inset 0 0 0 1px #fff8e7;
-            --title-font-family: 'Cormorant Garamond', serif;
-        }
-        [data-theme="platinum"] {
-            --primary-color: #2c3e50;
-            --secondary-color: #e5e7eb;
-            --bg-gradient-start: #ecf0f1;
-            --bg-gradient-end: #ffffff;
-            --card-bg: #ffffff;
-            --text-color: #1a252f;
-            --border-color: #bdc3c7;
-            --btn-radius: 30px;
-            --btn-shadow: 0 8px 20px rgba(44,62,80,0.15), 0 2px 5px rgba(255,255,255,0.8);
-            --title-font-family: 'Tajawal', sans-serif;
-        }
+        /* الثيمات بشكل مدمج */
+        [data-theme="madrid"] { --primary: #00529f; --secondary: #febd11; --bg: #f5f7fa; }
+        [data-theme="black-gold"] { --primary: #ffd700; --secondary: #1a1a1a; --bg: #0a0a0a; --card: #2a2a2a; --text: #ffffff; }
+        [data-theme="red"] { --primary: #c62828; --secondary: #ef9a9a; --bg: #ffebee; }
+        [data-theme="midnight-blue"] { --primary: #0a192f; --secondary: #64ffda; --bg: #020c1b; --card: #112240; --text: #ccd6f6; }
+        [data-theme="green"] { --primary: #2e7d32; --secondary: #a5d6a7; --bg: #e8f5e9; }
 
-        * { box-sizing: border-box; }
         body {
             margin: 0; padding: 0; font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
-            background-image: radial-gradient(circle at 20% 30%, rgba(254, 189, 17, 0.08) 0%, transparent 30%), radial-gradient(circle at 80% 70%, rgba(0, 82, 159, 0.08) 0%, transparent 30%);
-            color: var(--text-color); min-height: 100vh; overflow-x: hidden; position: relative;
+            background: var(--bg); color: var(--text); min-height: 100vh;
         }
 
-        /* الشعار كزر لوحة التحكم */
-        #storeLogo { width: 60px; filter: drop-shadow(0 5px 15px rgba(254, 189, 17, 0.3)); transition: transform 0.3s; cursor: pointer; }
+        /* الهيدر */
+        header { text-align: center; padding: 25px 10px; border-bottom: 3px solid var(--secondary); background: var(--card); }
+        #storeLogo { width: 70px; cursor: pointer; transition: 0.3s; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); }
         #storeLogo:hover { transform: scale(1.1); }
+        #storeName { font-size: 2.2rem; margin: 10px 0 5px; font-weight: 900; color: var(--primary); }
+        .sub-brand { font-size: 12px; letter-spacing: 5px; opacity: 0.8; font-weight: bold; }
 
-        .maintenance-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-gradient-start); z-index: 9998; display: none; align-items: center; justify-content: center; font-size: 12vw; color: var(--primary-color); text-shadow: 0 0 30px var(--secondary-color); }
-        .main-content { transition: opacity 0.2s; }
-        .main-content.hidden { display: none; }
+        /* شريط المعلومات */
+        .info-pill { 
+            display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap;
+            background: var(--card); margin: 15px auto; padding: 12px; width: 90%; 
+            border-radius: 50px; border: 1px solid var(--secondary); box-shadow: var(--shadow);
+        }
+        #liveClock { font-weight: 900; color: var(--primary); font-family: monospace; }
 
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 10000; display: none; align-items: center; justify-content: center; }
-        .login-box, .admin-panel { background: var(--card-bg); border-radius: 30px; padding: 30px; width: 90%; max-width: 400px; border: 3px solid var(--secondary-color); box-shadow: 0 20px 50px rgba(0,0,0,0.3); text-align: center; }
-        .admin-panel { max-width: 700px; max-height: 85vh; overflow-y: auto; }
-        .login-box h2, .admin-panel h2 { color: var(--primary-color); margin-bottom: 20px; }
-        .login-box input, .admin-panel input, .admin-panel textarea, .admin-panel select { width: 100%; padding: 12px 15px; border: 2px solid #ddd; border-radius: 50px; font-size: 1rem; margin-bottom: 15px; font-family: 'Cairo'; background: var(--card-bg); color: var(--text-color); }
-        .admin-panel textarea { border-radius: 20px; resize: vertical; }
-        .login-box button, .admin-panel button { background: var(--primary-color); color: white; border: none; padding: 12px 25px; border-radius: var(--btn-radius); font-weight: bold; cursor: pointer; border: 1px solid var(--secondary-color); font-family: 'Cairo'; margin: 5px; transition: 0.3s; box-shadow: var(--btn-shadow); }
-        .login-box button:hover, .admin-panel button:hover { background: var(--secondary-color); color: black; }
-        .close-btn { background: #ccc !important; color: #333 !important; }
+        /* التبويبات */
+        .tabs-container { display: flex; justify-content: center; gap: 10px; margin: 20px; }
+        .tab-btn { 
+            padding: 10px 25px; border: 2px solid var(--secondary); background: var(--card);
+            color: var(--primary); border-radius: 30px; cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+        .tab-btn.active { background: var(--primary); color: #fff; }
 
-        .app-list-item, .mod-list-item { display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.05); padding: 10px 15px; border-radius: 50px; margin-bottom: 10px; border: 1px solid var(--secondary-color); }
-        .app-list-item span, .mod-list-item span { font-weight: bold; color: var(--primary-color); flex: 1; text-align: right; }
-        .app-list-actions { display: flex; gap: 5px; }
-        .edit-app-btn { background: #28a745 !important; color: white !important; padding: 5px 12px !important; font-size: 0.9rem; margin: 0 !important; }
-        .delete-app-btn, .delete-mod-btn { background: #dc3545 !important; color: white !important; padding: 5px 12px !important; font-size: 0.9rem; margin: 0 !important; }
-        .section-title { color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 5px; margin: 20px 0 15px; }
-        .edit-form-container, .settings-form-container, .moderators-container { background: rgba(0,0,0,0.03); border-radius: 20px; padding: 20px; margin: 20px 0; border: 2px solid var(--secondary-color); }
+        /* الجريد (الشبكة) */
+        .grid { 
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; 
+            max-width: 1200px; margin: 0 auto; 
+        }
+        .card { 
+            background: var(--card); border: 1px solid var(--secondary); border-radius: var(--radius);
+            width: 280px; padding: 20px; text-align: center; position: relative;
+            box-shadow: var(--shadow); transition: 0.3s; cursor: pointer;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .app-icon { width: 80px; height: 80px; margin: 0 auto 15px; }
+        .app-icon img { width: 100%; height: 100%; object-fit: contain; border-radius: 15px; }
+        .title { font-size: 1.3rem; font-weight: bold; color: var(--primary); margin-bottom: 8px; }
+        .desc { font-size: 0.9rem; opacity: 0.8; margin-bottom: 15px; min-height: 40px; }
 
-        header { text-align: center; padding: 20px 0 10px; background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent); border-bottom: 2px solid var(--secondary-color); }
-        .logo-container { display: flex; align-items: center; justify-content: center; margin-bottom: 5px; }
-        #storeName { font-size: 2.8rem; font-weight: 900; line-height: 1.2; background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color) 50%, var(--secondary-color) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; color: var(--primary-color); margin: 0; letter-spacing: 2px; text-transform: uppercase; font-family: var(--title-font-family); }
-        .sub-brand { font-size: 14px; letter-spacing: 8px; color: var(--primary-color); font-weight: 800; opacity: 0.9; margin-top: -5px; margin-bottom: 5px; }
+        .luxury-btn { 
+            width: 100%; padding: 10px; background: var(--primary); color: #fff; border: none;
+            border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s;
+        }
+        .card:hover .luxury-btn { background: var(--secondary); color: #000; }
 
-        .info-pill { background: rgba(255, 255, 255, 0.85); border: 1.5px solid var(--secondary-color); border-radius: 100px; padding: 10px 20px; margin: 15px auto; display: flex; gap: 15px; width: 95%; max-width: 900px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); align-items: center; justify-content: space-evenly; flex-wrap: wrap; }
-        #liveClock { color: var(--primary-color); font-weight: 900; font-family: monospace; font-size: 1.2rem; }
-        #liveDate { color: var(--text-color); font-weight: 700; font-size: 0.95rem; background: rgba(254, 189, 17, 0.15); padding: 5px 15px; border-radius: 50px; }
-        .dhikr { color: var(--primary-color); font-weight: 800; font-size: 1rem; }
+        /* الأوفرلاي الخاص بالعد التنازلي */
+        .timer-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--primary); color: #fff; display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+            border-radius: var(--radius); z-index: 10; padding: 15px;
+        }
 
-        .tabs-container { display: flex; justify-content: center; gap: 20px; margin: 20px auto; padding: 0 20px; }
-        .tab-btn { flex: 1; max-width: 250px; background: var(--card-bg); border: 2px solid var(--secondary-color); color: var(--primary-color); padding: 12px 20px; border-radius: var(--btn-radius); cursor: pointer; font-family: 'Cairo'; font-weight: 800; font-size: 1.1rem; transition: all 0.3s; outline: none; box-shadow: var(--btn-shadow); }
-        .tab-btn.active, .tab-btn:focus { background: var(--primary-color); color: white; border-color: var(--secondary-color); transform: scale(1.02); }
+        /* المودالات */
+        .modal-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.8); z-index: 1000; display: none; align-items: center; justify-content: center; 
+        }
+        .admin-panel { 
+            background: var(--card); padding: 25px; border-radius: 20px; width: 95%; max-width: 600px;
+            max-height: 90vh; overflow-y: auto; color: var(--text);
+        }
+        .admin-panel input, .admin-panel textarea, .admin-panel select { 
+            width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #ccc;
+        }
+        .admin-panel button { padding: 10px 20px; margin: 5px; cursor: pointer; border-radius: 5px; border: none; font-weight: bold; }
+        .save-btn { background: #28a745; color: #fff; }
+        .close-btn { background: #dc3545; color: #fff; }
 
-        .grid { display: grid; gap: 25px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); padding: 20px; max-width: 1400px; margin: 0 auto; }
-        .card { background: var(--card-bg); border: 2px solid var(--secondary-color); border-radius: 24px; padding: 25px 20px 20px; text-align: center; position: relative; transition: all 0.4s; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); cursor: pointer; outline: none; }
-        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%); }
-        .card:hover, .card:focus { transform: translateY(-8px); border-color: var(--primary-color); box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2); }
-        .store-card { background: linear-gradient(145deg, var(--card-bg), rgba(0,0,0,0.02)) !important; border: 2px solid var(--primary-color) !important; }
-        .app-icon { width: 100px; height: 100px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.02); border-radius: 20px; padding: 12px; border: 2px solid var(--secondary-color); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); }
-        .app-icon img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 12px; }
-        .title { font-size: 1.5rem; font-weight: 900; background: linear-gradient(135deg, var(--primary-color), var(--primary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; color: var(--primary-color); margin-bottom: 5px; }
-        .desc { font-size: 0.95rem; color: var(--text-color); opacity: 0.8; margin-bottom: 15px; min-height: 40px; font-weight: 500; }
+        /* وضع الصيانة */
+        .maintenance-mode { position: fixed; top:0; left:0; width:100%; height:100%; background:var(--bg); z-index:9999; display:none; flex-direction:column; align-items:center; justify-content:center; font-size:2rem; }
 
-        .luxury-btn { background: var(--primary-color); border: none; color: white; padding: 14px; border-radius: var(--btn-radius); font-weight: 800; cursor: pointer; margin-top: 15px; transition: all 0.3s; font-family: 'Cairo', sans-serif; outline: none; border: 1px solid var(--secondary-color); text-transform: uppercase; letter-spacing: 1px; box-shadow: var(--btn-shadow); }
-        .card:hover .luxury-btn, .card:focus .luxury-btn { background: var(--secondary-color); color: black; border-color: white; }
-        .instant-btn { background: var(--secondary-color) !important; color: black !important; border: 2px solid white !important; font-weight: 900 !important; }
-        .premiere-btn { background: var(--secondary-color) !important; color: black !important; border: 2px solid white !important; font-weight: 900 !important; }
+        footer { text-align: center; padding: 30px; margin-top: 40px; border-top: 1px solid var(--secondary); opacity: 0.8; }
 
-        .timer-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--primary-color); opacity: 0.97; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 20px; text-align: center; z-index: 100; border-radius: 24px; box-sizing: border-box; border: 2px solid var(--secondary-color); }
-        .prayer-msg { font-size: 1.2rem; color: white; font-weight: 800; margin-bottom: 15px; line-height: 1.6; }
-        .count-down { font-size: 4rem; font-weight: 900; color: var(--secondary-color); text-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-
-        footer { text-align: center; padding: 20px 20px 20px; margin-top: 30px; border-top: 2px solid var(--secondary-color); color: var(--primary-color); background: linear-gradient(to top, rgba(254, 189, 17, 0.05), transparent); }
-        footer p { margin: 5px 0; font-weight: 700; }
-
-        @supports not (background-clip: text) { #storeName, .title { background: none; -webkit-text-fill-color: currentColor; color: var(--primary-color); } }
+        @media (max-width: 600px) { .card { width: 100%; } .info-pill { border-radius: 15px; } }
     </style>
 </head>
 <body data-theme="madrid">
 
-<div id="maintenanceOverlay" class="maintenance-overlay" style="display: none;">⚠️</div>
-<div id="mainContent" class="main-content">
+<div id="maintenanceOverlay" class="maintenance-mode">⚠️ المتجر في صيانة مؤقتة</div>
+
+<div id="mainContent">
     <header>
-        <div class="logo-container">
-            <img id="storeLogo" src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="لوحة التحكم" onclick="openLoginModal()" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%2300529f\'/%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'35\' fill=\'%23febd11\'/%3E%3Ctext x=\'50\' y=\'70\' font-size=\'50\' text-anchor=\'middle\' fill=\'%23ffffff\' font-family=\'Arial\'%3E👑%3C/text%3E%3C/svg%3E'">
-        </div>
-        <h1 class="brand" id="storeName">HDMosul Store</h1>
+        <img id="storeLogo" src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" onclick="openLoginModal()" alt="Logo">
+        <h1 id="storeName">HDMosul Store</h1>
         <div class="sub-brand">VIP EXCLUSIVE</div>
     </header>
 
     <div class="info-pill">
-        <div id="liveClock">00:00:00 PM</div>
-        <div id="liveDate">التاريخ</div>
-        <div class="dhikr">⚽ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ⚽</div>
+        <div id="liveClock">00:00:00</div>
+        <div id="liveDate">--/--/----</div>
+        <div class="dhikr">⚽ أذكر الله يذكرك ⚽</div>
     </div>
 
     <div class="tabs-container">
-        <button class="tab-btn active" onclick="switchTab(event, 'apps-tab')">💎 الكل</button>
+        <button class="tab-btn active" onclick="switchTab(event, 'apps-tab')">💎 التطبيقات</button>
         <button class="tab-btn" onclick="switchTab(event, 'store-tab')">🏆 المتجر</button>
     </div>
 
@@ -318,380 +129,275 @@
     <div id="store-tab" class="tab-content" style="display: none;"><div class="grid" id="storeGrid"></div></div>
 
     <footer>
-        <p id="footerLine1">HDMosul • PREMIUM STORE • 2026</p>
+        <p id="footerLine1">HDMosul • 2026</p>
         <p id="footerLine2">جميع الحقوق محفوظة</p>
     </footer>
 </div>
 
-<!-- مودالات -->
 <div id="loginModal" class="modal-overlay">
-    <div class="login-box">
-        <h2><i class="fas fa-lock"></i> لوحة التحكم</h2>
-        <input type="password" id="passwordInput" placeholder="أدخل رمز الدخول" onkeypress="if(event.key==='Enter')checkPassword()">
-        <div><button onclick="checkPassword()">دخول</button><button class="close-btn" onclick="closeLoginModal()">إلغاء</button></div>
+    <div class="admin-panel" style="max-width:350px; text-align:center;">
+        <h3>دخول الإدارة</h3>
+        <input type="password" id="passInput" placeholder="كلمة المرور">
+        <button class="save-btn" onclick="checkAuth()">دخول</button>
+        <button class="close-btn" onclick="closeModals()">إلغاء</button>
     </div>
 </div>
 
-<div id="adminPanelModal" class="modal-overlay">
+<div id="adminPanel" class="modal-overlay">
     <div class="admin-panel">
-        <h2 id="panelTitle"><i class="fas fa-tools"></i> لوحة التحكم</h2>
+        <h2 id="panelTitle">لوحة التحكم</h2>
         
-        <div id="storeSettingsSection" style="display: none;">
-            <div class="section-title">⚙️ إعدادات المتجر</div>
-            <div class="settings-form-container">
-                <input type="text" id="settingsStoreName" placeholder="اسم المتجر">
-                <input type="text" id="settingsLogoUrl" placeholder="رابط الشعار">
-                <input type="text" id="settingsBrandName" placeholder="العلامة التجارية (تظهر في وصف التطبيقات)">
-                <input type="text" id="settingsFooter1" placeholder="نص الفوتر - السطر الأول">
-                <input type="text" id="settingsFooter2" placeholder="نص الفوتر - السطر الثاني">
-                <select id="settingsTheme">
-                    <option value="madrid">مدريدي (أزرق وذهبي)</option>
-                    <option value="blue">أزرق عصري</option>
-                    <option value="black-gold">أسود وذهبي</option>
-                    <option value="green">أخضر زمردي</option>
-                    <option value="red">أحمر ملكي</option>
-                    <option value="purple">بنفسجي فاخر</option>
-                    <option value="orange">برتقالي حيوي</option>
-                    <option value="cyan">سماوي هادئ</option>
-                    <option value="royal-gold">ذهبي ملكي فاخر</option>
-                    <option value="midnight">ليلي فاخر</option>
-                    <option value="emerald">زمردي ملكي</option>
-                    <option value="silver">فضي أنيق</option>
-                    <option value="velvet">مخملي فاخر</option>
-                    <option value="midnight-blue">أزرق ليلي</option>
-                    <option value="champagne">شامبانيا</option>
-                    <option value="platinum">بلاتيني</option>
-                </select>
-                <div style="margin-top:10px;"><label style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="settingsMaintenanceMode"> تفعيل وضع الصيانة (⚠️)</label></div>
-                <button onclick="saveStoreSettings()"><i class="fas fa-save"></i> حفظ الإعدادات</button>
-            </div>
+        <div id="ownerOnly" style="display:none; border-bottom: 2px solid var(--secondary); padding-bottom:15px; margin-bottom:15px;">
+            <h4>⚙️ إعدادات المتجر (للمالك)</h4>
+            <input type="text" id="setStoreName" placeholder="اسم المتجر">
+            <select id="setTheme">
+                <option value="madrid">مدريدي</option>
+                <option value="black-gold">أسود وذهبي</option>
+                <option value="red">أحمر ملكي</option>
+                <option value="midnight-blue">أزرق ليلي</option>
+                <option value="green">أخضر</option>
+            </select>
+            <label><input type="checkbox" id="setMaint"> وضع الصيانة</label>
+            <button class="save-btn" onclick="saveSettings()">حفظ الإعدادات</button>
+            <button style="background:#e67e22; color:#fff;" onclick="exportHTML()">تصدير الكود الكامل</button>
         </div>
 
-        <div id="moderatorsSection" style="display: none;">
-            <div class="section-title">👥 إدارة المشرفين</div>
-            <div class="moderators-container">
-                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                    <input type="text" id="newModeratorCode" placeholder="رمز المشرف الجديد (أرقام فقط)" style="flex: 1;">
-                    <button onclick="addModerator()"><i class="fas fa-plus"></i> إضافة مشرف</button>
-                </div>
-                <div id="moderatorsList" style="max-height: 200px; overflow-y: auto;"></div>
-            </div>
-        </div>
+        <h4>➕ إضافة / تعديل تطبيق</h4>
+        <input type="hidden" id="editIdx">
+        <input type="text" id="appName" placeholder="اسم التطبيق">
+        <input type="text" id="appLink" placeholder="رابط التحميل">
+        <input type="text" id="appIcon" placeholder="رابط الأيقونة">
+        <textarea id="appDesc" placeholder="الوصف"></textarea>
+        <button class="save-btn" onclick="saveApp()">حفظ</button>
+        <button onclick="resetAppForm()">تفريغ</button>
 
-        <div id="exportHtmlSection" style="display: none;">
-            <div class="section-title">📤 تصدير HTML</div>
-            <div style="margin-bottom: 10px;"><button onclick="exportFullHTML()" style="background: #e67e22;"><i class="fas fa-copy"></i> نسخ كود HTML كامل</button></div>
-            <textarea id="htmlExportTextarea" placeholder="سيظهر هنا كود HTML الكامل بعد التوليد..." style="width:100%; height:150px; border-radius:15px; padding:10px; font-family:monospace; direction:ltr; font-size:12px;"></textarea>
-            <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;">بعد النسخ، افتح ملف index.html وألصق الكود كاملاً ثم ارفعه إلى GitHub.</p>
-        </div>
-
-        <!-- نموذج التعديل -->
-        <div id="editFormContainer" class="edit-form-container" style="display: none;">
-            <h3><i class="fas fa-pen"></i> تعديل التطبيق</h3>
-            <input type="hidden" id="editAppIndex"><input type="hidden" id="editAppType">
-            <input type="text" id="editAppName" placeholder="اسم التطبيق">
-            <textarea id="editAppDesc" placeholder="الوصف" rows="2"></textarea>
-            <input type="text" id="editAppLink" placeholder="رابط التحميل">
-            <input type="text" id="editAppIcon" placeholder="رابط الأيقونة (اختياري)">
-            <input type="text" id="editPlayerName" placeholder="اسم المشغل (اختياري)">
-            <input type="text" id="editPlayerLink" placeholder="رابط المشغل (اختياري)">
-            <div style="display: flex; gap: 10px; justify-content: center;">
-                <button onclick="saveEdit()"><i class="fas fa-save"></i> حفظ التعديلات</button>
-                <button class="close-btn" onclick="cancelEdit()">إلغاء</button>
-            </div>
-        </div>
-
-        <!-- نموذج الإضافة -->
-        <div class="section-title">➕ إضافة تطبيق جديد</div>
-        <div class="add-app-form">
-            <input type="text" id="newAppName" placeholder="اسم التطبيق">
-            <textarea id="newAppDesc" placeholder="الوصف" rows="2"></textarea>
-            <input type="text" id="newAppLink" placeholder="رابط التحميل">
-            <input type="text" id="newAppIcon" placeholder="رابط الأيقونة (اختياري)">
-            <input type="text" id="newPlayerName" placeholder="اسم المشغل (اختياري)">
-            <input type="text" id="newPlayerLink" placeholder="رابط المشغل (اختياري)">
-            <button onclick="addNewApp()"><i class="fas fa-plus-circle"></i> إضافة التطبيق</button>
-        </div>
-
-        <div id="appListSection" style="display: none;">
-            <div class="section-title">📋 قائمة التطبيقات (تعديل / حذف)</div>
-            <div id="appListContainer" style="max-height: 300px; overflow-y: auto; padding: 5px;"></div>
-        </div>
-
-        <div style="margin-top: 20px;"><button class="close-btn" onclick="closeAdminPanel()">إغلاق</button></div>
+        <hr>
+        <h4>📋 القائمة الحالية</h4>
+        <div id="adminAppList"></div>
+        
+        <button class="close-btn" style="width:100%; margin-top:20px;" onclick="closeModals()">إغلاق اللوحة</button>
     </div>
 </div>
 
 <script>
-(function(){
-    const OWNER_PASSWORD = "2001820";
-    const DEFAULT_MODERATORS = [];
-    let currentUserRole = null;
+/* ================== البيانات الأساسية ================== */
+// [DATA_START]
+const CONFIG = {
+    pass: "2001820",
+    settings: { name: "HDMosul Store", theme: "madrid", maint: false, footer: "HDMosul • 2026" },
+    apps: [
+        { name: "Hydra 4K", link: "https://www.mediafire.com/file/6in2lqix8yhyznr/Hydra+4K+@NIGANPRO.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/6294/6294945.png", desc: "كود تفعيل سنة" },
+        { name: "أوسكار تيفي Oscar TV", link: "https://aftv.news/5473489", icon: "https://cdn-icons-png.flaticon.com/512/2910/2910724.png", desc: "سينمانا جميع شبكات" }
+    ],
+    store: [
+        { name: "الدعم الفني", link: "mailto:pqkbgfcn688@gmail.com", icon: "https://cdn-icons-png.flaticon.com/512/1827/1827300.png", desc: "للإبلاغ عن الأعطال" }
+    ]
+};
+// [DATA_END]
+
+let currentApps = [...CONFIG.apps];
+let currentSettings = {...CONFIG.settings};
+
+/* ================== المحرك الرئيسي ================== */
+
+function init() {
+    // تحميل من LocalStorage إذا وجد
+    const savedApps = localStorage.getItem('hd_apps');
+    const savedSets = localStorage.getItem('hd_sets');
+    if(savedApps) currentApps = JSON.parse(savedApps);
+    if(savedSets) currentSettings = JSON.parse(savedSets);
+
+    applySettings();
+    renderGrid();
+    startClock();
+}
+
+function applySettings() {
+    document.getElementById('storeName').innerText = currentSettings.name;
+    document.body.setAttribute('data-theme', currentSettings.theme);
+    document.getElementById('maintenanceOverlay').style.display = currentSettings.maint ? 'flex' : 'none';
+    document.getElementById('footerLine1').innerText = currentSettings.footer;
+}
+
+function renderGrid() {
+    const grid = document.getElementById('appsGrid');
+    grid.innerHTML = '';
+    currentApps.forEach((app, idx) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <div class="timer-overlay" id="timer-${idx}">
+                <div style="font-size:1.1rem; margin-bottom:10px;">⚽ لا تلهك المشاهدة عن الصلاة ⚽</div>
+                <div id="cnt-${idx}" style="font-size:3rem; font-weight:900; color:var(--secondary);">4</div>
+            </div>
+            <div class="app-icon"><img src="${app.icon}" onerror="this.src='https://via.placeholder.com/80'"></div>
+            <div class="title">${app.name}</div>
+            <div class="desc">${app.desc}</div>
+            <button class="luxury-btn">تحميل</button>
+        `;
+        card.onclick = () => startDownload(idx, app.link);
+        grid.appendChild(card);
+    });
+
+    // رندر المتجر الثابت
+    const sGrid = document.getElementById('storeGrid');
+    sGrid.innerHTML = '';
+    CONFIG.store.forEach(s => {
+        const scard = document.createElement('div');
+        scard.className = 'card';
+        scard.innerHTML = `<div class="app-icon"><img src="${s.icon}"></div><div class="title">${s.name}</div><div class="desc">${s.desc}</div><button class="luxury-btn">انتقال</button>`;
+        scard.onclick = () => window.location.href = s.link;
+        sGrid.appendChild(scard);
+    });
+}
+
+function startDownload(idx, link) {
+    const overlay = document.getElementById(`timer-${idx}`);
+    const cntText = document.getElementById(`cnt-${idx}`);
+    overlay.style.display = 'flex';
+    let count = 4;
+    const timer = setInterval(() => {
+        count--;
+        cntText.innerText = count;
+        if(count <= 0) {
+            clearInterval(timer);
+            overlay.style.display = 'none';
+            window.location.href = link;
+        }
+    }, 1000);
+}
+
+/* ================== الإدارة ================== */
+
+function checkAuth() {
+    const p = document.getElementById('passInput').value;
+    if(p === CONFIG.pass) {
+        document.getElementById('ownerOnly').style.display = 'block';
+        openAdmin();
+    } else {
+        alert('كلمة مرور خاطئة');
+    }
+}
+
+function openAdmin() {
+    closeModals();
+    document.getElementById('adminPanel').style.display = 'flex';
+    // ملء الإعدادات
+    document.getElementById('setStoreName').value = currentSettings.name;
+    document.getElementById('setTheme').value = currentSettings.theme;
+    document.getElementById('setMaint').checked = currentSettings.maint;
+    refreshAdminList();
+}
+
+function refreshAdminList() {
+    const list = document.getElementById('adminAppList');
+    list.innerHTML = '';
+    currentApps.forEach((app, i) => {
+        const item = document.createElement('div');
+        item.style = "display:flex; justify-content:space-between; background:#eee; padding:8px; margin-bottom:5px; border-radius:5px; color:#333;";
+        item.innerHTML = `<span>${app.name}</span> <div>
+            <button onclick="editApp(${i})" style="background:blue; color:#fff; padding:2px 8px;">تعديل</button>
+            <button onclick="deleteApp(${i})" style="background:red; color:#fff; padding:2px 8px;">حذف</button>
+        </div>`;
+        list.appendChild(item);
+    });
+}
+
+function saveApp() {
+    const name = document.getElementById('appName').value;
+    const link = document.getElementById('appLink').value;
+    const icon = document.getElementById('appIcon').value;
+    const desc = document.getElementById('appDesc').value;
+    const idx = document.getElementById('editIdx').value;
+
+    if(!name || !link) return alert('أكمل البيانات');
+
+    const appData = { name, link, icon: icon || 'https://via.placeholder.com/80', desc };
+
+    if(idx !== "") {
+        currentApps[idx] = appData;
+    } else {
+        currentApps.push(appData);
+    }
+
+    localStorage.setItem('hd_apps', JSON.stringify(currentApps));
+    renderGrid();
+    refreshAdminList();
+    resetAppForm();
+    alert('تم الحفظ بنجاح');
+}
+
+function editApp(i) {
+    const app = currentApps[i];
+    document.getElementById('appName').value = app.name;
+    document.getElementById('appLink').value = app.link;
+    document.getElementById('appIcon').value = app.icon;
+    document.getElementById('appDesc').value = app.desc;
+    document.getElementById('editIdx').value = i;
+}
+
+function deleteApp(i) {
+    if(confirm('هل أنت متأكد؟')) {
+        currentApps.splice(i, 1);
+        localStorage.setItem('hd_apps', JSON.stringify(currentApps));
+        refreshAdminList();
+        renderGrid();
+    }
+}
+
+function saveSettings() {
+    currentSettings.name = document.getElementById('setStoreName').value;
+    currentSettings.theme = document.getElementById('setTheme').value;
+    currentSettings.maint = document.getElementById('setMaint').checked;
+    localStorage.setItem('hd_sets', JSON.stringify(currentSettings));
+    applySettings();
+    alert('تم حفظ الإعدادات');
+}
+
+/* ================== وظائف مساعدة ================== */
+
+function switchTab(e, id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).style.display = 'block';
+    e.target.classList.add('active');
+}
+
+function startClock() {
+    setInterval(() => {
+        const now = new Date();
+        document.getElementById('liveClock').innerText = now.toLocaleTimeString('en-GB');
+        document.getElementById('liveDate').innerText = now.toLocaleDateString('ar-EG');
+    }, 1000);
+}
+
+function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; }
+function closeModals() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display='none'); }
+function resetAppForm() {
+    document.getElementById('editIdx').value = "";
+    ['appName', 'appLink', 'appIcon', 'appDesc'].forEach(id => document.getElementById(id).value = "");
+}
+
+/* تصدير الكود: يقوم بتحديث مصفوفة CONFIG في النص المصدري */
+function exportHTML() {
+    let html = document.documentElement.outerHTML;
+    const newConfig = { ...CONFIG, apps: currentApps, settings: currentSettings };
+    const configStr = `const CONFIG = ${JSON.stringify(newConfig, null, 4)};`;
     
-    const DEFAULT_APPS = [
-        { name: "Hydra 4K", desc: "كود تفعيل سنة (كيبل ضوئي)<br>User: hananthabit | Pass: iptvhd2024@@", link: "https://www.mediafire.com/file/6in2lqix8yhyznr/Hydra+4K+@NIGANPRO.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/6294/6294945.png", isPremiere: true },
-        { name: "أوسكار تيفي Oscar TV", desc: "سينمانا جميع شبكات نسخة جميلة جدا • HDMosul", link: "https://aftv.news/5473489", icon: "https://cdn-icons-png.flaticon.com/512/2910/2910724.png", playerName: "تحميل المشغل", playerLink: "https://aftv.news/2538647" },
-        { name: "دراما لايف", desc: "تحديث جديد - كود الدخول: 232425 • HDMosul", link: "https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258A%25D9%2581.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/2809/2809590.png" },
-        { name: "MovieBox VIP", desc: "سينمانا جميع شبكات • بدون إعلانات • عائلي • HDMosul", link: "https://www.mediafire.com/file/x0r8u9cu37gzu5a/MovieBox+-+Family+(VIP).apk/file", icon: "https://cdn-icons-png.flaticon.com/512/2503/2503708.png" },
-        { name: "1 IRAQ TV", desc: "قنوات رياضية وبث مباشر لجميع الشبكات • HDMosul", link: "https://github.com/oneiraq/onetv_update/raw/refs/heads/main/1_iraq_tv_v1.apk", icon: "https://cdn-icons-png.flaticon.com/512/3004/3004616.png" },
-        { name: "تطبيق المنصة New", desc: "يلزم تسجيل دخول من موبايل مسح باركود QR • HDMosul", link: "https://raw.githubusercontent.com/iraqapps/tvapps/refs/heads/main/apps/New-release-protected.3.0.1.apk", icon: "https://cdn-icons-png.flaticon.com/512/1828/1828961.png" },
-        { name: "تطبيق شو SHOW", desc: "رياضة متنوعة • أفلام • مسلسلات • HDMosul", link: "https://github.com/1ffu1/toflex.com/raw/refs/heads/main/toflex/%D8%B4%D9%88.apk", icon: "https://cdn-icons-png.flaticon.com/512/9073/9073032.png" },
-        { name: "هاي تي في HiTv", desc: "سينمانا متنوع محدث بأحدث الأفلام • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/HiTV%20v3.13.3%20Vip.apk", icon: "https://cdn-icons-png.flaticon.com/512/716/716225.png" },
-        { name: "شاهد Shahid VIP", desc: "نسخة مهكرة مدفوعة بالكامل لشاشات الأندرويد • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/MBC%20Shahid%20v7.117%20vip.apk", icon: "https://cdn-icons-png.flaticon.com/512/732/732074.png" },
-        { name: "جنرال تيفي PRO", desc: "متنوع رياضة سينمانا • كود التفعيل: 000 • HDMosul", link: "https://genraltv.dev", icon: "https://cdn-icons-png.flaticon.com/512/2721/2721214.png" },
-        { name: "يوتيوب الشاشات", desc: "بدون إعلانات • يحدث تلقائي • لجميع الشاشات • HDMosul", link: "https://github.com/yuliskov/SmartTubeNext/releases/download/latest/smarttube_stable.apk", icon: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png" },
-        { name: "تطبيق EgyBest", desc: "سينمانا نسخة مخصصة للشاشات فقط • HDMosul", link: "https://www.mediafire.com/file/07q9jpraaqcrt7o/EgybestTV_v2.0.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/3410/3410163.png" },
-        { name: "تطبيق NETFLY", desc: "سينمانا منوع نسخة VIP سريعة جداً • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/NETFLY%20v3.0.0%20TV%20vip.apk", icon: "https://cdn-icons-png.flaticon.com/512/732/732228.png" },
-        { name: "Reezn TV", desc: "سينمانا متنوع نسخة جديدة كلياً • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/Reezn_1.9.3.apk", icon: "https://cdn-icons-png.flaticon.com/512/5977/5977593.png" },
-        { name: "تطبيق UXP", desc: "الأفضل لجميع الشبكات • سينمانا ورياضة • HDMosul", link: "https://www.mediafire.com/file/87vqd9o61a5my3d/UXP_2.7.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/6294/6294955.png" },
-        { name: "Cinemana CBOX", desc: "نسخة شاشات وتيفي بوكس • شبكة ايرثلنك حصراً • HDMosul", link: "https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/Cinemana_Leanback%20v4.5.9_New.apk", icon: "https://cdn-icons-png.flaticon.com/512/2910/2910756.png" },
-        { name: "Cinemana Plus", desc: "للشاشات الضعيفة • يعمل فقط على ايرثلنك • HDMosul", link: "https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/cinemanaplustv.apk", icon: "https://cdn-icons-png.flaticon.com/512/1828/1828961.png" }
-    ];
+    // استبدال الجزء المحصور بين علامات البيانات
+    const regex = /\/\/ \[DATA_START\][\s\S]*?\/\/ \[DATA_END\]/;
+    const replacement = `// [DATA_START]\n${configStr}\n// [DATA_END]`;
+    
+    html = html.replace(regex, replacement);
 
-    const DEFAULT_STORE = [
-        { name: "مكتبة التطبيقات (1)", desc: "HDMosul • المتجر المتكامل من Android_AppsX", link: "https://iraqapps.github.io/tvapps/", icon: "https://cdn-icons-png.flaticon.com/512/2232/2232688.png" },
-        { name: "مكتبة التطبيقات (2)", desc: "HDMosul • أرشيف شامل لكافة التطبيقات الهامة", link: "https://401740.hala-web.com/", icon: "https://cdn-icons-png.flaticon.com/512/2232/2232688.png" },
-        { name: "الدعم الفني", desc: "للإبلاغ عن الأعطال: pqkbgfcn688@gmail.com", link: "mailto:pqkbgfcn688@gmail.com", icon: "https://cdn-icons-png.flaticon.com/512/1827/1827300.png", isSupport: true }
-    ];
+    const blob = new Blob([html], {type: "text/html"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "index.html";
+    a.click();
+}
 
-    let appsList = [], storeList = [], moderators = [];
-    let storeSettings = {
-        name: 'HDMosul Store',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png',
-        theme: 'madrid',
-        maintenanceMode: false,
-        brandName: 'HDMosul',
-        footer1: 'HDMosul • PREMIUM STORE • 2026',
-        footer2: 'جميع الحقوق محفوظة'
-    };
-    let currentEdit = { type: null, index: null };
-
-    // التخزين
-    function loadModerators() { const s = localStorage.getItem('hdmosul_mods'); moderators = s ? JSON.parse(s) : DEFAULT_MODERATORS.slice(); }
-    function saveModerators() { localStorage.setItem('hdmosul_mods', JSON.stringify(moderators)); if (currentUserRole === 'owner') renderModeratorsList(); }
-    function loadSettings() { const s = localStorage.getItem('hdmosul_settings'); if (s) storeSettings = JSON.parse(s); applySettings(); }
-    function saveSettings() { localStorage.setItem('hdmosul_settings', JSON.stringify(storeSettings)); applySettings(); }
-    function applySettings() {
-        document.getElementById('storeName').textContent = storeSettings.name;
-        document.getElementById('storeLogo').src = storeSettings.logoUrl;
-        document.body.setAttribute('data-theme', storeSettings.theme);
-        document.getElementById('footerLine1').textContent = storeSettings.footer1;
-        document.getElementById('footerLine2').textContent = storeSettings.footer2;
-        applyMaintenanceMode();
-    }
-    function applyMaintenanceMode() {
-        const ov = document.getElementById('maintenanceOverlay'), mc = document.getElementById('mainContent');
-        if (storeSettings.maintenanceMode) { ov.style.display = 'flex'; mc.classList.add('hidden'); }
-        else { ov.style.display = 'none'; mc.classList.remove('hidden'); }
-    }
-    function loadData() {
-        appsList = JSON.parse(localStorage.getItem('hdmosul_apps')) || DEFAULT_APPS.map(a => ({...a}));
-        storeList = JSON.parse(localStorage.getItem('hdmosul_store')) || DEFAULT_STORE.map(s => ({...s}));
-    }
-    function saveData() {
-        localStorage.setItem('hdmosul_apps', JSON.stringify(appsList));
-        localStorage.setItem('hdmosul_store', JSON.stringify(storeList));
-        renderAllApps(); renderStoreApps();
-    }
-
-    // تصدير HTML
-    function exportFullHTML() {
-        let html = document.documentElement.outerHTML;
-        const appsStr = JSON.stringify(appsList, null, 4);
-        const storeStr = JSON.stringify(storeList, null, 4);
-        const modsStr = JSON.stringify(moderators);
-        const settingsStr = JSON.stringify(storeSettings, null, 4);
-        html = html.replace(/(const DEFAULT_APPS = )\[[\s\S]*?\];/, '$1' + appsStr + ';');
-        html = html.replace(/(const DEFAULT_STORE = )\[[\s\S]*?\];/, '$1' + storeStr + ';');
-        html = html.replace(/(const DEFAULT_MODERATORS = )\[.*?\];/, '$1' + modsStr + ';');
-        html = html.replace(/(let storeSettings = )\{[\s\S]*?\};/, '$1' + settingsStr + ';');
-        document.getElementById('htmlExportTextarea').value = html;
-        if (navigator.clipboard) { navigator.clipboard.writeText(html).then(() => alert('✅ تم نسخ كود HTML')).catch(() => alert('✅ الكود في المربع')); }
-        else alert('✅ الكود في المربع أدناه');
-    }
-
-    // عرض البطاقات
-    function createAppCard(app, isStore) {
-        const card = document.createElement('div'); card.className = `card${isStore ? ' store-card' : ''}`; card.tabIndex = 0;
-        if (app.isSupport) card.onclick = () => window.location.href = app.link;
-        else {
-            card.onclick = () => openLink(card, app.link);
-            card.onkeypress = e => { if (e.key === 'Enter') openLink(card, app.link); };
-            const ov = document.createElement('div'); ov.className = 'timer-overlay';
-            ov.innerHTML = '<div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div>';
-            card.appendChild(ov);
-        }
-        const iconDiv = document.createElement('div'); iconDiv.className = 'app-icon';
-        const img = document.createElement('img'); img.src = app.icon || 'https://via.placeholder.com/100/00529f/ffffff?text=APP'; img.alt = app.name;
-        img.onerror = () => img.src = 'https://via.placeholder.com/100/00529f/ffffff?text=APP';
-        iconDiv.appendChild(img); card.appendChild(iconDiv);
-        const title = document.createElement('div'); title.className = 'title'; title.textContent = app.name; card.appendChild(title);
-        const desc = document.createElement('div'); desc.className = 'desc';
-        let descText = app.desc; if (!app.isSupport) descText = descText.replace(/HDMosul/g, storeSettings.brandName);
-        desc.innerHTML = descText; card.appendChild(desc);
-        if (!app.isSupport) {
-            if (app.playerName && app.playerLink) {
-                const bc = document.createElement('div'); bc.style.cssText = 'display: flex; gap: 10px; position: relative; z-index: 10;';
-                const b1 = document.createElement('button'); b1.className = 'luxury-btn'; b1.style.cssText = 'flex:1; pointer-events: none;'; b1.textContent = 'تحميل التطبيق';
-                const b2 = document.createElement('button'); b2.className = 'luxury-btn instant-btn'; b2.style.cssText = 'flex:1; pointer-events: auto;'; b2.textContent = app.playerName;
-                b2.onclick = e => { e.stopPropagation(); e.preventDefault(); window.location.href = app.playerLink; };
-                bc.appendChild(b1); bc.appendChild(b2); card.appendChild(bc);
-            } else {
-                const btn = document.createElement('button'); btn.className = `luxury-btn${app.isPremiere ? ' premiere-btn' : ''}`; btn.style.pointerEvents = 'none';
-                btn.textContent = app.isPremiere ? '🏆 تحميل PREMIERE 🏆' : 'تحميل'; card.appendChild(btn);
-            }
-        }
-        return card;
-    }
-    function renderAllApps() { const g = document.getElementById('appsGrid'); g.innerHTML = ''; appsList.forEach(a => g.appendChild(createAppCard(a, false))); }
-    function renderStoreApps() { const g = document.getElementById('storeGrid'); g.innerHTML = ''; storeList.forEach(s => g.appendChild(createAppCard(s, true))); }
-
-    // إدارة المشرفين
-    function renderModeratorsList() {
-        const c = document.getElementById('moderatorsList'); c.innerHTML = '';
-        moderators.forEach((code, i) => {
-            const d = document.createElement('div'); d.className = 'mod-list-item'; d.innerHTML = `<span>🔑 ${code}</span>`;
-            const del = document.createElement('button'); del.className = 'delete-mod-btn'; del.innerHTML = '<i class="fas fa-trash"></i> حذف';
-            del.onclick = () => { if (confirm(`حذف ${code}؟`)) { moderators.splice(i, 1); saveModerators(); } };
-            d.appendChild(del); c.appendChild(d);
-        });
-        if (!moderators.length) c.innerHTML = '<p style="text-align:center;opacity:0.7;">لا يوجد مشرفون</p>';
-    }
-    function addModerator() {
-        const inp = document.getElementById('newModeratorCode'), code = inp.value.trim();
-        if (!code) return alert('أدخل رمز المشرف');
-        if (!/^\d+$/.test(code)) return alert('أرقام فقط');
-        if (code === OWNER_PASSWORD) return alert('لا يمكن إضافة المالك');
-        if (moderators.includes(code)) return alert('الرمز موجود');
-        moderators.push(code); saveModerators(); inp.value = ''; alert(`تم إضافة ${code}`);
-    }
-
-    // لوحة التحكم
-    function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; document.getElementById('passwordInput').focus(); }
-    function closeLoginModal() { document.getElementById('loginModal').style.display = 'none'; }
-    function checkPassword() {
-        const pass = document.getElementById('passwordInput').value;
-        if (pass === OWNER_PASSWORD) { currentUserRole = 'owner'; closeLoginModal(); openAdminPanel(); }
-        else if (moderators.includes(pass)) { currentUserRole = 'moderator'; closeLoginModal(); openAdminPanel(); }
-        else alert('❌ رمز غير صحيح');
-    }
-    function openAdminPanel() {
-        const title = document.getElementById('panelTitle');
-        const sSec = document.getElementById('storeSettingsSection'), mSec = document.getElementById('moderatorsSection');
-        const eSec = document.getElementById('exportHtmlSection'), lSec = document.getElementById('appListSection');
-        if (currentUserRole === 'owner') {
-            title.innerHTML = '<i class="fas fa-crown"></i> لوحة المالك';
-            sSec.style.display = mSec.style.display = eSec.style.display = lSec.style.display = 'block';
-            document.getElementById('settingsStoreName').value = storeSettings.name;
-            document.getElementById('settingsLogoUrl').value = storeSettings.logoUrl;
-            document.getElementById('settingsBrandName').value = storeSettings.brandName;
-            document.getElementById('settingsFooter1').value = storeSettings.footer1;
-            document.getElementById('settingsFooter2').value = storeSettings.footer2;
-            document.getElementById('settingsTheme').value = storeSettings.theme;
-            document.getElementById('settingsMaintenanceMode').checked = storeSettings.maintenanceMode;
-            renderModeratorsList(); refreshAppListInPanel();
-        } else {
-            title.innerHTML = '<i class="fas fa-user-shield"></i> لوحة المشرف';
-            sSec.style.display = mSec.style.display = eSec.style.display = 'none';
-            lSec.style.display = 'block'; refreshAppListInPanel();
-        }
-        document.getElementById('adminPanelModal').style.display = 'flex'; cancelEdit();
-    }
-    function closeAdminPanel() { document.getElementById('adminPanelModal').style.display = 'none'; currentUserRole = null; }
-    function saveStoreSettings() {
-        if (currentUserRole !== 'owner') return;
-        storeSettings.name = document.getElementById('settingsStoreName').value.trim() || 'HDMosul Store';
-        storeSettings.logoUrl = document.getElementById('settingsLogoUrl').value.trim() || storeSettings.logoUrl;
-        storeSettings.brandName = document.getElementById('settingsBrandName').value.trim() || 'HDMosul';
-        storeSettings.footer1 = document.getElementById('settingsFooter1').value.trim() || 'HDMosul • PREMIUM STORE • 2026';
-        storeSettings.footer2 = document.getElementById('settingsFooter2').value.trim() || 'جميع الحقوق محفوظة';
-        storeSettings.theme = document.getElementById('settingsTheme').value;
-        storeSettings.maintenanceMode = document.getElementById('settingsMaintenanceMode').checked;
-        saveSettings(); renderAllApps(); renderStoreApps(); alert('✅ تم الحفظ');
-    }
-
-    function refreshAppListInPanel() {
-        const c = document.getElementById('appListContainer'); c.innerHTML = '';
-        const appsToShow = currentUserRole === 'owner' ? appsList : appsList.filter(a => a.addedBy === currentUserRole);
-        appsToShow.forEach(a => { const i = appsList.indexOf(a); c.appendChild(createListItem(a.name, 'apps', i)); });
-        if (currentUserRole === 'owner') {
-            const sep = document.createElement('div'); sep.style.margin = '15px 0 5px'; sep.style.fontWeight = 'bold'; sep.textContent = '📁 المتجر:'; c.appendChild(sep);
-            storeList.forEach((s, i) => c.appendChild(createListItem(s.name, 'store', i)));
-        }
-    }
-    function createListItem(name, type, index) {
-        const d = document.createElement('div'); d.className = 'app-list-item'; d.innerHTML = `<span>${name}</span>`;
-        const acts = document.createElement('div'); acts.className = 'app-list-actions';
-        const edit = document.createElement('button'); edit.className = 'edit-app-btn'; edit.innerHTML = '<i class="fas fa-edit"></i> تعديل'; edit.onclick = () => startEdit(type, index);
-        const del = document.createElement('button'); del.className = 'delete-app-btn'; del.innerHTML = '<i class="fas fa-trash"></i> حذف';
-        del.onclick = () => { if (confirm(`حذف "${name}"؟`)) { if (type === 'apps') appsList.splice(index, 1); else storeList.splice(index, 1); saveData(); refreshAppListInPanel(); cancelEdit(); } };
-        acts.appendChild(edit); acts.appendChild(del); d.appendChild(acts); return d;
-    }
-    function startEdit(type, index) {
-        currentEdit = { type, index }; const app = type === 'apps' ? appsList[index] : storeList[index];
-        document.getElementById('editAppIndex').value = index; document.getElementById('editAppType').value = type;
-        document.getElementById('editAppName').value = app.name || ''; document.getElementById('editAppDesc').value = app.desc || '';
-        document.getElementById('editAppLink').value = app.link || ''; document.getElementById('editAppIcon').value = app.icon || '';
-        document.getElementById('editPlayerName').value = app.playerName || ''; document.getElementById('editPlayerLink').value = app.playerLink || '';
-        document.getElementById('editFormContainer').style.display = 'block';
-    }
-    function saveEdit() {
-        const type = document.getElementById('editAppType').value, index = parseInt(document.getElementById('editAppIndex').value);
-        const updated = {
-            name: document.getElementById('editAppName').value.trim(),
-            desc: document.getElementById('editAppDesc').value.trim(),
-            link: document.getElementById('editAppLink').value.trim(),
-            icon: document.getElementById('editAppIcon').value.trim(),
-            playerName: document.getElementById('editPlayerName').value.trim(),
-            playerLink: document.getElementById('editPlayerLink').value.trim()
-        };
-        if (!updated.name || !updated.link) return alert('الاسم والرابط مطلوبان');
-        const original = type === 'apps' ? appsList[index] : storeList[index];
-        const final = Object.assign({}, original, updated);
-        if (type === 'apps') appsList[index] = final; else storeList[index] = final;
-        saveData(); refreshAppListInPanel(); cancelEdit(); alert(`✅ تم تحديث "${final.name}"`);
-    }
-    function cancelEdit() { document.getElementById('editFormContainer').style.display = 'none'; currentEdit = { type: null, index: null }; }
-    function addNewApp() {
-        const name = document.getElementById('newAppName').value.trim(), desc = document.getElementById('newAppDesc').value.trim();
-        const link = document.getElementById('newAppLink').value.trim(), icon = document.getElementById('newAppIcon').value.trim();
-        const pn = document.getElementById('newPlayerName').value.trim(), pl = document.getElementById('newPlayerLink').value.trim();
-        if (!name || !link) return alert('الاسم والرابط مطلوبان');
-        const newApp = { name, desc: desc || 'تطبيق جديد', link, icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png', addedBy: currentUserRole, playerName: pn, playerLink: pl };
-        appsList.push(newApp); saveData(); refreshAppListInPanel();
-        ['newAppName','newAppDesc','newAppLink','newAppIcon','newPlayerName','newPlayerLink'].forEach(id => document.getElementById(id).value = '');
-        alert(`✅ تمت إضافة "${name}"`);
-    }
-
-    // دوال مساعدة
-    function updateClock() {
-        const n = new Date(); let h = n.getHours(), m = n.getMinutes(), s = n.getSeconds(); const ampm = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
-        document.getElementById('liveClock').innerText = `${h}:${m<10?'0'+m:m}:${s<10?'0'+s:s} ${ampm}`;
-        const days = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'], d = days[n.getDay()];
-        document.getElementById('liveDate').innerText = `${d} ${n.getFullYear()}-${n.getMonth()+1}-${n.getDate()}`;
-    }
-    function switchTab(evt, tabId) {
-        document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(tabId).style.display = 'block'; evt.currentTarget.classList.add('active');
-    }
-    function openLink(card, url) {
-        if (card.dataset.running === "true") return;
-        const overlay = card.querySelector('.timer-overlay'); if (!overlay) { window.location.href = url; return; }
-        const countSpan = overlay.querySelector('.count-down'); card.dataset.running = "true"; let count = 4; overlay.style.display = 'flex'; countSpan.innerText = count;
-        const interval = setInterval(() => { count--; countSpan.innerText = count; if (count <= 0) { clearInterval(interval); overlay.style.display = 'none'; card.dataset.running = "false"; window.location.href = url; } }, 1000);
-    }
-
-    // تصدير الدوال
-    window.openLoginModal = openLoginModal; window.closeLoginModal = closeLoginModal; window.checkPassword = checkPassword;
-    window.closeAdminPanel = closeAdminPanel; window.saveStoreSettings = saveStoreSettings; window.addModerator = addModerator;
-    window.addNewApp = addNewApp; window.saveEdit = saveEdit; window.cancelEdit = cancelEdit; window.switchTab = switchTab;
-    window.exportFullHTML = exportFullHTML;
-
-    window.onload = function() {
-        loadModerators(); loadSettings(); loadData(); renderAllApps(); renderStoreApps(); updateClock(); setInterval(updateClock, 1000);
-    };
-})();
+window.onload = init;
 </script>
 </body>
 </html>
