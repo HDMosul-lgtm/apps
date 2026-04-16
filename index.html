@@ -157,7 +157,11 @@
         <!-- قسم تصدير HTML -->
         <div id="exportHtmlSection" style="display: none;">
             <div class="section-title">📤 تصدير HTML</div>
-            <div style="margin-bottom: 10px;"><button onclick="exportFullHTML()" style="background: #e67e22;"><i class="fas fa-copy"></i> نسخ كود HTML كامل</button></div>
+            <div style="margin-bottom: 10px;">
+                <button onclick="exportFullHTML()" style="background: #e67e22; font-size: 1.2rem; padding: 15px 30px;">
+                    <i class="fas fa-copy"></i> نسخ كود HTML كامل
+                </button>
+            </div>
             <p style="font-size:0.8rem; opacity:0.7;">بعد النسخ، افتح ملف index.html وألصق الكود كاملاً ثم ارفعه.</p>
         </div>
 
@@ -369,7 +373,7 @@
         html = html.replace(/(var DEFAULT_APPS = )\[[\s\S]*?\];/, '$1' + appsStr + ';');
         html = html.replace(/(var DEFAULT_STORE = )\[[\s\S]*?\];/, '$1' + storeStr + ';');
         html = html.replace(/(var storeSettings = )\{[\s\S]*?\};/, '$1' + settingsStr + ';');
-        if (navigator.clipboard) { navigator.clipboard.writeText(html).then(function(){ alert('✅ تم نسخ كود HTML'); }).catch(function(){ alert('✅ تعذر النسخ التلقائي، استخدم النسخ اليدوي'); }); }
+        if (navigator.clipboard) { navigator.clipboard.writeText(html).then(function(){ alert('✅ تم نسخ كود HTML إلى الحافظة'); }).catch(function(){ prompt('انسخ الكود يدوياً:', html); }); }
         else { prompt('انسخ الكود يدوياً:', html); }
     }
 
