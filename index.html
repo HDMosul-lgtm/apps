@@ -424,11 +424,11 @@
 
 <script>
 (function(){
-    const OWNER_PASSWORD = "2001820";
-    const DEFAULT_MODERATORS = [];
-    let currentUserRole = null;
+    var OWNER_PASSWORD = "2001820";
+    var DEFAULT_MODERATORS = [];
+    var currentUserRole = null;
     
-    const DEFAULT_APPS = [
+    var DEFAULT_APPS = [
         { name: "Hydra 4K", desc: "كود تفعيل سنة (كيبل ضوئي)<br>User: hananthabit | Pass: iptvhd2024@@", link: "https://www.mediafire.com/file/6in2lqix8yhyznr/Hydra+4K+@NIGANPRO.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/6294/6294945.png", isPremiere: true },
         { name: "أوسكار تيفي Oscar TV", desc: "سينمانا جميع شبكات نسخة جميلة جدا • HDMosul", link: "https://aftv.news/5473489", icon: "https://cdn-icons-png.flaticon.com/512/2910/2910724.png", playerName: "تحميل المشغل", playerLink: "https://aftv.news/2538647" },
         { name: "دراما لايف", desc: "تحديث جديد - كود الدخول: 232425 • HDMosul", link: "https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258A%25D9%2581.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/2809/2809590.png" },
@@ -448,14 +448,14 @@
         { name: "Cinemana Plus", desc: "للشاشات الضعيفة • يعمل فقط على ايرثلنك • HDMosul", link: "https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/cinemanaplustv.apk", icon: "https://cdn-icons-png.flaticon.com/512/1828/1828961.png" }
     ];
 
-    const DEFAULT_STORE = [
+    var DEFAULT_STORE = [
         { name: "مكتبة التطبيقات (1)", desc: "HDMosul • المتجر المتكامل من Android_AppsX", link: "https://iraqapps.github.io/tvapps/", icon: "https://cdn-icons-png.flaticon.com/512/2232/2232688.png" },
         { name: "مكتبة التطبيقات (2)", desc: "HDMosul • أرشيف شامل لكافة التطبيقات الهامة", link: "https://401740.hala-web.com/", icon: "https://cdn-icons-png.flaticon.com/512/2232/2232688.png" },
         { name: "الدعم الفني", desc: "للإبلاغ عن الأعطال: pqkbgfcn688@gmail.com", link: "mailto:pqkbgfcn688@gmail.com", icon: "https://cdn-icons-png.flaticon.com/512/1827/1827300.png", isSupport: true }
     ];
 
-    let appsList = [], storeList = [], moderators = [];
-    let storeSettings = {
+    var appsList = [], storeList = [], moderators = [];
+    var storeSettings = {
         name: 'HDMosul Store',
         logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png',
         theme: 'madrid',
@@ -464,12 +464,12 @@
         footer1: 'HDMosul • PREMIUM STORE • 2026',
         footer2: 'جميع الحقوق محفوظة'
     };
-    let currentEdit = { type: null, index: null };
+    var currentEdit = { type: null, index: null };
 
     // التخزين
-    function loadModerators() { const s = localStorage.getItem('hdmosul_mods'); moderators = s ? JSON.parse(s) : DEFAULT_MODERATORS.slice(); }
+    function loadModerators() { var s = localStorage.getItem('hdmosul_mods'); moderators = s ? JSON.parse(s) : DEFAULT_MODERATORS.slice(); }
     function saveModerators() { localStorage.setItem('hdmosul_mods', JSON.stringify(moderators)); if (currentUserRole === 'owner') renderModeratorsList(); }
-    function loadSettings() { const s = localStorage.getItem('hdmosul_settings'); if (s) storeSettings = JSON.parse(s); applySettings(); }
+    function loadSettings() { var s = localStorage.getItem('hdmosul_settings'); if (s) storeSettings = JSON.parse(s); applySettings(); }
     function saveSettings() { localStorage.setItem('hdmosul_settings', JSON.stringify(storeSettings)); applySettings(); }
     function applySettings() {
         document.getElementById('storeName').textContent = storeSettings.name;
@@ -480,13 +480,13 @@
         applyMaintenanceMode();
     }
     function applyMaintenanceMode() {
-        const ov = document.getElementById('maintenanceOverlay'), mc = document.getElementById('mainContent');
+        var ov = document.getElementById('maintenanceOverlay'), mc = document.getElementById('mainContent');
         if (storeSettings.maintenanceMode) { ov.style.display = 'flex'; mc.classList.add('hidden'); }
         else { ov.style.display = 'none'; mc.classList.remove('hidden'); }
     }
     function loadData() {
-        appsList = JSON.parse(localStorage.getItem('hdmosul_apps')) || DEFAULT_APPS.map(a => ({...a}));
-        storeList = JSON.parse(localStorage.getItem('hdmosul_store')) || DEFAULT_STORE.map(s => ({...s}));
+        try { appsList = JSON.parse(localStorage.getItem('hdmosul_apps')) || DEFAULT_APPS.map(function(a){ return JSON.parse(JSON.stringify(a)); }); } catch(e){ appsList = DEFAULT_APPS.map(function(a){ return JSON.parse(JSON.stringify(a)); }); }
+        try { storeList = JSON.parse(localStorage.getItem('hdmosul_store')) || DEFAULT_STORE.map(function(s){ return JSON.parse(JSON.stringify(s)); }); } catch(e){ storeList = DEFAULT_STORE.map(function(s){ return JSON.parse(JSON.stringify(s)); }); }
     }
     function saveData() {
         localStorage.setItem('hdmosul_apps', JSON.stringify(appsList));
@@ -496,89 +496,91 @@
 
     // تصدير HTML
     function exportFullHTML() {
-        let html = document.documentElement.outerHTML;
-        const appsStr = JSON.stringify(appsList, null, 4);
-        const storeStr = JSON.stringify(storeList, null, 4);
-        const modsStr = JSON.stringify(moderators);
-        const settingsStr = JSON.stringify(storeSettings, null, 4);
-        html = html.replace(/(const DEFAULT_APPS = )\[[\s\S]*?\];/, '$1' + appsStr + ';');
-        html = html.replace(/(const DEFAULT_STORE = )\[[\s\S]*?\];/, '$1' + storeStr + ';');
-        html = html.replace(/(const DEFAULT_MODERATORS = )\[.*?\];/, '$1' + modsStr + ';');
-        html = html.replace(/(let storeSettings = )\{[\s\S]*?\};/, '$1' + settingsStr + ';');
+        var html = document.documentElement.outerHTML;
+        var appsStr = JSON.stringify(appsList, null, 4);
+        var storeStr = JSON.stringify(storeList, null, 4);
+        var modsStr = JSON.stringify(moderators);
+        var settingsStr = JSON.stringify(storeSettings, null, 4);
+        html = html.replace(/(var DEFAULT_APPS = )\[[\s\S]*?\];/, '$1' + appsStr + ';');
+        html = html.replace(/(var DEFAULT_STORE = )\[[\s\S]*?\];/, '$1' + storeStr + ';');
+        html = html.replace(/(var DEFAULT_MODERATORS = )\[.*?\];/, '$1' + modsStr + ';');
+        html = html.replace(/(var storeSettings = )\{[\s\S]*?\};/, '$1' + settingsStr + ';');
         document.getElementById('htmlExportTextarea').value = html;
-        if (navigator.clipboard) { navigator.clipboard.writeText(html).then(() => alert('✅ تم نسخ كود HTML')).catch(() => alert('✅ الكود في المربع')); }
+        if (navigator.clipboard) { navigator.clipboard.writeText(html).then(function(){ alert('✅ تم نسخ كود HTML'); }).catch(function(){ alert('✅ الكود في المربع'); }); }
         else alert('✅ الكود في المربع أدناه');
     }
 
     // عرض البطاقات
     function createAppCard(app, isStore) {
-        const card = document.createElement('div'); card.className = `card${isStore ? ' store-card' : ''}`; card.tabIndex = 0;
-        if (app.isSupport) card.onclick = () => window.location.href = app.link;
+        var card = document.createElement('div'); card.className = 'card' + (isStore ? ' store-card' : ''); card.tabIndex = 0;
+        if (app.isSupport) card.onclick = function(){ window.location.href = app.link; };
         else {
-            card.onclick = () => openLink(card, app.link);
-            card.onkeypress = e => { if (e.key === 'Enter') openLink(card, app.link); };
-            const ov = document.createElement('div'); ov.className = 'timer-overlay';
+            card.onclick = function(){ openLink(card, app.link); };
+            card.onkeypress = function(e){ if (e.key === 'Enter') openLink(card, app.link); };
+            var ov = document.createElement('div'); ov.className = 'timer-overlay';
             ov.innerHTML = '<div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div>';
             card.appendChild(ov);
         }
-        const iconDiv = document.createElement('div'); iconDiv.className = 'app-icon';
-        const img = document.createElement('img'); img.src = app.icon || 'https://via.placeholder.com/100/00529f/ffffff?text=APP'; img.alt = app.name;
-        img.onerror = () => img.src = 'https://via.placeholder.com/100/00529f/ffffff?text=APP';
+        var iconDiv = document.createElement('div'); iconDiv.className = 'app-icon';
+        var img = document.createElement('img'); img.src = app.icon || 'https://via.placeholder.com/100/00529f/ffffff?text=APP'; img.alt = app.name;
+        img.onerror = function(){ this.src = 'https://via.placeholder.com/100/00529f/ffffff?text=APP'; };
         iconDiv.appendChild(img); card.appendChild(iconDiv);
-        const title = document.createElement('div'); title.className = 'title'; title.textContent = app.name; card.appendChild(title);
-        const desc = document.createElement('div'); desc.className = 'desc';
-        let descText = app.desc; if (!app.isSupport) descText = descText.replace(/HDMosul/g, storeSettings.brandName);
+        var title = document.createElement('div'); title.className = 'title'; title.textContent = app.name; card.appendChild(title);
+        var desc = document.createElement('div'); desc.className = 'desc';
+        var descText = app.desc; if (!app.isSupport) descText = descText.replace(/HDMosul/g, storeSettings.brandName);
         desc.innerHTML = descText; card.appendChild(desc);
         if (!app.isSupport) {
             if (app.playerName && app.playerLink) {
-                const bc = document.createElement('div'); bc.style.cssText = 'display: flex; gap: 10px; position: relative; z-index: 10;';
-                const b1 = document.createElement('button'); b1.className = 'luxury-btn'; b1.style.cssText = 'flex:1; pointer-events: none;'; b1.textContent = 'تحميل التطبيق';
-                const b2 = document.createElement('button'); b2.className = 'luxury-btn instant-btn'; b2.style.cssText = 'flex:1; pointer-events: auto;'; b2.textContent = app.playerName;
-                b2.onclick = e => { e.stopPropagation(); e.preventDefault(); window.location.href = app.playerLink; };
+                var bc = document.createElement('div'); bc.style.cssText = 'display: flex; gap: 10px; position: relative; z-index: 10;';
+                var b1 = document.createElement('button'); b1.className = 'luxury-btn'; b1.style.cssText = 'flex:1; pointer-events: none;'; b1.textContent = 'تحميل التطبيق';
+                var b2 = document.createElement('button'); b2.className = 'luxury-btn instant-btn'; b2.style.cssText = 'flex:1; pointer-events: auto;'; b2.textContent = app.playerName;
+                b2.onclick = function(e){ e.stopPropagation(); e.preventDefault(); window.location.href = app.playerLink; };
                 bc.appendChild(b1); bc.appendChild(b2); card.appendChild(bc);
             } else {
-                const btn = document.createElement('button'); btn.className = `luxury-btn${app.isPremiere ? ' premiere-btn' : ''}`; btn.style.pointerEvents = 'none';
+                var btn = document.createElement('button'); btn.className = 'luxury-btn' + (app.isPremiere ? ' premiere-btn' : ''); btn.style.pointerEvents = 'none';
                 btn.textContent = app.isPremiere ? '🏆 تحميل PREMIERE 🏆' : 'تحميل'; card.appendChild(btn);
             }
         }
         return card;
     }
-    function renderAllApps() { const g = document.getElementById('appsGrid'); g.innerHTML = ''; appsList.forEach(a => g.appendChild(createAppCard(a, false))); }
-    function renderStoreApps() { const g = document.getElementById('storeGrid'); g.innerHTML = ''; storeList.forEach(s => g.appendChild(createAppCard(s, true))); }
+    function renderAllApps() { var g = document.getElementById('appsGrid'); g.innerHTML = ''; for (var i=0; i<appsList.length; i++) g.appendChild(createAppCard(appsList[i], false)); }
+    function renderStoreApps() { var g = document.getElementById('storeGrid'); g.innerHTML = ''; for (var i=0; i<storeList.length; i++) g.appendChild(createAppCard(storeList[i], true)); }
 
     // إدارة المشرفين
     function renderModeratorsList() {
-        const c = document.getElementById('moderatorsList'); c.innerHTML = '';
-        moderators.forEach((code, i) => {
-            const d = document.createElement('div'); d.className = 'mod-list-item'; d.innerHTML = `<span>🔑 ${code}</span>`;
-            const del = document.createElement('button'); del.className = 'delete-mod-btn'; del.innerHTML = '<i class="fas fa-trash"></i> حذف';
-            del.onclick = () => { if (confirm(`حذف ${code}؟`)) { moderators.splice(i, 1); saveModerators(); } };
-            d.appendChild(del); c.appendChild(d);
-        });
+        var c = document.getElementById('moderatorsList'); c.innerHTML = '';
+        for (var i=0; i<moderators.length; i++) {
+            (function(code, idx){
+                var d = document.createElement('div'); d.className = 'mod-list-item'; d.innerHTML = '<span>🔑 ' + code + '</span>';
+                var del = document.createElement('button'); del.className = 'delete-mod-btn'; del.innerHTML = '<i class="fas fa-trash"></i> حذف';
+                del.onclick = function(){ if (confirm('حذف ' + code + '؟')) { moderators.splice(idx, 1); saveModerators(); } };
+                d.appendChild(del); c.appendChild(d);
+            })(moderators[i], i);
+        }
         if (!moderators.length) c.innerHTML = '<p style="text-align:center;opacity:0.7;">لا يوجد مشرفون</p>';
     }
     function addModerator() {
-        const inp = document.getElementById('newModeratorCode'), code = inp.value.trim();
+        var inp = document.getElementById('newModeratorCode'), code = inp.value.trim();
         if (!code) return alert('أدخل رمز المشرف');
         if (!/^\d+$/.test(code)) return alert('أرقام فقط');
         if (code === OWNER_PASSWORD) return alert('لا يمكن إضافة المالك');
-        if (moderators.includes(code)) return alert('الرمز موجود');
-        moderators.push(code); saveModerators(); inp.value = ''; alert(`تم إضافة ${code}`);
+        if (moderators.indexOf(code) !== -1) return alert('الرمز موجود');
+        moderators.push(code); saveModerators(); inp.value = ''; alert('تم إضافة ' + code);
     }
 
     // لوحة التحكم
     function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; document.getElementById('passwordInput').focus(); }
     function closeLoginModal() { document.getElementById('loginModal').style.display = 'none'; }
     function checkPassword() {
-        const pass = document.getElementById('passwordInput').value;
+        var pass = document.getElementById('passwordInput').value;
         if (pass === OWNER_PASSWORD) { currentUserRole = 'owner'; closeLoginModal(); openAdminPanel(); }
-        else if (moderators.includes(pass)) { currentUserRole = 'moderator'; closeLoginModal(); openAdminPanel(); }
+        else if (moderators.indexOf(pass) !== -1) { currentUserRole = 'moderator'; closeLoginModal(); openAdminPanel(); }
         else alert('❌ رمز غير صحيح');
     }
     function openAdminPanel() {
-        const title = document.getElementById('panelTitle');
-        const sSec = document.getElementById('storeSettingsSection'), mSec = document.getElementById('moderatorsSection');
-        const eSec = document.getElementById('exportHtmlSection'), lSec = document.getElementById('appListSection');
+        var title = document.getElementById('panelTitle');
+        var sSec = document.getElementById('storeSettingsSection'), mSec = document.getElementById('moderatorsSection');
+        var eSec = document.getElementById('exportHtmlSection'), lSec = document.getElementById('appListSection');
         if (currentUserRole === 'owner') {
             title.innerHTML = '<i class="fas fa-crown"></i> لوحة المالك';
             sSec.style.display = mSec.style.display = eSec.style.display = lSec.style.display = 'block';
@@ -611,24 +613,24 @@
     }
 
     function refreshAppListInPanel() {
-        const c = document.getElementById('appListContainer'); c.innerHTML = '';
-        const appsToShow = currentUserRole === 'owner' ? appsList : appsList.filter(a => a.addedBy === currentUserRole);
-        appsToShow.forEach(a => { const i = appsList.indexOf(a); c.appendChild(createListItem(a.name, 'apps', i)); });
+        var c = document.getElementById('appListContainer'); c.innerHTML = '';
+        var appsToShow = currentUserRole === 'owner' ? appsList : appsList.filter(function(a){ return a.addedBy === currentUserRole; });
+        for (var i=0; i<appsToShow.length; i++) { var idx = appsList.indexOf(appsToShow[i]); c.appendChild(createListItem(appsToShow[i].name, 'apps', idx)); }
         if (currentUserRole === 'owner') {
-            const sep = document.createElement('div'); sep.style.margin = '15px 0 5px'; sep.style.fontWeight = 'bold'; sep.textContent = '📁 المتجر:'; c.appendChild(sep);
-            storeList.forEach((s, i) => c.appendChild(createListItem(s.name, 'store', i)));
+            var sep = document.createElement('div'); sep.style.margin = '15px 0 5px'; sep.style.fontWeight = 'bold'; sep.textContent = '📁 المتجر:'; c.appendChild(sep);
+            for (var i=0; i<storeList.length; i++) c.appendChild(createListItem(storeList[i].name, 'store', i));
         }
     }
     function createListItem(name, type, index) {
-        const d = document.createElement('div'); d.className = 'app-list-item'; d.innerHTML = `<span>${name}</span>`;
-        const acts = document.createElement('div'); acts.className = 'app-list-actions';
-        const edit = document.createElement('button'); edit.className = 'edit-app-btn'; edit.innerHTML = '<i class="fas fa-edit"></i> تعديل'; edit.onclick = () => startEdit(type, index);
-        const del = document.createElement('button'); del.className = 'delete-app-btn'; del.innerHTML = '<i class="fas fa-trash"></i> حذف';
-        del.onclick = () => { if (confirm(`حذف "${name}"؟`)) { if (type === 'apps') appsList.splice(index, 1); else storeList.splice(index, 1); saveData(); refreshAppListInPanel(); cancelEdit(); } };
+        var d = document.createElement('div'); d.className = 'app-list-item'; d.innerHTML = '<span>' + name + '</span>';
+        var acts = document.createElement('div'); acts.className = 'app-list-actions';
+        var edit = document.createElement('button'); edit.className = 'edit-app-btn'; edit.innerHTML = '<i class="fas fa-edit"></i> تعديل'; edit.onclick = function(){ startEdit(type, index); };
+        var del = document.createElement('button'); del.className = 'delete-app-btn'; del.innerHTML = '<i class="fas fa-trash"></i> حذف';
+        del.onclick = function(){ if (confirm('حذف "' + name + '"؟')) { if (type === 'apps') appsList.splice(index, 1); else storeList.splice(index, 1); saveData(); refreshAppListInPanel(); cancelEdit(); } };
         acts.appendChild(edit); acts.appendChild(del); d.appendChild(acts); return d;
     }
     function startEdit(type, index) {
-        currentEdit = { type, index }; const app = type === 'apps' ? appsList[index] : storeList[index];
+        currentEdit = { type: type, index: index }; var app = type === 'apps' ? appsList[index] : storeList[index];
         document.getElementById('editAppIndex').value = index; document.getElementById('editAppType').value = type;
         document.getElementById('editAppName').value = app.name || ''; document.getElementById('editAppDesc').value = app.desc || '';
         document.getElementById('editAppLink').value = app.link || ''; document.getElementById('editAppIcon').value = app.icon || '';
@@ -636,8 +638,8 @@
         document.getElementById('editFormContainer').style.display = 'block';
     }
     function saveEdit() {
-        const type = document.getElementById('editAppType').value, index = parseInt(document.getElementById('editAppIndex').value);
-        const updated = {
+        var type = document.getElementById('editAppType').value, index = parseInt(document.getElementById('editAppIndex').value);
+        var updated = {
             name: document.getElementById('editAppName').value.trim(),
             desc: document.getElementById('editAppDesc').value.trim(),
             link: document.getElementById('editAppLink').value.trim(),
@@ -646,45 +648,43 @@
             playerLink: document.getElementById('editPlayerLink').value.trim()
         };
         if (!updated.name || !updated.link) return alert('الاسم والرابط مطلوبان');
-        const original = type === 'apps' ? appsList[index] : storeList[index];
-        const final = Object.assign({}, original, updated);
+        var original = type === 'apps' ? appsList[index] : storeList[index];
+        var final = {};
+        for (var k in original) final[k] = original[k];
+        for (var k in updated) final[k] = updated[k];
         if (type === 'apps') appsList[index] = final; else storeList[index] = final;
-        saveData(); refreshAppListInPanel(); cancelEdit(); alert(`✅ تم تحديث "${final.name}"`);
+        saveData(); refreshAppListInPanel(); cancelEdit(); alert('✅ تم تحديث "' + final.name + '"');
     }
     function cancelEdit() { document.getElementById('editFormContainer').style.display = 'none'; currentEdit = { type: null, index: null }; }
     function addNewApp() {
-        const name = document.getElementById('newAppName').value.trim(), desc = document.getElementById('newAppDesc').value.trim();
-        const link = document.getElementById('newAppLink').value.trim(), icon = document.getElementById('newAppIcon').value.trim();
-        const pn = document.getElementById('newPlayerName').value.trim(), pl = document.getElementById('newPlayerLink').value.trim();
+        var name = document.getElementById('newAppName').value.trim(), desc = document.getElementById('newAppDesc').value.trim();
+        var link = document.getElementById('newAppLink').value.trim(), icon = document.getElementById('newAppIcon').value.trim();
+        var pn = document.getElementById('newPlayerName').value.trim(), pl = document.getElementById('newPlayerLink').value.trim();
         if (!name || !link) return alert('الاسم والرابط مطلوبان');
-        const newApp = { name, desc: desc || 'تطبيق جديد', link, icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png', addedBy: currentUserRole, playerName: pn, playerLink: pl };
+        var newApp = { name: name, desc: desc || 'تطبيق جديد', link: link, icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png', addedBy: currentUserRole, playerName: pn, playerLink: pl };
         appsList.push(newApp); saveData(); refreshAppListInPanel();
-        ['newAppName','newAppDesc','newAppLink','newAppIcon','newPlayerName','newPlayerLink'].forEach(id => document.getElementById(id).value = '');
-        alert(`✅ تمت إضافة "${name}"`);
+        ['newAppName','newAppDesc','newAppLink','newAppIcon','newPlayerName','newPlayerLink'].forEach(function(id){ document.getElementById(id).value = ''; });
+        alert('✅ تمت إضافة "' + name + '"');
     }
 
     // دوال مساعدة
     function updateClock() {
-        var now = new Date();
-        var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
-        var ampm = h >= 12 ? 'PM' : 'AM';
-        h = h % 12 || 12;
+        var now = new Date(); var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds(); var ampm = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
         document.getElementById('liveClock').innerText = h + ':' + (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s) + ' ' + ampm;
-        var days = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
-        var d = days[now.getDay()];
+        var days = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت']; var d = days[now.getDay()];
         var y = now.getFullYear(), mo = now.getMonth() + 1, da = now.getDate();
         document.getElementById('liveDate').innerText = d + ' ' + y + '-' + (mo < 10 ? '0' + mo : mo) + '-' + (da < 10 ? '0' + da : da);
     }
     function switchTab(evt, tabId) {
-        document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        var contents = document.querySelectorAll('.tab-content'); for (var i=0; i<contents.length; i++) contents[i].style.display = 'none';
+        var btns = document.querySelectorAll('.tab-btn'); for (var i=0; i<btns.length; i++) btns[i].classList.remove('active');
         document.getElementById(tabId).style.display = 'block'; evt.currentTarget.classList.add('active');
     }
     function openLink(card, url) {
         if (card.dataset.running === "true") return;
-        const overlay = card.querySelector('.timer-overlay'); if (!overlay) { window.location.href = url; return; }
-        const countSpan = overlay.querySelector('.count-down'); card.dataset.running = "true"; let count = 4; overlay.style.display = 'flex'; countSpan.innerText = count;
-        const interval = setInterval(() => { count--; countSpan.innerText = count; if (count <= 0) { clearInterval(interval); overlay.style.display = 'none'; card.dataset.running = "false"; window.location.href = url; } }, 1000);
+        var overlay = card.querySelector('.timer-overlay'); if (!overlay) { window.location.href = url; return; }
+        var countSpan = overlay.querySelector('.count-down'); card.dataset.running = "true"; var count = 4; overlay.style.display = 'flex'; countSpan.innerText = count;
+        var interval = setInterval(function(){ count--; countSpan.innerText = count; if (count <= 0) { clearInterval(interval); overlay.style.display = 'none'; card.dataset.running = "false"; window.location.href = url; } }, 1000);
     }
 
     // تصدير الدوال
