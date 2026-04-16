@@ -256,32 +256,18 @@
         }
 
         /* ==================== */
-        /*   Admin Gear Icon    */
+        /*   شعار ريال مدريد    */
+        /*   (زر لوحة التحكم)   */
         /* ==================== */
-        .admin-gear {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 9999;
+        #storeLogo {
+            width: 60px;
+            filter: drop-shadow(0 5px 15px rgba(254, 189, 17, 0.3));
+            transition: transform 0.3s;
             cursor: pointer;
-            background: var(--primary-color);
-            color: var(--secondary-color);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            border: 2px solid var(--secondary-color);
-            transition: all 0.3s;
         }
-
-        .admin-gear:hover {
-            transform: rotate(90deg);
-            background: var(--secondary-color);
-            color: var(--primary-color);
+        
+        #storeLogo:hover {
+            transform: scale(1.1);
         }
 
         /* وضع الصيانة */
@@ -455,16 +441,6 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 5px;
-        }
-
-        #storeLogo {
-            width: 60px;
-            filter: drop-shadow(0 5px 15px rgba(254, 189, 17, 0.3));
-            transition: transform 0.3s;
-        }
-        
-        #storeLogo:hover {
-            transform: scale(1.05);
         }
 
         #storeName {
@@ -771,12 +747,14 @@
 </head>
 <body data-theme="madrid">
 
-    <div class="admin-gear" onclick="openLoginModal()"><i class="fas fa-cog"></i></div>
     <div id="maintenanceOverlay" class="maintenance-overlay" style="display: none;">⚠️</div>
 
     <div id="mainContent" class="main-content">
         <header>
-            <div class="logo-container"><img id="storeLogo" src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="Logo"></div>
+            <div class="logo-container">
+                <!-- شعار ريال مدريد: الضغط عليه يفتح لوحة التحكم -->
+                <img id="storeLogo" src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="لوحة التحكم" onclick="openLoginModal()" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%2300529f\'/%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'35\' fill=\'%23febd11\'/%3E%3Ctext x=\'50\' y=\'70\' font-size=\'50\' text-anchor=\'middle\' fill=\'%23ffffff\' font-family=\'Arial\'%3E👑%3C/text%3E%3C/svg%3E'">
+            </div>
             <h1 class="brand" id="storeName">HDMosul Store</h1>
             <div class="sub-brand">VIP EXCLUSIVE</div>
         </header>
@@ -866,13 +844,18 @@
                 <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;">بعد النسخ، افتح ملف index.html وألصق الكود كاملاً ثم ارفعه إلى GitHub.</p>
             </div>
 
+            <!-- نموذج التعديل -->
             <div id="editFormContainer" class="edit-form-container" style="display: none;">
                 <h3><i class="fas fa-pen"></i> تعديل التطبيق</h3>
                 <input type="hidden" id="editAppIndex"><input type="hidden" id="editAppType">
                 <input type="text" id="editAppName" placeholder="اسم التطبيق">
                 <textarea id="editAppDesc" placeholder="الوصف" rows="2"></textarea>
                 <input type="text" id="editAppLink" placeholder="رابط التحميل">
-                <input type="text" id="editAppIcon" placeholder="رابط الأيقونة (اختياري)">
+                
+                <label style="display:block; margin-bottom:5px; text-align:right;">أيقونة التطبيق:</label>
+                <input type="file" id="editAppIconFile" accept="image/png, image/jpeg, image/jpg" style="padding:8px; margin-bottom:10px;">
+                <input type="text" id="editAppIconUrl" placeholder="أو رابط الأيقونة (اختياري)">
+                
                 <input type="text" id="editPlayerName" placeholder="اسم المشغل (اختياري)">
                 <input type="text" id="editPlayerLink" placeholder="رابط المشغل (اختياري)">
                 <div style="display: flex; gap: 10px; justify-content: center;">
@@ -881,12 +864,17 @@
                 </div>
             </div>
 
+            <!-- نموذج الإضافة -->
             <div class="section-title">➕ إضافة تطبيق جديد</div>
             <div class="add-app-form">
                 <input type="text" id="newAppName" placeholder="اسم التطبيق">
                 <textarea id="newAppDesc" placeholder="الوصف" rows="2"></textarea>
                 <input type="text" id="newAppLink" placeholder="رابط التحميل">
-                <input type="text" id="newAppIcon" placeholder="رابط الأيقونة (اختياري)">
+                
+                <label style="display:block; margin-bottom:5px; text-align:right;">أيقونة التطبيق:</label>
+                <input type="file" id="newAppIconFile" accept="image/png, image/jpeg, image/jpg" style="padding:8px; margin-bottom:10px;">
+                <input type="text" id="newAppIconUrl" placeholder="أو رابط الأيقونة (اختياري)">
+                
                 <input type="text" id="newPlayerName" placeholder="اسم المشغل (اختياري)">
                 <input type="text" id="newPlayerLink" placeholder="رابط المشغل (اختياري)">
                 <button onclick="addNewApp()"><i class="fas fa-plus-circle"></i> إضافة التطبيق</button>
@@ -904,7 +892,7 @@
     <script>
         (function(){
             const OWNER_PASSWORD = "2001820";
-            const DEFAULT_MODERATORS = ["090199251"];
+            const DEFAULT_MODERATORS = []; // مصفوفة فارغة - لا يوجد مشرفون افتراضيون
             let currentUserRole = null;
             
             const DEFAULT_APPS = [
@@ -994,16 +982,13 @@
 
             // ==================== تصدير HTML ====================
             function exportFullHTML() {
-                // الحصول على الكود الحالي للصفحة
                 let html = document.documentElement.outerHTML;
                 
-                // استبدال بيانات التطبيقات الافتراضية بالبيانات الحالية
-                const appsStr = JSON.stringify(appsList, null, 8).replace(/"([^"]+)":/g, '$1:');
-                const storeStr = JSON.stringify(storeList, null, 8).replace(/"([^"]+)":/g, '$1:');
+                const appsStr = JSON.stringify(appsList, null, 4);
+                const storeStr = JSON.stringify(storeList, null, 4);
                 const modsStr = JSON.stringify(moderators);
-                const settingsStr = JSON.stringify(storeSettings, null, 4).replace(/"([^"]+)":/g, '$1:');
+                const settingsStr = JSON.stringify(storeSettings, null, 4);
                 
-                // إيجاد موضع DEFAULT_APPS واستبداله
                 const appsRegex = /(const DEFAULT_APPS = )\[[\s\S]*?\];/;
                 const storeRegex = /(const DEFAULT_STORE = )\[[\s\S]*?\];/;
                 const modsRegex = /(const DEFAULT_MODERATORS = )\[.*?\];/;
@@ -1014,12 +999,10 @@
                 html = html.replace(modsRegex, `$1${modsStr};`);
                 html = html.replace(settingsRegex, `$1${settingsStr};`);
                 
-                // نسخ إلى textarea
                 document.getElementById('htmlExportTextarea').value = html;
                 
-                // نسخ إلى الحافظة
                 navigator.clipboard?.writeText(html).then(() => {
-                    alert('✅ تم نسخ كود HTML الكامل إلى الحافظة. الآن افتح ملف index.html وألصق الكود ثم ارفعه.');
+                    alert('✅ تم نسخ كود HTML الكامل إلى الحافظة.');
                 }).catch(() => {
                     alert('✅ تم توليد الكود في المربع أدناه. الرجاء نسخه يدويًا.');
                 });
@@ -1045,7 +1028,7 @@
                 const iconDiv = document.createElement('div');
                 iconDiv.className = 'app-icon';
                 const img = document.createElement('img');
-                img.src = app.icon || 'https://via.placeholder.com/100/00529f/ffffff?text=APP';
+                img.src = app.iconBase64 || app.icon || 'https://via.placeholder.com/100/00529f/ffffff?text=APP';
                 img.alt = app.name;
                 img.onerror = () => img.src = 'https://via.placeholder.com/100/00529f/ffffff?text=APP';
                 iconDiv.appendChild(img);
@@ -1204,7 +1187,8 @@
                 document.getElementById('editAppName').value = app.name || '';
                 document.getElementById('editAppDesc').value = app.desc || '';
                 document.getElementById('editAppLink').value = app.link || '';
-                document.getElementById('editAppIcon').value = app.icon || '';
+                document.getElementById('editAppIconFile').value = '';
+                document.getElementById('editAppIconUrl').value = app.icon || '';
                 document.getElementById('editPlayerName').value = app.playerName || '';
                 document.getElementById('editPlayerLink').value = app.playerLink || '';
                 document.getElementById('editFormContainer').style.display = 'block';
@@ -1212,33 +1196,61 @@
             function saveEdit() {
                 const type = document.getElementById('editAppType').value;
                 const index = parseInt(document.getElementById('editAppIndex').value);
+                const fileInput = document.getElementById('editAppIconFile');
+                const iconUrl = document.getElementById('editAppIconUrl').value.trim();
+                
                 const updated = {
                     name: document.getElementById('editAppName').value.trim(),
                     desc: document.getElementById('editAppDesc').value.trim(),
                     link: document.getElementById('editAppLink').value.trim(),
-                    icon: document.getElementById('editAppIcon').value.trim(),
                     playerName: document.getElementById('editPlayerName').value.trim(),
                     playerLink: document.getElementById('editPlayerLink').value.trim()
                 };
                 if (!updated.name || !updated.link) return alert('الاسم والرابط مطلوبان');
+                
                 const original = type === 'apps' ? appsList[index] : storeList[index];
-                const final = { ...original, ...updated };
-                if (type === 'apps') appsList[index] = final; else storeList[index] = final;
-                saveData(); refreshAppListInPanel(); cancelEdit(); alert(`✅ تم تحديث "${final.name}"`);
+                
+                const finalize = (iconBase64) => {
+                    updated.icon = iconUrl || original.icon;
+                    updated.iconBase64 = iconBase64 || original.iconBase64;
+                    const final = { ...original, ...updated };
+                    if (type === 'apps') appsList[index] = final; else storeList[index] = final;
+                    saveData(); refreshAppListInPanel(); cancelEdit(); alert(`✅ تم تحديث "${final.name}"`);
+                };
+                
+                if (fileInput.files && fileInput.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = e => finalize(e.target.result);
+                    reader.readAsDataURL(fileInput.files[0]);
+                } else { finalize(); }
             }
             function cancelEdit() { document.getElementById('editFormContainer').style.display = 'none'; currentEdit = { type: null, index: null }; }
             function addNewApp() {
                 const name = document.getElementById('newAppName').value.trim();
                 const desc = document.getElementById('newAppDesc').value.trim();
                 const link = document.getElementById('newAppLink').value.trim();
-                const icon = document.getElementById('newAppIcon').value.trim();
+                const fileInput = document.getElementById('newAppIconFile');
+                const iconUrl = document.getElementById('newAppIconUrl').value.trim();
                 const playerName = document.getElementById('newPlayerName').value.trim();
                 const playerLink = document.getElementById('newPlayerLink').value.trim();
                 if (!name || !link) return alert('الاسم والرابط مطلوبان');
-                const newApp = { name, desc: desc || 'تطبيق جديد', link, icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png', addedBy: currentUserRole, playerName, playerLink };
-                appsList.push(newApp); saveData(); refreshAppListInPanel();
-                ['newAppName','newAppDesc','newAppLink','newAppIcon','newPlayerName','newPlayerLink'].forEach(id => document.getElementById(id).value = '');
-                alert(`✅ تمت إضافة "${name}"`);
+                
+                const process = (iconBase64) => {
+                    const newApp = {
+                        name, desc: desc || 'تطبيق جديد', link,
+                        icon: iconUrl || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png',
+                        iconBase64, addedBy: currentUserRole, playerName, playerLink
+                    };
+                    appsList.push(newApp); saveData(); refreshAppListInPanel();
+                    ['newAppName','newAppDesc','newAppLink','newAppIconUrl','newPlayerName','newPlayerLink'].forEach(id => document.getElementById(id).value = '');
+                    document.getElementById('newAppIconFile').value = '';
+                    alert(`✅ تمت إضافة "${name}"`);
+                };
+                if (fileInput.files && fileInput.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = e => process(e.target.result);
+                    reader.readAsDataURL(fileInput.files[0]);
+                } else { process(null); }
             }
 
             function updateClock() {
