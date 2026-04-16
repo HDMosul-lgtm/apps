@@ -124,6 +124,57 @@
             --btn-shadow: 0 5px 15px rgba(0,131,143,0.2);
         }
 
+        /* ==================== */
+        /*   ثيمات فاخرة جديدة  */
+        /* ==================== */
+        [data-theme="royal-gold"] {
+            --primary-color: #b8860b;
+            --secondary-color: #ffd700;
+            --bg-gradient-start: #fdf6e3;
+            --bg-gradient-end: #fff8e7;
+            --card-bg: #ffffff;
+            --text-color: #5c4308;
+            --border-color: #daa520;
+            --btn-radius: 50px;
+            --btn-shadow: 0 8px 20px rgba(218,165,32,0.4), 0 2px 5px rgba(255,215,0,0.5);
+        }
+
+        [data-theme="midnight"] {
+            --primary-color: #1a237e;
+            --secondary-color: #7986cb;
+            --bg-gradient-start: #121858;
+            --bg-gradient-end: #1a237e;
+            --card-bg: #283593;
+            --text-color: #e8eaf6;
+            --border-color: #5c6bc0;
+            --btn-radius: 8px;
+            --btn-shadow: inset 0 1px 3px rgba(255,255,255,0.2), 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        [data-theme="emerald"] {
+            --primary-color: #004d40;
+            --secondary-color: #80cbc4;
+            --bg-gradient-start: #e0f2f1;
+            --bg-gradient-end: #ffffff;
+            --card-bg: #ffffff;
+            --text-color: #1d3d3a;
+            --border-color: #4db6ac;
+            --btn-radius: 50px;
+            --btn-shadow: 0 8px 20px rgba(0,150,136,0.3);
+        }
+
+        [data-theme="silver"] {
+            --primary-color: #607d8b;
+            --secondary-color: #cfd8dc;
+            --bg-gradient-start: #eceff1;
+            --bg-gradient-end: #ffffff;
+            --card-bg: #ffffff;
+            --text-color: #37474f;
+            --border-color: #90a4ae;
+            --btn-radius: 50px;
+            --btn-shadow: 0 5px 15px rgba(96,125,139,0.2), inset 0 0 0 1px rgba(255,255,255,0.8);
+        }
+
         * {
             box-sizing: border-box;
         }
@@ -723,6 +774,10 @@
                         <option value="purple">بنفسجي فاخر</option>
                         <option value="orange">برتقالي حيوي</option>
                         <option value="cyan">سماوي هادئ</option>
+                        <option value="royal-gold">ذهبي ملكي فاخر</option>
+                        <option value="midnight">ليلي فاخر</option>
+                        <option value="emerald">زمردي ملكي</option>
+                        <option value="silver">فضي أنيق</option>
                     </select>
                     <div style="margin-top:10px;">
                         <label style="display:flex; align-items:center; gap:10px;">
@@ -739,7 +794,7 @@
                 <div class="moderators-container">
                     <div style="display: flex; gap: 10px; margin-bottom: 15px;">
                         <input type="text" id="newModeratorCode" placeholder="رمز المشرف الجديد (أرقام فقط)" style="flex: 1;">
-                        <button onclick="addModerator()"><i class="fas fa-plus"></i> إضافة</button>
+                        <button onclick="addModerator()"><i class="fas fa-plus"></i> إضافة مشرف</button>
                     </div>
                     <div id="moderatorsList" style="max-height: 200px; overflow-y: auto;"></div>
                 </div>
@@ -757,7 +812,7 @@
                 <input type="text" id="editPlayerName" placeholder="اسم المشغل (اختياري)">
                 <input type="text" id="editPlayerLink" placeholder="رابط المشغل (اختياري)">
                 <div style="display: flex; gap: 10px; justify-content: center;">
-                    <button onclick="saveEdit()"><i class="fas fa-save"></i> حفظ</button>
+                    <button onclick="saveEdit()"><i class="fas fa-save"></i> حفظ التعديلات</button>
                     <button class="close-btn" onclick="cancelEdit()">إلغاء</button>
                 </div>
             </div>
@@ -770,7 +825,7 @@
                 <input type="text" id="newAppIcon" placeholder="رابط الأيقونة (اختياري)">
                 <input type="text" id="newPlayerName" placeholder="اسم المشغل (اختياري)">
                 <input type="text" id="newPlayerLink" placeholder="رابط المشغل (اختياري)">
-                <button onclick="addNewApp()"><i class="fas fa-plus-circle"></i> إضافة</button>
+                <button onclick="addNewApp()"><i class="fas fa-plus-circle"></i> إضافة التطبيق</button>
             </div>
 
             <!-- قائمة التطبيقات -->
@@ -968,23 +1023,23 @@
                     const delBtn = document.createElement('button');
                     delBtn.className = 'delete-mod-btn';
                     delBtn.innerHTML = '<i class="fas fa-trash"></i> حذف';
-                    delBtn.onclick = () => { if(confirm(`حذف المشرف ${code}؟`)) { moderators.splice(i,1); saveModerators(); } };
+                    delBtn.onclick = () => { if(confirm(`هل أنت متأكد من حذف المشرف برمز ${code}؟`)) { moderators.splice(i,1); saveModerators(); } };
                     div.appendChild(delBtn);
                     container.appendChild(div);
                 });
-                if (moderators.length === 0) container.innerHTML = '<p style="text-align:center;">لا يوجد مشرفين</p>';
+                if (moderators.length === 0) container.innerHTML = '<p style="text-align:center; opacity:0.7;">لا يوجد مشرفون مضافون حالياً</p>';
             }
             function addModerator() {
                 const input = document.getElementById('newModeratorCode');
                 const code = input.value.trim();
-                if (!code) return alert('أدخل الرمز');
-                if (!/^\d+$/.test(code)) return alert('أرقام فقط');
-                if (code === OWNER_PASSWORD) return alert('لا يمكن إضافة المالك');
-                if (moderators.includes(code)) return alert('الرمز موجود مسبقاً');
+                if (!code) return alert('الرجاء إدخال رمز المشرف');
+                if (!/^\d+$/.test(code)) return alert('يجب أن يتكون رمز المشرف من أرقام فقط');
+                if (code === OWNER_PASSWORD) return alert('لا يمكن إضافة رمز المالك كمشرف');
+                if (moderators.includes(code)) return alert('هذا الرمز موجود بالفعل ضمن المشرفين');
                 moderators.push(code);
                 saveModerators();
                 input.value = '';
-                alert(`تم إضافة المشرف ${code}`);
+                alert(`تمت إضافة المشرف برمز ${code} بنجاح`);
             }
 
             // ==================== لوحة التحكم ====================
@@ -1029,7 +1084,7 @@
                     renderModeratorsList();
                     refreshAppListInPanel();
                 } else {
-                    title.innerHTML = '<i class="fas fa-user-shield"></i> لوحة المشرف (إضافة فقط)';
+                    title.innerHTML = '<i class="fas fa-user-shield"></i> لوحة المشرف (إضافة تطبيقات فقط)';
                     settingsSec.style.display = 'none';
                     modSec.style.display = 'none';
                     listSec.style.display = 'block';
@@ -1053,7 +1108,7 @@
                 storeSettings.maintenanceMode = document.getElementById('settingsMaintenanceMode').checked;
                 saveSettings();
                 renderAllApps(); renderStoreApps();
-                alert('✅ تم حفظ إعدادات المتجر');
+                alert('✅ تم حفظ إعدادات المتجر بنجاح');
             }
 
             function refreshAppListInPanel() {
@@ -1087,7 +1142,7 @@
                 delBtn.className = 'delete-app-btn';
                 delBtn.innerHTML = '<i class="fas fa-trash"></i> حذف';
                 delBtn.onclick = () => {
-                    if (confirm(`حذف "${name}"؟`)) {
+                    if (confirm(`هل أنت متأكد من حذف "${name}"؟`)) {
                         if (type === 'apps') appsList.splice(index, 1);
                         else storeList.splice(index, 1);
                         saveData();
@@ -1123,7 +1178,7 @@
                     playerName: document.getElementById('editPlayerName').value.trim(),
                     playerLink: document.getElementById('editPlayerLink').value.trim()
                 };
-                if (!updated.name || !updated.link) return alert('الاسم والرابط مطلوبان');
+                if (!updated.name || !updated.link) return alert('الرجاء إدخال اسم التطبيق ورابط التحميل على الأقل');
                 const original = type === 'apps' ? appsList[index] : storeList[index];
                 const final = { ...original, ...updated };
                 if (type === 'apps') appsList[index] = final;
@@ -1131,7 +1186,7 @@
                 saveData();
                 refreshAppListInPanel();
                 cancelEdit();
-                alert('✅ تم التحديث');
+                alert(`✅ تم تحديث "${final.name}" بنجاح`);
             }
             function cancelEdit() {
                 document.getElementById('editFormContainer').style.display = 'none';
@@ -1144,7 +1199,7 @@
                 const icon = document.getElementById('newAppIcon').value.trim();
                 const playerName = document.getElementById('newPlayerName').value.trim();
                 const playerLink = document.getElementById('newPlayerLink').value.trim();
-                if (!name || !link) return alert('الاسم والرابط مطلوبان');
+                if (!name || !link) return alert('الرجاء إدخال اسم التطبيق ورابط التحميل على الأقل');
                 const newApp = {
                     name, desc: desc || 'تطبيق جديد', link,
                     icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png',
@@ -1155,7 +1210,7 @@
                 saveData();
                 refreshAppListInPanel();
                 ['newAppName','newAppDesc','newAppLink','newAppIcon','newPlayerName','newPlayerLink'].forEach(id => document.getElementById(id).value = '');
-                alert(`✅ تمت إضافة ${name}`);
+                alert(`✅ تمت إضافة "${name}" بنجاح`);
             }
 
             // ==================== دوال مساعدة ====================
