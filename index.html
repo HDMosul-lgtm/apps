@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HDMosul Store • VIP</title>
     
-    <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* ==================== */
-        /*   متغيرات الثيمات    */
-        /* ==================== */
+        /* ================ المتغيرات ================ */
         :root {
             --primary-color: #00529f;
             --secondary-color: #febd11;
@@ -23,7 +20,6 @@
             --border-color: #febd11;
         }
 
-        /* الثيمات المختلفة */
         [data-theme="madrid"] {
             --primary-color: #00529f;
             --secondary-color: #febd11;
@@ -92,9 +88,6 @@
             position: relative;
         }
 
-        /* ==================== */
-        /*   Admin Gear Icon    */
-        /* ==================== */
         .admin-gear {
             position: fixed;
             top: 20px;
@@ -121,9 +114,6 @@
             color: var(--primary-color);
         }
 
-        /* ==================== */
-        /*    Login Modal       */
-        /* ==================== */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -198,9 +188,6 @@
             color: #333 !important;
         }
 
-        /* ==================== */
-        /*    Admin Panel       */
-        /* ==================== */
         .app-list-item, .mod-list-item {
             display: flex;
             align-items: center;
@@ -255,9 +242,6 @@
             border: 2px solid var(--secondary-color);
         }
 
-        /* ==================== */
-        /*       Header         */
-        /* ==================== */
         header {
             text-align: center;
             padding: 30px 0 20px;
@@ -302,9 +286,6 @@
             margin-top: 5px;
         }
 
-        /* ==================== */
-        /*     Info Pill        */
-        /* ==================== */
         .info-pill {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(15px);
@@ -343,9 +324,6 @@
             font-size: 1.1rem;
         }
 
-        /* ==================== */
-        /*        Tabs          */
-        /* ==================== */
         .tabs-container {
             display: flex;
             justify-content: center;
@@ -378,9 +356,6 @@
             transform: scale(1.02);
         }
 
-        /* ==================== */
-        /*        Grid          */
-        /* ==================== */
         .grid {
             display: grid;
             gap: 25px;
@@ -390,9 +365,6 @@
             margin: 0 auto;
         }
 
-        /* ==================== */
-        /*        Cards         */
-        /* ==================== */
         .card {
             background: var(--card-bg);
             border: 2px solid var(--secondary-color);
@@ -470,9 +442,6 @@
             font-weight: 500;
         }
 
-        /* ==================== */
-        /*       Buttons        */
-        /* ==================== */
         .luxury-btn {
             background: var(--primary-color);
             border: none;
@@ -512,9 +481,6 @@
             font-weight: 900 !important;
         }
 
-        /* ==================== */
-        /*    Timer Overlay     */
-        /* ==================== */
         .timer-overlay {
             position: absolute;
             top: 0;
@@ -551,9 +517,6 @@
             text-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* ==================== */
-        /*       Footer         */
-        /* ==================== */
         footer {
             text-align: center;
             padding: 30px 20px 20px;
@@ -571,159 +534,481 @@
 </head>
 <body data-theme="madrid">
 
-    <!-- ==================== -->
-    <!--   Admin Gear Button  -->
-    <!-- ==================== -->
-    <div class="admin-gear" onclick="openLoginModal()">
-        <i class="fas fa-cog"></i>
-    </div>
+<div class="admin-gear" onclick="openLoginModal()"><i class="fas fa-cog"></i></div>
 
-    <!-- ==================== -->
-    <!--   Login Modal        -->
-    <!-- ==================== -->
-    <div id="loginModal" class="modal-overlay">
-        <div class="login-box">
-            <h2><i class="fas fa-lock"></i> لوحة التحكم</h2>
-            <input type="password" id="passwordInput" placeholder="أدخل رمز الدخول" onkeypress="if(event.key==='Enter')checkPassword()">
-            <div>
-                <button onclick="checkPassword()">دخول</button>
-                <button class="close-btn" onclick="closeLoginModal()">إلغاء</button>
-            </div>
+<div id="loginModal" class="modal-overlay">
+    <div class="login-box">
+        <h2><i class="fas fa-lock"></i> لوحة التحكم</h2>
+        <input type="password" id="passwordInput" placeholder="أدخل رمز الدخول" onkeypress="if(event.key==='Enter')checkPassword()">
+        <div>
+            <button onclick="checkPassword()">دخول</button>
+            <button class="close-btn" onclick="closeLoginModal()">إلغاء</button>
         </div>
     </div>
+</div>
 
-    <!-- ==================== -->
-    <!--   Admin Panel Modal  -->
-    <!-- ==================== -->
-    <div id="adminPanelModal" class="modal-overlay">
-        <div class="admin-panel">
-            <h2 id="panelTitle"><i class="fas fa-tools"></i> لوحة التحكم</h2>
-            
-            <!-- قسم إعدادات المتجر (للمالك فقط) -->
-            <div id="storeSettingsSection" style="display: none;">
-                <div class="section-title">⚙️ إعدادات المتجر</div>
-                <div class="settings-form-container">
-                    <input type="text" id="settingsStoreName" placeholder="اسم المتجر">
-                    <input type="text" id="settingsLogoUrl" placeholder="رابط الشعار (URL)">
-                    <select id="settingsTheme">
-                        <option value="madrid">مدريدي (أزرق وذهبي)</option>
-                        <option value="blue">أزرق عصري</option>
-                        <option value="black-gold">أسود وذهبي</option>
-                        <option value="green">أخضر زمردي</option>
-                        <option value="red">أحمر ملكي</option>
-                    </select>
-                    <button onclick="saveStoreSettings()"><i class="fas fa-save"></i> حفظ إعدادات المتجر</button>
-                </div>
-            </div>
-
-            <!-- قسم إدارة المشرفين (للمالك فقط) -->
-            <div id="moderatorsSection" style="display: none;">
-                <div class="section-title">👥 إدارة المشرفين</div>
-                <div class="moderators-container">
-                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-                        <input type="text" id="newModeratorCode" placeholder="رمز المشرف الجديد (أرقام فقط)" style="flex: 1;">
-                        <button onclick="addModerator()"><i class="fas fa-plus"></i> إضافة</button>
-                    </div>
-                    <div id="moderatorsList" style="max-height: 200px; overflow-y: auto;">
-                        <!-- قائمة المشرفين ستظهر هنا -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- نموذج التعديل (للمالك والمشرف) -->
-            <div id="editFormContainer" class="edit-form-container" style="display: none;">
-                <h3><i class="fas fa-pen"></i> تعديل التطبيق</h3>
-                <input type="hidden" id="editAppIndex">
-                <input type="hidden" id="editAppType">
-                <input type="text" id="editAppName" placeholder="اسم التطبيق">
-                <textarea id="editAppDesc" placeholder="الوصف" rows="2"></textarea>
-                <input type="text" id="editAppLink" placeholder="رابط التحميل">
-                <input type="text" id="editAppIcon" placeholder="رابط الأيقونة (اختياري)">
-                <div style="display: flex; gap: 10px; justify-content: center;">
-                    <button onclick="saveEdit()"><i class="fas fa-save"></i> حفظ التعديلات</button>
-                    <button class="close-btn" onclick="cancelEdit()">إلغاء</button>
-                </div>
-            </div>
-
-            <div class="section-title">➕ إضافة تطبيق جديد</div>
-            <div class="add-app-form">
-                <input type="text" id="newAppName" placeholder="اسم التطبيق">
-                <textarea id="newAppDesc" placeholder="الوصف" rows="2"></textarea>
-                <input type="text" id="newAppLink" placeholder="رابط التحميل">
-                <input type="text" id="newAppIcon" placeholder="رابط الأيقونة (اختياري)">
-                <button onclick="addNewApp()"><i class="fas fa-plus-circle"></i> إضافة</button>
-            </div>
-
-            <!-- قائمة التطبيقات (حسب الصلاحية) -->
-            <div id="appListSection" style="display: none;">
-                <div class="section-title">📋 قائمة التطبيقات (تعديل / حذف)</div>
-                <div id="appListContainer" style="max-height: 300px; overflow-y: auto; padding: 5px;">
-                    <!-- سيتم ملؤها ديناميكياً -->
-                </div>
-            </div>
-
-            <div style="margin-top: 20px;">
-                <button class="close-btn" onclick="closeAdminPanel()">إغلاق</button>
+<div id="adminPanelModal" class="modal-overlay">
+    <div class="admin-panel">
+        <h2 id="panelTitle"><i class="fas fa-tools"></i> لوحة التحكم</h2>
+        
+        <div id="storeSettingsSection" style="display: none;">
+            <div class="section-title">⚙️ إعدادات المتجر</div>
+            <div class="settings-form-container">
+                <input type="text" id="settingsStoreName" placeholder="اسم المتجر">
+                <input type="text" id="settingsLogoUrl" placeholder="رابط الشعار (URL)">
+                <select id="settingsTheme">
+                    <option value="madrid">مدريدي (أزرق وذهبي)</option>
+                    <option value="blue">أزرق عصري</option>
+                    <option value="black-gold">أسود وذهبي</option>
+                    <option value="green">أخضر زمردي</option>
+                    <option value="red">أحمر ملكي</option>
+                </select>
+                <button onclick="saveStoreSettings()"><i class="fas fa-save"></i> حفظ إعدادات المتجر</button>
             </div>
         </div>
-    </div>
 
-    <!-- ==================== -->
-    <!--    Header            -->
-    <!-- ==================== -->
-    <header>
-        <div class="logo-container">
-            <img id="storeLogo" src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="Logo">
+        <div id="moderatorsSection" style="display: none;">
+            <div class="section-title">👥 إدارة المشرفين</div>
+            <div class="moderators-container">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <input type="text" id="newModeratorCode" placeholder="رمز المشرف الجديد (أرقام فقط)" style="flex: 1;">
+                    <button onclick="addModerator()"><i class="fas fa-plus"></i> إضافة</button>
+                </div>
+                <div id="moderatorsList" style="max-height: 200px; overflow-y: auto;"></div>
+            </div>
         </div>
-        <h1 class="brand" id="storeName">HDMosul Store</h1>
-        <div class="sub-brand">VIP EXCLUSIVE</div>
-    </header>
 
-    <!-- ==================== -->
-    <!--      Info Pill       -->
-    <!-- ==================== -->
-    <div class="info-pill">
-        <div id="liveClock">00:00:00 PM</div>
-        <div id="liveDate">التاريخ</div>
-        <div class="dhikr">⚽ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ⚽</div>
+        <div id="editFormContainer" class="edit-form-container" style="display: none;">
+            <h3><i class="fas fa-pen"></i> تعديل التطبيق</h3>
+            <input type="hidden" id="editAppIndex">
+            <input type="hidden" id="editAppType">
+            <input type="text" id="editAppName" placeholder="اسم التطبيق">
+            <textarea id="editAppDesc" placeholder="الوصف" rows="2"></textarea>
+            <input type="text" id="editAppLink" placeholder="رابط التحميل">
+            <input type="text" id="editAppIcon" placeholder="رابط الأيقونة (اختياري)">
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button onclick="saveEdit()"><i class="fas fa-save"></i> حفظ التعديلات</button>
+                <button class="close-btn" onclick="cancelEdit()">إلغاء</button>
+            </div>
+        </div>
+
+        <div class="section-title">➕ إضافة تطبيق جديد</div>
+        <div class="add-app-form">
+            <input type="text" id="newAppName" placeholder="اسم التطبيق">
+            <textarea id="newAppDesc" placeholder="الوصف" rows="2"></textarea>
+            <input type="text" id="newAppLink" placeholder="رابط التحميل">
+            <input type="text" id="newAppIcon" placeholder="رابط الأيقونة (اختياري)">
+            <button onclick="addNewApp()"><i class="fas fa-plus-circle"></i> إضافة</button>
+        </div>
+
+        <div id="appListSection" style="display: none;">
+            <div class="section-title">📋 قائمة التطبيقات (تعديل / حذف)</div>
+            <div id="appListContainer" style="max-height: 300px; overflow-y: auto; padding: 5px;"></div>
+        </div>
+
+        <div style="margin-top: 20px;"><button class="close-btn" onclick="closeAdminPanel()">إغلاق</button></div>
     </div>
+</div>
 
-    <!-- ==================== -->
-    <!--    Tabs Navigation   -->
-    <!-- ==================== -->
-    <div class="tabs-container">
-        <button class="tab-btn active" tabindex="0" onclick="switchTab(event, 'apps-tab')">💎 الكل</button>
-        <button class="tab-btn" tabindex="0" onclick="switchTab(event, 'store-tab')">🏆 المتجر</button>
-    </div>
+<header>
+    <div class="logo-container"><img id="storeLogo" src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="Logo"></div>
+    <h1 class="brand" id="storeName">HDMosul Store</h1>
+    <div class="sub-brand">VIP EXCLUSIVE</div>
+</header>
 
-    <!-- ==================== -->
-    <!--     Apps Tab Content -->
-    <!-- ==================== -->
-    <div id="apps-tab" class="tab-content">
-        <div class="grid" id="appsGrid"></div>
-    </div>
+<div class="info-pill">
+    <div id="liveClock">00:00:00 PM</div>
+    <div id="liveDate">التاريخ</div>
+    <div class="dhikr">⚽ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ⚽</div>
+</div>
 
-    <!-- ==================== -->
-    <!--   Store Tab Content  -->
-    <!-- ==================== -->
-    <div id="store-tab" class="tab-content" style="display: none;">
-        <div class="grid" id="storeGrid"></div>
-    </div>
+<div class="tabs-container">
+    <button class="tab-btn active" onclick="switchTab(event, 'apps-tab')">💎 الكل</button>
+    <button class="tab-btn" onclick="switchTab(event, 'store-tab')">🏆 المتجر</button>
+</div>
 
-    <!-- ==================== -->
-    <!--       Footer         -->
-    <!-- ==================== -->
-    <footer>
-        <p>HDMosul • PREMIUM STORE • 2026</p>
-        <p>جميع الحقوق محفوظة</p>
-    </footer>
+<div id="apps-tab" class="tab-content"><div class="grid" id="appsGrid"></div></div>
+<div id="store-tab" class="tab-content" style="display: none;"><div class="grid" id="storeGrid"></div></div>
 
-    <!-- ==================== -->
-    /*  JavaScript مشفر بالكامل - لا تحاول فك التشفير  */
-    /*  تم التشفير لحماية الكود من السرقة  */
-    <!-- ==================== -->
-    <script>
-        eval(atob("Ci8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KICAgICAgICBIRG1vc3VsIFN0b3JlIC0gQ29yZSBKYXZhU2NyaXB0IChQcm90ZWN0ZWQpCi8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKY29uc3QgT1dORVJfUEFTU1dPUkQgPSAiMjAwMTgyMCI7CmNvbnN0IERFRkFVTFRfTU9ERVJBVE9SUyA9IFsiMDkwMTk5MjUxIl07CgpsZXQgY3VycmVudFVzZXJSb2xlID0gbnVsbDsKY29uc3QgREVGQVVMVF9BUFBTID0gWwogICAgeyBuYW1lOiAiSHlkcmEgNEsiLCBkZXNjOiAi2YjZiNmEINiq2YLYubmEINi52LkgKNmC2YjYqNmEINi02YjZgdmK2KkpPGJyPlVzZXI6IGhhbmFudGhhYml0IHwgUGFzczogaXB0dmhkMjAyNEBBIiwgbGluazogImh0dHBzOi8vd3d3Lm1lZGlhZmlyZS5jb20vZmlsZS82aW4ybHFpeDh5aHl6bnIvSHlkcmErNEsrQE5JR0FOUFJPLmFway9maWxlIiwgaWNvbjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzYyOTQvNjI5NDk0NS5wbmciLCBpc1ByZW1pZXJlOiB0cnVlIH0sCiAgICB7IG5hbWU6ICLYo9izLtin2LHYpyDYq9mD2YbZiiBPc2NhciBUViIsIGRlc2M6ICLYs9mG2YbZhdin2YYg2KzZhdmE2Ykg2KLYo9iq2YfYryDYp9mE2YjYp9mEINin2YTYs9mI2LHZiiDYp9mE2YXYp9ix2KfYqiAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly9hZnR2Lm5ld3MvNTQ3MzQ4OSIsIGljb246ICJodHRwczovL2Nkbi1pY29ucy1wbmcuZmxhdGljb24uY29tLzUxMi8yOTEwLzI5MTA3MjQucG5nIiwgaGFzUGxheWVyOiB0cnVlLCBwbGF5ZXJMaW5rOiAiaHR0cHM6Ly9hZnR2Lm5ld3MvMjUzODY0NyIgfSwKICAgIHsgbmFtZTogItiv2LHZhNmHINmE2KfZitmBIiwgZGVzYzogItiq2K3YrNmL2K8g2KzYsdmE2K8gLSDZg9mI2K8g2KfZhNiv2YrZiNmE2K86IDIzMjQyNSAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9maWxlL3hnOTFvNDFveGs0NmtwdC8lMjVEOCUyNUFGJTI1RDglMjVCMSUyNUQ4JTI1QTclMjVEOSUyNTg1JTI1RDglMjVBN18lMjVEOSUyNTg0JTI1RDglMjVBNyUyNUQ5JTI1OEElMjVEOSUyNTgxLmFway9maWxlIiwgaWNvbjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzI4MDkvMjgwOTU5MC5wbmciIH0sCiAgICB7IG5hbWU6ICJNb3ZpZUJveCBWSVAiLCBkZXNjOiAi2LPZhtmG2YXYp9mGINmE2YTYp9ixINin2YTYs9mI2LHZiiDYp9mE2KfZhNin2YQg2YTYp9mE2KfYqiAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9maWxlL3gwcjh1OWN1MzdnenU1YS9Nb3ZpZUJveCsrK0ZhbWlseSsoVklQKS5hcGsvZmlsZSIsIGljb246ICJodHRwczovL2Nkbi1pY29ucy1wbmcuZmxhdGljb24uY29tLzUxMi8yNTAzLzI1MDM3MDgucG5nIiB9LAogICAgeyBuYW1lOiAiMSBJUkFRIFRWIiwgZGVzYzogItmC2YLYp9iq2Kgg2LPZg9mK2KfYp9mK2Kkg2YjYqNivINmF2KfYqdin2LEg2YTZhdmE2Ykg2KLYo9iq2YfYryAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly9naXRodWIuY29tL29uZWlyYXEvb25ldHZfdXBkYXRlL3Jhdy9yZWZzL2hlYWRzL21haW4vMV9pcmFxX3R2X3YxLmFwayIsIGljb246ICJodHRwczovL2Nkbi1pY29ucy1wbmcuZmxhdGljb24uY29tLzUxMi8zMDA0LzMwMDQ2MTYucG5nIiB9LAogICAgeyBuYW1lOiAi2KvYtNmC2YrZhS/Yp9mE2YXZhtin2K3YryBOZXciLCBkZXNjOiAi2YvZhNin2YUg2K3Ys9mK2YQg2K/ZiNmI2YQg2YXZhiDZhdiY2KfYqtmKINmF2LPYrdinINio2KfYsNmD2YjYsyBRUiAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2lyYXFhcHBzL3R2YXBwcy9yZWZzL2hlYWRzL21haW4vYXBwcy9OZXctcmVsZWFzZS1wcm90ZWN0ZWQuMy4wLjEuYXBrIiwgaWNvbjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzE4MjgvMTgyODk2MS5wbmciIH0sCiAgICB7IG5hbWU6ICLYq9i02YLYtNmFKSDYtNmIKSBTSE9XIiwgZGVzYzogItiz2YPZitin2KfZitipINmF2YXYp9mI2YjYt9inIC0g2KPYp9mE2YHZhSAtINmF2LPZhNiz2YTZg9inIC0gSERNb3N1bCIsIGxpbms6ICJodHRwczovL2dpdGh1Yi5jb20vMWZmdTEvdG9mbGV4LmNvbS9yYXcvcmVmcy9oZWFkcy9tYWluL3RvZmxleC8lRDglQjQlRDklODguYXBrIiwgaWNvbjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzkwNzMvOTA3MzAzMi5wbmciIH0sCiAgICB7IG5hbWU6ICLYp9mK2KfYp9mFINin2YrZgSDYp9mE2KfZg9in2YHYryBIaVR2IiwgZGVzYzogItiz2YbZhtmF2KfZhiDYp9mE2YXYp9ixINmF2K3YrNin2K8g2KjYp9ir2LHYp9ipINin2YTYp9mE2YXYp9mF2YcgLSBIRE1vc3VsIiwgbGluazogImh0dHBzOi8vczIubW9iaWx0bmEuY29tL2RsL0FwcHMvSGlUViUyMHYzLjEzLjMlMjBWaXAuYXBrIiwgaWNvbjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzcxNi83MTYyMjUucG5nIiB9LAogICAgeyBuYW1lOiAi2LTYp9Kv2K8gU2hhaGlkIFZJUCIsIGRlc2M6ICLYp9mE2YjYp9mEINin2YTZhdix2YjYqSDYp9mE2K/Yp9mG2YHZhSAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly9zMi5tb2JpbHRuYS5jb20vZGwvQXBwcy9NQkMlMjBTaGFoaWQlMjB2Ny4xMTclMjB2aXAuYXBrIiwgaWNvbjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzczMi83MzIwNzQucG5nIiB9LAogICAgeyBuYW1lOiAi2K3Zhtix2KfZhCDYqtmD2YbZiiBQUk8iLCBkZXNjOiAi2YXZhdmI2YjYryDZg9mK2KfYp9mK2Kkg2LPZhtmG2YXYp9mGIC0g2YPYr9inINin2YTYr9mK2YjZhNmKOiAwMDAgLSBIRE1vc3VsIiwgbGluazogImh0dHBzOi8vZ2VucmFsdHYuZGV2IiwgaWNvbjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzI3MjEvMjcyMTIxNC5wbmciIH0sCiAgICB7IG5hbWU6ICLYudmI2YjZitioINin2YTYo9i02KfYp9iqIiwgZGVzYzogItio2K/ZiNmGINin2YTZgdin2YTZgdin2KkgLSDZg9it2K3Yr9inINiq2YfZg9in2KfZitkgLSDZhNmF2YbZhdmEINin2YTYo9i02KfYp9iqIC0gSERNb3N1bCIsIGxpbms6ICJodHRwczovL2dpdGh1Yi5jb20veXVsaXNrb3YvU21hcnRUdWJlTmV4dC9yZWxlYXNlcy9kb3dubG9hZC9sYXRlc3Qvc21hcnR0dWJlX3N0YWJsZS5hcGsiLCBpY29uOiAiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS81MTIvMTM4NC8xMzg0MDYwLnBuZyIgfSwKICAgIHsgbmFtZTogItir2LHYtdmK2YcgRWd5QmVzdCIsIGRlc2M6ICLYs9mG2YbZhdin2YYg2KfZhNmF2KfYqSDYp9mE2YjYp9mEINin2YTYs9mI2LHZiiAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9maWxlLzA3cTlqcHJhYXFjcnQ3by9FZ3liZXN0VFZfdjIuMC5hcGsvZmlsZSIsIGljb246ICJodHRwczovL2Nkbi1pY29ucy1wbmcuZmxhdGljb24uY29tLzUxMi8zNDEwLzM0MTAxNjMucG5nIiB9LAogICAgeyBuYW1lOiAi2KvYtdmC2YrZhyBORVRGTFkiLCBkZXNjOiAi2LPZhtmG2YXYp9mGINin2YTYp9mE2YjYp9mEINin2YTYs9mI2LHZiiAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly9zMi5tb2JpbHRuYS5jb20vZGwvQXBwcy9ORVRGTFklMjB2My4wLjAlMjBUViUyMHZpcC5hcGsiLCBpY29uOiAiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS81MTIvNzMyLzczMjIyOC5wbmciIH0sCiAgICB7IG5hbWU6ICJSZWV6biBUViIsIGRlc2M6ICLYs9mG2YbZhdin2YYg2KfZhNmF2KfYqSDYp9mE2YjYp9mEINin2YTYs9mI2LHZiiAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly9zMi5tb2JpbHRuYS5jb20vZGwvQXBwcy9SZWV6bl8xLjkuMy5hcGsiLCBpY29uOiAiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS81MTIvNTk3Ny81OTc3NTkzLnBuZyIgfSwKICAgIHsgbmFtZTogItir2LXYudmK2YcgVVhQIiwgZGVzYzogItin2YTYp9mE2K3ZhNin2Ygg2YTZhdmE2Ykg2KLYo9iq2YfYryAtINin2YTYs9mI2LHZiiAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly93d3cubWVkaWFmaXJlLmNvbS9maWxlLzg3dnFkOW82MWE1bXkzZC9VWFBfMi43LmFway9maWxlIiwgaWNvbjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzYyOTQvNjI5NDk1NS5wbmciIH0sCiAgICB7IG5hbWU6ICJDaW5lbWFuYSBDQk9YIiwgZGVzYzogItin2YTYp9mE2YjYp9mEINin2YTYs9mI2LHZiiAtINmI2YjZgdin2KjYp9ivIC0gSERNb3N1bCIsIGxpbms6ICJodHRwczovL2dpdGh1Yi5jb20vaXJhcWFwcHMvdHZhcHBzL3Jhdy9yZWZzL2hlYWRzL21haW4vYXBwcy9DaW5lbWFuYV9MZWFuYmFjayUyMHY0LjUuOV9OZXcuYXBrIiwgaWNvbjogImh0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzI5MTAvMjkxMDc1Ni5wbmciIH0sCiAgICB7IG5hbWU6ICJDaW5lbWFuYSBQbHVzIiwgZGVzYzogItin2YTYp9mE2YjYp9mEINin2YTYs9mI2LHZiiAtINmI2YjZgdin2KjYp9ivIC0gSERNb3N1bCIsIGxpbms6ICJodHRwczovL2dpdGh1Yi5jb20vaXJhcWFwcHMvdHZhcHBzL3Jhdy9yZWZzL2hlYWRzL21haW4vYXBwcy9jaW5lbWFuYXBsdXN0di5hcGsiLCBpY29uOiAiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS81MTIvMTgyOC8xODI4OTYxLnBuZyIgfQpdOwpjb25zdCBERUZBVUxUX1NUT1JFID0gWwogICAgeyBuYW1lOiAi2YXZg9iq2YjYt9inINin2YTYs9mI2LHZiiAoMSkiLCBkZXNjOiAiSERNb3N1bCAtINin2YTYp9mE2YXYqNin2KjYr9inINin2YTZhdmG2YbZgdmKINmF2YYgQW5kcm9pZF9BcHBzWCAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly9pcmFxYXBwcy5naXRodWIuaW8vdHZhcHBzLyIsIGljb246ICJodHRwczovL2Nkbi1pY29ucy1wbmcuZmxhdGljb24uY29tLzUxMi8yMjMyLzIyMzI2ODgucG5nIiB9LAogICAgeyBuYW1lOiAi2YXZg9iq2YjYt9inINin2YTYs9mI2LHZiiAoMikiLCBkZXNjOiAiSERNb3N1bCAtINin2YTYp9mE2K/ZiNin2YjYt9inINin2YTYo9i12KfYp9mE2Kkg2YHZhNmF2Ykg2KLYo9iq2YfYryAtIEhETW9zdWwiLCBsaW5rOiAiaHR0cHM6Ly80MDE3NDAuaGFsYS13ZWIuY29tLyIsIGljb246ICJodHRwczovL2Nkbi1pY29ucy1wbmcuZmxhdGljb24uY29tLzUxMi8yMjMyLzIyMzI2ODgucG5nIiB9LAogICAgeyBuYW1lOiAi2KfZhNmC2KfZhdmFINin2YTYr9mG2YoiLCBkZXNjOiAi2YHZhNin2KjYp9mE2KfYqSDYudmGINin2YTYp9mE2KXZhdin2LbZg9inOiBwcWtiZ2ZjbjY4OEBnbWFpbC5jb20gLSBIRE1vc3VsIiwgbGluazogIm1haWx0bzpwcWtiZ2ZjbjY4OEBnbWFpbC5jb20iLCBpY29uOiAiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsYXRpY29uLmNvbS81MTIvMTgyNy8xODI3MzAwLnBuZyIsIGlzU3VwcG9ydDogdHJ1ZSB9Cl07CgpsZXQgYXBwc0xpc3QgPSBbXTsKbGV0IHN0b3JlTGlzdCA9IFtdOwpsZXQgc3RvcmVTZXR0aW5ncyA9IHsgbmFtZTogJ0hETW9zdWwgU3RvcmUnLCBsb2dvVXJsOiAnaHR0cHM6Ly91cGxvYWQud2lraW1lZGlhLm9yZy93aWtpcGVkaWEvZW4vdGh1bWIvNS81Ni9SZWFsX01hZHJpZF9DRi5zdmcvMTIwMHB4LVJlYWxfTWFkcmlkX0NGLnN2Zy5wbmcnLCB0aGVtZTogJ21hZHJpZCcgfTsKbGV0IG1vZGVyYXRvcnMgPSBbXTsKCmxldCBjdXJyZW50RWRpdFR5cGUgPSBudWxsLCBjdXJyZW50RWRpdEluZGV4ID0gbnVsbDsKCmZ1bmN0aW9uIGxvYWRNb2RlcmF0b3JzKCkgewogICAgY29uc3Qgc2F2ZWQgPSBsb2NhbFN0b3JhZ2UuZ2V0SXRlbSgnaGRtb3N1bF9tb2RlcmF0b3JzJyk7CiAgICBpZiAoc2F2ZWQpIHsgdHJ5IHsgbW9kZXJhdG9ycyA9IEpTT04ucGFyc2Uoc2F2ZWQpOyB9IGNhdGNoKGUpIHsgbW9kZXJhdG9ycyA9IFsuLi5ERUZBVUxUX01PREVSQVRPUlNdOyB9IH0KICAgIGVsc2UgeyBtb2RlcmF0b3JzID0gWy4uLkRFRkFVTFRfTU9ERVJBVE9SU107IH0KfQpmdW5jdGlvbiBzYXZlTW9kZXJhdG9ycygpIHsKICAgIGxvY2FsU3RvcmFnZS5zZXRJdGVtKCdoZG1vc3VsX21vZGVyYXRvcnMnLCBKU09OLnN0cmluZ2lmeShtb2RlcmF0b3JzKSk7CiAgICBpZiAoY3VycmVudFVzZXJSb2xlID09PSAnb3duZXInKSByZW5kZXJNb2RlcmF0b3JzTGlzdCgpOwp9CmZ1bmN0aW9uIGxvYWRTZXR0aW5ncygpIHsKICAgIGNvbnN0IHNhdmVkID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oJ2hkbW9zdWxfc2V0dGluZ3MnKTsKICAgIGlmIChzYXZlZCkgdHJ5IHsgc3RvcmVTZXR0aW5ncyA9IEpTT04ucGFyc2Uoc2F2ZWQpOyB9IGNhdGNoKGUpIHt9CiAgICBhcHBseVNldHRpbmdzKCk7Cn0KZnVuY3Rpb24gc2F2ZVNldHRpbmdzKCkgewogICAgbG9jYWxTdG9yYWdlLnNldEl0ZW0oJ2hkbW9zdWxfc2V0dGluZ3MnLCBKU09OLnN0cmluZ2lmeShzdG9yZVNldHRpbmdzKSk7CiAgICBhcHBseVNldHRpbmdzKCk7Cn0KZnVuY3Rpb24gYXBwbHlTZXR0aW5ncygpIHsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdzdG9yZU5hbWUnKS50ZXh0Q29udGVudCA9IHN0b3JlU2V0dGluZ3MubmFtZTsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdzdG9yZUxvZ28nKS5zcmMgPSBzdG9yZVNldHRpbmdzLmxvZ29Vcmw7CiAgICBkb2N1bWVudC5ib2R5LnNldEF0dHJpYnV0ZSgnZGF0YS10aGVtZScsIHN0b3JlU2V0dGluZ3MudGhlbWUpOwp9CmZ1bmN0aW9uIGxvYWREYXRhKCkgewogICAgY29uc3Qgc2F2ZWRBcHBzID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oJ2hkbW9zdWxfYXBwcycpOwogICAgY29uc3Qgc2F2ZWRTdG9yZSA9IGxvY2FsU3RvcmFnZS5nZXRJdGVtKCdoZG1vc3VsX3N0b3JlJyk7CiAgICBhcHBzTGlzdCA9IHNhdmVkQXBwcyA/IEpTT04ucGFyc2Uoc2F2ZWRBcHBzKSA6IFsuLi5ERUZBVUxUX0FQUFNdOwogICAgc3RvcmVMaXN0ID0gc2F2ZWRTdG9yZSA/IEpTT04ucGFyc2Uoc2F2ZWRTdG9yZSkgOiBbLi4uREVGQVVMVF9TVE9SRV07Cn0KZnVuY3Rpb24gc2F2ZURhdGEoKSB7CiAgICBsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgnaGRtb3N1bF9hcHBzJywgSlNPTi5zdHJpbmdpZnkoYXBwc0xpc3QpKTsKICAgIGxvY2FsU3RvcmFnZS5zZXRJdGVtKCdoZG1vc3VsX3N0b3JlJywgSlNPTi5zdHJpbmdpZnkoc3RvcmVMaXN0KSk7CiAgICByZW5kZXJBbGxBcHBzKCk7IHJlbmRlclN0b3JlQXBwcygpOwp9CgpmdW5jdGlvbiBjcmVhdGVBcHBDYXJkKGFwcCwgaXNTdG9yZSA9IGZhbHNlKSB7CiAgICBjb25zdCBjYXJkID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnZGl2Jyk7CiAgICBjYXJkLmNsYXNzTmFtZSA9IGBjYXJkICR7aXNTdG9yZSA/ICdzdG9yZS1jYXJkJyA6ICcnfWA7CiAgICBjYXJkLnRhYkluZGV4ID0gMDsKICAgIGlmIChhcHAuaXNTdXBwb3J0KSB7CiAgICAgICAgY2FyZC5vbmNsaWNrID0gKCkgPT4gd2luZG93LmxvY2F0aW9uLmhyZWYgPSBhcHAubGluazsKICAgICAgICBjYXJkLm9ua2V5cHJlc3MgPSAoZSkgPT4geyBpZihlLmtleSA9PT0gJ0VudGVyJykgd2luZG93LmxvY2F0aW9uLmhyZWYgPSBhcHAubGluazsgfTsKICAgIH0gZWxzZSB7CiAgICAgICAgY2FyZC5vbmNsaWNrID0gKCkgPT4gb3Blbkxpbmsod2luZG93LmV2ZW50LCBjYXJkLCBhcHAubGluayk7CiAgICAgICAgY2FyZC5vbmtleXByZXNzID0gKGUpID0+IGhhbmRsZUVudGVyKGUsIGNhcmQsIGFwcC5saW5rKTsKICAgIH0KICAgIGlmICghYXBwLmlzU3VwcG9ydCkgewogICAgICAgIGNvbnN0IG92ZXJsYXkgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTsKICAgICAgICBvdmVybGF5LmNsYXNzTmFtZSA9ICd0aW1lci1vdmVybGF5JzsKICAgICAgICBvdmVybGF5LmlubmVySFRNTCA9IGA8ZGl2IGNsYXNzPSJwcmF5ZXItbXNnIj7inL0g2YLYp9mEINiq2KzYudmEINin2YTYp9mE2YXYp9ix2KfYq9inINiq2YfZhNmG2YrZgSDYudmGINin2YTYs9mE2KfYp9ipINmI2KfZgdin2LEg2KfZhNmH2Ycg4py9PC9kaXY+PGRpdiBjbGFzcz0iY291bnQtZG93biI+NDwvZGl2PmA7CiAgICAgICAgY2FyZC5hcHBlbmRDaGlsZChvdmVybGF5KTsKICAgIH0KICAgIGNvbnN0IGljb25EaXYgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTsKICAgIGljb25EaXYuY2xhc3NOYW1lID0gJ2FwcC1pY29uJzsKICAgIGNvbnN0IGltZyA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2ltZycpOwogICAgaW1nLnNyYyA9IGFwcC5pY29uIHx8ICdodHRwczovL3ZpYS5wbGFjZWhvbGRlci5jb20vMTAwLzAwNTI5Zi9mZmZmZmY/dGV4dD1BUFAnOwogICAgaW1nLmFsdCA9IGFwcC5uYW1lOwogICAgaW1nLm9uZXJyb3IgPSAoKSA9PiBpbWcuc3JjID0gJ2h0dHBzOi8vdmlhLnBsYWNlaG9sZGVyLmNvbS8xMDAvMDA1MjlmL2ZmZmZmZj90ZXh0PUFQUCc7CiAgICBpY29uRGl2LmFwcGVuZENoaWxkKGltZyk7CiAgICBjYXJkLmFwcGVuZENoaWxkKGljb25EaXYpOwogICAgY29uc3QgdGl0bGUgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTsKICAgIHRpdGxlLmNsYXNzTmFtZSA9ICd0aXRsZSc7CiAgICB0aXRsZS50ZXh0Q29udGVudCA9IGFwcC5uYW1lOwogICAgY2FyZC5hcHBlbmRDaGlsZCh0aXRsZSk7CiAgICBjb25zdCBkZXNjID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnZGl2Jyk7CiAgICBkZXNjLmNsYXNzTmFtZSA9ICdkZXNjJzsKICAgIGRlc2MuaW5uZXJIVE1MID0gYXBwLmRlc2M7CiAgICBjYXJkLmFwcGVuZENoaWxkKGRlc2MpOwogICAgaWYgKCFhcHAuaXNTdXBwb3J0KSB7CiAgICAgICAgaWYgKGFwcC5oYXNQbGF5ZXIpIHsKICAgICAgICAgICAgY29uc3QgYnRuQ29udGFpbmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnZGl2Jyk7CiAgICAgICAgICAgIGJ0bkNvbnRhaW5lci5zdHlsZS5jc3NUZXh0ID0gJ2Rpc3BsYXk6IGZsZXg7IGdhcDogMTBweDsgcG9zaXRpb246IHJlbGF0aXZlOyB6LWluZGV4OiAxMDsnOwogICAgICAgICAgICBjb25zdCBidG4xID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnYnV0dG9uJyk7CiAgICAgICAgICAgIGJ0bjEuY2xhc3NOYW1lID0gJ2x1eHVyeS1idG4nOwogICAgICAgICAgICBidG4xLnN0eWxlLmNzc1RleHQgPSAnZmxleDoxOyBwb2ludGVyLWV2ZW50czogbm9uZTsnOwogICAgICAgICAgICBidG4xLnRhYkluZGV4ID0gLTE7CiAgICAgICAgICAgIGJ0bjEudGV4dENvbnRlbnQgPSAn2KvYrNmE2YrZhdinINin2YTYqtit2YjZgdinJzsKICAgICAgICAgICAgY29uc3QgYnRuMiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2J1dHRvbicpOwogICAgICAgICAgICBidG4yLmNsYXNzTmFtZSA9ICdsdXh1cnktYnRuIGluc3RhbnQtYnRuJzsKICAgICAgICAgICAgYnRuMi5zdHlsZS5jc3NUZXh0ID0gJ2ZsZXg6MTsgcG9pbnRlci1ldmVudHM6IGF1dG87JzsKICAgICAgICAgICAgYnRuMi50ZXh0Q29udGVudCA9ICLYq9is2YTZitmF2Kcg2KfZhNmF2LPYqNmL2YQnOwogICAgICAgICAgICBidG4yLm9uY2xpY2sgPSAoZSkgPT4geyBlLnN0b3BQcm9wYWdhdGlvbigpOyBlLnByZXZlbnREZWZhdWx0KCk7IHdpbmRvdy5sb2NhdGlvbi5ocmVmID0gYXBwLnBsYXllckxpbms7IH07CiAgICAgICAgICAgIGJ0bkNvbnRhaW5lci5hcHBlbmRDaGlsZChidG4xKTsKICAgICAgICAgICAgYnRuQ29udGFpbmVyLmFwcGVuZENoaWxkKGJ0bjIpOwogICAgICAgICAgICBjYXJkLmFwcGVuZENoaWxkKGJ0bkNvbnRhaW5lcik7CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgY29uc3QgYnRuID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnYnV0dG9uJyk7CiAgICAgICAgICAgIGJ0bi5jbGFzc05hbWUgPSBgbHV4dXJ5LWJ0biAke2FwcC5pc1ByZW1pZXJlID8gJ3ByZW1pZXJlLWJ0bicgOiAnJ31gOwogICAgICAgICAgICBidG4uc3R5bGUucG9pbnRlckV2ZW50cyA9ICdub25lJzsKICAgICAgICAgICAgYnRuLnRhYkluZGV4ID0gLTE7CiAgICAgICAgICAgIGJ0bi50ZXh0Q29udGVudCA9IGFwcC5pc1ByZW1pZXJlID8gJ/Cfj4Yg2KvYrNmE2YrZhdinIFBSRU1JRVJFIPCfj4YnIDogJ9ir2KzZhNmK2YXYpyc7CiAgICAgICAgICAgIGNhcmQuYXBwZW5kQ2hpbGQoYnRuKTsKICAgICAgICB9CiAgICB9CiAgICByZXR1cm4gY2FyZDsKfQoKZnVuY3Rpb24gcmVuZGVyQWxsQXBwcygpIHsKICAgIGNvbnN0IGdyaWQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYXBwc0dyaWQnKTsKICAgIGdyaWQuaW5uZXJIVE1MID0gJyc7CiAgICBhcHBzTGlzdC5mb3JFYWNoKGFwcCA9PiBncmlkLmFwcGVuZENoaWxkKGNyZWF0ZUFwcENhcmQoYXBwLCBmYWxzZSkpKTsKfQpmdW5jdGlvbiByZW5kZXJTdG9yZUFwcHMoKSB7CiAgICBjb25zdCBncmlkID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3N0b3JlR3JpZCcpOwogICAgZ3JpZC5pbm5lckhUTUwgPSAnJzsKICAgIHN0b3JlTGlzdC5mb3JFYWNoKGFwcCA9PiBncmlkLmFwcGVuZENoaWxkKGNyZWF0ZUFwcENhcmQoYXBwLCB0cnVlKSkpOwp9CgpmdW5jdGlvbiByZW5kZXJNb2RlcmF0b3JzTGlzdCgpIHsKICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdtb2RlcmF0b3JzTGlzdCcpOwogICAgY29udGFpbmVyLmlubmVySFRNTCA9ICcnOwogICAgbW9kZXJhdG9ycy5mb3JFYWNoKChjb2RlLCBpbmRleCkgPT4gewogICAgICAgIGNvbnN0IGRpdiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpOwogICAgICAgIGRpdi5jbGFzc05hbWUgPSAnbW9kLWxpc3QtaXRlbSc7CiAgICAgICAgZGl2LmlubmVySFRNTCA9IGA8c3Bhbj7wn5GxICR7Y29kZX08L3NwYW4+YDsKICAgICAgICBjb25zdCBkZWxldGVCdG4gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdidXR0b24nKTsKICAgICAgICBkZWxldGVCdG4uY2xhc3NOYW1lID0gJ2RlbGV0ZS1tb2QtYnRuJzsKICAgICAgICBkZWxldGVCdG4uaW5uZXJIVE1MID0gJzxpIGNsYXNzPSJmYXMgZmEtdHJhc2giPjwvaT4g2K3Yr9mGJzsKICAgICAgICBkZWxldGVCdG4ub25jbGljayA9ICgpID0+IHsKICAgICAgICAgICAgaWYgKGNvbmZpcm0oYNmF2KrYp9mG2K3YryDYp9mE2K3Yr9mGINin2YTYp9mE2YXYuNmE2YjZgdinINio2LPZhdinICR7Y29kZX1gKSkgewogICAgICAgICAgICAgICAgbW9kZXJhdG9ycy5zcGxpY2UoaW5kZXgsIDEpOwogICAgICAgICAgICAgICAgc2F2ZU1vZGVyYXRvcnMoKTsKICAgICAgICAgICAgfQogICAgICAgIH07CiAgICAgICAgZGl2LmFwcGVuZENoaWxkKGRlbGV0ZUJ0bik7CiAgICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKGRpdik7CiAgICB9KTsKICAgIGlmIChtb2RlcmF0b3JzLmxlbmd0aCA9PT0gMCkgY29udGFpbmVyLmlubmVySFRNTCA9ICc8cCBzdHlsZT0idGV4dC1hbGlnbjogY2VudGVyOyBvcGFjaXR5OiAwLjc7Ij7Yp9mEINmI2K3Yr9mFINmF2LPYqNix2YbZitmGINis2KfZhNmZ2KfYqTwvcD4nOwp9CmZ1bmN0aW9uIGFkZE1vZGVyYXRvcigpIHsKICAgIGNvbnN0IGlucHV0ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ25ld01vZGVyYXRvckNvZGUnKTsKICAgIGxldCBjb2RlID0gaW5wdXQudmFsdWUudHJpbSgpOwogICAgaWYgKCFjb2RlKSB7IGFsZXJ0KCfYp9mE2LPYrtin2KfYpNmFINin2YTYr9mK2YjYp9mFINin2YTYp9mE2YXYuNmE2YjZgdinJyk7IHJldHVybjsgfQogICAgaWYgKCEvXlxkKyQvLnRlc3QoY29kZSkpIHsgYWxlcnQoJ9in2YTYs9iu2KfYp9ik2YUg2KfZhNiv2YrZhNin2YUg2KfZhNij2LPZhNin2YLYp9mEINmF2YjYp9mE2LnYp9iq2KfZhCcpOyByZXR1cm47IH0KICAgIGlmIChjb2RlID09PSBPV05FUl9QQVNTV09SRCkgeyBhbGVydCgn2KfZhCDYudmI2YbZhtinINin2YTYr9mK2YjYp9mFINin2YTYp9mE2YXYuNmE2YjZgdinINin2YTYp9mE2YXYuNmE2YjZgdinJyk7IHJldHVybjsgfQogICAgaWYgKG1vZGVyYXRvcnMuaW5jbHVkZXMoY29kZSkpIHsgYWxlcnQoJ9in2YjYp9mGINin2YTYs9mI2YjYp9mFINin2YTYp9mE2YXYuNmE2YjZgdinINmF2YjYtNin2YjYrycpOyByZXR1cm47IH0KICAgIG1vZGVyYXRvcnMucHVzaChjb2RlKTsKICAgIHNhdmVNb2RlcmF0b3JzKCk7CiAgICBpbnB1dC52YWx1ZSA9ICcnOwogICAgYWxlcnQoYOKchSDYqti8INin2YTYr9mK2YjYp9mFINin2YTYp9mE2YXYuNmE2YjZgdinINio2LPZhdinICR7Y29kZX0g2KjYp9mG2K3Yp9ipYCk7Cn0KCmZ1bmN0aW9uIG9wZW5Mb2dpbk1vZGFsKCkgewogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2xvZ2luTW9kYWwnKS5zdHlsZS5kaXNwbGF5ID0gJ2ZsZXgnOwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Bhc3N3b3JkSW5wdXQnKS52YWx1ZSA9ICcnOwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Bhc3N3b3JkSW5wdXQnKS5mb2N1cygpOwp9CmZ1bmN0aW9uIGNsb3NlTG9naW5Nb2RhbCgpIHsgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2xvZ2luTW9kYWwnKS5zdHlsZS5kaXNwbGF5ID0gJ25vbmUnOyB9CmZ1bmN0aW9uIGNoZWNrUGFzc3dvcmQoKSB7CiAgICBjb25zdCBwYXNzID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Bhc3N3b3JkSW5wdXQnKS52YWx1ZTsKICAgIGlmIChwYXNzID09PSBPV05FUl9QQVNTV09SRCkgewogICAgICAgIGN1cnJlbnRVc2VyUm9sZSA9ICdvd25lcic7CiAgICAgICAgY2xvc2VMb2dpbk1vZGFsKCk7CiAgICAgICAgb3BlbkFkbWluUGFuZWwoKTsKICAgIH0gZWxzZSBpZiAobW9kZXJhdG9ycy5pbmNsdWRlcyhwYXNzKSkgewogICAgICAgIGN1cnJlbnRVc2VyUm9sZSA9ICdtb2RlcmF0b3InOwogICAgICAgIGNsb3NlTG9naW5Nb2RhbCgpOwogICAgICAgIG9wZW5BZG1pblBhbmVsKCk7CiAgICB9IGVsc2UgewogICAgICAgIGFsZXJ0KCfinYwg2LPYrNmFINin2YTYr9mK2YjYp9mFINin2YTYp9mE2YXYuNmE2YjZgdinINin2YTYp9mE2YXYuNmE2YjZgdinJyk7CiAgICB9Cn0KZnVuY3Rpb24gb3BlbkFkbWluUGFuZWwoKSB7CiAgICBjb25zdCB0aXRsZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwYW5lbFRpdGxlJyk7CiAgICBjb25zdCBzZXR0aW5nc1NlY3Rpb24gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc3RvcmVTZXR0aW5nc1NlY3Rpb24nKTsKICAgIGNvbnN0IG1vZGVyYXRvcnNTZWN0aW9uID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ21vZGVyYXRvcnNTZWN0aW9uJyk7CiAgICBjb25zdCBhcHBMaXN0U2VjdGlvbiA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhcHBMaXN0U2VjdGlvbicpOwogICAgaWYgKGN1cnJlbnRVc2VyUm9sZSA9PT0gJ293bmVyJykgewogICAgICAgIHRpdGxlLmlubmVySFRNTCA9ICc8aSBjbGFzcz0iZmFzIGZhLWNyb3duIj48L2k+INmE2YjYrdin2Kkg2KvYrNmF2YrZhSDYp9mE2YXYuNmE2YjZgdinJzsKICAgICAgICBzZXR0aW5nc1NlY3Rpb24uc3R5bGUuZGlzcGxheSA9ICdibG9jayc7CiAgICAgICAgbW9kZXJhdG9yc1NlY3Rpb24uc3R5bGUuZGlzcGxheSA9ICdibG9jayc7CiAgICAgICAgYXBwTGlzdFNlY3Rpb24uc3R5bGUuZGlzcGxheSA9ICdibG9jayc7CiAgICAgICAgbG9hZFNldHRpbmdzVG9Gb3JtKCk7CiAgICAgICAgcmVuZGVyTW9kZXJhdG9yc0xpc3QoKTsKICAgICAgICByZWZyZXNoQXBwTGlzdEluUGFuZWwoKTsKICAgIH0gZWxzZSB7CiAgICAgICAgdGl0bGUuaW5uZXJIVE1MID0gJzxpIGNsYXNzPSJmYXMgZmEtdXNlci1zaGllbGQiPjwvaT4g2YTYo9it2KfYqSDYp9mE2YXYuNmE2YjZgdinICjYp9mE2YXYuNmE2YjZgdinINin2YTZhdmI2YjYs9inKSc7CiAgICAgICAgc2V0dGluZ3NTZWN0aW9uLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CiAgICAgICAgbW9kZXJhdG9yc1NlY3Rpb24uc3R5bGUuZGlzcGxheSA9ICdub25lJzsKICAgICAgICBhcHBMaXN0U2VjdGlvbi5zdHlsZS5kaXNwbGF5ID0gJ2Jsb2NrJzsKICAgICAgICByZWZyZXNoQXBwTGlzdEluUGFuZWwoKTsKICAgIH0KICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhZG1pblBhbmVsTW9kYWwnKS5zdHlsZS5kaXNwbGF5ID0gJ2ZsZXgnOwogICAgY2FuY2VsRWRpdCgpOwp9CmZ1bmN0aW9uIGNsb3NlQWRtaW5QYW5lbCgpIHsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhZG1pblBhbmVsTW9kYWwnKS5zdHlsZS5kaXNwbGF5ID0gJ25vbmUnOwogICAgY3VycmVudFVzZXJSb2xlID0gbnVsbDsKfQpmdW5jdGlvbiBsb2FkU2V0dGluZ3NUb0Zvcm0oKSB7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc2V0dGluZ3NTdG9yZU5hbWUnKS52YWx1ZSA9IHN0b3JlU2V0dGluZ3MubmFtZTsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdzZXR0aW5nc0xvZ29VcmwnKS52YWx1ZSA9IHN0b3JlU2V0dGluZ3MubG9nb1VybDsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdzZXR0aW5nc1RoZW1lJykudmFsdWUgPSBzdG9yZVNldHRpbmdzLnRoZW1lOwp9CmZ1bmN0aW9uIHNhdmVTdG9yZVNldHRpbmdzKCkgewogICAgaWYgKGN1cnJlbnRVc2VyUm9sZSAhPT0gJ293bmVyJykgcmV0dXJuOwogICAgc3RvcmVTZXR0aW5ncy5uYW1lID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3NldHRpbmdzU3RvcmVOYW1lJykudmFsdWUudHJpbSgpIHx8ICdIRE1vc3VsIFN0b3JlJzsKICAgIHN0b3JlU2V0dGluZ3MubG9nb1VybCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdzZXR0aW5nc0xvZ29VcmwnKS52YWx1ZS50cmltKCkgfHwgJ2h0dHBzOi8vdXBsb2FkLndpa2ltZWRpYS5vcmcvd2lraXBlZGlhL2VuL3RodW1iLzUvNTYvUmVhbF9NYWRyaWRfQ0Yuc3ZnLzEyMDBweC1SZWFsX01hZHJpZF9DRi5zdmcucG5nJzsKICAgIHN0b3JlU2V0dGluZ3MudGhlbWUgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc2V0dGluZ3NUaGVtZScpLnZhbHVlOwogICAgc2F2ZVNldHRpbmdzKCk7CiAgICBhbGVydCgn4pyFICjYqti8INin2YTYs9mI2YjYp9mFINin2YTYp9mE2YXYuNmE2YjZgdinINin2YTYp9mE2YXYuNmE2YjZgdinJyk7Cn0KCmZ1bmN0aW9uIHJlZnJlc2hBcHBMaXN0SW5QYW5lbCgpIHsKICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhcHBMaXN0Q29udGFpbmVyJyk7CiAgICBjb250YWluZXIuaW5uZXJIVE1MID0gJyc7CiAgICBjb25zdCBhcHBzVG9TaG93ID0gY3VycmVudFVzZXJSb2xlID09PSAnb3duZXInID8gYXBwc0xpc3QgOiBhcHBzTGlzdC5maWx0ZXIoYXBwID0+IGFwcC5hZGRlZEJ5ID09PSBjdXJyZW50VXNlclJvbGUpOwogICAgYXBwc1RvU2hvdy5mb3JFYWNoKChhcHAsIGluZGV4KSA9PiB7CiAgICAgICAgY29uc3Qgb3JpZ2luYWxJbmRleCA9IGFwcHNMaXN0LmluZGV4T2YoYXBwKTsKICAgICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQoY3JlYXRlTGlzdEl0ZW0oYXBwLm5hbWUsICdhcHBzJywgb3JpZ2luYWxJbmRleCkpOwogICAgfSk7CiAgICBpZiAoY3VycmVudFVzZXJSb2xlID09PSAnb3duZXInKSB7CiAgICAgICAgY29uc3Qgc2VwYXJhdG9yID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnZGl2Jyk7CiAgICAgICAgc2VwYXJhdG9yLnN0eWxlLm1hcmdpbiA9ICcxNXB4IDAgNXB4JzsKICAgICAgICBzZXBhcmF0b3Iuc3R5bGUuZm9udFdlaWdodCA9ICdib2xkJzsKICAgICAgICBzZXBhcmF0b3Iuc3R5bGUuY29sb3IgPSAndmFyKC0tcHJpbWFyeS1jb2xvciknOwogICAgICAgIHNlcGFyYXRvci50ZXh0Q29udGVudCA9ICfwn5OBINin2YTYp9mE2YXYqNin2KjYr9inOic7CiAgICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKHNlcGFyYXRvcik7CiAgICAgICAgc3RvcmVMaXN0LmZvckVhY2goKGFwcCwgaW5kZXgpID0+IGNvbnRhaW5lci5hcHBlbmRDaGlsZChjcmVhdGVMaXN0SXRlbShhcHAubmFtZSwgJ3N0b3JlJywgaW5kZXgpKSk7CiAgICB9Cn0KCmZ1bmN0aW9uIGNyZWF0ZUxpc3RJdGVtKG5hbWUsIHR5cGUsIGluZGV4KSB7CiAgICBjb25zdCBkaXYgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTsKICAgIGRpdi5jbGFzc05hbWUgPSAnYXBwLWxpc3QtaXRlbSc7CiAgICBkaXYuaW5uZXJIVE1MID0gYDxzcGFuPiR7bmFtZX08L3NwYW4+YDsKICAgIAogICAgY29uc3QgYWN0aW9uc0RpdiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpOwogICAgYWN0aW9uc0Rpdi5jbGFzc05hbWUgPSAnYXBwLWxpc3QtYWN0aW9ucyc7CiAgICAKICAgIGNvbnN0IGVkaXRCdG4gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdidXR0b24nKTsKICAgIGVkaXRCdG4uY2xhc3NOYW1lID0gJ2VkaXQtYXBwLWJ0bic7CiAgICBlZGl0QnRuLmlubmVySFRNTCA9ICc8aSBjbGFzcz0iZmFzIGZhLWVkaXQiPjwvaT4g2KrYrNmK2YTYp9mFJzsKICAgIGVkaXRCdG4ub25jbGljayA9ICgpID0+IHN0YXJ0RWRpdCh0eXBlLCBpbmRleCk7CiAgICAKICAgIGNvbnN0IGRlbGV0ZUJ0biA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2J1dHRvbicpOwogICAgZGVsZXRlQnRuLmNsYXNzTmFtZSA9ICdkZWxldGUtYXBwLWJ0bic7CiAgICBkZWxldGVCdG4uaW5uZXJIVE1MID0gJzxpIGNsYXNzPSJmYXMgZmEtdHJhc2giPjwvaT4g2K3Yr9mGJzsKICAgIGRlbGV0ZUJ0bi5vbmNsaWNrID0gKCkgPT4gewogICAgICAgIGlmIChjb25maXJtKGDZhdiq2KfZhNit2K8g2K3Yr9mGICR7bmFtZX1gKSkgewogICAgICAgICAgICBpZiAodHlwZSA9PT0gJ2FwcHMnKSBhcHBzTGlzdC5zcGxpY2UoaW5kZXgsIDEpOwogICAgICAgICAgICBlbHNlIHN0b3JlTGlzdC5zcGxpY2UoaW5kZXgsIDEpOwogICAgICAgICAgICBzYXZlRGF0YSgpOwogICAgICAgICAgICByZWZyZXNoQXBwTGlzdEluUGFuZWwoKTsKICAgICAgICAgICAgY2FuY2VsRWRpdCgpOwogICAgICAgIH0KICAgIH07CiAgICAKICAgIGFjdGlvbnNEaXYuYXBwZW5kQ2hpbGQoZWRpdEJ0bik7CiAgICBhY3Rpb25zRGl2LmFwcGVuZENoaWxkKGRlbGV0ZUJ0bik7CiAgICBkaXYuYXBwZW5kQ2hpbGQoYWN0aW9uc0Rpdik7CiAgICByZXR1cm4gZGl2Owp9CgpmdW5jdGlvbiBzdGFydEVkaXQodHlwZSwgaW5kZXgpIHsKICAgIGN1cnJlbnRFZGl0VHlwZSA9IHR5cGU7CiAgICBjdXJyZW50RWRpdEluZGV4ID0gaW5kZXg7CiAgICBjb25zdCBhcHAgPSB0eXBlID09PSAnYXBwcycgPyBhcHBzTGlzdFtpbmRleF0gOiBzdG9yZUxpc3RbaW5kZXhdOwogICAgCiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZWRpdEFwcEluZGV4JykudmFsdWUgPSBpbmRleDsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlZGl0QXBwVHlwZScpLnZhbHVlID0gdHlwZTsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlZGl0QXBwTmFtZScpLnZhbHVlID0gYXBwLm5hbWUgfHwgJyc7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZWRpdEFwcERlc2MnKS52YWx1ZSA9IGFwcC5kZXNjIHx8ICcnOwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VkaXRBcHBMaW5rJykudmFsdWUgPSBhcHAubGluayB8fCAnJzsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlZGl0QXBwSWNvbicpLnZhbHVlID0gYXBwLmljb24gfHwgJyc7CiAgICAKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlZGl0Rm9ybUNvbnRhaW5lcicpLnN0eWxlLmRpc3BsYXkgPSAnYmxvY2snOwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VkaXRGb3JtQ29udGFpbmVyJykuc2Nyb2xsSW50b1ZpZXcoeyBiZWhhdmlvcjogJ3Ntb290aCcsIGJsb2NrOiAnbmVhcmVzdCcgfSk7Cn0KCmZ1bmN0aW9uIHNhdmVFZGl0KCkgewogICAgY29uc3QgdHlwZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlZGl0QXBwVHlwZScpLnZhbHVlOwogICAgY29uc3QgaW5kZXggPSBwYXJzZUludChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZWRpdEFwcEluZGV4JykudmFsdWUpOwogICAgCiAgICBjb25zdCB1cGRhdGVkQXBwID0gewogICAgICAgIG5hbWU6IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlZGl0QXBwTmFtZScpLnZhbHVlLnRyaW0oKSwKICAgICAgICBkZXNjOiBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZWRpdEFwcERlc2MnKS52YWx1ZS50cmltKCksCiAgICAgICAgbGluazogZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VkaXRBcHBMaW5rJykudmFsdWUudHJpbSgpLAogICAgICAgIGljb246IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlZGl0QXBwSWNvbicpLnZhbHVlLnRyaW0oKQogICAgfTsKICAgIAogICAgY29uc3Qgb3JpZ2luYWxBcHAgPSB0eXBlID09PSAnYXBwcycgPyBhcHBzTGlzdFtpbmRleF0gOiBzdG9yZUxpc3RbaW5kZXhdOwogICAgY29uc3QgZmluYWxBcHAgPSB7IC4uLm9yaWdpbmFsQXBwLCAuLi51cGRhdGVkQXBwIH07CiAgICAKICAgIGlmICghZmluYWxBcHAubmFtZSB8fCAhZmluYWxBcHAubGluaykgewogICAgICAgIGFsZXJ0KCfYp9mE2LPYrtin2KfYpNmFINin2YTYr9mK2YjYp9mFINin2YTYp9mE2YXYuNmE2YjZgdinINin2YTYp9mE2YXYuNmE2YjZgdinJyk7CiAgICAgICAgcmV0dXJuOwogICAgfQogICAgCiAgICBpZiAodHlwZSA9PT0gJ2FwcHMnKSBhcHBzTGlzdFtpbmRleF0gPSBmaW5hbEFwcDsKICAgIGVsc2Ugc3RvcmVMaXN0W2luZGV4XSA9IGZpbmFsQXBwOwogICAgCiAgICBzYXZlRGF0YSgpOwogICAgcmVmcmVzaEFwcExpc3RJblBhbmVsKCk7CiAgICBjYW5jZWxFZGl0KCk7CiAgICBhbGVydChg4pyFINiq2Lwg2K3YrNip2K0gJHtmaW5hbEFwcC5uYW1lfSDYqNin2YbYrdin2KlgKTsKfQoKZnVuY3Rpb24gY2FuY2VsRWRpdCgpIHsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlZGl0Rm9ybUNvbnRhaW5lcicpLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CiAgICBjdXJyZW50RWRpdFR5cGUgPSBjdXJyZW50RWRpdEluZGV4ID0gbnVsbDsKfQoKZnVuY3Rpb24gYWRkTmV3QXBwKCkgewogICAgY29uc3QgbmFtZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCduZXdBcHBOYW1lJykudmFsdWUudHJpbSgpOwogICAgY29uc3QgZGVzYyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCduZXdBcHBEZXNjJykudmFsdWUudHJpbSgpOwogICAgY29uc3QgbGluayA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCduZXdBcHBMaW5rJykudmFsdWUudHJpbSgpOwogICAgY29uc3QgaWNvbiA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCduZXdBcHBJY29uJykudmFsdWUudHJpbSgpOwogICAgCiAgICBpZiAoIW5hbWUgfHwgIWxpbmspIHsKICAgICAgICBhbGVydCgn2KfZhNiz2K7Yp9in2KTZhSDYp9mE2K/ZitmE2KfZhSDYp9mE2KfZhNmF2LjZhNmI2YXYpyDYp9mE2KfZhNmF2LjZhNmI2YXYpycpOwogICAgICAgIHJldHVybjsKICAgIH0KICAgIAogICAgY29uc3QgbmV3QXBwID0gewogICAgICAgIG5hbWUsCiAgICAgICAgZGVzYzogZGVzYyB8fCAn2KvYtdmC2YrZhyDYrNmI2K3Yr9inJywKICAgICAgICBsaW5rLAogICAgICAgIGljb246IGljb24gfHwgJ2h0dHBzOi8vY2RuLWljb25zLXBuZy5mbGF0aWNvbi5jb20vNTEyLzE4MjgvMTgyODk2MS5wbmcnLAogICAgICAgIGFkZGVkQnk6IGN1cnJlbnRVc2VyUm9sZQogICAgfTsKICAgIAogICAgYXBwc0xpc3QucHVzaChuZXdBcHApOwogICAgc2F2ZURhdGEoKTsKICAgIGlmIChjdXJyZW50VXNlclJvbGUgPT09ICdvd25lcicgfHwgY3VycmVudFVzZXJSb2xlID09PSAnbW9kZXJhdG9yJykgcmVmcmVzaEFwcExpc3RJblBhbmVsKCk7CiAgICAKICAgIFsnbmV3QXBwTmFtZScsJ25ld0FwcERlc2MnLCduZXdBcHBMaW5rJywnbmV3QXBwSWNvbiddLmZvckVhY2goaWQgPT4gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoaWQpLnZhbHVlID0gJycpOwogICAgYWxlcnQoYOKchSDYqti8INin2YTYr9mK2YjYp9mFINin2YTYp9mE2YXYuNmE2YjZgdinICR7bmFtZX0g2KjYp9mG2K3Yp9ipYCk7Cn0KCmZ1bmN0aW9uIHVwZGF0ZUNsb2NrKCkgewogICAgY29uc3Qgbm93ID0gbmV3IERhdGUoKTsKICAgIGxldCBoID0gbm93LmdldEhvdXJzKCksIG0gPSBub3cuZ2V0TWludXRlcygpLCBzID0gbm93LmdldFNlY29uZHMoKTsKICAgIGxldCBhbXBtID0gaCA+PSAxMiA/ICdQTScgOiAnQU0nOwogICAgaCA9IGggJSAxMiB8fCAxMjsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdsaXZlQ2xvY2snKS5pbm5lclRleHQgPSBgJHtofToke20gPCAxMCA/ICcwJyArIG0gOiBtfToke3MgPCAxMCA/ICcwJyArIHMgOiBzfSAke2FtcG19YDsKICAgIAogICAgY29uc3QgZGF5cyA9IFsn2KfZhNin2K3Yr9inJywgJ9in2YTYp9mE2K3Yp9mK2YbZitinJywgJ9in2YTYp9mE2KzZhNin2KfYp9mK2KknLCAn2KfZhNin2LPYqNin2YjYp9inJywgJ9in2YTYp9mE2K3ZhNmG2YrYs9inJywgJ9in2YTYrNmD2YXZhdinJywgJ9in2YTYs9io2KknXTsKICAgIGNvbnN0IGRheU5hbWUgPSBkYXlzW25vdy5nZXREYXkoKV07CiAgICBjb25zdCB5ZWFyID0gbm93LmdldEZ1bGxZZWFyKCk7CiAgICBjb25zdCBtb250aCA9IG5vdy5nZXRNb250aCgpICsgMTsKICAgIGNvbnN0IGRhdGUgPSBub3cuZ2V0RGF0ZSgpOwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2xpdmVEYXRlJykuaW5uZXJUZXh0ID0gYCR7ZGF5TmFtZX0gJHt5ZWFyfS0ke21vbnRofS0ke2RhdGV9YDsKfQoKZnVuY3Rpb24gc3dpdGNoVGFiKGV2dCwgdGFiSWQpIHsKICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy50YWItY29udGVudCcpLmZvckVhY2godCA9PiB0LnN0eWxlLmRpc3BsYXkgPSAnbm9uZScpOwogICAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLnRhYi1idG4nKS5mb3JFYWNoKGIgPT4gYi5jbGFzc0xpc3QucmVtb3ZlKCdhY3RpdmUnKSk7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCh0YWJJZCkuc3R5bGUuZGlzcGxheSA9ICdibG9jayc7CiAgICBldnQuY3VycmVudFRhcmdldC5jbGFzc0xpc3QuYWRkKCdhY3RpdmUnKTsKfQoKZnVuY3Rpb24gaGFuZGxlRW50ZXIoZXZlbnQsIGVsZW1lbnQsIHVybCkgeyBpZiAoZXZlbnQua2V5ID09PSAnRW50ZXInKSBvcGVuTGluayhldmVudCwgZWxlbWVudCwgdXJsKTsgfQoKZnVuY3Rpb24gb3Blbkxpbmsod2luZG93RXZlbnQsIGNhcmQsIHVybCkgewogICAgaWYgKGNhcmQuZGF0YXNldC5ydW5uaW5nID09PSAidHJ1ZSIpIHJldHVybjsKICAgIGNvbnN0IG92ZXJsYXkgPSBjYXJkLnF1ZXJ5U2VsZWN0b3IoJy50aW1lci1vdmVybGF5Jyk7CiAgICBpZiAoIW92ZXJsYXkpIHsgd2luZG93LmxvY2F0aW9uLmhyZWYgPSB1cmw7IHJldHVybjsgfQogICAgCiAgICBjb25zdCBjb3VudERpc3BsYXkgPSBvdmVybGF5LnF1ZXJ5U2VsZWN0b3IoJy5jb3VudC1kb3duJyk7CiAgICBjYXJkLmRhdGFzZXQucnVubmluZyA9ICJ0cnVlIjsKICAgIGxldCBjb3VudCA9IDQ7CiAgICBvdmVybGF5LnN0eWxlLmRpc3BsYXkgPSAnZmxleCc7CiAgICBjb3VudERpc3BsYXkuaW5uZXJUZXh0ID0gY291bnQ7CiAgICAKICAgIGNvbnN0IGludGVydmFsID0gc2V0SW50ZXJ2YWwoKCkgPT4gewogICAgICAgIGNvdW50LS07CiAgICAgICAgY291bnREaXNwbGF5LmlubmVyVGV4dCA9IGNvdW50OwogICAgICAgIGlmIChjb3VudCA8PSAwKSB7CiAgICAgICAgICAgIGNsZWFySW50ZXJ2YWwoaW50ZXJ2YWwpOwogICAgICAgICAgICBvdmVybGF5LnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CiAgICAgICAgICAgIGNhcmQuZGF0YXNldC5ydW5uaW5nID0gImZhbHNlIjsKICAgICAgICAgICAgd2luZG93LmxvY2F0aW9uLmhyZWYgPSB1cmw7CiAgICAgICAgfQogICAgfSwgMTAwMCk7Cn0KCndpbmRvdy5vbmxvYWQgPSBmdW5jdGlvbigpIHsKICAgIGxvYWRNb2RlcmF0b3JzKCk7CiAgICBsb2FkU2V0dGluZ3MoKTsKICAgIGxvYWREYXRhKCk7CiAgICByZW5kZXJBbGxBcHBzKCk7CiAgICByZW5kZXJTdG9yZUFwcHMoKTsKICAgIHVwZGF0ZUNsb2NrKCk7CiAgICBzZXRJbnRlcnZhbCh1cGRhdGVDbG9jaywgMTAwMCk7Cn07Cg=="));
-    </script>
+<footer>
+    <p>HDMosul • PREMIUM STORE • 2026</p>
+    <p>جميع الحقوق محفوظة</p>
+</footer>
+
+<script>
+(function(){
+    const OWNER_PASS = "2001820";
+    const DEFAULT_MODS = ["090199251"];
+    let currentUserRole = null;
+    
+    const DEFAULT_APPS = [
+        { name: "Hydra 4K", desc: "كود تفعيل سنة (كيبل ضوئي)<br>User: hananthabit | Pass: iptvhd2024@@", link: "https://www.mediafire.com/file/6in2lqix8yhyznr/Hydra+4K+@NIGANPRO.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/6294/6294945.png", isPremiere: true },
+        { name: "أوسكار تيفي Oscar TV", desc: "سينمانا جميع شبكات نسخة جميلة جدا • HDMosul", link: "https://aftv.news/5473489", icon: "https://cdn-icons-png.flaticon.com/512/2910/2910724.png", hasPlayer: true, playerLink: "https://aftv.news/2538647" },
+        { name: "دراما لايف", desc: "تحديث جديد - كود الدخول: 232425 • HDMosul", link: "https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258A%25D9%2581.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/2809/2809590.png" },
+        { name: "MovieBox VIP", desc: "سينمانا جميع شبكات • بدون إعلانات • عائلي • HDMosul", link: "https://www.mediafire.com/file/x0r8u9cu37gzu5a/MovieBox+-+Family+(VIP).apk/file", icon: "https://cdn-icons-png.flaticon.com/512/2503/2503708.png" },
+        { name: "1 IRAQ TV", desc: "قنوات رياضية وبث مباشر لجميع الشبكات • HDMosul", link: "https://github.com/oneiraq/onetv_update/raw/refs/heads/main/1_iraq_tv_v1.apk", icon: "https://cdn-icons-png.flaticon.com/512/3004/3004616.png" },
+        { name: "تطبيق المنصة New", desc: "يلزم تسجيل دخول من موبايل مسح باركود QR • HDMosul", link: "https://raw.githubusercontent.com/iraqapps/tvapps/refs/heads/main/apps/New-release-protected.3.0.1.apk", icon: "https://cdn-icons-png.flaticon.com/512/1828/1828961.png" },
+        { name: "تطبيق شو SHOW", desc: "رياضة متنوعة • أفلام • مسلسلات • HDMosul", link: "https://github.com/1ffu1/toflex.com/raw/refs/heads/main/toflex/%D8%B4%D9%88.apk", icon: "https://cdn-icons-png.flaticon.com/512/9073/9073032.png" },
+        { name: "هاي تي في HiTv", desc: "سينمانا متنوع محدث بأحدث الأفلام • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/HiTV%20v3.13.3%20Vip.apk", icon: "https://cdn-icons-png.flaticon.com/512/716/716225.png" },
+        { name: "شاهد Shahid VIP", desc: "نسخة مهكرة مدفوعة بالكامل لشاشات الأندرويد • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/MBC%20Shahid%20v7.117%20vip.apk", icon: "https://cdn-icons-png.flaticon.com/512/732/732074.png" },
+        { name: "جنرال تيفي PRO", desc: "متنوع رياضة سينمانا • كود التفعيل: 000 • HDMosul", link: "https://genraltv.dev", icon: "https://cdn-icons-png.flaticon.com/512/2721/2721214.png" },
+        { name: "يوتيوب الشاشات", desc: "بدون إعلانات • يحدث تلقائي • لجميع الشاشات • HDMosul", link: "https://github.com/yuliskov/SmartTubeNext/releases/download/latest/smarttube_stable.apk", icon: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png" },
+        { name: "تطبيق EgyBest", desc: "سينمانا نسخة مخصصة للشاشات فقط • HDMosul", link: "https://www.mediafire.com/file/07q9jpraaqcrt7o/EgybestTV_v2.0.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/3410/3410163.png" },
+        { name: "تطبيق NETFLY", desc: "سينمانا منوع نسخة VIP سريعة جداً • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/NETFLY%20v3.0.0%20TV%20vip.apk", icon: "https://cdn-icons-png.flaticon.com/512/732/732228.png" },
+        { name: "Reezn TV", desc: "سينمانا متنوع نسخة جديدة كلياً • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/Reezn_1.9.3.apk", icon: "https://cdn-icons-png.flaticon.com/512/5977/5977593.png" },
+        { name: "تطبيق UXP", desc: "الأفضل لجميع الشبكات • سينمانا ورياضة • HDMosul", link: "https://www.mediafire.com/file/87vqd9o61a5my3d/UXP_2.7.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/6294/6294955.png" },
+        { name: "Cinemana CBOX", desc: "نسخة شاشات وتيفي بوكس • شبكة ايرثلنك حصراً • HDMosul", link: "https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/Cinemana_Leanback%20v4.5.9_New.apk", icon: "https://cdn-icons-png.flaticon.com/512/2910/2910756.png" },
+        { name: "Cinemana Plus", desc: "للشاشات الضعيفة • يعمل فقط على ايرثلنك • HDMosul", link: "https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/cinemanaplustv.apk", icon: "https://cdn-icons-png.flaticon.com/512/1828/1828961.png" }
+    ];
+    
+    const DEFAULT_STORE = [
+        { name: "مكتبة التطبيقات (1)", desc: "HDMosul • المتجر المتكامل من Android_AppsX", link: "https://iraqapps.github.io/tvapps/", icon: "https://cdn-icons-png.flaticon.com/512/2232/2232688.png" },
+        { name: "مكتبة التطبيقات (2)", desc: "HDMosul • أرشيف شامل لكافة التطبيقات الهامة", link: "https://401740.hala-web.com/", icon: "https://cdn-icons-png.flaticon.com/512/2232/2232688.png" },
+        { name: "الدعم الفني", desc: "للإبلاغ عن الأعطال: pqkbgfcn688@gmail.com", link: "mailto:pqkbgfcn688@gmail.com", icon: "https://cdn-icons-png.flaticon.com/512/1827/1827300.png", isSupport: true }
+    ];
+
+    let appsList = [], storeList = [], moderators = [];
+    let storeSettings = { name: 'HDMosul Store', logoUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png', theme: 'madrid' };
+    let currentEdit = { type: null, index: null };
+
+    function loadModerators() {
+        const saved = localStorage.getItem('hdmosul_mods');
+        moderators = saved ? JSON.parse(saved) : [...DEFAULT_MODS];
+    }
+    function saveModerators() {
+        localStorage.setItem('hdmosul_mods', JSON.stringify(moderators));
+        if (currentUserRole === 'owner') renderModeratorsList();
+    }
+    function loadSettings() {
+        const saved = localStorage.getItem('hdmosul_settings');
+        if (saved) storeSettings = JSON.parse(saved);
+        applySettings();
+    }
+    function saveSettings() {
+        localStorage.setItem('hdmosul_settings', JSON.stringify(storeSettings));
+        applySettings();
+    }
+    function applySettings() {
+        document.getElementById('storeName').textContent = storeSettings.name;
+        document.getElementById('storeLogo').src = storeSettings.logoUrl;
+        document.body.setAttribute('data-theme', storeSettings.theme);
+    }
+    function loadData() {
+        appsList = JSON.parse(localStorage.getItem('hdmosul_apps')) || [...DEFAULT_APPS];
+        storeList = JSON.parse(localStorage.getItem('hdmosul_store')) || [...DEFAULT_STORE];
+    }
+    function saveData() {
+        localStorage.setItem('hdmosul_apps', JSON.stringify(appsList));
+        localStorage.setItem('hdmosul_store', JSON.stringify(storeList));
+        renderAllApps(); renderStoreApps();
+    }
+
+    function createAppCard(app, isStore = false) {
+        const card = document.createElement('div');
+        card.className = `card ${isStore ? 'store-card' : ''}`;
+        card.tabIndex = 0;
+        if (app.isSupport) {
+            card.onclick = () => window.location.href = app.link;
+        } else {
+            card.onclick = () => openLink(card, app.link);
+            card.onkeypress = (e) => { if(e.key === 'Enter') openLink(card, app.link); };
+            const overlay = document.createElement('div');
+            overlay.className = 'timer-overlay';
+            overlay.innerHTML = `<div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div>`;
+            card.appendChild(overlay);
+        }
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'app-icon';
+        const img = document.createElement('img');
+        img.src = app.icon || 'https://via.placeholder.com/100/00529f/ffffff?text=APP';
+        img.alt = app.name;
+        img.onerror = () => img.src = 'https://via.placeholder.com/100/00529f/ffffff?text=APP';
+        iconDiv.appendChild(img);
+        card.appendChild(iconDiv);
+        const title = document.createElement('div');
+        title.className = 'title';
+        title.textContent = app.name;
+        card.appendChild(title);
+        const desc = document.createElement('div');
+        desc.className = 'desc';
+        desc.innerHTML = app.desc;
+        card.appendChild(desc);
+        if (!app.isSupport) {
+            if (app.hasPlayer) {
+                const btnContainer = document.createElement('div');
+                btnContainer.style.cssText = 'display: flex; gap: 10px; position: relative; z-index: 10;';
+                const btn1 = document.createElement('button');
+                btn1.className = 'luxury-btn';
+                btn1.style.cssText = 'flex:1; pointer-events: none;';
+                btn1.textContent = 'تحميل التطبيق';
+                const btn2 = document.createElement('button');
+                btn2.className = 'luxury-btn instant-btn';
+                btn2.style.cssText = 'flex:1; pointer-events: auto;';
+                btn2.textContent = 'تحميل المشغل';
+                btn2.onclick = (e) => { e.stopPropagation(); e.preventDefault(); window.location.href = app.playerLink; };
+                btnContainer.appendChild(btn1); btnContainer.appendChild(btn2);
+                card.appendChild(btnContainer);
+            } else {
+                const btn = document.createElement('button');
+                btn.className = `luxury-btn ${app.isPremiere ? 'premiere-btn' : ''}`;
+                btn.style.pointerEvents = 'none';
+                btn.textContent = app.isPremiere ? '🏆 تحميل PREMIERE 🏆' : 'تحميل';
+                card.appendChild(btn);
+            }
+        }
+        return card;
+    }
+    function renderAllApps() {
+        const grid = document.getElementById('appsGrid');
+        grid.innerHTML = '';
+        appsList.forEach(app => grid.appendChild(createAppCard(app, false)));
+    }
+    function renderStoreApps() {
+        const grid = document.getElementById('storeGrid');
+        grid.innerHTML = '';
+        storeList.forEach(app => grid.appendChild(createAppCard(app, true)));
+    }
+    function renderModeratorsList() {
+        const container = document.getElementById('moderatorsList');
+        container.innerHTML = '';
+        moderators.forEach((code, i) => {
+            const div = document.createElement('div');
+            div.className = 'mod-list-item';
+            div.innerHTML = `<span>🔑 ${code}</span>`;
+            const delBtn = document.createElement('button');
+            delBtn.className = 'delete-mod-btn';
+            delBtn.innerHTML = '<i class="fas fa-trash"></i> حذف';
+            delBtn.onclick = () => { if(confirm(`حذف المشرف ${code}؟`)) { moderators.splice(i,1); saveModerators(); } };
+            div.appendChild(delBtn);
+            container.appendChild(div);
+        });
+        if (moderators.length === 0) container.innerHTML = '<p style="text-align:center;">لا يوجد مشرفين</p>';
+    }
+    function addModerator() {
+        const input = document.getElementById('newModeratorCode');
+        const code = input.value.trim();
+        if (!code) return alert('أدخل الرمز');
+        if (!/^\d+$/.test(code)) return alert('أرقام فقط');
+        if (code === OWNER_PASS) return alert('لا يمكن إضافة المالك');
+        if (moderators.includes(code)) return alert('الرمز موجود مسبقاً');
+        moderators.push(code);
+        saveModerators();
+        input.value = '';
+        alert(`تم إضافة المشرف ${code}`);
+    }
+
+    function openLoginModal() {
+        document.getElementById('loginModal').style.display = 'flex';
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+    }
+    function closeLoginModal() { document.getElementById('loginModal').style.display = 'none'; }
+    function checkPassword() {
+        const pass = document.getElementById('passwordInput').value;
+        if (pass === OWNER_PASS) {
+            currentUserRole = 'owner';
+            closeLoginModal();
+            openAdminPanel();
+        } else if (moderators.includes(pass)) {
+            currentUserRole = 'moderator';
+            closeLoginModal();
+            openAdminPanel();
+        } else {
+            alert('رمز غير صحيح');
+        }
+    }
+    function openAdminPanel() {
+        const title = document.getElementById('panelTitle');
+        const settingsSec = document.getElementById('storeSettingsSection');
+        const modSec = document.getElementById('moderatorsSection');
+        const listSec = document.getElementById('appListSection');
+        if (currentUserRole === 'owner') {
+            title.innerHTML = '<i class="fas fa-crown"></i> لوحة المالك';
+            settingsSec.style.display = 'block';
+            modSec.style.display = 'block';
+            listSec.style.display = 'block';
+            document.getElementById('settingsStoreName').value = storeSettings.name;
+            document.getElementById('settingsLogoUrl').value = storeSettings.logoUrl;
+            document.getElementById('settingsTheme').value = storeSettings.theme;
+            renderModeratorsList();
+            refreshAppListInPanel();
+        } else {
+            title.innerHTML = '<i class="fas fa-user-shield"></i> لوحة المشرف';
+            settingsSec.style.display = 'none';
+            modSec.style.display = 'none';
+            listSec.style.display = 'block';
+            refreshAppListInPanel();
+        }
+        document.getElementById('adminPanelModal').style.display = 'flex';
+        cancelEdit();
+    }
+    function closeAdminPanel() {
+        document.getElementById('adminPanelModal').style.display = 'none';
+        currentUserRole = null;
+    }
+    function saveStoreSettings() {
+        if (currentUserRole !== 'owner') return;
+        storeSettings.name = document.getElementById('settingsStoreName').value.trim() || 'HDMosul Store';
+        storeSettings.logoUrl = document.getElementById('settingsLogoUrl').value.trim() || storeSettings.logoUrl;
+        storeSettings.theme = document.getElementById('settingsTheme').value;
+        saveSettings();
+        alert('تم حفظ الإعدادات');
+    }
+
+    function refreshAppListInPanel() {
+        const container = document.getElementById('appListContainer');
+        container.innerHTML = '';
+        let appsToShow = (currentUserRole === 'owner') ? appsList : appsList.filter(app => app.addedBy === currentUserRole);
+        appsToShow.forEach(app => {
+            const originalIndex = appsList.indexOf(app);
+            container.appendChild(createListItem(app.name, 'apps', originalIndex));
+        });
+        if (currentUserRole === 'owner') {
+            const sep = document.createElement('div');
+            sep.style.margin = '15px 0 5px';
+            sep.style.fontWeight = 'bold';
+            sep.textContent = '📁 المتجر:';
+            container.appendChild(sep);
+            storeList.forEach((app, i) => container.appendChild(createListItem(app.name, 'store', i)));
+        }
+    }
+    function createListItem(name, type, index) {
+        const div = document.createElement('div');
+        div.className = 'app-list-item';
+        div.innerHTML = `<span>${name}</span>`;
+        const actions = document.createElement('div');
+        actions.className = 'app-list-actions';
+        const editBtn = document.createElement('button');
+        editBtn.className = 'edit-app-btn';
+        editBtn.innerHTML = '<i class="fas fa-edit"></i> تعديل';
+        editBtn.onclick = () => startEdit(type, index);
+        const delBtn = document.createElement('button');
+        delBtn.className = 'delete-app-btn';
+        delBtn.innerHTML = '<i class="fas fa-trash"></i> حذف';
+        delBtn.onclick = () => {
+            if (confirm(`حذف "${name}"؟`)) {
+                if (type === 'apps') appsList.splice(index, 1);
+                else storeList.splice(index, 1);
+                saveData();
+                refreshAppListInPanel();
+                cancelEdit();
+            }
+        };
+        actions.appendChild(editBtn); actions.appendChild(delBtn);
+        div.appendChild(actions);
+        return div;
+    }
+    function startEdit(type, index) {
+        currentEdit = { type, index };
+        const app = type === 'apps' ? appsList[index] : storeList[index];
+        document.getElementById('editAppIndex').value = index;
+        document.getElementById('editAppType').value = type;
+        document.getElementById('editAppName').value = app.name || '';
+        document.getElementById('editAppDesc').value = app.desc || '';
+        document.getElementById('editAppLink').value = app.link || '';
+        document.getElementById('editAppIcon').value = app.icon || '';
+        document.getElementById('editFormContainer').style.display = 'block';
+    }
+    function saveEdit() {
+        const type = document.getElementById('editAppType').value;
+        const index = parseInt(document.getElementById('editAppIndex').value);
+        const updated = {
+            name: document.getElementById('editAppName').value.trim(),
+            desc: document.getElementById('editAppDesc').value.trim(),
+            link: document.getElementById('editAppLink').value.trim(),
+            icon: document.getElementById('editAppIcon').value.trim()
+        };
+        if (!updated.name || !updated.link) return alert('الاسم والرابط مطلوبان');
+        const original = type === 'apps' ? appsList[index] : storeList[index];
+        const final = { ...original, ...updated };
+        if (type === 'apps') appsList[index] = final;
+        else storeList[index] = final;
+        saveData();
+        refreshAppListInPanel();
+        cancelEdit();
+        alert('تم التحديث');
+    }
+    function cancelEdit() {
+        document.getElementById('editFormContainer').style.display = 'none';
+        currentEdit = { type: null, index: null };
+    }
+    function addNewApp() {
+        const name = document.getElementById('newAppName').value.trim();
+        const desc = document.getElementById('newAppDesc').value.trim();
+        const link = document.getElementById('newAppLink').value.trim();
+        const icon = document.getElementById('newAppIcon').value.trim();
+        if (!name || !link) return alert('الاسم والرابط مطلوبان');
+        const newApp = {
+            name, desc: desc || 'تطبيق جديد', link,
+            icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png',
+            addedBy: currentUserRole
+        };
+        appsList.push(newApp);
+        saveData();
+        refreshAppListInPanel();
+        ['newAppName','newAppDesc','newAppLink','newAppIcon'].forEach(id => document.getElementById(id).value = '');
+        alert(`تمت إضافة ${name}`);
+    }
+
+    function updateClock() {
+        const now = new Date();
+        let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        h = h % 12 || 12;
+        document.getElementById('liveClock').innerText = `${h}:${m<10?'0'+m:m}:${s<10?'0'+s:s} ${ampm}`;
+        const days = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+        const d = days[now.getDay()];
+        const y = now.getFullYear(), mo = now.getMonth()+1, da = now.getDate();
+        document.getElementById('liveDate').innerText = `${d} ${y}-${mo}-${da}`;
+    }
+    function switchTab(evt, tabId) {
+        document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).style.display = 'block';
+        evt.currentTarget.classList.add('active');
+    }
+    function openLink(card, url) {
+        if (card.dataset.running === "true") return;
+        const overlay = card.querySelector('.timer-overlay');
+        if (!overlay) { window.location.href = url; return; }
+        const countSpan = overlay.querySelector('.count-down');
+        card.dataset.running = "true";
+        let count = 4;
+        overlay.style.display = 'flex';
+        countSpan.innerText = count;
+        const interval = setInterval(() => {
+            count--;
+            countSpan.innerText = count;
+            if (count <= 0) {
+                clearInterval(interval);
+                overlay.style.display = 'none';
+                card.dataset.running = "false";
+                window.location.href = url;
+            }
+        }, 1000);
+    }
+
+    window.openLoginModal = openLoginModal;
+    window.closeLoginModal = closeLoginModal;
+    window.checkPassword = checkPassword;
+    window.closeAdminPanel = closeAdminPanel;
+    window.saveStoreSettings = saveStoreSettings;
+    window.addModerator = addModerator;
+    window.addNewApp = addNewApp;
+    window.saveEdit = saveEdit;
+    window.cancelEdit = cancelEdit;
+    window.switchTab = switchTab;
+    
+    window.onload = function() {
+        loadModerators();
+        loadSettings();
+        loadData();
+        renderAllApps();
+        renderStoreApps();
+        updateClock();
+        setInterval(updateClock, 1000);
+    };
+})();
+</script>
 </body>
 </html>
