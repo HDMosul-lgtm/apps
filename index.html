@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HDMosul Store • VIP</title>
     
-    <!-- خطوط وأيقونات -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* ================ المتغيرات الثابتة (مدريدي) ================ */
         :root {
             --primary-color: #00529f;
             --secondary-color: #febd11;
@@ -32,7 +30,6 @@
             color: var(--text-color); min-height: 100vh; overflow-x: hidden; position: relative;
         }
 
-        /* الشعار كزر لوحة التحكم */
         #storeLogo { width: 60px; filter: drop-shadow(0 5px 15px rgba(254, 189, 17, 0.3)); transition: transform 0.3s; cursor: pointer; }
         #storeLogo:hover { transform: scale(1.1); }
 
@@ -50,8 +47,13 @@
         .login-box button:hover, .admin-panel button:hover { background: var(--secondary-color); color: black; }
         .close-btn { background: #ccc !important; color: #333 !important; }
 
+        .app-list-item { display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.05); padding: 10px 15px; border-radius: 50px; margin-bottom: 10px; border: 1px solid var(--secondary-color); }
+        .app-list-item span { font-weight: bold; color: var(--primary-color); flex: 1; text-align: right; }
+        .app-list-actions { display: flex; gap: 5px; }
+        .edit-app-btn { background: #28a745 !important; color: white !important; padding: 5px 12px !important; font-size: 0.9rem; margin: 0 !important; }
+        .delete-app-btn { background: #dc3545 !important; color: white !important; padding: 5px 12px !important; font-size: 0.9rem; margin: 0 !important; }
         .section-title { color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 5px; margin: 20px 0 15px; }
-        .settings-form-container { background: rgba(0,0,0,0.03); border-radius: 20px; padding: 20px; margin: 20px 0; border: 2px solid var(--secondary-color); }
+        .edit-form-container, .settings-form-container { background: rgba(0,0,0,0.03); border-radius: 20px; padding: 20px; margin: 20px 0; border: 2px solid var(--secondary-color); }
 
         header { text-align: center; padding: 20px 0 10px; background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent); border-bottom: 2px solid var(--secondary-color); }
         .logo-container { display: flex; align-items: center; justify-content: center; margin-bottom: 5px; }
@@ -138,7 +140,7 @@
     <div class="admin-panel">
         <h2 id="panelTitle"><i class="fas fa-tools"></i> لوحة التحكم</h2>
         
-        <!-- إعدادات المتجر (للمالك فقط) -->
+        <!-- إعدادات المتجر -->
         <div id="storeSettingsSection" style="display: none;">
             <div class="section-title">⚙️ إعدادات المتجر</div>
             <div class="settings-form-container">
@@ -152,11 +154,33 @@
             </div>
         </div>
 
-        <!-- قسم تصدير HTML (للمالك فقط) -->
+        <!-- قسم تصدير HTML -->
         <div id="exportHtmlSection" style="display: none;">
             <div class="section-title">📤 تصدير HTML</div>
             <div style="margin-bottom: 10px;"><button onclick="exportFullHTML()" style="background: #e67e22;"><i class="fas fa-copy"></i> نسخ كود HTML كامل</button></div>
             <p style="font-size:0.8rem; opacity:0.7;">بعد النسخ، افتح ملف index.html وألصق الكود كاملاً ثم ارفعه.</p>
+        </div>
+
+        <!-- قائمة التطبيقات للتعديل -->
+        <div id="appListSection" style="display: none;">
+            <div class="section-title">📋 التطبيقات الحالية (اضغط تعديل)</div>
+            <div id="appListContainer" style="max-height: 300px; overflow-y: auto; padding: 5px;"></div>
+        </div>
+
+        <!-- نموذج التعديل -->
+        <div id="editFormContainer" class="edit-form-container" style="display: none;">
+            <h3><i class="fas fa-pen"></i> تعديل التطبيق</h3>
+            <input type="hidden" id="editAppIndex">
+            <input type="text" id="editAppName" placeholder="اسم التطبيق">
+            <textarea id="editAppDesc" placeholder="الوصف" rows="2"></textarea>
+            <input type="text" id="editAppLink" placeholder="رابط التحميل">
+            <input type="text" id="editAppIcon" placeholder="رابط الأيقونة">
+            <input type="text" id="editPlayerName" placeholder="اسم المشغل (اختياري)">
+            <input type="text" id="editPlayerLink" placeholder="رابط المشغل (اختياري)">
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button onclick="saveEdit()"><i class="fas fa-save"></i> حفظ التعديلات</button>
+                <button class="close-btn" onclick="cancelEdit()">إلغاء</button>
+            </div>
         </div>
 
         <!-- نموذج إضافة تطبيق جديد -->
@@ -180,7 +204,6 @@
     var OWNER_PASSWORD = "2001820";
     var currentUserRole = null;
     
-    // التطبيقات الافتراضية – مع أيقونة 1 IRAQ TV الجديدة
     var DEFAULT_APPS = [
         { name: "Hydra 4K", desc: "كود تفعيل سنة (كيبل ضوئي)<br>User: hananthabit | Pass: iptvhd2024@@", link: "https://www.mediafire.com/file/6in2lqix8yhyznr/Hydra+4K+@NIGANPRO.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/6294/6294945.png", isPremiere: true },
         { name: "أوسكار تيفي Oscar TV", desc: "سينمانا جميع شبكات نسخة جميلة جدا • HDMosul", link: "https://aftv.news/5473489", icon: "https://cdn-icons-png.flaticon.com/512/2910/2910724.png", playerName: "تحميل المشغل", playerLink: "https://aftv.news/2538647" },
@@ -216,8 +239,8 @@
         footer1: 'HDMosul • PREMIUM STORE • 2026',
         footer2: 'جميع الحقوق محفوظة'
     };
+    var currentEditIndex = null;
 
-    // تحميل البيانات من localStorage
     function loadSettings() { var s = localStorage.getItem('hdmosul_settings'); if (s) storeSettings = JSON.parse(s); applySettings(); }
     function saveSettings() { localStorage.setItem('hdmosul_settings', JSON.stringify(storeSettings)); applySettings(); }
     function applySettings() {
@@ -239,10 +262,9 @@
     function saveData() {
         localStorage.setItem('hdmosul_apps', JSON.stringify(appsList));
         localStorage.setItem('hdmosul_store', JSON.stringify(storeList));
-        renderAllApps(); renderStoreApps();
+        renderAllApps(); renderStoreApps(); refreshAppListInPanel();
     }
 
-    // عرض البطاقات
     function createAppCard(app, isStore) {
         var card = document.createElement('div'); card.className = 'card' + (isStore ? ' store-card' : ''); card.tabIndex = 0;
         if (app.isSupport) card.onclick = function(){ window.location.href = app.link; };
@@ -278,7 +300,79 @@
     function renderAllApps() { var g = document.getElementById('appsGrid'); g.innerHTML = ''; for (var i=0; i<appsList.length; i++) g.appendChild(createAppCard(appsList[i], false)); }
     function renderStoreApps() { var g = document.getElementById('storeGrid'); g.innerHTML = ''; for (var i=0; i<storeList.length; i++) g.appendChild(createAppCard(storeList[i], true)); }
 
-    // لوحة التحكم
+    function refreshAppListInPanel() {
+        var container = document.getElementById('appListContainer'); if (!container) return;
+        container.innerHTML = '';
+        for (var i=0; i<appsList.length; i++) {
+            (function(idx){
+                var app = appsList[idx];
+                var div = document.createElement('div'); div.className = 'app-list-item';
+                div.innerHTML = '<span>' + app.name + '</span>';
+                var actions = document.createElement('div'); actions.className = 'app-list-actions';
+                var editBtn = document.createElement('button'); editBtn.className = 'edit-app-btn'; editBtn.innerHTML = '<i class="fas fa-edit"></i> تعديل';
+                editBtn.onclick = function(){ startEdit(idx); };
+                var delBtn = document.createElement('button'); delBtn.className = 'delete-app-btn'; delBtn.innerHTML = '<i class="fas fa-trash"></i> حذف';
+                delBtn.onclick = function(){ if (confirm('حذف "' + app.name + '"؟')) { appsList.splice(idx, 1); saveData(); } };
+                actions.appendChild(editBtn); actions.appendChild(delBtn); div.appendChild(actions);
+                container.appendChild(div);
+            })(i);
+        }
+    }
+
+    function startEdit(index) {
+        currentEditIndex = index;
+        var app = appsList[index];
+        document.getElementById('editAppIndex').value = index;
+        document.getElementById('editAppName').value = app.name || '';
+        document.getElementById('editAppDesc').value = app.desc || '';
+        document.getElementById('editAppLink').value = app.link || '';
+        document.getElementById('editAppIcon').value = app.icon || '';
+        document.getElementById('editPlayerName').value = app.playerName || '';
+        document.getElementById('editPlayerLink').value = app.playerLink || '';
+        document.getElementById('editFormContainer').style.display = 'block';
+    }
+
+    function saveEdit() {
+        var index = parseInt(document.getElementById('editAppIndex').value);
+        var updated = {
+            name: document.getElementById('editAppName').value.trim(),
+            desc: document.getElementById('editAppDesc').value.trim(),
+            link: document.getElementById('editAppLink').value.trim(),
+            icon: document.getElementById('editAppIcon').value.trim(),
+            playerName: document.getElementById('editPlayerName').value.trim(),
+            playerLink: document.getElementById('editPlayerLink').value.trim()
+        };
+        if (!updated.name || !updated.link) return alert('الاسم والرابط مطلوبان');
+        var original = appsList[index];
+        for (var k in updated) original[k] = updated[k];
+        saveData(); cancelEdit(); alert('✅ تم تحديث "' + updated.name + '"');
+    }
+
+    function cancelEdit() { document.getElementById('editFormContainer').style.display = 'none'; currentEditIndex = null; }
+
+    function addNewApp() {
+        var name = document.getElementById('newAppName').value.trim(), desc = document.getElementById('newAppDesc').value.trim();
+        var link = document.getElementById('newAppLink').value.trim(), icon = document.getElementById('newAppIcon').value.trim();
+        var pn = document.getElementById('newPlayerName').value.trim(), pl = document.getElementById('newPlayerLink').value.trim();
+        if (!name || !link) return alert('الاسم والرابط مطلوبان');
+        var newApp = { name: name, desc: desc || 'تطبيق جديد', link: link, icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png', addedBy: 'owner', playerName: pn, playerLink: pl };
+        appsList.push(newApp); saveData();
+        ['newAppName','newAppDesc','newAppLink','newAppIcon','newPlayerName','newPlayerLink'].forEach(function(id){ document.getElementById(id).value = ''; });
+        alert('✅ تمت إضافة "' + name + '"');
+    }
+
+    function exportFullHTML() {
+        var html = document.documentElement.outerHTML;
+        var appsStr = JSON.stringify(appsList, null, 4);
+        var storeStr = JSON.stringify(storeList, null, 4);
+        var settingsStr = JSON.stringify(storeSettings, null, 4);
+        html = html.replace(/(var DEFAULT_APPS = )\[[\s\S]*?\];/, '$1' + appsStr + ';');
+        html = html.replace(/(var DEFAULT_STORE = )\[[\s\S]*?\];/, '$1' + storeStr + ';');
+        html = html.replace(/(var storeSettings = )\{[\s\S]*?\};/, '$1' + settingsStr + ';');
+        if (navigator.clipboard) { navigator.clipboard.writeText(html).then(function(){ alert('✅ تم نسخ كود HTML'); }).catch(function(){ alert('✅ تعذر النسخ التلقائي، استخدم النسخ اليدوي'); }); }
+        else { prompt('انسخ الكود يدوياً:', html); }
+    }
+
     function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; document.getElementById('passwordInput').focus(); }
     function closeLoginModal() { document.getElementById('loginModal').style.display = 'none'; }
     function checkPassword() {
@@ -289,17 +383,19 @@
     function openAdminPanel() {
         var title = document.getElementById('panelTitle');
         var sSec = document.getElementById('storeSettingsSection'), eSec = document.getElementById('exportHtmlSection');
+        var lSec = document.getElementById('appListSection');
         if (currentUserRole === 'owner') {
             title.innerHTML = '<i class="fas fa-crown"></i> لوحة المالك';
-            sSec.style.display = 'block'; eSec.style.display = 'block';
+            sSec.style.display = 'block'; eSec.style.display = 'block'; lSec.style.display = 'block';
             document.getElementById('settingsStoreName').value = storeSettings.name;
             document.getElementById('settingsLogoUrl').value = storeSettings.logoUrl;
             document.getElementById('settingsBrandName').value = storeSettings.brandName;
             document.getElementById('settingsFooter1').value = storeSettings.footer1;
             document.getElementById('settingsFooter2').value = storeSettings.footer2;
             document.getElementById('settingsMaintenanceMode').checked = storeSettings.maintenanceMode;
+            refreshAppListInPanel();
         }
-        document.getElementById('adminPanelModal').style.display = 'flex';
+        document.getElementById('adminPanelModal').style.display = 'flex'; cancelEdit();
     }
     function closeAdminPanel() { document.getElementById('adminPanelModal').style.display = 'none'; currentUserRole = null; }
     function saveStoreSettings() {
@@ -313,31 +409,6 @@
         saveSettings(); renderAllApps(); renderStoreApps(); alert('✅ تم الحفظ');
     }
 
-    function addNewApp() {
-        var name = document.getElementById('newAppName').value.trim(), desc = document.getElementById('newAppDesc').value.trim();
-        var link = document.getElementById('newAppLink').value.trim(), icon = document.getElementById('newAppIcon').value.trim();
-        var pn = document.getElementById('newPlayerName').value.trim(), pl = document.getElementById('newPlayerLink').value.trim();
-        if (!name || !link) return alert('الاسم والرابط مطلوبان');
-        var newApp = { name: name, desc: desc || 'تطبيق جديد', link: link, icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png', addedBy: currentUserRole, playerName: pn, playerLink: pl };
-        appsList.push(newApp); saveData();
-        ['newAppName','newAppDesc','newAppLink','newAppIcon','newPlayerName','newPlayerLink'].forEach(function(id){ document.getElementById(id).value = ''; });
-        alert('✅ تمت إضافة "' + name + '"');
-    }
-
-    // تصدير HTML كامل
-    function exportFullHTML() {
-        var html = document.documentElement.outerHTML;
-        var appsStr = JSON.stringify(appsList, null, 4);
-        var storeStr = JSON.stringify(storeList, null, 4);
-        var settingsStr = JSON.stringify(storeSettings, null, 4);
-        html = html.replace(/(var DEFAULT_APPS = )\[[\s\S]*?\];/, '$1' + appsStr + ';');
-        html = html.replace(/(var DEFAULT_STORE = )\[[\s\S]*?\];/, '$1' + storeStr + ';');
-        html = html.replace(/(var storeSettings = )\{[\s\S]*?\};/, '$1' + settingsStr + ';');
-        if (navigator.clipboard) { navigator.clipboard.writeText(html).then(function(){ alert('✅ تم نسخ كود HTML'); }).catch(function(){ alert('✅ تعذر النسخ التلقائي، استخدم النسخ اليدوي'); }); }
-        else { prompt('انسخ الكود يدوياً:', html); }
-    }
-
-    // دوال مساعدة
     function updateClock() {
         var now = new Date(); var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds(); var ampm = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
         document.getElementById('liveClock').innerText = h + ':' + (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s) + ' ' + ampm;
@@ -359,7 +430,7 @@
 
     window.openLoginModal = openLoginModal; window.closeLoginModal = closeLoginModal; window.checkPassword = checkPassword;
     window.closeAdminPanel = closeAdminPanel; window.saveStoreSettings = saveStoreSettings;
-    window.addNewApp = addNewApp; window.switchTab = switchTab; window.exportFullHTML = exportFullHTML;
+    window.addNewApp = addNewApp; window.saveEdit = saveEdit; window.cancelEdit = cancelEdit; window.switchTab = switchTab; window.exportFullHTML = exportFullHTML;
 
     window.onload = function() {
         loadSettings(); loadData(); renderAllApps(); renderStoreApps(); updateClock(); setInterval(updateClock, 1000);
