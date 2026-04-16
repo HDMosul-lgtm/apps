@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HDMosul Store • Madridista VIP 👑</title>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
         /* ==================== */
@@ -24,9 +25,10 @@
             --blue-gradient: linear-gradient(135deg, #00529f 0%, #0077cc 100%);
         }
 
-        /* ==================== */
-        /*     Base Styles      */
-        /* ==================== */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -38,6 +40,149 @@
             color: var(--madrid-dark);
             min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ==================== */
+        /*   Admin Gear Icon    */
+        /* ==================== */
+        .admin-gear {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            cursor: pointer;
+            background: var(--madrid-blue);
+            color: var(--madrid-gold);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            border: 2px solid var(--madrid-gold);
+            transition: all 0.3s;
+        }
+
+        .admin-gear:hover {
+            transform: rotate(90deg);
+            background: var(--madrid-gold);
+            color: var(--madrid-blue);
+        }
+
+        /* ==================== */
+        /*    Login Modal       */
+        /* ==================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-box, .admin-panel {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            border: 3px solid var(--madrid-gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .admin-panel {
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .login-box h2, .admin-panel h2 {
+            color: var(--madrid-blue);
+            margin-bottom: 20px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Cairo';
+        }
+
+        .login-box button, .admin-panel button {
+            background: var(--blue-gradient);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid var(--madrid-gold);
+            font-family: 'Cairo';
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        .login-box button:hover, .admin-panel button:hover {
+            background: var(--gold-gradient);
+            color: black;
+        }
+
+        .close-btn {
+            background: #ccc !important;
+            color: #333 !important;
+        }
+
+        /* ==================== */
+        /*    Admin Panel       */
+        /* ==================== */
+        .app-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f5f5f5;
+            padding: 10px 15px;
+            border-radius: 50px;
+            margin-bottom: 10px;
+            border: 1px solid var(--madrid-gold);
+        }
+
+        .app-list-item span {
+            font-weight: bold;
+            color: var(--madrid-blue);
+        }
+
+        .delete-app-btn {
+            background: #dc3545 !important;
+            color: white !important;
+            padding: 5px 15px !important;
+            font-size: 0.9rem;
+        }
+
+        .add-app-form input, .add-app-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-family: 'Cairo';
+        }
+
+        .section-title {
+            color: var(--madrid-blue);
+            border-bottom: 2px solid var(--madrid-gold);
+            padding-bottom: 5px;
+            margin: 20px 0 15px;
         }
 
         /* ==================== */
@@ -193,7 +338,7 @@
             background: white;
             border: 2px solid var(--madrid-gold);
             border-radius: 24px;
-            padding: 25px;
+            padding: 25px 20px 20px;
             text-align: center;
             position: relative;
             transition: all 0.4s ease;
@@ -227,10 +372,25 @@
             border: 2px solid var(--madrid-blue) !important;
         }
 
-        .icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 5px 10px rgba(254, 189, 17, 0.3));
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #f8fafc, #eef2f6);
+            border-radius: 20px;
+            padding: 12px;
+            border: 2px solid var(--madrid-gold);
+            box-shadow: 0 5px 15px rgba(0, 82, 159, 0.1);
+        }
+        
+        .app-icon img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
         }
 
         .title {
@@ -379,6 +539,54 @@
 <body>
 
     <!-- ==================== -->
+    <!--   Admin Gear Button  -->
+    <!-- ==================== -->
+    <div class="admin-gear" onclick="openLoginModal()">
+        <i class="fas fa-cog"></i>
+    </div>
+
+    <!-- ==================== -->
+    <!--   Login Modal        -->
+    <!-- ==================== -->
+    <div id="loginModal" class="modal-overlay">
+        <div class="login-box">
+            <h2><i class="fas fa-lock"></i> لوحة التحكم</h2>
+            <input type="password" id="passwordInput" placeholder="أدخل رمز الدخول" onkeypress="if(event.key==='Enter')checkPassword()">
+            <div>
+                <button onclick="checkPassword()">دخول</button>
+                <button class="close-btn" onclick="closeLoginModal()">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== -->
+    <!--   Admin Panel Modal  -->
+    <!-- ==================== -->
+    <div id="adminPanelModal" class="modal-overlay">
+        <div class="admin-panel">
+            <h2><i class="fas fa-tools"></i> لوحة تحكم المدير</h2>
+            
+            <div class="section-title">➕ إضافة تطبيق جديد</div>
+            <div class="add-app-form">
+                <input type="text" id="newAppName" placeholder="اسم التطبيق">
+                <input type="text" id="newAppDesc" placeholder="الوصف">
+                <input type="text" id="newAppLink" placeholder="رابط التحميل">
+                <input type="text" id="newAppIcon" placeholder="رابط الأيقونة (اختياري)">
+                <button onclick="addNewApp()"><i class="fas fa-plus-circle"></i> إضافة</button>
+            </div>
+
+            <div class="section-title">🗑️ حذف تطبيق</div>
+            <div id="appListContainer" style="max-height: 300px; overflow-y: auto; padding: 5px;">
+                <!-- سيتم ملؤها ديناميكياً -->
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button class="close-btn" onclick="closeAdminPanel()">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== -->
     <!--    Madridista Header -->
     <!-- ==================== -->
     <header>
@@ -415,215 +623,8 @@
     <!--     Apps Tab Content -->
     <!-- ==================== -->
     <div id="apps-tab" class="tab-content">
-        <div class="grid">
-            
-            <!-- Hydra 4K -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://www.mediafire.com/file/6in2lqix8yhyznr/Hydra+4K+@NIGANPRO.apk/file')" onkeypress="handleEnter(event, this, 'https://www.mediafire.com/file/6in2lqix8yhyznr/Hydra+4K+@NIGANPRO.apk/file')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">💠</span>
-                <div class="title">Hydra 4K</div>
-                <div class="desc">كود تفعيل سنة (كيبل ضوئي)<br>User: hananthabit | Pass: iptvhd2024@@</div>
-                <button class="luxury-btn premiere-btn" style="pointer-events: none;" tabindex="-1">🏆 تحميل PREMIERE 🏆</button>
-            </div>
-
-            <!-- أوسكار تيفي -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://aftv.news/5473489')" onkeypress="handleEnter(event, this, 'https://aftv.news/5473489')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">💎</span>
-                <div class="title">أوسكار تيفي Oscar TV</div>
-                <div class="desc">سينمانا جميع شبكات نسخة جميلة جدا • HDMosul</div>
-                <div style="display: flex; gap: 10px; position: relative; z-index: 10;">
-                    <button class="luxury-btn" style="flex: 1; pointer-events: none;" tabindex="-1">تحميل التطبيق</button>
-                    <button class="luxury-btn instant-btn" style="flex: 1; pointer-events: auto;" tabindex="0" onclick="event.stopPropagation(); event.preventDefault(); window.location.href='https://aftv.news/2538647';">تحميل المشغل</button>
-                </div>
-            </div>
-
-            <!-- دراما لايف -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258A%25D9%2581.apk/file')" onkeypress="handleEnter(event, this, 'https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258A%25D9%2581.apk/file')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">🎬</span>
-                <div class="title">دراما لايف</div>
-                <div class="desc">تحديث جديد - كود الدخول: 232425 • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل التطبيق VIP</button>
-            </div>
-
-            <!-- MovieBox VIP -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://www.mediafire.com/file/x0r8u9cu37gzu5a/MovieBox+-+Family+(VIP).apk/file')" onkeypress="handleEnter(event, this, 'https://www.mediafire.com/file/x0r8u9cu37gzu5a/MovieBox+-+Family+(VIP).apk/file')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">🎥</span>
-                <div class="title">MovieBox VIP</div>
-                <div class="desc">سينمانا جميع شبكات • بدون إعلانات • عائلي • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل النسخة المدفوعة</button>
-            </div>
-
-            <!-- 1 IRAQ TV -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://github.com/oneiraq/onetv_update/raw/refs/heads/main/1_iraq_tv_v1.apk')" onkeypress="handleEnter(event, this, 'https://github.com/oneiraq/onetv_update/raw/refs/heads/main/1_iraq_tv_v1.apk')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">📡</span>
-                <div class="title">1 IRAQ TV</div>
-                <div class="desc">قنوات رياضية وبث مباشر لجميع الشبكات • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل مباشر</button>
-            </div>
-
-            <!-- تطبيق المنصة New -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://raw.githubusercontent.com/iraqapps/tvapps/refs/heads/main/apps/New-release-protected.3.0.1.apk')" onkeypress="handleEnter(event, this, 'https://raw.githubusercontent.com/iraqapps/tvapps/refs/heads/main/apps/New-release-protected.3.0.1.apk')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">🌟</span>
-                <div class="title">تطبيق المنصة New</div>
-                <div class="desc">يلزم تسجيل دخول من موبايل مسح باركود QR • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل الإصدار الجديد</button>
-            </div>
-
-            <!-- تطبيق شو SHOW -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://github.com/1ffu1/toflex.com/raw/refs/heads/main/toflex/%D8%B4%D9%88.apk')" onkeypress="handleEnter(event, this, 'https://github.com/1ffu1/toflex.com/raw/refs/heads/main/toflex/%D8%B4%D9%88.apk')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">🔥</span>
-                <div class="title">تطبيق شو SHOW</div>
-                <div class="desc">رياضة متنوعة • أفلام • مسلسلات • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل الآن</button>
-            </div>
-
-            <!-- هاي تي في HiTv -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/HiTV%20v3.13.3%20Vip.apk')" onkeypress="handleEnter(event, this, 'https://s2.mobiltna.com/dl/Apps/HiTV%20v3.13.3%20Vip.apk')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">💫</span>
-                <div class="title">هاي تي في HiTv</div>
-                <div class="desc">سينمانا متنوع محدث بأحدث الأفلام • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل v3.13.3</button>
-            </div>
-
-            <!-- شاهد Shahid VIP -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/MBC%20Shahid%20v7.117%20vip.apk')" onkeypress="handleEnter(event, this, 'https://s2.mobiltna.com/dl/Apps/MBC%20Shahid%20v7.117%20vip.apk')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">👑</span>
-                <div class="title">شاهد Shahid VIP</div>
-                <div class="desc">نسخة مهكرة مدفوعة بالكامل لشاشات الأندرويد • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل النسخة الملكية</button>
-            </div>
-
-            <!-- جنرال تيفي PRO -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://genraltv.dev')" onkeypress="handleEnter(event, this, 'https://genraltv.dev')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">⚡</span>
-                <div class="title">جنرال تيفي PRO</div>
-                <div class="desc">متنوع رياضة سينمانا • كود التفعيل: 000 • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">الموقع الرسمي للتحميل</button>
-            </div>
-
-            <!-- يوتيوب الشاشات -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://github.com/yuliskov/SmartTubeNext/releases/download/latest/smarttube_stable.apk')" onkeypress="handleEnter(event, this, 'https://github.com/yuliskov/SmartTubeNext/releases/download/latest/smarttube_stable.apk')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">📽️</span>
-                <div class="title">يوتيوب الشاشات</div>
-                <div class="desc">بدون إعلانات • يحدث تلقائي • لجميع الشاشات • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل SmartTube</button>
-            </div>
-
-            <!-- تطبيق EgyBest -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://www.mediafire.com/file/07q9jpraaqcrt7o/EgybestTV_v2.0.apk/file')" onkeypress="handleEnter(event, this, 'https://www.mediafire.com/file/07q9jpraaqcrt7o/EgybestTV_v2.0.apk/file')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">🍿</span>
-                <div class="title">تطبيق EgyBest</div>
-                <div class="desc">سينمانا نسخة مخصصة للشاشات فقط • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل v2.0</button>
-            </div>
-
-            <!-- تطبيق NETFLY -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/NETFLY%20v3.0.0%20TV%20vip.apk')" onkeypress="handleEnter(event, this, 'https://s2.mobiltna.com/dl/Apps/NETFLY%20v3.0.0%20TV%20vip.apk')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">🎞️</span>
-                <div class="title">تطبيق NETFLY</div>
-                <div class="desc">سينمانا منوع نسخة VIP سريعة جداً • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل v3.0.0</button>
-            </div>
-
-            <!-- Reezn TV -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://s2.mobiltna.com/dl/Apps/Reezn_1.9.3.apk')" onkeypress="handleEnter(event, this, 'https://s2.mobiltna.com/dl/Apps/Reezn_1.9.3.apk')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">🌀</span>
-                <div class="title">Reezn TV</div>
-                <div class="desc">سينمانا متنوع نسخة جديدة كلياً • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل مباشر</button>
-            </div>
-
-            <!-- تطبيق UXP -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://www.mediafire.com/file/87vqd9o61a5my3d/UXP_2.7.apk/file')" onkeypress="handleEnter(event, this, 'https://www.mediafire.com/file/87vqd9o61a5my3d/UXP_2.7.apk/file')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">🚀</span>
-                <div class="title">تطبيق UXP</div>
-                <div class="desc">الأفضل لجميع الشبكات • سينمانا ورياضة • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل الإصدار 2.7</button>
-            </div>
-
-            <!-- Cinemana CBOX -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/Cinemana_Leanback%20v4.5.9_New.apk')" onkeypress="handleEnter(event, this, 'https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/Cinemana_Leanback%20v4.5.9_New.apk')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">📺</span>
-                <div class="title">Cinemana CBOX</div>
-                <div class="desc">نسخة شاشات وتيفي بوكس • شبكة ايرثلنك حصراً • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل Leanback</button>
-            </div>
-
-            <!-- Cinemana Plus -->
-            <div class="card" tabindex="0" onclick="openLink(this, 'https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/cinemanaplustv.apk')" onkeypress="handleEnter(event, this, 'https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/cinemanaplustv.apk')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">🔋</span>
-                <div class="title">Cinemana Plus</div>
-                <div class="desc">للشاشات الضعيفة • يعمل فقط على ايرثلنك • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">تحميل النسخة الخفيفة</button>
-            </div>
-
+        <div class="grid" id="appsGrid">
+            <!-- سيتم ملؤها عبر JavaScript -->
         </div>
     </div>
 
@@ -631,39 +632,8 @@
     <!--   Store Tab Content  -->
     <!-- ==================== -->
     <div id="store-tab" class="tab-content" style="display: none;">
-        <div class="grid">
-            
-            <!-- مكتبة التطبيقات (1) -->
-            <div class="card store-card" tabindex="0" onclick="openLink(this, 'https://iraqapps.github.io/tvapps/')" onkeypress="handleEnter(event, this, 'https://iraqapps.github.io/tvapps/')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">📂</span>
-                <div class="title">مكتبة التطبيقات (1)</div>
-                <div class="desc">HDMosul • المتجر المتكامل من Android_AppsX • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">دخول المكتبة</button>
-            </div>
-
-            <!-- مكتبة التطبيقات (2) -->
-            <div class="card store-card" tabindex="0" onclick="openLink(this, 'https://401740.hala-web.com/')" onkeypress="handleEnter(event, this, 'https://401740.hala-web.com/')">
-                <div class="timer-overlay">
-                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
-                    <div class="count-down">4</div>
-                </div>
-                <span class="icon">📁</span>
-                <div class="title">مكتبة التطبيقات (2)</div>
-                <div class="desc">HDMosul • أرشيف شامل لكافة التطبيقات الهامة • HDMosul</div>
-                <button class="luxury-btn" style="pointer-events: none;" tabindex="-1">دخول المكتبة</button>
-            </div>
-
-            <!-- الدعم الفني -->
-            <div class="card store-card" tabindex="0" onclick="window.location.href='mailto:pqkbgfcn688@gmail.com'" onkeypress="if(event.key === 'Enter') window.location.href='mailto:pqkbgfcn688@gmail.com'" style="cursor: pointer;">
-                <span class="icon">🛠️</span>
-                <div class="title">الدعم الفني</div>
-                <div class="desc">للإبلاغ عن الأعطال: pqkbgfcn688@gmail.com • HDMosul</div>
-            </div>
-
+        <div class="grid" id="storeGrid">
+            <!-- سيتم ملؤها عبر JavaScript -->
         </div>
     </div>
 
@@ -681,32 +651,292 @@
     <!--      JavaScript      -->
     <!-- ==================== -->
     <script>
-        /**
-         * تحديث الساعة والتاريخ في شريط المعلومات
-         */
+        // ==================== البيانات الأساسية ====================
+        const CORRECT_PASSWORD = "2001820";
+        
+        // التطبيقات الافتراضية (الأصلية)
+        const DEFAULT_APPS = [
+            { name: "Hydra 4K", desc: "كود تفعيل سنة (كيبل ضوئي)<br>User: hananthabit | Pass: iptvhd2024@@", link: "https://www.mediafire.com/file/6in2lqix8yhyznr/Hydra+4K+@NIGANPRO.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/6294/6294945.png", isPremiere: true },
+            { name: "أوسكار تيفي Oscar TV", desc: "سينمانا جميع شبكات نسخة جميلة جدا • HDMosul", link: "https://aftv.news/5473489", icon: "https://cdn-icons-png.flaticon.com/512/2910/2910724.png", hasPlayer: true, playerLink: "https://aftv.news/2538647" },
+            { name: "دراما لايف", desc: "تحديث جديد - كود الدخول: 232425 • HDMosul", link: "https://www.mediafire.com/file/xg91o41oxk46kpt/%25D8%25AF%25D8%25B1%25D8%25A7%25D9%2585%25D8%25A7_%25D9%2584%25D8%25A7%25D9%258A%25D9%2581.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/2809/2809590.png" },
+            { name: "MovieBox VIP", desc: "سينمانا جميع شبكات • بدون إعلانات • عائلي • HDMosul", link: "https://www.mediafire.com/file/x0r8u9cu37gzu5a/MovieBox+-+Family+(VIP).apk/file", icon: "https://cdn-icons-png.flaticon.com/512/2503/2503708.png" },
+            { name: "1 IRAQ TV", desc: "قنوات رياضية وبث مباشر لجميع الشبكات • HDMosul", link: "https://github.com/oneiraq/onetv_update/raw/refs/heads/main/1_iraq_tv_v1.apk", icon: "https://cdn-icons-png.flaticon.com/512/3004/3004616.png" },
+            { name: "تطبيق المنصة New", desc: "يلزم تسجيل دخول من موبايل مسح باركود QR • HDMosul", link: "https://raw.githubusercontent.com/iraqapps/tvapps/refs/heads/main/apps/New-release-protected.3.0.1.apk", icon: "https://cdn-icons-png.flaticon.com/512/1828/1828961.png" },
+            { name: "تطبيق شو SHOW", desc: "رياضة متنوعة • أفلام • مسلسلات • HDMosul", link: "https://github.com/1ffu1/toflex.com/raw/refs/heads/main/toflex/%D8%B4%D9%88.apk", icon: "https://cdn-icons-png.flaticon.com/512/9073/9073032.png" },
+            { name: "هاي تي في HiTv", desc: "سينمانا متنوع محدث بأحدث الأفلام • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/HiTV%20v3.13.3%20Vip.apk", icon: "https://cdn-icons-png.flaticon.com/512/716/716225.png" },
+            { name: "شاهد Shahid VIP", desc: "نسخة مهكرة مدفوعة بالكامل لشاشات الأندرويد • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/MBC%20Shahid%20v7.117%20vip.apk", icon: "https://cdn-icons-png.flaticon.com/512/732/732074.png" },
+            { name: "جنرال تيفي PRO", desc: "متنوع رياضة سينمانا • كود التفعيل: 000 • HDMosul", link: "https://genraltv.dev", icon: "https://cdn-icons-png.flaticon.com/512/2721/2721214.png" },
+            { name: "يوتيوب الشاشات", desc: "بدون إعلانات • يحدث تلقائي • لجميع الشاشات • HDMosul", link: "https://github.com/yuliskov/SmartTubeNext/releases/download/latest/smarttube_stable.apk", icon: "https://cdn-icons-png.flaticon.com/512/1384/1384060.png" },
+            { name: "تطبيق EgyBest", desc: "سينمانا نسخة مخصصة للشاشات فقط • HDMosul", link: "https://www.mediafire.com/file/07q9jpraaqcrt7o/EgybestTV_v2.0.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/3410/3410163.png" },
+            { name: "تطبيق NETFLY", desc: "سينمانا منوع نسخة VIP سريعة جداً • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/NETFLY%20v3.0.0%20TV%20vip.apk", icon: "https://cdn-icons-png.flaticon.com/512/732/732228.png" },
+            { name: "Reezn TV", desc: "سينمانا متنوع نسخة جديدة كلياً • HDMosul", link: "https://s2.mobiltna.com/dl/Apps/Reezn_1.9.3.apk", icon: "https://cdn-icons-png.flaticon.com/512/5977/5977593.png" },
+            { name: "تطبيق UXP", desc: "الأفضل لجميع الشبكات • سينمانا ورياضة • HDMosul", link: "https://www.mediafire.com/file/87vqd9o61a5my3d/UXP_2.7.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/6294/6294955.png" },
+            { name: "Cinemana CBOX", desc: "نسخة شاشات وتيفي بوكس • شبكة ايرثلنك حصراً • HDMosul", link: "https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/Cinemana_Leanback%20v4.5.9_New.apk", icon: "https://cdn-icons-png.flaticon.com/512/2910/2910756.png" },
+            { name: "Cinemana Plus", desc: "للشاشات الضعيفة • يعمل فقط على ايرثلنك • HDMosul", link: "https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/cinemanaplustv.apk", icon: "https://cdn-icons-png.flaticon.com/512/1828/1828961.png" }
+        ];
+
+        const DEFAULT_STORE = [
+            { name: "مكتبة التطبيقات (1)", desc: "HDMosul • المتجر المتكامل من Android_AppsX", link: "https://iraqapps.github.io/tvapps/", icon: "https://cdn-icons-png.flaticon.com/512/2232/2232688.png" },
+            { name: "مكتبة التطبيقات (2)", desc: "HDMosul • أرشيف شامل لكافة التطبيقات الهامة", link: "https://401740.hala-web.com/", icon: "https://cdn-icons-png.flaticon.com/512/2232/2232688.png" },
+            { name: "الدعم الفني", desc: "للإبلاغ عن الأعطال: pqkbgfcn688@gmail.com", link: "mailto:pqkbgfcn688@gmail.com", icon: "https://cdn-icons-png.flaticon.com/512/1827/1827300.png", isSupport: true }
+        ];
+
+        // حالة التطبيقات (يتم تحميلها من localStorage)
+        let appsList = [];
+        let storeList = [];
+
+        // ==================== دوال التخزين ====================
+        function loadData() {
+            const savedApps = localStorage.getItem('hdmosul_apps');
+            const savedStore = localStorage.getItem('hdmosul_store');
+            
+            if (savedApps) {
+                try { appsList = JSON.parse(savedApps); } catch(e){ appsList = [...DEFAULT_APPS]; }
+            } else {
+                appsList = [...DEFAULT_APPS];
+            }
+            
+            if (savedStore) {
+                try { storeList = JSON.parse(savedStore); } catch(e){ storeList = [...DEFAULT_STORE]; }
+            } else {
+                storeList = [...DEFAULT_STORE];
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('hdmosul_apps', JSON.stringify(appsList));
+            localStorage.setItem('hdmosul_store', JSON.stringify(storeList));
+            renderAllApps();
+            renderStoreApps();
+        }
+
+        // ==================== عرض البطاقات ====================
+        function createAppCard(app, index, isStore = false) {
+            const card = document.createElement('div');
+            card.className = `card ${isStore ? 'store-card' : ''}`;
+            card.tabIndex = 0;
+            
+            // إذا كان دعم فني (بدون عداد)
+            if (app.isSupport) {
+                card.onclick = () => window.location.href = app.link;
+                card.onkeypress = (e) => { if(e.key === 'Enter') window.location.href = app.link; };
+            } else {
+                card.onclick = () => openLink(card, app.link);
+                card.onkeypress = (e) => handleEnter(e, card, app.link);
+            }
+
+            // Overlay timer (لغير الدعم)
+            if (!app.isSupport) {
+                const overlay = document.createElement('div');
+                overlay.className = 'timer-overlay';
+                overlay.innerHTML = `
+                    <div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div>
+                    <div class="count-down">4</div>
+                `;
+                card.appendChild(overlay);
+            }
+
+            // أيقونة
+            const iconDiv = document.createElement('div');
+            iconDiv.className = 'app-icon';
+            const img = document.createElement('img');
+            img.src = app.icon || 'https://via.placeholder.com/100/00529f/ffffff?text=APP';
+            img.alt = app.name;
+            img.onerror = () => img.src = 'https://via.placeholder.com/100/00529f/ffffff?text=APP';
+            iconDiv.appendChild(img);
+            card.appendChild(iconDiv);
+
+            // عنوان
+            const title = document.createElement('div');
+            title.className = 'title';
+            title.textContent = app.name;
+            card.appendChild(title);
+
+            // وصف
+            const desc = document.createElement('div');
+            desc.className = 'desc';
+            desc.innerHTML = app.desc;
+            card.appendChild(desc);
+
+            // أزرار
+            if (!app.isSupport) {
+                if (app.hasPlayer) {
+                    const btnContainer = document.createElement('div');
+                    btnContainer.style.cssText = 'display: flex; gap: 10px; position: relative; z-index: 10;';
+                    
+                    const btn1 = document.createElement('button');
+                    btn1.className = 'luxury-btn';
+                    btn1.style.cssText = 'flex:1; pointer-events: none;';
+                    btn1.tabIndex = -1;
+                    btn1.textContent = 'تحميل التطبيق';
+                    
+                    const btn2 = document.createElement('button');
+                    btn2.className = 'luxury-btn instant-btn';
+                    btn2.style.cssText = 'flex:1; pointer-events: auto;';
+                    btn2.textContent = 'تحميل المشغل';
+                    btn2.onclick = (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        window.location.href = app.playerLink;
+                    };
+                    
+                    btnContainer.appendChild(btn1);
+                    btnContainer.appendChild(btn2);
+                    card.appendChild(btnContainer);
+                } else {
+                    const btn = document.createElement('button');
+                    btn.className = `luxury-btn ${app.isPremiere ? 'premiere-btn' : ''}`;
+                    btn.style.pointerEvents = 'none';
+                    btn.tabIndex = -1;
+                    btn.textContent = app.isPremiere ? '🏆 تحميل PREMIERE 🏆' : 'تحميل';
+                    card.appendChild(btn);
+                }
+            }
+
+            return card;
+        }
+
+        function renderAllApps() {
+            const grid = document.getElementById('appsGrid');
+            grid.innerHTML = '';
+            appsList.forEach((app, i) => {
+                grid.appendChild(createAppCard(app, i, false));
+            });
+        }
+
+        function renderStoreApps() {
+            const grid = document.getElementById('storeGrid');
+            grid.innerHTML = '';
+            storeList.forEach((app, i) => {
+                grid.appendChild(createAppCard(app, i, true));
+            });
+        }
+
+        // ==================== لوحة التحكم ====================
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordInput').focus();
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function checkPassword() {
+            const pass = document.getElementById('passwordInput').value;
+            if (pass === CORRECT_PASSWORD) {
+                closeLoginModal();
+                openAdminPanel();
+            } else {
+                alert('❌ رمز الدخول غير صحيح');
+            }
+        }
+
+        function openAdminPanel() {
+            refreshAppListInPanel();
+            document.getElementById('adminPanelModal').style.display = 'flex';
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanelModal').style.display = 'none';
+        }
+
+        function refreshAppListInPanel() {
+            const container = document.getElementById('appListContainer');
+            container.innerHTML = '';
+            
+            // عرض تطبيقات القسم الرئيسي
+            appsList.forEach((app, index) => {
+                const item = createDeleteItem(app.name, () => {
+                    if (confirm(`متأكد من حذف "${app.name}"؟`)) {
+                        appsList.splice(index, 1);
+                        saveData();
+                        refreshAppListInPanel();
+                    }
+                });
+                container.appendChild(item);
+            });
+            
+            // إضافة فاصل
+            const separator = document.createElement('div');
+            separator.style.margin = '15px 0 5px';
+            separator.style.fontWeight = 'bold';
+            separator.style.color = 'var(--madrid-blue)';
+            separator.textContent = '📁 المتجر الملكي:';
+            container.appendChild(separator);
+            
+            storeList.forEach((app, index) => {
+                const item = createDeleteItem(app.name, () => {
+                    if (confirm(`متأكد من حذف "${app.name}"؟`)) {
+                        storeList.splice(index, 1);
+                        saveData();
+                        refreshAppListInPanel();
+                    }
+                });
+                container.appendChild(item);
+            });
+        }
+
+        function createDeleteItem(name, onDelete) {
+            const div = document.createElement('div');
+            div.className = 'app-list-item';
+            div.innerHTML = `<span>${name}</span>`;
+            const btn = document.createElement('button');
+            btn.className = 'delete-app-btn';
+            btn.innerHTML = '<i class="fas fa-trash"></i> حذف';
+            btn.onclick = onDelete;
+            div.appendChild(btn);
+            return div;
+        }
+
+        function addNewApp() {
+            const name = document.getElementById('newAppName').value.trim();
+            const desc = document.getElementById('newAppDesc').value.trim();
+            const link = document.getElementById('newAppLink').value.trim();
+            const icon = document.getElementById('newAppIcon').value.trim();
+            
+            if (!name || !link) {
+                alert('الرجاء إدخال اسم التطبيق ورابط التحميل على الأقل');
+                return;
+            }
+            
+            const newApp = {
+                name: name,
+                desc: desc || 'تطبيق جديد',
+                link: link,
+                icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png'
+            };
+            
+            appsList.push(newApp);
+            saveData();
+            refreshAppListInPanel();
+            
+            // تنظيف الحقول
+            document.getElementById('newAppName').value = '';
+            document.getElementById('newAppDesc').value = '';
+            document.getElementById('newAppLink').value = '';
+            document.getElementById('newAppIcon').value = '';
+            
+            alert(`✅ تم إضافة "${name}" بنجاح`);
+        }
+
+        // ==================== دوال مساعدة ====================
         function updateClock() {
             const now = new Date();
-            let h = now.getHours(),
-                m = now.getMinutes(),
-                s = now.getSeconds();
+            let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
             let ampm = h >= 12 ? 'PM' : 'AM';
             h = h % 12 || 12;
-            
-            document.getElementById('liveClock').innerText = 
-                `${h}:${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s} ${ampm}`;
+            document.getElementById('liveClock').innerText = `${h}:${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s} ${ampm}`;
             
             const days = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
             const dayName = days[now.getDay()];
             const year = now.getFullYear();
             const month = now.getMonth() + 1;
             const date = now.getDate();
-            
             document.getElementById('liveDate').innerText = `${dayName} ${year}-${month}-${date}`;
         }
 
-        /**
-         * تبديل التبويبات
-         */
         function switchTab(evt, tabId) {
             document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -714,34 +944,24 @@
             evt.currentTarget.classList.add('active');
         }
 
-        /**
-         * معالجة الضغط على Enter
-         */
         function handleEnter(event, element, url) {
-            if (event.key === 'Enter') {
-                openLink(element, url);
-            }
+            if (event.key === 'Enter') openLink(element, url);
         }
 
-        /**
-         * فتح الرابط بعد عداد 4 ثواني
-         */
         function openLink(card, url) {
             if (card.dataset.running === "true") return;
-            
             const overlay = card.querySelector('.timer-overlay');
-            const countDisplay = overlay.querySelector('.count-down');
+            if (!overlay) { window.location.href = url; return; }
             
+            const countDisplay = overlay.querySelector('.count-down');
             card.dataset.running = "true";
             let count = 4;
-            
             overlay.style.display = 'flex';
             countDisplay.innerText = count;
             
             const interval = setInterval(() => {
                 count--;
                 countDisplay.innerText = count;
-                
                 if (count <= 0) {
                     clearInterval(interval);
                     overlay.style.display = 'none';
@@ -751,12 +971,14 @@
             }, 1000);
         }
 
-        // بدء التشغيل عند تحميل الصفحة
+        // ==================== التهيئة ====================
         window.onload = function() {
+            loadData();
+            renderAllApps();
+            renderStoreApps();
             updateClock();
             setInterval(updateClock, 1000);
         };
     </script>
-
 </body>
 </html>
