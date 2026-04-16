@@ -474,7 +474,7 @@
             background: linear-gradient(135deg, var(--primary-color) 0%, color-mix(in srgb, var(--primary-color) 70%, black) 50%, var(--secondary-color) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            color: var(--primary-color); /* احتياطي للمتصفحات التي لا تدعم background-clip */
+            color: var(--primary-color);
             margin: 0;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -649,7 +649,7 @@
             background: linear-gradient(135deg, var(--primary-color), color-mix(in srgb, var(--primary-color) 70%, black));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            color: var(--primary-color); /* احتياطي للمتصفحات القديمة */
+            color: var(--primary-color);
             margin-bottom: 5px;
         }
 
@@ -759,26 +759,24 @@
             margin: 5px 0;
             font-weight: 700;
         }
+
+        @supports not (background-clip: text) {
+            #storeName, .title {
+                background: none;
+                -webkit-text-fill-color: currentColor;
+                color: var(--primary-color);
+            }
+        }
     </style>
 </head>
 <body data-theme="madrid">
 
-    <!-- ==================== -->
-    <!--   Admin Gear Button  -->
-    <!-- ==================== -->
-    <div class="admin-gear" onclick="openLoginModal()">
-        <i class="fas fa-cog"></i>
-    </div>
-
-    <!-- وضع الصيانة -->
+    <div class="admin-gear" onclick="openLoginModal()"><i class="fas fa-cog"></i></div>
     <div id="maintenanceOverlay" class="maintenance-overlay" style="display: none;">⚠️</div>
 
-    <!-- المحتوى الرئيسي -->
     <div id="mainContent" class="main-content">
         <header>
-            <div class="logo-container">
-                <img id="storeLogo" src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="Logo">
-            </div>
+            <div class="logo-container"><img id="storeLogo" src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png" alt="Logo"></div>
             <h1 class="brand" id="storeName">HDMosul Store</h1>
             <div class="sub-brand">VIP EXCLUSIVE</div>
         </header>
@@ -803,28 +801,19 @@
         </footer>
     </div>
 
-    <!-- ==================== -->
-    <!--   Login Modal        -->
-    <!-- ==================== -->
+    <!-- مودالات -->
     <div id="loginModal" class="modal-overlay">
         <div class="login-box">
             <h2><i class="fas fa-lock"></i> لوحة التحكم</h2>
             <input type="password" id="passwordInput" placeholder="أدخل رمز الدخول" onkeypress="if(event.key==='Enter')checkPassword()">
-            <div>
-                <button onclick="checkPassword()">دخول</button>
-                <button class="close-btn" onclick="closeLoginModal()">إلغاء</button>
-            </div>
+            <div><button onclick="checkPassword()">دخول</button><button class="close-btn" onclick="closeLoginModal()">إلغاء</button></div>
         </div>
     </div>
 
-    <!-- ==================== -->
-    <!--   Admin Panel Modal  -->
-    <!-- ==================== -->
     <div id="adminPanelModal" class="modal-overlay">
         <div class="admin-panel">
             <h2 id="panelTitle"><i class="fas fa-tools"></i> لوحة التحكم</h2>
             
-            <!-- إعدادات المتجر (للمالك فقط) -->
             <div id="storeSettingsSection" style="display: none;">
                 <div class="section-title">⚙️ إعدادات المتجر</div>
                 <div class="settings-form-container">
@@ -851,16 +840,11 @@
                         <option value="champagne">شامبانيا</option>
                         <option value="platinum">بلاتيني</option>
                     </select>
-                    <div style="margin-top:10px;">
-                        <label style="display:flex; align-items:center; gap:10px;">
-                            <input type="checkbox" id="settingsMaintenanceMode"> تفعيل وضع الصيانة (⚠️)
-                        </label>
-                    </div>
+                    <div style="margin-top:10px;"><label style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="settingsMaintenanceMode"> تفعيل وضع الصيانة (⚠️)</label></div>
                     <button onclick="saveStoreSettings()"><i class="fas fa-save"></i> حفظ الإعدادات</button>
                 </div>
             </div>
 
-            <!-- إدارة المشرفين (للمالك فقط) -->
             <div id="moderatorsSection" style="display: none;">
                 <div class="section-title">👥 إدارة المشرفين</div>
                 <div class="moderators-container">
@@ -872,11 +856,19 @@
                 </div>
             </div>
 
-            <!-- نموذج التعديل -->
+            <!-- قسم تصدير HTML (للمالك فقط) -->
+            <div id="exportHtmlSection" style="display: none;">
+                <div class="section-title">📤 تصدير HTML</div>
+                <div style="margin-bottom: 10px;">
+                    <button onclick="exportFullHTML()" style="background: #e67e22;"><i class="fas fa-copy"></i> نسخ كود HTML كامل</button>
+                </div>
+                <textarea id="htmlExportTextarea" placeholder="سيظهر هنا كود HTML الكامل بعد التوليد..." style="width:100%; height:150px; border-radius:15px; padding:10px; font-family:monospace; direction:ltr; font-size:12px;"></textarea>
+                <p style="font-size:0.8rem; opacity:0.7; margin-top:5px;">بعد النسخ، افتح ملف index.html وألصق الكود كاملاً ثم ارفعه إلى GitHub.</p>
+            </div>
+
             <div id="editFormContainer" class="edit-form-container" style="display: none;">
                 <h3><i class="fas fa-pen"></i> تعديل التطبيق</h3>
-                <input type="hidden" id="editAppIndex">
-                <input type="hidden" id="editAppType">
+                <input type="hidden" id="editAppIndex"><input type="hidden" id="editAppType">
                 <input type="text" id="editAppName" placeholder="اسم التطبيق">
                 <textarea id="editAppDesc" placeholder="الوصف" rows="2"></textarea>
                 <input type="text" id="editAppLink" placeholder="رابط التحميل">
@@ -900,29 +892,21 @@
                 <button onclick="addNewApp()"><i class="fas fa-plus-circle"></i> إضافة التطبيق</button>
             </div>
 
-            <!-- قائمة التطبيقات -->
             <div id="appListSection" style="display: none;">
                 <div class="section-title">📋 قائمة التطبيقات (تعديل / حذف)</div>
                 <div id="appListContainer" style="max-height: 300px; overflow-y: auto; padding: 5px;"></div>
             </div>
 
-            <div style="margin-top: 20px;">
-                <button class="close-btn" onclick="closeAdminPanel()">إغلاق</button>
-            </div>
+            <div style="margin-top: 20px;"><button class="close-btn" onclick="closeAdminPanel()">إغلاق</button></div>
         </div>
     </div>
 
-    <!-- ==================== -->
-    <!--      JavaScript      -->
-    <!-- ==================== -->
     <script>
         (function(){
-            // ==================== البيانات الأساسية ====================
             const OWNER_PASSWORD = "2001820";
             const DEFAULT_MODERATORS = ["090199251"];
             let currentUserRole = null;
             
-            // التطبيقات الافتراضية (الأصلية)
             const DEFAULT_APPS = [
                 { name: "Hydra 4K", desc: "كود تفعيل سنة (كيبل ضوئي)<br>User: hananthabit | Pass: iptvhd2024@@", link: "https://www.mediafire.com/file/6in2lqix8yhyznr/Hydra+4K+@NIGANPRO.apk/file", icon: "https://cdn-icons-png.flaticon.com/512/6294/6294945.png", isPremiere: true },
                 { name: "أوسكار تيفي Oscar TV", desc: "سينمانا جميع شبكات نسخة جميلة جدا • HDMosul", link: "https://aftv.news/5473489", icon: "https://cdn-icons-png.flaticon.com/512/2910/2910724.png", playerName: "تحميل المشغل", playerLink: "https://aftv.news/2538647" },
@@ -961,7 +945,7 @@
             };
             let currentEdit = { type: null, index: null };
 
-            // ==================== دوال التخزين والإعدادات ====================
+            // ==================== دوال التخزين ====================
             function loadModerators() {
                 const saved = localStorage.getItem('hdmosul_mods');
                 moderators = saved ? JSON.parse(saved) : [...DEFAULT_MODERATORS];
@@ -1008,6 +992,39 @@
                 renderAllApps(); renderStoreApps();
             }
 
+            // ==================== تصدير HTML ====================
+            function exportFullHTML() {
+                // الحصول على الكود الحالي للصفحة
+                let html = document.documentElement.outerHTML;
+                
+                // استبدال بيانات التطبيقات الافتراضية بالبيانات الحالية
+                const appsStr = JSON.stringify(appsList, null, 8).replace(/"([^"]+)":/g, '$1:');
+                const storeStr = JSON.stringify(storeList, null, 8).replace(/"([^"]+)":/g, '$1:');
+                const modsStr = JSON.stringify(moderators);
+                const settingsStr = JSON.stringify(storeSettings, null, 4).replace(/"([^"]+)":/g, '$1:');
+                
+                // إيجاد موضع DEFAULT_APPS واستبداله
+                const appsRegex = /(const DEFAULT_APPS = )\[[\s\S]*?\];/;
+                const storeRegex = /(const DEFAULT_STORE = )\[[\s\S]*?\];/;
+                const modsRegex = /(const DEFAULT_MODERATORS = )\[.*?\];/;
+                const settingsRegex = /(let storeSettings = )\{[\s\S]*?\};/;
+                
+                html = html.replace(appsRegex, `$1${appsStr};`);
+                html = html.replace(storeRegex, `$1${storeStr};`);
+                html = html.replace(modsRegex, `$1${modsStr};`);
+                html = html.replace(settingsRegex, `$1${settingsStr};`);
+                
+                // نسخ إلى textarea
+                document.getElementById('htmlExportTextarea').value = html;
+                
+                // نسخ إلى الحافظة
+                navigator.clipboard?.writeText(html).then(() => {
+                    alert('✅ تم نسخ كود HTML الكامل إلى الحافظة. الآن افتح ملف index.html وألصق الكود ثم ارفعه.');
+                }).catch(() => {
+                    alert('✅ تم توليد الكود في المربع أدناه. الرجاء نسخه يدويًا.');
+                });
+            }
+
             // ==================== عرض البطاقات ====================
             function createAppCard(app, isStore = false) {
                 const card = document.createElement('div');
@@ -1042,9 +1059,7 @@
                 const desc = document.createElement('div');
                 desc.className = 'desc';
                 let descText = app.desc;
-                if (!app.isSupport) {
-                    descText = descText.replace(/HDMosul/g, storeSettings.brandName);
-                }
+                if (!app.isSupport) descText = descText.replace(/HDMosul/g, storeSettings.brandName);
                 desc.innerHTML = descText;
                 card.appendChild(desc);
 
@@ -1073,16 +1088,8 @@
                 }
                 return card;
             }
-            function renderAllApps() {
-                const grid = document.getElementById('appsGrid');
-                grid.innerHTML = '';
-                appsList.forEach(app => grid.appendChild(createAppCard(app, false)));
-            }
-            function renderStoreApps() {
-                const grid = document.getElementById('storeGrid');
-                grid.innerHTML = '';
-                storeList.forEach(app => grid.appendChild(createAppCard(app, true)));
-            }
+            function renderAllApps() { const grid = document.getElementById('appsGrid'); grid.innerHTML = ''; appsList.forEach(app => grid.appendChild(createAppCard(app, false))); }
+            function renderStoreApps() { const grid = document.getElementById('storeGrid'); grid.innerHTML = ''; storeList.forEach(app => grid.appendChild(createAppCard(app, true))); }
 
             // ==================== إدارة المشرفين ====================
             function renderModeratorsList() {
@@ -1095,56 +1102,45 @@
                     const delBtn = document.createElement('button');
                     delBtn.className = 'delete-mod-btn';
                     delBtn.innerHTML = '<i class="fas fa-trash"></i> حذف';
-                    delBtn.onclick = () => { if(confirm(`هل أنت متأكد من حذف المشرف برمز ${code}؟`)) { moderators.splice(i,1); saveModerators(); } };
+                    delBtn.onclick = () => { if(confirm(`حذف المشرف ${code}؟`)) { moderators.splice(i,1); saveModerators(); } };
                     div.appendChild(delBtn);
                     container.appendChild(div);
                 });
-                if (moderators.length === 0) container.innerHTML = '<p style="text-align:center; opacity:0.7;">لا يوجد مشرفون مضافون حالياً</p>';
+                if (!moderators.length) container.innerHTML = '<p style="text-align:center;opacity:0.7;">لا يوجد مشرفون</p>';
             }
             function addModerator() {
                 const input = document.getElementById('newModeratorCode');
                 const code = input.value.trim();
-                if (!code) return alert('الرجاء إدخال رمز المشرف');
-                if (!/^\d+$/.test(code)) return alert('يجب أن يتكون رمز المشرف من أرقام فقط');
-                if (code === OWNER_PASSWORD) return alert('لا يمكن إضافة رمز المالك كمشرف');
-                if (moderators.includes(code)) return alert('هذا الرمز موجود بالفعل ضمن المشرفين');
+                if (!code) return alert('أدخل رمز المشرف');
+                if (!/^\d+$/.test(code)) return alert('أرقام فقط');
+                if (code === OWNER_PASSWORD) return alert('لا يمكن إضافة المالك');
+                if (moderators.includes(code)) return alert('الرمز موجود');
                 moderators.push(code);
                 saveModerators();
                 input.value = '';
-                alert(`تمت إضافة المشرف برمز ${code} بنجاح`);
+                alert(`تم إضافة المشرف ${code}`);
             }
 
             // ==================== لوحة التحكم ====================
-            function openLoginModal() {
-                document.getElementById('loginModal').style.display = 'flex';
-                document.getElementById('passwordInput').value = '';
-                document.getElementById('passwordInput').focus();
-            }
+            function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; document.getElementById('passwordInput').focus(); }
             function closeLoginModal() { document.getElementById('loginModal').style.display = 'none'; }
             function checkPassword() {
                 const pass = document.getElementById('passwordInput').value;
-                if (pass === OWNER_PASSWORD) {
-                    currentUserRole = 'owner';
-                    closeLoginModal();
-                    openAdminPanel();
-                } else if (moderators.includes(pass)) {
-                    currentUserRole = 'moderator';
-                    closeLoginModal();
-                    openAdminPanel();
-                } else {
-                    alert('❌ رمز الدخول غير صحيح');
-                }
+                if (pass === OWNER_PASSWORD) { currentUserRole = 'owner'; closeLoginModal(); openAdminPanel(); }
+                else if (moderators.includes(pass)) { currentUserRole = 'moderator'; closeLoginModal(); openAdminPanel(); }
+                else alert('❌ رمز غير صحيح');
             }
             function openAdminPanel() {
                 const title = document.getElementById('panelTitle');
                 const settingsSec = document.getElementById('storeSettingsSection');
                 const modSec = document.getElementById('moderatorsSection');
+                const exportSec = document.getElementById('exportHtmlSection');
                 const listSec = document.getElementById('appListSection');
-                
                 if (currentUserRole === 'owner') {
-                    title.innerHTML = '<i class="fas fa-crown"></i> لوحة تحكم المالك';
+                    title.innerHTML = '<i class="fas fa-crown"></i> لوحة المالك';
                     settingsSec.style.display = 'block';
                     modSec.style.display = 'block';
+                    exportSec.style.display = 'block';
                     listSec.style.display = 'block';
                     document.getElementById('settingsStoreName').value = storeSettings.name;
                     document.getElementById('settingsLogoUrl').value = storeSettings.logoUrl;
@@ -1156,19 +1152,17 @@
                     renderModeratorsList();
                     refreshAppListInPanel();
                 } else {
-                    title.innerHTML = '<i class="fas fa-user-shield"></i> لوحة المشرف (إضافة تطبيقات فقط)';
+                    title.innerHTML = '<i class="fas fa-user-shield"></i> لوحة المشرف';
                     settingsSec.style.display = 'none';
                     modSec.style.display = 'none';
+                    exportSec.style.display = 'none';
                     listSec.style.display = 'block';
                     refreshAppListInPanel();
                 }
                 document.getElementById('adminPanelModal').style.display = 'flex';
                 cancelEdit();
             }
-            function closeAdminPanel() {
-                document.getElementById('adminPanelModal').style.display = 'none';
-                currentUserRole = null;
-            }
+            function closeAdminPanel() { document.getElementById('adminPanelModal').style.display = 'none'; currentUserRole = null; }
             function saveStoreSettings() {
                 if (currentUserRole !== 'owner') return;
                 storeSettings.name = document.getElementById('settingsStoreName').value.trim() || 'HDMosul Store';
@@ -1178,53 +1172,29 @@
                 storeSettings.footer2 = document.getElementById('settingsFooter2').value.trim() || 'جميع الحقوق محفوظة';
                 storeSettings.theme = document.getElementById('settingsTheme').value;
                 storeSettings.maintenanceMode = document.getElementById('settingsMaintenanceMode').checked;
-                saveSettings();
-                renderAllApps(); renderStoreApps();
-                alert('✅ تم حفظ إعدادات المتجر بنجاح');
+                saveSettings(); renderAllApps(); renderStoreApps();
+                alert('✅ تم الحفظ');
             }
 
             function refreshAppListInPanel() {
                 const container = document.getElementById('appListContainer');
                 container.innerHTML = '';
                 let appsToShow = (currentUserRole === 'owner') ? appsList : appsList.filter(app => app.addedBy === currentUserRole);
-                appsToShow.forEach(app => {
-                    const originalIndex = appsList.indexOf(app);
-                    container.appendChild(createListItem(app.name, 'apps', originalIndex));
-                });
+                appsToShow.forEach(app => { const idx = appsList.indexOf(app); container.appendChild(createListItem(app.name, 'apps', idx)); });
                 if (currentUserRole === 'owner') {
-                    const sep = document.createElement('div');
-                    sep.style.margin = '15px 0 5px';
-                    sep.style.fontWeight = 'bold';
-                    sep.textContent = '📁 المتجر:';
+                    const sep = document.createElement('div'); sep.style.margin = '15px 0 5px'; sep.style.fontWeight = 'bold'; sep.textContent = '📁 المتجر:';
                     container.appendChild(sep);
                     storeList.forEach((app, i) => container.appendChild(createListItem(app.name, 'store', i)));
                 }
             }
             function createListItem(name, type, index) {
-                const div = document.createElement('div');
-                div.className = 'app-list-item';
-                div.innerHTML = `<span>${name}</span>`;
-                const actions = document.createElement('div');
-                actions.className = 'app-list-actions';
-                const editBtn = document.createElement('button');
-                editBtn.className = 'edit-app-btn';
-                editBtn.innerHTML = '<i class="fas fa-edit"></i> تعديل';
-                editBtn.onclick = () => startEdit(type, index);
-                const delBtn = document.createElement('button');
-                delBtn.className = 'delete-app-btn';
-                delBtn.innerHTML = '<i class="fas fa-trash"></i> حذف';
-                delBtn.onclick = () => {
-                    if (confirm(`هل أنت متأكد من حذف "${name}"؟`)) {
-                        if (type === 'apps') appsList.splice(index, 1);
-                        else storeList.splice(index, 1);
-                        saveData();
-                        refreshAppListInPanel();
-                        cancelEdit();
-                    }
+                const div = document.createElement('div'); div.className = 'app-list-item'; div.innerHTML = `<span>${name}</span>`;
+                const actions = document.createElement('div'); actions.className = 'app-list-actions';
+                const editBtn = document.createElement('button'); editBtn.className = 'edit-app-btn'; editBtn.innerHTML = '<i class="fas fa-edit"></i> تعديل'; editBtn.onclick = () => startEdit(type, index);
+                const delBtn = document.createElement('button'); delBtn.className = 'delete-app-btn'; delBtn.innerHTML = '<i class="fas fa-trash"></i> حذف'; delBtn.onclick = () => {
+                    if (confirm(`حذف "${name}"؟`)) { if (type === 'apps') appsList.splice(index, 1); else storeList.splice(index, 1); saveData(); refreshAppListInPanel(); cancelEdit(); }
                 };
-                actions.appendChild(editBtn); actions.appendChild(delBtn);
-                div.appendChild(actions);
-                return div;
+                actions.appendChild(editBtn); actions.appendChild(delBtn); div.appendChild(actions); return div;
             }
             function startEdit(type, index) {
                 currentEdit = { type, index };
@@ -1250,20 +1220,13 @@
                     playerName: document.getElementById('editPlayerName').value.trim(),
                     playerLink: document.getElementById('editPlayerLink').value.trim()
                 };
-                if (!updated.name || !updated.link) return alert('الرجاء إدخال اسم التطبيق ورابط التحميل على الأقل');
+                if (!updated.name || !updated.link) return alert('الاسم والرابط مطلوبان');
                 const original = type === 'apps' ? appsList[index] : storeList[index];
                 const final = { ...original, ...updated };
-                if (type === 'apps') appsList[index] = final;
-                else storeList[index] = final;
-                saveData();
-                refreshAppListInPanel();
-                cancelEdit();
-                alert(`✅ تم تحديث "${final.name}" بنجاح`);
+                if (type === 'apps') appsList[index] = final; else storeList[index] = final;
+                saveData(); refreshAppListInPanel(); cancelEdit(); alert(`✅ تم تحديث "${final.name}"`);
             }
-            function cancelEdit() {
-                document.getElementById('editFormContainer').style.display = 'none';
-                currentEdit = { type: null, index: null };
-            }
+            function cancelEdit() { document.getElementById('editFormContainer').style.display = 'none'; currentEdit = { type: null, index: null }; }
             function addNewApp() {
                 const name = document.getElementById('newAppName').value.trim();
                 const desc = document.getElementById('newAppDesc').value.trim();
@@ -1271,79 +1234,32 @@
                 const icon = document.getElementById('newAppIcon').value.trim();
                 const playerName = document.getElementById('newPlayerName').value.trim();
                 const playerLink = document.getElementById('newPlayerLink').value.trim();
-                if (!name || !link) return alert('الرجاء إدخال اسم التطبيق ورابط التحميل على الأقل');
-                const newApp = {
-                    name, desc: desc || 'تطبيق جديد', link,
-                    icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png',
-                    addedBy: currentUserRole,
-                    playerName, playerLink
-                };
-                appsList.push(newApp);
-                saveData();
-                refreshAppListInPanel();
+                if (!name || !link) return alert('الاسم والرابط مطلوبان');
+                const newApp = { name, desc: desc || 'تطبيق جديد', link, icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png', addedBy: currentUserRole, playerName, playerLink };
+                appsList.push(newApp); saveData(); refreshAppListInPanel();
                 ['newAppName','newAppDesc','newAppLink','newAppIcon','newPlayerName','newPlayerLink'].forEach(id => document.getElementById(id).value = '');
-                alert(`✅ تمت إضافة "${name}" بنجاح`);
+                alert(`✅ تمت إضافة "${name}"`);
             }
 
-            // ==================== دوال مساعدة ====================
             function updateClock() {
-                const now = new Date();
-                let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
-                const ampm = h >= 12 ? 'PM' : 'AM';
-                h = h % 12 || 12;
+                const now = new Date(); let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds(); const ampm = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
                 document.getElementById('liveClock').innerText = `${h}:${m<10?'0'+m:m}:${s<10?'0'+s:s} ${ampm}`;
-                const days = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
-                const d = days[now.getDay()];
+                const days = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت']; const d = days[now.getDay()];
                 const y = now.getFullYear(), mo = now.getMonth()+1, da = now.getDate();
                 document.getElementById('liveDate').innerText = `${d} ${y}-${mo}-${da}`;
             }
-            function switchTab(evt, tabId) {
-                document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.getElementById(tabId).style.display = 'block';
-                evt.currentTarget.classList.add('active');
-            }
+            function switchTab(evt, tabId) { document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none'); document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); document.getElementById(tabId).style.display = 'block'; evt.currentTarget.classList.add('active'); }
             function openLink(card, url) {
-                if (card.dataset.running === "true") return;
-                const overlay = card.querySelector('.timer-overlay');
-                if (!overlay) { window.location.href = url; return; }
-                const countSpan = overlay.querySelector('.count-down');
-                card.dataset.running = "true";
-                let count = 4;
-                overlay.style.display = 'flex';
-                countSpan.innerText = count;
-                const interval = setInterval(() => {
-                    count--;
-                    countSpan.innerText = count;
-                    if (count <= 0) {
-                        clearInterval(interval);
-                        overlay.style.display = 'none';
-                        card.dataset.running = "false";
-                        window.location.href = url;
-                    }
-                }, 1000);
+                if (card.dataset.running === "true") return; const overlay = card.querySelector('.timer-overlay'); if (!overlay) { window.location.href = url; return; }
+                const countSpan = overlay.querySelector('.count-down'); card.dataset.running = "true"; let count = 4; overlay.style.display = 'flex'; countSpan.innerText = count;
+                const interval = setInterval(() => { count--; countSpan.innerText = count; if (count <= 0) { clearInterval(interval); overlay.style.display = 'none'; card.dataset.running = "false"; window.location.href = url; } }, 1000);
             }
 
-            window.openLoginModal = openLoginModal;
-            window.closeLoginModal = closeLoginModal;
-            window.checkPassword = checkPassword;
-            window.closeAdminPanel = closeAdminPanel;
-            window.saveStoreSettings = saveStoreSettings;
-            window.addModerator = addModerator;
-            window.addNewApp = addNewApp;
-            window.saveEdit = saveEdit;
-            window.cancelEdit = cancelEdit;
-            window.switchTab = switchTab;
+            window.openLoginModal = openLoginModal; window.closeLoginModal = closeLoginModal; window.checkPassword = checkPassword; window.closeAdminPanel = closeAdminPanel;
+            window.saveStoreSettings = saveStoreSettings; window.addModerator = addModerator; window.addNewApp = addNewApp; window.saveEdit = saveEdit; window.cancelEdit = cancelEdit;
+            window.switchTab = switchTab; window.exportFullHTML = exportFullHTML;
             
-            window.onload = function() {
-                loadModerators();
-                loadSettings();
-                loadData();
-                renderAllApps();
-                renderStoreApps();
-                updateClock();
-                setInterval(updateClock, 1000);
-            };
+            window.onload = function() { loadModerators(); loadSettings(); loadData(); renderAllApps(); renderStoreApps(); updateClock(); setInterval(updateClock, 1000); };
         })();
     </script>
 </body>
