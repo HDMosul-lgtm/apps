@@ -92,6 +92,80 @@
         footer p { margin: 5px 0; font-weight: 700; }
 
         @supports not (background-clip: text) { #storeName, .title { background: none; -webkit-text-fill-color: currentColor; color: var(--primary-color); } }
+
+        /* أنماط محرك البحث Downloader */
+        .downloader-search-container {
+            max-width: 600px;
+            margin: 15px auto 5px;
+            padding: 0 20px;
+        }
+        .downloader-search-box {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            border: 2px solid var(--secondary-color);
+            border-radius: var(--btn-radius);
+            overflow: hidden;
+            box-shadow: var(--btn-shadow);
+            transition: all 0.3s;
+        }
+        .downloader-search-box:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(0, 82, 159, 0.2);
+            transform: scale(1.01);
+        }
+        .downloader-search-box i {
+            padding: 0 15px;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        .downloader-search-box input {
+            flex: 1;
+            padding: 14px 10px 14px 0;
+            border: none;
+            outline: none;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            background: transparent;
+            color: var(--text-color);
+        }
+        .downloader-search-box input::placeholder {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        .downloader-search-box button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-right: 1px solid var(--secondary-color);
+            white-space: nowrap;
+        }
+        .downloader-search-box button:hover {
+            background: var(--secondary-color);
+            color: black;
+        }
+        .downloader-search-box button i {
+            padding: 0;
+            margin-left: 5px;
+            color: inherit;
+        }
+        .downloader-hint {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 0.75rem;
+            color: var(--primary-color);
+            opacity: 0.7;
+        }
+        .downloader-hint i {
+            margin: 0 3px;
+            color: var(--secondary-color);
+        }
     </style>
 </head>
 <body>
@@ -110,6 +184,21 @@
         <div id="liveClock">00:00:00 PM</div>
         <div id="liveDate">التاريخ</div>
         <div class="dhikr">⚽ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ⚽</div>
+    </div>
+
+    <!-- محرك بحث Downloader -->
+    <div class="downloader-search-container">
+        <div class="downloader-search-box">
+            <i class="fas fa-download"></i>
+            <input type="text" id="downloaderCodeInput" placeholder="أدخل كود Downloader (مثال: 5473489)" dir="ltr">
+            <button onclick="openDownloaderCode()">
+                <i class="fas fa-external-link-alt"></i> فتح في Downloader
+            </button>
+        </div>
+        <div class="downloader-hint">
+            <i class="fas fa-info-circle"></i> الصق كود Downloader للانتقال مباشرة للتطبيق
+            <i class="fas fa-arrow-left"></i>
+        </div>
     </div>
 
     <div class="tabs-container">
@@ -452,9 +541,43 @@
         var interval = setInterval(function(){ count--; countSpan.innerText = count; if (count <= 0) { clearInterval(interval); overlay.style.display = 'none'; card.dataset.running = "false"; window.location.href = url; } }, 1000);
     }
 
+    // دالة محرك بحث Downloader
+    function openDownloaderCode() {
+        var codeInput = document.getElementById('downloaderCodeInput');
+        var code = codeInput.value.trim();
+        if (!code) {
+            alert('الرجاء إدخال كود Downloader');
+            codeInput.focus();
+            return;
+        }
+        // إزالة أي أحرف غير رقمية (بعض الأكواد قد تحتوي على شرطة أو مسافات)
+        code = code.replace(/[^0-9]/g, '');
+        if (!code) {
+            alert('الكود يجب أن يحتوي على أرقام فقط');
+            return;
+        }
+        // فتح الرابط بتنسيق Downloader
+        var downloaderUrl = 'https://aftv.news/' + code;
+        window.location.href = downloaderUrl;
+    }
+
+    // إضافة إمكانية الضغط على Enter في حقل الإدخال
+    document.addEventListener('DOMContentLoaded', function() {
+        var inputField = document.getElementById('downloaderCodeInput');
+        if (inputField) {
+            inputField.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    openDownloaderCode();
+                }
+            });
+        }
+    });
+
     window.openLoginModal = openLoginModal; window.closeLoginModal = closeLoginModal; window.checkPassword = checkPassword;
     window.closeAdminPanel = closeAdminPanel; window.saveStoreSettings = saveStoreSettings;
     window.addNewApp = addNewApp; window.saveEdit = saveEdit; window.cancelEdit = cancelEdit; window.switchTab = switchTab; window.exportFullHTML = exportFullHTML;
+    window.openDownloaderCode = openDownloaderCode;
 
     window.onload = function() {
         loadSettings(); loadData(); renderAllApps(); renderStoreApps(); updateClock(); setInterval(updateClock, 1000);
