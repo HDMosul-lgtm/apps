@@ -93,78 +93,69 @@
 
         @supports not (background-clip: text) { #storeName, .title { background: none; -webkit-text-fill-color: currentColor; color: var(--primary-color); } }
 
-        /* أنماط محرك البحث Downloader */
-        .downloader-search-container {
-            max-width: 600px;
-            margin: 15px auto 5px;
+        /* أنماط محرك البحث Downloader - نسخة مصغرة بدون نص توضيحي */
+        .downloader-mini-container {
+            max-width: 450px;
+            margin: 10px auto 5px;
             padding: 0 20px;
         }
-        .downloader-search-box {
+        .downloader-mini-box {
             display: flex;
             align-items: center;
             background: var(--card-bg);
             border: 2px solid var(--secondary-color);
-            border-radius: var(--btn-radius);
+            border-radius: 40px;
             overflow: hidden;
             box-shadow: var(--btn-shadow);
             transition: all 0.3s;
+            height: 48px;
         }
-        .downloader-search-box:focus-within {
+        .downloader-mini-box:focus-within {
             border-color: var(--primary-color);
-            box-shadow: 0 8px 25px rgba(0, 82, 159, 0.2);
-            transform: scale(1.01);
+            box-shadow: 0 6px 20px rgba(0, 82, 159, 0.15);
         }
-        .downloader-search-box i {
-            padding: 0 15px;
+        .downloader-mini-box i {
+            padding: 0 12px;
             color: var(--primary-color);
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
-        .downloader-search-box input {
+        .downloader-mini-box input {
             flex: 1;
-            padding: 14px 10px 14px 0;
+            padding: 12px 5px 12px 0;
             border: none;
             outline: none;
             font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
+            font-size: 0.9rem;
             background: transparent;
             color: var(--text-color);
         }
-        .downloader-search-box input::placeholder {
-            color: #999;
-            font-size: 0.9rem;
+        .downloader-mini-box input::placeholder {
+            color: #aaa;
+            font-size: 0.85rem;
         }
-        .downloader-search-box button {
+        .downloader-mini-box button {
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 14px 25px;
+            padding: 0 18px;
+            height: 100%;
             font-family: 'Cairo', sans-serif;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.3s;
             border-right: 1px solid var(--secondary-color);
             white-space: nowrap;
         }
-        .downloader-search-box button:hover {
+        .downloader-mini-box button:hover {
             background: var(--secondary-color);
             color: black;
         }
-        .downloader-search-box button i {
+        .downloader-mini-box button i {
             padding: 0;
-            margin-left: 5px;
+            margin-left: 4px;
             color: inherit;
-        }
-        .downloader-hint {
-            text-align: center;
-            margin-top: 5px;
-            font-size: 0.75rem;
-            color: var(--primary-color);
-            opacity: 0.7;
-        }
-        .downloader-hint i {
-            margin: 0 3px;
-            color: var(--secondary-color);
+            font-size: 0.85rem;
         }
     </style>
 </head>
@@ -186,18 +177,14 @@
         <div class="dhikr">⚽ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ⚽</div>
     </div>
 
-    <!-- محرك بحث Downloader -->
-    <div class="downloader-search-container">
-        <div class="downloader-search-box">
-            <i class="fas fa-download"></i>
-            <input type="text" id="downloaderCodeInput" placeholder="أدخل كود Downloader (مثال: 5473489)" dir="ltr">
+    <!-- محرك بحث Downloader مصغر - بدون نص توضيحي -->
+    <div class="downloader-mini-container">
+        <div class="downloader-mini-box">
+            <i class="fas fa-arrow-down"></i>
+            <input type="text" id="downloaderCodeInput" placeholder="كود Downloader" dir="ltr">
             <button onclick="openDownloaderCode()">
-                <i class="fas fa-external-link-alt"></i> فتح في Downloader
+                <i class="fas fa-search"></i> فتح
             </button>
-        </div>
-        <div class="downloader-hint">
-            <i class="fas fa-info-circle"></i> الصق كود Downloader للانتقال مباشرة للتطبيق
-            <i class="fas fa-arrow-left"></i>
         </div>
     </div>
 
