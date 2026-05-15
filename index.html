@@ -286,7 +286,7 @@ font-size: 0.85rem;
 </div>
 
 <div id="maintenanceOverlay" class="maintenance-overlay" style="display: none;">⚠️</div>
-<div id="mainContent" class="main-content" style="display: none;">  <!-- تم تغييرها لتكون مخفية بداية حتى يتم إدخال الكود الصحيح -->
+<div id="mainContent" class="main-content" style="display: none;">
 <header>
 <div class="logo-container">
 <img id="storeLogo" src="https://i.ibb.co/dwKGHRP0/sdv001272022-D1-QAN.png" alt="لوحة التحكم" onclick="openLoginModal()" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'45\' fill=\'%2300529f\'/%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'35\' fill=\'%23febd11\'/%3E%3Ctext x=\'50\' y=\'70\' font-size=\'50\' text-anchor=\'middle\' fill=\'%23ffffff\' font-family=\'Arial\'%3E👑%3C/text%3E%3C/svg%3E'">
@@ -301,7 +301,6 @@ font-size: 0.85rem;
 <div class="dhikr">⚽ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ⚽</div>
 </div>
 
-<!-- محرك بحث Downloader مصغر -->
 <div class="downloader-mini-container">
 <div class="downloader-mini-box">
 <i class="fas fa-arrow-down"></i>
@@ -317,8 +316,8 @@ font-size: 0.85rem;
 <button class="tab-btn" onclick="switchTab(event, 'store-tab')">🏆 المتجر</button>
 </div>
 
-<div id="apps-tab" class="tab-content" style="display: block;"><div class="grid" id="appsGrid"><!-- سيتم ملؤها بالجافاسكربت --></div></div>
-<div id="store-tab" class="tab-content" style="display: none;"><div class="grid" id="storeGrid"><!-- سيتم ملؤها بالجافاسكربت --></div></div>
+<div id="apps-tab" class="tab-content" style="display: block;"><div class="grid" id="appsGrid"></div></div>
+<div id="store-tab" class="tab-content" style="display: none;"><div class="grid" id="storeGrid"></div></div>
 
 <footer>
 <p id="footerLine1">• PREMIUM STORE • 2026</p>
@@ -326,13 +325,11 @@ font-size: 0.85rem;
 </footer>
 </div>
 
-<!-- أزرار تغيير الثيم (نهاري / ليلي فقط) -->
 <div class="theme-switcher">
 <div class="theme-btn" data-theme-name="light" onclick="setTheme('light')" title="نهاري"></div>
 <div class="theme-btn" data-theme-name="dark" onclick="setTheme('dark')" title="ليلي"></div>
 </div>
 
-<!-- مودال تسجيل الدخول -->
 <div id="loginModal" class="modal-overlay" style="display: none;">
 <div class="login-box">
 <h2><i class="fas fa-lock"></i> لوحة التحكم</h2>
@@ -341,7 +338,6 @@ font-size: 0.85rem;
 </div>
 </div>
 
-<!-- مودال لوحة التحكم -->
 <div id="adminPanelModal" class="modal-overlay" style="display: none;">
 <div class="admin-panel">
 <h2 id="panelTitle"><i class="fas fa-crown"></i> لوحة المالك</h2>
@@ -401,7 +397,6 @@ font-size: 0.85rem;
 <button onclick="addNewApp()"><i class="fas fa-plus-circle"></i> إضافة التطبيق</button>
 </div>
 
-<!-- ========== قسم إدارة المتاجر ========== -->
 <div id="storeListSection" style="display: block;">
 <div class="section-title">📋 المتاجر الحالية</div>
 <div id="storeListContainer" style="max-height: 300px; overflow-y: auto; padding: 5px;"></div>
@@ -428,7 +423,6 @@ font-size: 0.85rem;
 <input type="text" id="newStoreIcon" placeholder="رابط الأيقونة (اختياري)">
 <button onclick="addNewStore()"><i class="fas fa-plus-circle"></i> إضافة متجر</button>
 </div>
-<!-- ========== نهاية قسم إدارة المتاجر ========== -->
 
 <div style="margin-top: 20px;"><button class="close-btn" onclick="closeAdminPanel()">إغلاق</button></div>
 </div>
@@ -452,6 +446,7 @@ function loadTheme() {
 (function(){
 var OWNER_PASSWORD = "2001820";
 var currentUserRole = null;
+var lockPassed = false;
 
 function extractImageUrl(input) {
 if (!input) return '';
@@ -526,7 +521,6 @@ var storeSettings = {
 };
 var currentEditIndex = null;
 var currentStoreEditIndex = null;
-var lockPassed = false;
 
 function loadSettings() { var s = localStorage.getItem('hdmosul_settings'); if (s) storeSettings = JSON.parse(s); applySettings(); }
 function saveSettings() { localStorage.setItem('hdmosul_settings', JSON.stringify(storeSettings)); applySettings(); }
@@ -539,10 +533,7 @@ applyMaintenanceMode();
 }
 function applyMaintenanceMode() {
 var ov = document.getElementById('maintenanceOverlay'), mc = document.getElementById('mainContent');
-if (!lockPassed) {
-    mc.style.display = 'none';
-    return;
-}
+if (!lockPassed) { mc.style.display = 'none'; return; }
 if (storeSettings.maintenanceMode) { ov.style.display = 'flex'; mc.classList.add('hidden'); }
 else { ov.style.display = 'none'; mc.classList.remove('hidden'); }
 }
@@ -556,7 +547,7 @@ localStorage.setItem('hdmosul_store', JSON.stringify(storeList));
 renderAllApps(); renderStoreApps(); refreshAppListInPanel(); refreshStoreListInPanel();
 }
 
-function createAppCard(app, isStore) { /* ... نفس الكود الأصلي دون تغيير ... */
+function createAppCard(app, isStore) {
 var card = document.createElement('div'); card.className = 'card' + (isStore ? ' store-card' : ''); card.tabIndex = 0;
 if (app.isSupport) card.onclick = function(){ window.location.href = app.link; };
 else {
@@ -636,14 +627,172 @@ container.appendChild(div);
 }
 }
 
-function startEditStore(index) { /* ... */ }
-function saveStoreEdit() { /* ... */ }
-function cancelStoreEdit() { /* ... */ }
-function addNewStore() { /* ... */ }
-function startEdit(index) { /* ... */ }
-function saveEdit() { /* ... */ }
-function cancelEdit() { /* ... */ }
-function addNewApp() { /* ... */ }
+function startEditStore(index) {
+currentStoreEditIndex = index;
+var store = storeList[index];
+document.getElementById('editStoreIndex').value = index;
+document.getElementById('editStoreName').value = store.name || '';
+document.getElementById('editStoreDesc').value = store.desc || '';
+document.getElementById('editStoreLink').value = store.link || '';
+document.getElementById('editStoreIcon').value = store.icon || '';
+document.getElementById('editStoreFormContainer').style.display = 'block';
+}
+
+function saveStoreEdit() {
+var index = parseInt(document.getElementById('editStoreIndex').value);
+var updated = {
+name: document.getElementById('editStoreName').value.trim(),
+desc: document.getElementById('editStoreDesc').value.trim(),
+link: document.getElementById('editStoreLink').value.trim(),
+icon: document.getElementById('editStoreIcon').value.trim()
+};
+if (!updated.name || !updated.link) return alert('الاسم والرابط مطلوبان');
+var original = storeList[index];
+for (var k in updated) original[k] = updated[k];
+saveData(); cancelStoreEdit(); alert('✅ تم تحديث متجر "' + updated.name + '"');
+}
+
+function cancelStoreEdit() { document.getElementById('editStoreFormContainer').style.display = 'none'; currentStoreEditIndex = null; }
+
+function addNewStore() {
+var name = document.getElementById('newStoreName').value.trim(), desc = document.getElementById('newStoreDesc').value.trim();
+var link = document.getElementById('newStoreLink').value.trim(), icon = document.getElementById('newStoreIcon').value.trim();
+if (!name || !link) return alert('الاسم والرابط مطلوبان');
+var newStore = { name: name, desc: desc || 'متجر جديد', link: link, icon: icon || 'https://cdn-icons-png.flaticon.com/512/2232/2232688.png' };
+storeList.push(newStore); saveData();
+['newStoreName','newStoreDesc','newStoreLink','newStoreIcon'].forEach(function(id){ document.getElementById(id).value = ''; });
+alert('✅ تمت إضافة متجر "' + name + '"');
+}
+
+function startEdit(index) {
+currentEditIndex = index;
+var app = appsList[index];
+document.getElementById('editAppIndex').value = index;
+document.getElementById('editAppName').value = app.name || '';
+document.getElementById('editAppDesc').value = app.desc || '';
+document.getElementById('editAppLink').value = app.link || '';
+document.getElementById('editAppIcon').value = app.icon || '';
+document.getElementById('editPlayerName').value = app.playerName || '';
+document.getElementById('editPlayerLink').value = app.playerLink || '';
+document.getElementById('editFormContainer').style.display = 'block';
+}
+
+function saveEdit() {
+var index = parseInt(document.getElementById('editAppIndex').value);
+var updated = {
+name: document.getElementById('editAppName').value.trim(),
+desc: document.getElementById('editAppDesc').value.trim(),
+link: document.getElementById('editAppLink').value.trim(),
+icon: document.getElementById('editAppIcon').value.trim(),
+playerName: document.getElementById('editPlayerName').value.trim(),
+playerLink: document.getElementById('editPlayerLink').value.trim()
+};
+if (!updated.name || !updated.link) return alert('الاسم والرابط مطلوبان');
+var original = appsList[index];
+for (var k in updated) original[k] = updated[k];
+saveData(); cancelEdit(); alert('✅ تم تحديث "' + updated.name + '"');
+}
+
+function cancelEdit() { document.getElementById('editFormContainer').style.display = 'none'; currentEditIndex = null; }
+
+function addNewApp() {
+var name = document.getElementById('newAppName').value.trim(), desc = document.getElementById('newAppDesc').value.trim();
+var link = document.getElementById('newAppLink').value.trim(), icon = document.getElementById('newAppIcon').value.trim();
+var pn = document.getElementById('newPlayerName').value.trim(), pl = document.getElementById('newPlayerLink').value.trim();
+if (!name || !link) return alert('الاسم والرابط مطلوبان');
+var newApp = { name: name, desc: desc || 'تطبيق جديد', link: link, icon: icon || 'https://cdn-icons-png.flaticon.com/512/1828/1828961.png', addedBy: 'owner', playerName: pn, playerLink: pl };
+appsList.push(newApp); saveData();
+['newAppName','newAppDesc','newAppLink','newAppIcon','newPlayerName','newPlayerLink'].forEach(function(id){ document.getElementById(id).value = ''; });
+alert('✅ تمت إضافة "' + name + '"');
+}
+
+function exportFullHTML() {
+var html = document.documentElement.outerHTML;
+var appsStr = JSON.stringify(appsList, null, 4);
+var storeStr = JSON.stringify(storeList, null, 4);
+var settingsStr = JSON.stringify(storeSettings, null, 4);
+html = html.replace(/(var DEFAULT_APPS = )\[[\s\S]*?\];/, '$1' + appsStr + ';');
+html = html.replace(/(var DEFAULT_STORE = )\[[\s\S]*?\];/, '$1' + storeStr + ';');
+html = html.replace(/(var storeSettings = )\{[\s\S]*?\};/, '$1' + settingsStr + ';');
+html = html.replace(/(id="maintenanceOverlay"[^>]*style=")[^"]*"/, '$1display: none;"');
+html = html.replace(/(id="loginModal"[^>]*style=")[^"]*"/, '$1display: none;"');
+html = html.replace(/(id="adminPanelModal"[^>]*style=")[^"]*"/, '$1display: none;"');
+html = html.replace(/(id="mainContent"[^>]*class="[^"]*)(hidden)?/, function(m, g1, g2){ return g1 + (g2 ? '' : ''); });
+html = html.replace(/(id="mainContent"[^>]*style=")[^"]*"/, '$1display: block;"');
+if (navigator.clipboard && navigator.clipboard.writeText) {
+navigator.clipboard.writeText(html).then(function(){ alert('✅ تم نسخ كود HTML إلى الحافظة'); }).catch(function(){ prompt('انسخ الكود يدوياً:', html); });
+} else {
+prompt('انسخ الكود يدوياً:', html);
+}
+}
+
+function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; document.getElementById('passwordInput').focus(); }
+function closeLoginModal() { document.getElementById('loginModal').style.display = 'none'; }
+function checkPassword() {
+var pass = document.getElementById('passwordInput').value;
+if (pass === OWNER_PASSWORD) { currentUserRole = 'owner'; closeLoginModal(); openAdminPanel(); }
+else alert('❌ رمز غير صحيح');
+}
+function openAdminPanel() {
+var title = document.getElementById('panelTitle');
+var sSec = document.getElementById('storeSettingsSection'), eSec = document.getElementById('exportHtmlSection');
+var lSec = document.getElementById('appListSection');
+if (currentUserRole === 'owner') {
+title.innerHTML = '<i class="fas fa-crown"></i> لوحة المالك';
+sSec.style.display = 'block'; eSec.style.display = 'block'; lSec.style.display = 'block';
+document.getElementById('settingsStoreName').value = storeSettings.name;
+document.getElementById('settingsLogoUrl').value = storeSettings.logoUrl;
+document.getElementById('settingsBrandName').value = storeSettings.brandName;
+document.getElementById('settingsFooter1').value = storeSettings.footer1;
+document.getElementById('settingsFooter2').value = storeSettings.footer2;
+document.getElementById('settingsLockCode').value = storeSettings.lockCode;
+document.getElementById('settingsMaintenanceMode').checked = storeSettings.maintenanceMode;
+refreshAppListInPanel();
+refreshStoreListInPanel();
+}
+document.getElementById('adminPanelModal').style.display = 'flex'; cancelEdit(); cancelStoreEdit();
+}
+function closeAdminPanel() { document.getElementById('adminPanelModal').style.display = 'none'; currentUserRole = null; }
+function saveStoreSettings() {
+if (currentUserRole !== 'owner') return;
+storeSettings.name = document.getElementById('settingsStoreName').value.trim() || 'HDMosul Store';
+storeSettings.logoUrl = document.getElementById('settingsLogoUrl').value.trim() || storeSettings.logoUrl;
+storeSettings.brandName = document.getElementById('settingsBrandName').value.trim() || 'HDMosul';
+storeSettings.footer1 = document.getElementById('settingsFooter1').value.trim() || 'HDMosul • PREMIUM STORE • 2026';
+storeSettings.footer2 = document.getElementById('settingsFooter2').value.trim() || 'جميع الحقوق محفوظة';
+storeSettings.lockCode = document.getElementById('settingsLockCode').value.trim() || "1100";
+storeSettings.maintenanceMode = document.getElementById('settingsMaintenanceMode').checked;
+saveSettings(); renderAllApps(); renderStoreApps(); alert('✅ تم الحفظ');
+}
+
+function updateClock() {
+var now = new Date(); var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds(); var ampm = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
+document.getElementById('liveClock').innerText = h + ':' + (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s) + ' ' + ampm;
+var days = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت']; var d = days[now.getDay()];
+var y = now.getFullYear(), mo = now.getMonth() + 1, da = now.getDate();
+document.getElementById('liveDate').innerText = d + ' ' + y + '-' + (mo < 10 ? '0' + mo : mo) + '-' + (da < 10 ? '0' + da : da);
+}
+function switchTab(evt, tabId) {
+var contents = document.querySelectorAll('.tab-content'); for (var i=0; i<contents.length; i++) contents[i].style.display = 'none';
+var btns = document.querySelectorAll('.tab-btn'); for (var i=0; i<btns.length; i++) btns[i].classList.remove('active');
+document.getElementById(tabId).style.display = 'block'; evt.currentTarget.classList.add('active');
+}
+function openLink(card, url) {
+if (card.dataset.running === "true") return;
+var overlay = card.querySelector('.timer-overlay'); if (!overlay) { window.location.href = url; return; }
+var countSpan = overlay.querySelector('.count-down'); card.dataset.running = "true"; var count = 4; overlay.style.display = 'flex'; countSpan.innerText = count;
+var interval = setInterval(function(){ count--; countSpan.innerText = count; if (count <= 0) { clearInterval(interval); overlay.style.display = 'none'; card.dataset.running = "false"; window.location.href = url; } }, 1000);
+}
+
+function openDownloaderCode() {
+var codeInput = document.getElementById('downloaderCodeInput');
+var code = codeInput.value.trim();
+if (!code) { alert('الرجاء إدخال كود Downloader'); codeInput.focus(); return; }
+code = code.replace(/[^0-9]/g, '');
+if (!code) { alert('الكود يجب أن يحتوي على أرقام فقط'); return; }
+var downloaderUrl = 'https://aftv.news/' + code;
+window.location.href = downloaderUrl;
+}
 
 // دوال القفل
 function showLockScreen() {
@@ -665,57 +814,17 @@ function checkLockCode() {
         hideLockScreen();
     } else {
         document.getElementById('lockError').style.display = 'block';
+        document.getElementById('lockCodeInput').value = '';
     }
 }
-
-function exportFullHTML() { /* ... */ }
-function openLoginModal() { /* ... */ }
-function closeLoginModal() { /* ... */ }
-function checkPassword() { /* ... */ }
-function openAdminPanel() {
-    var title = document.getElementById('panelTitle');
-    var sSec = document.getElementById('storeSettingsSection'), eSec = document.getElementById('exportHtmlSection');
-    var lSec = document.getElementById('appListSection');
-    if (currentUserRole === 'owner') {
-        title.innerHTML = '<i class="fas fa-crown"></i> لوحة المالك';
-        sSec.style.display = 'block'; eSec.style.display = 'block'; lSec.style.display = 'block';
-        document.getElementById('settingsStoreName').value = storeSettings.name;
-        document.getElementById('settingsLogoUrl').value = storeSettings.logoUrl;
-        document.getElementById('settingsBrandName').value = storeSettings.brandName;
-        document.getElementById('settingsFooter1').value = storeSettings.footer1;
-        document.getElementById('settingsFooter2').value = storeSettings.footer2;
-        document.getElementById('settingsLockCode').value = storeSettings.lockCode;
-        document.getElementById('settingsMaintenanceMode').checked = storeSettings.maintenanceMode;
-        refreshAppListInPanel();
-        refreshStoreListInPanel();
-    }
-    document.getElementById('adminPanelModal').style.display = 'flex'; cancelEdit(); cancelStoreEdit();
-}
-function closeAdminPanel() { /* ... */ }
-function saveStoreSettings() {
-    if (currentUserRole !== 'owner') return;
-    storeSettings.name = document.getElementById('settingsStoreName').value.trim() || 'HDMosul Store';
-    storeSettings.logoUrl = document.getElementById('settingsLogoUrl').value.trim() || storeSettings.logoUrl;
-    storeSettings.brandName = document.getElementById('settingsBrandName').value.trim() || 'HDMosul';
-    storeSettings.footer1 = document.getElementById('settingsFooter1').value.trim() || 'HDMosul • PREMIUM STORE • 2026';
-    storeSettings.footer2 = document.getElementById('settingsFooter2').value.trim() || 'جميع الحقوق محفوظة';
-    storeSettings.lockCode = document.getElementById('settingsLockCode').value.trim() || "1100";
-    storeSettings.maintenanceMode = document.getElementById('settingsMaintenanceMode').checked;
-    saveSettings(); renderAllApps(); renderStoreApps(); alert('✅ تم الحفظ');
-}
-
-function updateClock() { /* ... */ }
-function switchTab(evt, tabId) { /* ... */ }
-function openLink(card, url) { /* ... */ }
-function openDownloaderCode() { /* ... */ }
 
 document.addEventListener('DOMContentLoaded', function() {
-    var inputField = document.getElementById('downloaderCodeInput');
-    if (inputField) {
-        inputField.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') { e.preventDefault(); openDownloaderCode(); }
-        });
-    }
+var inputField = document.getElementById('downloaderCodeInput');
+if (inputField) {
+inputField.addEventListener('keypress', function(e) {
+if (e.key === 'Enter') { e.preventDefault(); openDownloaderCode(); }
+});
+}
 });
 
 window.openLoginModal = openLoginModal; window.closeLoginModal = closeLoginModal; window.checkPassword = checkPassword;
@@ -727,9 +836,9 @@ window.setTheme = setTheme;
 window.checkLockCode = checkLockCode;
 
 window.onload = function() {
-    loadSettings(); loadData(); renderAllApps(); renderStoreApps(); updateClock(); setInterval(updateClock, 1000);
-    loadTheme();
-    if (!lockPassed) showLockScreen();
+loadSettings(); loadData(); renderAllApps(); renderStoreApps(); updateClock(); setInterval(updateClock, 1000);
+loadTheme();
+if (!lockPassed) showLockScreen();
 };
 })();
 </script>
