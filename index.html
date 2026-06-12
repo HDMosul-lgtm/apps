@@ -182,9 +182,73 @@ margin-left: 4px;
 color: inherit;
 font-size: 0.85rem;
 }
+
+/* ========== ملاحظة أخلاقية (مضافة) ========== */
+#ethicalNotice {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85); z-index: 10002;
+  display: none; align-items: center; justify-content: center;
+  flex-direction: column; text-align: center; padding: 30px;
+  backdrop-filter: blur(8px);
+  animation: fadeInNotice 0.5s ease;
+}
+#ethicalNotice .notice-box {
+  background: linear-gradient(145deg, #0a2a4a, #003366);
+  border: 4px solid var(--secondary-color);
+  border-radius: 50px;
+  padding: 40px 30px;
+  max-width: 900px;
+  width: 95%;
+  color: white;
+  box-shadow: 0 0 60px rgba(254, 189, 17, 0.7);
+  background-size: cover;
+}
+#ethicalNotice .notice-icon {
+  font-size: 5vw;
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+}
+#ethicalNotice .notice-text {
+  font-size: 3.5vw;
+  font-weight: 900;
+  line-height: 1.6;
+  margin: 0;
+  color: white;
+}
+#ethicalNotice .notice-text span {
+  color: var(--secondary-color);
+}
+#ethicalNotice .notice-sub {
+  font-size: 2.2vw;
+  margin-top: 25px;
+  color: var(--secondary-color);
+  font-weight: 700;
+  opacity: 0.95;
+}
+@keyframes fadeInNotice {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 </style>
 </head>
 <body>
+
+<!-- ========== ملاحظة أخلاقية (مضافة) ========== -->
+<div id="ethicalNotice">
+  <div class="notice-box">
+    <div class="notice-icon"><i class="fas fa-exclamation-triangle"></i></div>
+    <p class="notice-text">
+      تنبيه هام:<br>
+      جميع التطبيقات في هذا المتجر <span>مجانية لوجه الله تعالى</span>،<br>
+      ويُمنع <span>بيعها أو المتاجرة بها</span>.
+    </p>
+    <p class="notice-sub">
+      نخص بالذكر أصحاب المكاتب الذين يأخذون التطبيقات ويبيعونها للناس، فأنتم <span>غير مبري الذمة</span>.<br>
+      أخوكم HDMosul
+    </p>
+  </div>
+</div>
+<!-- نهاية الملاحظة المضافة -->
 
 <div id="maintenanceOverlay" class="maintenance-overlay" style="display: none;">⚠️</div>
 
@@ -283,7 +347,7 @@ pqkbgfcn688@gmail.com</div><button class="luxury-btn" style="pointer-events: non
 
 <div id="appListSection" style="display: block;">
 <div class="section-title">📋 التطبيقات الحالية (اضغط تعديل)</div>
-<div id="appListContainer" style="max-height: 300px; overflow-y: auto; padding: 5px;"><div class="app-list-item"><span>برايم تيفي جديد</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>العبودي Tv3</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>جنرال تيفي محدث</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>العراق TV 1 محدث</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>Veyon TV</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>Saif TV محدث</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>الباشا TV محدث</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>الموصل 1 محدث</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>OzTV جديد محدث</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>RodoTv محدث</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>RedFoxx Pro</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>أوسكار تيفي Oscar TV محدث</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>عراق بلص محدث</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>الرئيس لايف</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>AHMED TV</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>match now</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>الراوي TV</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>تطبيق EgyBest محدث</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>الكتلان برو شاشات</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>يوتيوب الرسمي خفيفة لشاشات</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>القرآن الكريم  شاشات تلفزيون</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>الاسطورة TV محدث</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>ياسين تيفي الاسود</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>MovieBox VIP</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>FOX TV</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>تطبيق المنصة New</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>تطبيق شو SHOW</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>تطبيق NETFLY</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>هاي تي في HiTv</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>شاهد Shahid VIP</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>عبدو بلس Abdo Plus</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>يوتيوب الشاشات</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>Reezn TV</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>تطبيق UXP</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>Cinemana CBOX</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>Cinemana Plus</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>باب المشاهد TV</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>عالمنا Tv</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>واحد بغداد TV</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>المهندس تيفي TV</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>AG</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>مشغل اكسترايم IPTV</span><div class="app-list-actions"><button class="move-btn"><i class="fas fa-arrow-up"></i></button><button class="move-btn"><i class="fas fa-arrow-down"></i></button><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div></div>
+<div id="appListContainer" style="max-height: 300px; overflow-y: auto; padding: 5px;"></div>
 </div>
 
 <div id="editFormContainer" class="edit-form-container" style="display: none;">
@@ -314,7 +378,7 @@ pqkbgfcn688@gmail.com</div><button class="luxury-btn" style="pointer-events: non
 
 <div id="storeListSection" style="display: block;">
 <div class="section-title">📋 المتاجر الحالية</div>
-<div id="storeListContainer" style="max-height: 300px; overflow-y: auto; padding: 5px;"><div class="app-list-item"><span>مكتبة التطبيقات PRO</span><div class="app-list-actions"><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>مكتبة التطبيقات Lite</span><div class="app-list-actions"><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>Android TV متجر</span><div class="app-list-actions"><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>AuroraStore</span><div class="app-list-actions"><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>متجر إيموتن</span><div class="app-list-actions"><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>مباريات اليوم  اضغط</span><div class="app-list-actions"><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div><div class="app-list-item"><span>الدعم الفني</span><div class="app-list-actions"><button class="edit-app-btn"><i class="fas fa-edit"></i> تعديل</button><button class="delete-app-btn"><i class="fas fa-trash"></i> حذف</button></div></div></div>
+<div id="storeListContainer" style="max-height: 300px; overflow-y: auto; padding: 5px;"></div>
 </div>
 
 <div id="editStoreFormContainer" class="edit-form-container" style="display: none;">
@@ -369,397 +433,9 @@ if (/^(https?:)?\/\//i.test(input)) return input;
 return input;
 }
 
-var DEFAULT_APPS = [
-    {
-        "name": "برايم تيفي جديد",
-        "desc": "كود تفعيل 2026",
-        "link": "https://www.mediafire.com/file/uhrya9lfiptudk7/prime-tv.apk/file",
-        "icon": "https://cdn-icons-png.flaticon.com/512/1828/1828961.png",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "العبودي Tv3",
-        "desc": "تطبيق جديد",
-        "link": "https://www.mediafire.com/file/lzb80vgs9o11wft/%D8%A7%D9%84%D8%B9%D8%A8%D9%88%D8%AF%D9%8A+TV.apk/file",
-        "icon": "https://cdn-icons-png.flaticon.com/512/1828/1828961.png",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "جنرال تيفي محدث",
-        "desc": "متنوع رياضة سينمانا • كود التفعيل: 000 • HDMosul",
-        "link": "https://genraltv.nl",
-        "icon": "https://i.ibb.co/1YpKnY1f/general-tv-pro.webp",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "العراق TV 1 محدث",
-        "desc": "قنوات رياضية وبث مباشر لجميع الشبكات • HDMosul نسخة جدبدة",
-        "link": "https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/1%20IRAQ%20TV%20v3%20New.apk",
-        "icon": "https://i.ibb.co/6RWtGZWy/1-iraq-tv-1.png",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "Veyon TV",
-        "desc": "يعمل على جميع شببكات جربه مدعوم إيرثلنك كود دخول 2233",
-        "link": "https://apk.e-droid.net/apk/app4045998-e6rta0.apk?v=10",
-        "icon": "https://i.ibb.co/JWDCDrX3/file-00000000c3287243b1b5cc684754f661.png",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "Saif TV محدث",
-        "desc": "أكواد تفعيل C1 C2 C3 C4",
-        "link": "https://www.mediafire.com/file/dbosawl85y8bnqk/78885_si.apk/file",
-        "icon": "https://i.ibb.co/m581LCF4/20260506-021903.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "الباشا TV محدث",
-        "desc": "تحديث جديد",
-        "link": "https://www.mediafire.com/file/ybing4sdcv7rs1s/ALBASHA_TV_V6.0.1.apk/file",
-        "icon": "https://i.ibb.co/fVpxpX1f/images-2.png",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "الموصل 1 محدث",
-        "desc": "🔑 أكواد التفعيل:• M1• M2 • M3 HDMosul• M4•",
-        "link": "https://www.mediafire.com/file/5dsew3g4dtwtix1/1+موصل.apk/file",
-        "icon": "https://i.ibb.co/R47MQSGJ/IMG-20260422-193751-030.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "OzTV جديد محدث",
-        "desc": "لمشاهدة القنوات ومسلسلات رمضان 2026 الخيار المفضل لدى قطاع واسع من عشاق الدراما والرياضة",
-        "link": "https://oz-tv.xyz/api/download",
-        "icon": "https://i.ibb.co/4gM5yFvJ/Oz-TV-768x432.webp",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "RodoTv محدث",
-        "desc": "شاهد أفضل القنوات مباشرة HDMosul",
-        "link": "https://github.com/arenaapptv-droid/App/releases/download/2.7/RodoTv_2.7.apk",
-        "icon": "https://i.ibb.co/tpSMh5kj/logo.png",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "RedFoxx Pro",
-        "desc": "US: 9f31f7415 | PS: 771e36db3\nUS: Gabrielvip | PS: yamDg73 تفعيلات",
-        "link": "https://www.mediafire.com/file/cms0xgp1zc848yk/RedFoxxPro.apk/file",
-        "icon": "https://i.ibb.co/qLT8BNqV/unnamed.webp",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "أوسكار تيفي Oscar TV محدث",
-        "desc": "سينمانا جميع شبكات نسخة جميلة جدا • HDMosul",
-        "link": "https://oscartv.app/download-tv",
-        "icon": "https://i.ibb.co/67PXtwDB/Oscar-TV.webp",
-        "playerName": "تحميل المشغل",
-        "playerLink": "https://oscartv.app/tdm"
-    },
-    {
-        "name": "عراق بلص محدث",
-        "desc": "اكواد تفعيل Q1. Q2. Q3. Q4. Q5 قم بحذف بيانات تطبيق",
-        "link": "https://www.mediafire.com/file/qdoqusrc81kee59/عراق+بلص.apk/file",
-        "icon": "https://i.ibb.co/M3kM4MQ/20260530-094745.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "الرئيس لايف",
-        "desc": "كود تفعيل 3366",
-        "link": "https://www.mediafire.com/file/qyuankhyc27vhm4/Al-Rayestv.apk/file",
-        "icon": "https://i.ibb.co/7dzL40BB/20260530-095052.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "AHMED TV",
-        "desc": "11 | 22 | 33 | 44 | 55 | 66 | 77 | 88 | 99 | 111 | 222 | 333 | 444 | مارفل فقط 555",
-        "link": "https://www.mediafire.com/file/d08htq9kxzq42m1/AHMEDTV24.apk/file",
-        "icon": "https://i.ibb.co/jZRj3cDq/20260530-090413.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "match now",
-        "desc": "مميز راقي HDMosul",
-        "link": "https://www.mediafire.com/file/g0jy7rf7w9dr37u/Match_Now_TV_2.1.apk/file",
-        "icon": "https://i.ibb.co/TxG3Gk9g/20260502-194133.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "الراوي TV",
-        "desc": "اكواد تفعيل R1 R2 R3 R4 R5",
-        "link": "https://www.mediafire.com/file/3xiem1hqfdvzpg6/%25D8%25A7%25D9%2584%25D8%25B1%25D8%25A7%25D9%2588%25D9%258A_TV_1.0.apk/file",
-        "icon": "https://i.ibb.co/yB4MtYGv/FB-IMG-1777984615685.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "تطبيق EgyBest محدث",
-        "desc": "سينمانا نسخة مخصصة للشاشات فقط • HDMosul",
-        "link": "https://www.mediafire.com/file/hb7lut0u9zdammr/EgybestTV_v2.0.apk/file",
-        "icon": "https://i.ibb.co/1fGLRvFr/egybest.webp",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "الكتلان برو شاشات",
-        "desc": "كود دخول 4444 او 0000 HDMosul",
-        "link": "https://www.mediafire.com/file/5ijlkbsg02t1bt6/app-release.apk/file",
-        "icon": "https://i.ibb.co/vvxjNXHV/IMG-20260502-195209-109.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "يوتيوب الرسمي خفيفة لشاشات",
-        "desc": "نسخة. من تطويري للجميع شاشات والتيفي بوكس HDMosul",
-        "link": "https://apk.e-droid.net/apk/app4034192-ezgv1j.apk?v=3",
-        "icon": "https://i.ibb.co/yBMtv4GY/Picsart-26-05-13-00-03-19-172.png",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "القرآن الكريم  شاشات تلفزيون",
-        "desc": "لشاشات تلفزيون فقط HDMosul",
-        "link": "https://apk.e-droid.net/apk/app4035653-06dbgv.apk?v=2",
-        "icon": "https://i.ibb.co/V08ghTRR/IMG-20260513-232634-473.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "الاسطورة TV محدث",
-        "desc": "مع المشغل لشاشات وتيفي بوكس HDMosul",
-        "link": "https://www.ostora.tv/download/ostora_smart_4.9.apk",
-        "icon": "https://i.ibb.co/kVS5ZhQm/logo.jpg",
-        "addedBy": "owner",
-        "playerName": "المشغل",
-        "playerLink": "https://files.catbox.moe/nuet94.apk"
-    },
-    {
-        "name": "ياسين تيفي الاسود",
-        "desc": "بدون مشغل شاشات تيفي بوكس HDMosul",
-        "link": "https://www.mediafire.com/file/1tvx9sceporbn1h/Yacine-TV-Black-v3-1-yacinetv-black-com.apk/file",
-        "icon": "https://i.ibb.co/LBXjbz0/image-1.png",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "MovieBox VIP",
-        "desc": "سينمانا جميع شبكات • بدون إعلانات • عائلي • HDMosul",
-        "link": "https://www.mediafire.com/file/x0r8u9cu37gzu5a/MovieBox+-+Family+(VIP).apk/file",
-        "icon": "https://i.ibb.co/ycCG2Fmt/android-icon-192x192.png"
-    },
-    {
-        "name": "FOX TV",
-        "desc": "فوكس تيفي تطبيق جديد HDMosul",
-        "link": "https://foxtv7.com/apk/FOXTV_v3.apk",
-        "icon": "https://i.ibb.co/JRcrHcnh/IMG-20260405-WA0027.jpg",
-        "playerName": "FX مشغل",
-        "playerLink": "https://foxtv7.com/apk/FX-Player.apk-v3.apk"
-    },
-    {
-        "name": "تطبيق المنصة New",
-        "desc": "يلزم تسجيل دخول من موبايل مسح باركود QR • HDMosul",
-        "link": "https://raw.githubusercontent.com/iraqapps/tvapps/refs/heads/main/apps/New-release-protected.3.0.1.apk",
-        "icon": "https://i.ibb.co/Gf1XSdKf/logo-XZ.png"
-    },
-    {
-        "name": "تطبيق شو SHOW",
-        "desc": "رياضة متنوعة • أفلام • مسلسلات • HDMosul",
-        "link": "https://shoapp.shop/new/#",
-        "icon": "https://i.ibb.co/q3XsCRzT/images-20.jpg",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "تطبيق NETFLY",
-        "desc": "سينمانا منوع نسخة VIP سريعة جداً • HDMosul",
-        "link": "https://s1.leeapks.com/Netfly_v3.0.1_(9)_Mod.apk?token=1777156238.KyGXNvSEPu73660c7l9MbWI0J0QXlx48Na_g9usjY7E",
-        "icon": "https://i.ibb.co/cKmbCYPq/apk-netfly-tv.webp",
-        "playerName": "محدث جديد",
-        "playerLink": ""
-    },
-    {
-        "name": "هاي تي في HiTv",
-        "desc": "سينمانا متنوع محدث بأحدث الأفلام • HDMosul",
-        "link": "https://s2.mobiltna.com/dl/Apps/HiTV%20v3.13.3%20Vip.apk",
-        "icon": "https://i.ibb.co/rGqJpbFf/unnamed-1-2.png"
-    },
-    {
-        "name": "شاهد Shahid VIP",
-        "desc": "نسخة مهكرة مدفوعة بالكامل لشاشات الأندرويد • HDMosul",
-        "link": "https://s2.mobiltna.com/dl/Apps/MBC%20Shahid%20v7.117%20vip.apk",
-        "icon": "https://i.ibb.co/FLKDL6zq/vip-shahid-2.webp"
-    },
-    {
-        "name": "عبدو بلس Abdo Plus",
-        "desc": "جديد كود التفعيل ABDOTOP1",
-        "link": "https://s2.mobiltna.com/dl/Apps/abdo%20plusTV_1.0_.apk",
-        "icon": "https://i.ibb.co/cKN5TGNb/Abdo-Plus.webp",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "يوتيوب الشاشات",
-        "desc": "بدون إعلانات • يحدث تلقائي • لجميع الشاشات • HDMosul",
-        "link": "https://github.com/yuliskov/SmartTubeNext/releases/download/latest/smarttube_stable.apk",
-        "icon": "https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
-    },
-    {
-        "name": "Reezn TV",
-        "desc": "سينمانا متنوع نسخة جديدة كلياً • HDMosul",
-        "link": "https://s2.mobiltna.com/dl/Apps/Reezn_1.9.3.apk",
-        "icon": "https://i.ibb.co/Y7MMnDzg/images-21.jpg"
-    },
-    {
-        "name": "تطبيق UXP",
-        "desc": "الأفضل لجميع الشبكات • سينمانا ورياضة • HDMosul",
-        "link": "https://www.mediafire.com/file/87vqd9o61a5my3d/UXP_2.7.apk/file",
-        "icon": "https://i.ibb.co/8L8SWsLk/hqdefault.jpg"
-    },
-    {
-        "name": "Cinemana CBOX",
-        "desc": "نسخة شاشات وتيفي بوكس • شبكة ايرثلنك حصراً • HDMosul",
-        "link": "https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/Cinemana_Leanback%20v4.5.9_New.apk",
-        "icon": "https://i.ibb.co/FbhWbvrc/cinemana.png"
-    },
-    {
-        "name": "Cinemana Plus",
-        "desc": "للشاشات الضعيفة • يعمل فقط على ايرثلنك • HDMosul",
-        "link": "https://github.com/iraqapps/tvapps/raw/refs/heads/main/apps/cinemanaplustv.apk",
-        "icon": "https://i.ibb.co/323G0rN/cinemanaplus.png"
-    },
-    {
-        "name": "باب المشاهد TV",
-        "desc": "لمشاهدة قنوات bein sports والباقات بدون تقطيع",
-        "link": "https://s2.mobiltna.com/dl/Apps/Bab%20AlMoshahd%20v9.8.apk",
-        "icon": "https://i.ibb.co/8gVyF3BB/Bab-Al-Moshahd-TV.webp",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "عالمنا Tv",
-        "desc": "تطبيق مميز",
-        "link": "https://s2.mobiltna.com/dl/Apps/Alamana%20Tv%20v1.0.3.apk",
-        "icon": "https://i.ibb.co/nqTJ8JBC/TV.webp",
-        "addedBy": "owner",
-        "playerName": "المشغل",
-        "playerLink": "https://s2.mobiltna.com/dl/Apps/Arix%20Player_2.3.apk"
-    },
-    {
-        "name": "واحد بغداد TV",
-        "desc": "اكواد تفعيل B1 B2 B3 B4 B5",
-        "link": "https://shorturl.at/tgXpz",
-        "icon": "https://i.ibb.co/C51MvJRB/IMG-20260422-144652-368-edit-112663194689209.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "المهندس تيفي TV",
-        "desc": "جديد",
-        "link": "https://s2.mobiltna.com/dl/Apps/AlMohandis_TV_v2.0.4.apk",
-        "icon": "https://i.ibb.co/vtY10X5/Almohands-Tv.webp",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "AG",
-        "desc": "مثل تطبيق Xp",
-        "link": "https://www.mediafire.com/file/t443vq6v95r3c2t/AG+STREAM+v3.0+@AMRGAMAL_STORE.apk/file",
-        "icon": "https://i.ibb.co/9HCnHVL8/20260425-183948.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    },
-    {
-        "name": "مشغل اكسترايم IPTV",
-        "desc": "خفيف حدا",
-        "link": "https://files.televizo.net/televizo-default.apk",
-        "icon": "https://i.ibb.co/bMbLsmwb/a30b26fc9cae97eefa0935c1772bf681.jpg",
-        "addedBy": "owner",
-        "playerName": "",
-        "playerLink": ""
-    }
-];
+var DEFAULT_APPS = [];
 
-var DEFAULT_STORE = [
-    {
-        "name": "مكتبة التطبيقات PRO",
-        "desc": "HDMosul • المتجر المتكامل من Android_AppsX يعمل بشكل صفحة وايب",
-        "link": "https://iraqapps.github.io/tvapps/",
-        "icon": "https://i.ibb.co/Tqd3QMfz/IMG-20260422-175208-052.jpg"
-    },
-    {
-        "name": "مكتبة التطبيقات Lite",
-        "desc": "HDMosul • Lite تطبيقات منوعة يعمل بشكل صفحة وايب",
-        "link": "https://401740.hala-web.com/",
-        "icon": "https://i.ibb.co/tMgcg6tc/file-00000000e70c7243a5ef35f19d97eabc.png"
-    },
-    {
-        "name": "Android TV متجر",
-        "desc": "متجر تطبيقات مثل سوق بلي مجاني لأجهزة شاشات والتيفي بوكس وشاشات السيارات. HDMosul •",
-        "link": "https://tv.aptoide.com/howtoinstall.html",
-        "icon": "https://i.ibb.co/PvT20Ryk/aptoide-tv-icon.webp"
-    },
-    {
-        "name": "AuroraStore",
-        "desc": "متجر تطبيقات مثل سوق بلي مجاني لأجهزة شاشات والتيفي بوكس وشاشات السيارات. HDMosul •",
-        "link": "https://auroraoss.com/downloads/AuroraStore/Latest/latest.apk",
-        "icon": "https://i.ibb.co/hRBZsrch/aurora-store.webp"
-    },
-    {
-        "name": "متجر إيموتن",
-        "desc": "متجر تطبيقات مثل سوق بلي مجاني لأجهزة شاشات والتيفي بوكس وشاشات السيارات HDMosul •",
-        "link": "https://d.apkpure.net/b/APK/com.overseas.store.appstore?version=latest",
-        "icon": "https://i.ibb.co/GfvKFPvh/emotn-store.webp"
-    },
-    {
-        "name": "مباريات اليوم  اضغط",
-        "desc": "يمكنك معرفة مباريات اليوم بشكل تلقائيا HDMosul",
-        "link": "https://jdwel.com/today/",
-        "icon": "https://i.ibb.co/9mt5JVRP/1776878144246-edit-129489298127946.png"
-    },
-    {
-        "name": "الدعم الفني",
-        "desc": "يمكنك ابلاغ عن طريق الايميل\npqkbgfcn688@gmail.com",
-        "link": "https://mail.google.com/mail/?view=cm&fs=1&to=pqkbgfcn688@gmail.com&su=%D8%A7%D8%A8%D9%84%D8%A7%D8%BA%20%D8%B9%D9%86%20%D9%85%D8%B4%D9%83%D9%84%D8%A9%20%D9%81%D9%8A%20%D9%85%D8%AA%D8%AC%D8%B1%20HDMosul%20store&body=%D8%A7%D9%83%D8%AA%D8%A8%20%D9%85%D8%A7%20%D9%87%D9%8A%20%D8%A7%D9%84%D9%85%D8%B4%D9%83%D9%84%D8%A9%20%D8%A7%D9%84%D8%AA%D9%8A%20%D8%AA%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A5%D8%A8%D9%84%D8%A7%D8%BA%20%D8%B9%D9%86%D9%87%D8%A7%D8%8C%20%D8%A7%D9%83%D8%AA%D8%A8%D9%87%D8%A7%20%D9%87%D9%86%D8%A7%20%D9%88%D8%B3%D9%8A%D8%AA%D9%85%20%D9%85%D8%B9%D8%A7%D9%84%D8%AC%D8%AA%D9%87%D8%A7",
-        "icon": "https://i.ibb.co/Q3kRJr0y/IMG-20260422-183846-311.jpg"
-    }
-];
+var DEFAULT_STORE = [];
 
 var appsList = [], storeList = [];
 
@@ -799,14 +475,14 @@ function applyAccessControl() {
     if (!storeSettings.accessCode || storeSettings.accessCode.trim() === '') {
         accessModal.style.display = 'none';
         main.classList.remove('hidden');
-        return;
-    }
-    if (sessionStorage.getItem('store_access_granted') === 'true') {
-        accessModal.style.display = 'none';
-        main.classList.remove('hidden');
     } else {
-        accessModal.style.display = 'flex';
-        main.classList.add('hidden');
+        if (sessionStorage.getItem('store_access_granted') === 'true') {
+            accessModal.style.display = 'none';
+            main.classList.remove('hidden');
+        } else {
+            accessModal.style.display = 'flex';
+            main.classList.add('hidden');
+        }
     }
 }
 function checkAccessCode() {
@@ -1098,6 +774,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// ========== دالة الملاحظة الأخلاقية (مضافة) ==========
+function showEthicalNotice() {
+    var notice = document.getElementById('ethicalNotice');
+    if (notice) {
+        notice.style.display = 'flex';
+        setTimeout(function() {
+            notice.style.display = 'none';
+        }, 6000);
+    }
+}
+
 // ========== تعريض الدوال العامة ==========
 window.openLoginModal = openLoginModal; window.closeLoginModal = closeLoginModal; window.checkPassword = checkPassword;
 window.closeAdminPanel = closeAdminPanel; window.saveStoreSettings = saveStoreSettings;
@@ -1111,9 +798,11 @@ window.checkAccessCode = checkAccessCode;   // ✅ تعريض دالة كود ا
 window.onload = function() {
     loadSettings(); loadData(); renderAllApps(); renderStoreApps(); updateClock(); setInterval(updateClock, 1000);
     loadTheme();
+    showEthicalNotice(); // إظهار الملاحظة لمدة 6 ثوانٍ
 };
 })();
 </script>
+
 
 
 
