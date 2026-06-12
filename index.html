@@ -183,58 +183,53 @@ color: inherit;
 font-size: 0.85rem;
 }
 
-/* ========== ملاحظة أخلاقية (تلقائي 6 ثواني) ========== */
+/* ========== تنسيق الملاحظة الأخلاقية ========== */
 #ethicalNotice {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.85); z-index: 10002;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; text-align: center; padding: 30px;
-  backdrop-filter: blur(8px);
-  animation: hideNotice 0s 6s forwards;
-}
-@keyframes hideNotice {
-  to {
-    opacity: 0;
-    pointer-events: none;
-  }
-}
-#ethicalNotice .notice-box {
-  background: linear-gradient(145deg, #0a2a4a, #003366);
-  border: 4px solid #febd11;
-  border-radius: 50px;
-  padding: 40px 30px;
-  max-width: 900px;
-  width: 95%;
+  background: rgba(0, 0, 0, 0.9);
   color: white;
-  box-shadow: 0 0 60px rgba(254, 189, 17, 0.7);
+  text-align: center;
+  padding: 20px;
+  border-bottom: 3px solid #febd11;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  box-sizing: border-box;
 }
-#ethicalNotice .notice-icon {
+.notice-box {
+  background: linear-gradient(145deg, #0a2a4a, #003366);
+  border: 3px solid #febd11;
+  border-radius: 30px;
+  padding: 25px 15px;
+  max-width: 900px;
+  margin: 0 auto;
+  color: white;
+  box-shadow: 0 0 40px rgba(254, 189, 17, 0.6);
+}
+.notice-icon {
   font-size: 5vw;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #febd11;
 }
-#ethicalNotice .notice-text {
+.notice-text {
   font-size: 3.5vw;
   font-weight: 900;
   line-height: 1.6;
   margin: 0;
-  color: white;
 }
-#ethicalNotice .notice-text span {
+.notice-text span {
   color: #febd11;
 }
-#ethicalNotice .notice-sub {
+.notice-sub {
   font-size: 2.2vw;
-  margin-top: 25px;
+  margin-top: 15px;
   color: #febd11;
   font-weight: 700;
-  opacity: 0.95;
 }
 </style>
 </head>
 <body>
 
-<!-- ========== ملاحظة أخلاقية (CSS فقط، لا جافاسكريبت) ========== -->
+<!-- الملاحظة الأخلاقية -->
 <div id="ethicalNotice">
   <div class="notice-box">
     <div class="notice-icon"><i class="fas fa-exclamation-triangle"></i></div>
@@ -252,7 +247,6 @@ font-size: 0.85rem;
 
 <div id="maintenanceOverlay" class="maintenance-overlay" style="display: none;">⚠️</div>
 
-<!-- ========== مودال كود الدخول (جديد) ========== -->
 <div id="accessCodeModal" class="modal-overlay" style="display: none;">
 <div class="login-box">
 <h2><i class="fas fa-lock"></i> أدخل كود الدخول</h2>
@@ -291,11 +285,8 @@ font-size: 0.85rem;
 <button class="tab-btn" onclick="switchTab(event, 'store-tab')">🏆 المتجر</button>
 </div>
 
-<div id="apps-tab" class="tab-content" style="display: block;"><div class="grid" id="appsGrid"><div class="card" tabindex="0" data-running="false"><div class="timer-overlay" style="display: none;"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">0</div></div><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828961.png" alt="برايم تيفي جديد"></div><div class="title">برايم تيفي جديد</div><div class="desc">كود تفعيل 2026</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828961.png" alt="العبودي Tv3"></div><div class="title">العبودي Tv3</div><div class="desc">تطبيق جديد</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/1YpKnY1f/general-tv-pro.webp" alt="جنرال تيفي محدث"></div><div class="title">جنرال تيفي محدث</div><div class="desc">متنوع رياضة سينمانا • كود التفعيل: 000 • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/6RWtGZWy/1-iraq-tv-1.png" alt="العراق TV 1 محدث"></div><div class="title">العراق TV 1 محدث</div><div class="desc">قنوات رياضية وبث مباشر لجميع الشبكات • HDMosul🚀 نسخة جدبدة</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/JWDCDrX3/file-00000000c3287243b1b5cc684754f661.png" alt="Veyon TV"></div><div class="title">Veyon TV</div><div class="desc">يعمل على جميع شببكات جربه مدعوم إيرثلنك كود دخول 2233</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/m581LCF4/20260506-021903.jpg" alt="Saif TV محدث"></div><div class="title">Saif TV محدث</div><div class="desc">أكواد تفعيل C1 C2 C3 C4</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/fVpxpX1f/images-2.png" alt="الباشا TV محدث"></div><div class="title">الباشا TV محدث</div><div class="desc">تحديث جديد</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/R47MQSGJ/IMG-20260422-193751-030.jpg" alt="الموصل 1 محدث"></div><div class="title">الموصل 1 محدث</div><div class="desc">🔑 أكواد التفعيل:• M1• M2 • M3 HDMosul🚀• M4•</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/4gM5yFvJ/Oz-TV-768x432.webp" alt="OzTV جديد محدث"></div><div class="title">OzTV جديد محدث</div><div class="desc">لمشاهدة القنوات ومسلسلات رمضان 2026 الخيار المفضل لدى قطاع واسع من عشاق الدراما والرياضة</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/tpSMh5kj/logo.png" alt="RodoTv محدث"></div><div class="title">RodoTv محدث</div><div class="desc">شاهد أفضل القنوات مباشرة HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/qLT8BNqV/unnamed.webp" alt="RedFoxx Pro"></div><div class="title">RedFoxx Pro</div><div class="desc">US: 9f31f7415 | PS: 771e36db3
-US: Gabrielvip | PS: yamDg73 تفعيلات</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/67PXtwDB/Oscar-TV.webp" alt="أوسكار تيفي Oscar TV محدث"></div><div class="title">أوسكار تيفي Oscar TV محدث</div><div class="desc">سينمانا جميع شبكات نسخة جميلة جدا • HDMosul🚀</div><div style="display: flex; gap: 10px; position: relative; z-index: 10;"><button class="luxury-btn" style="flex: 1 1 0%; pointer-events: none;">تحميل التطبيق</button><button class="luxury-btn instant-btn" style="flex: 1 1 0%; pointer-events: auto;">تحميل المشغل</button></div></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/M3kM4MQ/20260530-094745.jpg" alt="عراق بلص محدث"></div><div class="title">عراق بلص محدث</div><div class="desc">اكواد تفعيل Q1. Q2. Q3. Q4. Q5 قم بحذف بيانات تطبيق</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/7dzL40BB/20260530-095052.jpg" alt="الرئيس لايف"></div><div class="title">الرئيس لايف</div><div class="desc">كود تفعيل 3366</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/jZRj3cDq/20260530-090413.jpg" alt="AHMED TV"></div><div class="title">AHMED TV</div><div class="desc">11 | 22 | 33 | 44 | 55 | 66 | 77 | 88 | 99 | 111 | 222 | 333 | 444 | مارفل فقط 555</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/TxG3Gk9g/20260502-194133.jpg" alt="match now"></div><div class="title">match now</div><div class="desc">مميز راقي HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/yB4MtYGv/FB-IMG-1777984615685.jpg" alt="الراوي TV"></div><div class="title">الراوي TV</div><div class="desc">اكواد تفعيل R1 R2 R3 R4 R5</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/1fGLRvFr/egybest.webp" alt="تطبيق EgyBest محدث"></div><div class="title">تطبيق EgyBest محدث</div><div class="desc">سينمانا نسخة مخصصة للشاشات فقط • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/vvxjNXHV/IMG-20260502-195209-109.jpg" alt="الكتلان برو شاشات"></div><div class="title">الكتلان برو شاشات</div><div class="desc">كود دخول 4444 او 0000 HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/yBMtv4GY/Picsart-26-05-13-00-03-19-172.png" alt="يوتيوب الرسمي خفيفة لشاشات"></div><div class="title">يوتيوب الرسمي خفيفة لشاشات</div><div class="desc">نسخة. من تطويري للجميع شاشات والتيفي بوكس HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/V08ghTRR/IMG-20260513-232634-473.jpg" alt="القرآن الكريم  شاشات تلفزيون"></div><div class="title">القرآن الكريم  شاشات تلفزيون</div><div class="desc">لشاشات تلفزيون فقط HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/kVS5ZhQm/logo.jpg" alt="الاسطورة TV محدث"></div><div class="title">الاسطورة TV محدث</div><div class="desc">مع المشغل لشاشات وتيفي بوكس HDMosul🚀</div><div style="display: flex; gap: 10px; position: relative; z-index: 10;"><button class="luxury-btn" style="flex: 1 1 0%; pointer-events: none;">تحميل التطبيق</button><button class="luxury-btn instant-btn" style="flex: 1 1 0%; pointer-events: auto;">المشغل</button></div></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/LBXjbz0/image-1.png" alt="ياسين تيفي الاسود"></div><div class="title">ياسين تيفي الاسود</div><div class="desc">بدون مشغل شاشات تيفي بوكس HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/ycCG2Fmt/android-icon-192x192.png" alt="MovieBox VIP"></div><div class="title">MovieBox VIP</div><div class="desc">سينمانا جميع شبكات • بدون إعلانات • عائلي • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/JRcrHcnh/IMG-20260405-WA0027.jpg" alt="FOX TV"></div><div class="title">FOX TV</div><div class="desc">فوكس تيفي تطبيق جديد HDMosul🚀</div><div style="display: flex; gap: 10px; position: relative; z-index: 10;"><button class="luxury-btn" style="flex: 1 1 0%; pointer-events: none;">تحميل التطبيق</button><button class="luxury-btn instant-btn" style="flex: 1 1 0%; pointer-events: auto;">FX مشغل</button></div></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/Gf1XSdKf/logo-XZ.png" alt="تطبيق المنصة New"></div><div class="title">تطبيق المنصة New</div><div class="desc">يلزم تسجيل دخول من موبايل مسح باركود QR • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/q3XsCRzT/images-20.jpg" alt="تطبيق شو SHOW"></div><div class="title">تطبيق شو SHOW</div><div class="desc">رياضة متنوعة • أفلام • مسلسلات • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/cKmbCYPq/apk-netfly-tv.webp" alt="تطبيق NETFLY"></div><div class="title">تطبيق NETFLY</div><div class="desc">سينمانا منوع نسخة VIP سريعة جداً • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/rGqJpbFf/unnamed-1-2.png" alt="هاي تي في HiTv"></div><div class="title">هاي تي في HiTv</div><div class="desc">سينمانا متنوع محدث بأحدث الأفلام • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/FLKDL6zq/vip-shahid-2.webp" alt="شاهد Shahid VIP"></div><div class="title">شاهد Shahid VIP</div><div class="desc">نسخة مهكرة مدفوعة بالكامل لشاشات الأندرويد • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/cKN5TGNb/Abdo-Plus.webp" alt="عبدو بلس Abdo Plus"></div><div class="title">عبدو بلس Abdo Plus</div><div class="desc">جديد كود التفعيل ABDOTOP1</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="يوتيوب الشاشات"></div><div class="title">يوتيوب الشاشات</div><div class="desc">بدون إعلانات • يحدث تلقائي • لجميع الشاشات • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/Y7MMnDzg/images-21.jpg" alt="Reezn TV"></div><div class="title">Reezn TV</div><div class="desc">سينمانا متنوع نسخة جديدة كلياً • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/8L8SWsLk/hqdefault.jpg" alt="تطبيق UXP"></div><div class="title">تطبيق UXP</div><div class="desc">الأفضل لجميع الشبكات • سينمانا ورياضة • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/FbhWbvrc/cinemana.png" alt="Cinemana CBOX"></div><div class="title">Cinemana CBOX</div><div class="desc">نسخة شاشات وتيفي بوكس • شبكة ايرثلنك حصراً • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/323G0rN/cinemanaplus.png" alt="Cinemana Plus"></div><div class="title">Cinemana Plus</div><div class="desc">للشاشات الضعيفة • يعمل فقط على ايرثلنك • HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/8gVyF3BB/Bab-Al-Moshahd-TV.webp" alt="باب المشاهد TV"></div><div class="title">باب المشاهد TV</div><div class="desc">لمشاهدة قنوات bein sports والباقات بدون تقطيع</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/nqTJ8JBC/TV.webp" alt="عالمنا Tv"></div><div class="title">عالمنا Tv</div><div class="desc">تطبيق مميز</div><div style="display: flex; gap: 10px; position: relative; z-index: 10;"><button class="luxury-btn" style="flex: 1 1 0%; pointer-events: none;">تحميل التطبيق</button><button class="luxury-btn instant-btn" style="flex: 1 1 0%; pointer-events: auto;">المشغل</button></div></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/C51MvJRB/IMG-20260422-144652-368-edit-112663194689209.jpg" alt="واحد بغداد TV"></div><div class="title">واحد بغداد TV</div><div class="desc">اكواد تفعيل B1 B2 B3 B4 B5</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/vtY10X5/Almohands-Tv.webp" alt="المهندس تيفي TV"></div><div class="title">المهندس تيفي TV</div><div class="desc">جديد</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/9HCnHVL8/20260425-183948.jpg" alt="AG"></div><div class="title">AG</div><div class="desc">مثل تطبيق Xp</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/bMbLsmwb/a30b26fc9cae97eefa0935c1772bf681.jpg" alt="مشغل اكسترايم IPTV"></div><div class="title">مشغل اكسترايم IPTV</div><div class="desc">خفيف حدا</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div></div></div>
-
-<div id="store-tab" class="tab-content" style="display: none;"><div class="grid" id="storeGrid"><div class="card store-card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/Tqd3QMfz/IMG-20260422-175208-052.jpg" alt="مكتبة التطبيقات PRO"></div><div class="title">مكتبة التطبيقات PRO</div><div class="desc">HDMosul🚀 • المتجر المتكامل من Android_AppsX يعمل بشكل صفحة وايب</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card store-card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/tMgcg6tc/file-00000000e70c7243a5ef35f19d97eabc.png" alt="مكتبة التطبيقات Lite"></div><div class="title">مكتبة التطبيقات Lite</div><div class="desc">HDMosul🚀 • Lite تطبيقات منوعة يعمل بشكل صفحة وايب</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card store-card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/PvT20Ryk/aptoide-tv-icon.webp" alt="Android TV متجر"></div><div class="title">Android TV متجر</div><div class="desc">متجر تطبيقات مثل سوق بلي مجاني لأجهزة شاشات والتيفي بوكس وشاشات السيارات. HDMosul🚀 •</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card store-card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/hRBZsrch/aurora-store.webp" alt="AuroraStore"></div><div class="title">AuroraStore</div><div class="desc">متجر تطبيقات مثل سوق بلي مجاني لأجهزة شاشات والتيفي بوكس وشاشات السيارات. HDMosul🚀 •</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card store-card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/GfvKFPvh/emotn-store.webp" alt="متجر إيموتن"></div><div class="title">متجر إيموتن</div><div class="desc">متجر تطبيقات مثل سوق بلي مجاني لأجهزة شاشات والتيفي بوكس وشاشات السيارات HDMosul🚀 •</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card store-card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/9mt5JVRP/1776878144246-edit-129489298127946.png" alt="مباريات اليوم  اضغط"></div><div class="title">مباريات اليوم  اضغط</div><div class="desc">يمكنك معرفة مباريات اليوم بشكل تلقائيا HDMosul🚀</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div><div class="card store-card" tabindex="0"><div class="timer-overlay"><div class="prayer-msg">⚽ لا تجعل المشاهدة تلهيك عن الصلاة وذكر الله ⚽</div><div class="count-down">4</div></div><div class="app-icon"><img src="https://i.ibb.co/Q3kRJr0y/IMG-20260422-183846-311.jpg" alt="الدعم الفني"></div><div class="title">الدعم الفني</div><div class="desc">يمكنك ابلاغ عن طريق الايميل
-pqkbgfcn688@gmail.com</div><button class="luxury-btn" style="pointer-events: none;">تحميل</button></div></div></div>
+<div id="apps-tab" class="tab-content" style="display: block;"><div class="grid" id="appsGrid"></div></div>
+<div id="store-tab" class="tab-content" style="display: none;"><div class="grid" id="storeGrid"></div></div>
 
 <footer>
 <p id="footerLine1">▌│█║PREMIUM STORE║█│▌ 2026 🚀✨</p>
@@ -328,7 +319,6 @@ pqkbgfcn688@gmail.com</div><button class="luxury-btn" style="pointer-events: non
 <input type="text" id="settingsBrandName" placeholder="العلامة التجارية (تظهر في وصف التطبيقات)">
 <input type="text" id="settingsFooter1" placeholder="نص الفوتر - السطر الأول">
 <input type="text" id="settingsFooter2" placeholder="نص الفوتر - السطر الثاني">
-<!-- حقل كود الدخول الجديد -->
 <input type="text" id="settingsAccessCode" placeholder="كود الدخول للمتجر (اتركه فارغاً لإلغاء القفل)">
 <div style="margin-top:10px;"><label style="display:flex; align-items:center; gap:10px;"><input type="checkbox" id="settingsMaintenanceMode"> تفعيل وضع الصيانة (⚠️)</label></div>
 <button onclick="saveStoreSettings()"><i class="fas fa-save"></i> حفظ الإعدادات</button>
@@ -408,7 +398,7 @@ pqkbgfcn688@gmail.com</div><button class="luxury-btn" style="pointer-events: non
 </div>
 
 <script>
-// ========== إضافة دالة تغيير الثيم (نهاري / ليلي فقط) ==========
+// ========== إضافة دالة تغيير الثيم ==========
 function setTheme(themeName) {
     document.body.removeAttribute('data-theme');
     if (themeName === 'dark') {
@@ -433,9 +423,61 @@ if (/^(https?:)?\/\//i.test(input)) return input;
 return input;
 }
 
-var DEFAULT_APPS = [];
+// ✅ إعادة جميع التطبيقات الأصلية
+var DEFAULT_APPS = [
+  {"name":"برايم تيفي جديد","desc":"كود تفعيل 2026","link":"#","icon":"https://cdn-icons-png.flaticon.com/512/1828/1828961.png"},
+  {"name":"العبودي Tv3","desc":"تطبيق جديد","link":"#","icon":"https://cdn-icons-png.flaticon.com/512/1828/1828961.png"},
+  {"name":"جنرال تيفي محدث","desc":"متنوع رياضة سينمانا • كود التفعيل: 000 • HDMosul🚀","link":"#","icon":"https://i.ibb.co/1YpKnY1f/general-tv-pro.webp"},
+  {"name":"العراق TV 1 محدث","desc":"قنوات رياضية وبث مباشر لجميع الشبكات • HDMosul🚀 نسخة جدبدة","link":"#","icon":"https://i.ibb.co/6RWtGZWy/1-iraq-tv-1.png"},
+  {"name":"Veyon TV","desc":"يعمل على جميع شببكات جربه مدعوم إيرثلنك كود دخول 2233","link":"#","icon":"https://i.ibb.co/JWDCDrX3/file-00000000c3287243b1b5cc684754f661.png"},
+  {"name":"Saif TV محدث","desc":"أكواد تفعيل C1 C2 C3 C4","link":"#","icon":"https://i.ibb.co/m581LCF4/20260506-021903.jpg"},
+  {"name":"الباشا TV محدث","desc":"تحديث جديد","link":"#","icon":"https://i.ibb.co/fVpxpX1f/images-2.png"},
+  {"name":"الموصل 1 محدث","desc":"🔑 أكواد التفعيل:• M1• M2 • M3 HDMosul🚀• M4•","link":"#","icon":"https://i.ibb.co/R47MQSGJ/IMG-20260422-193751-030.jpg"},
+  {"name":"OzTV جديد محدث","desc":"لمشاهدة القنوات ومسلسلات رمضان 2026 الخيار المفضل لدى قطاع واسع من عشاق الدراما والرياضة","link":"#","icon":"https://i.ibb.co/4gM5yFvJ/Oz-TV-768x432.webp"},
+  {"name":"RodoTv محدث","desc":"شاهد أفضل القنوات مباشرة HDMosul🚀","link":"#","icon":"https://i.ibb.co/tpSMh5kj/logo.png"},
+  {"name":"RedFoxx Pro","desc":"US: 9f31f7415 | PS: 771e36db3 US: Gabrielvip | PS: yamDg73 تفعيلات","link":"#","icon":"https://i.ibb.co/qLT8BNqV/unnamed.webp"},
+  {"name":"أوسكار تيفي Oscar TV محدث","desc":"سينمانا جميع شبكات نسخة جميلة جدا • HDMosul🚀","link":"#","icon":"https://i.ibb.co/67PXtwDB/Oscar-TV.webp","playerName":"تحميل المشغل","playerLink":"#"},
+  {"name":"عراق بلص محدث","desc":"اكواد تفعيل Q1. Q2. Q3. Q4. Q5 قم بحذف بيانات تطبيق","link":"#","icon":"https://i.ibb.co/M3kM4MQ/20260530-094745.jpg"},
+  {"name":"الرئيس لايف","desc":"كود تفعيل 3366","link":"#","icon":"https://i.ibb.co/7dzL40BB/20260530-095052.jpg"},
+  {"name":"AHMED TV","desc":"11 | 22 | 33 | 44 | 55 | 66 | 77 | 88 | 99 | 111 | 222 | 333 | 444 | مارفل فقط 555","link":"#","icon":"https://i.ibb.co/jZRj3cDq/20260530-090413.jpg"},
+  {"name":"match now","desc":"مميز راقي HDMosul🚀","link":"#","icon":"https://i.ibb.co/TxG3Gk9g/20260502-194133.jpg"},
+  {"name":"الراوي TV","desc":"اكواد تفعيل R1 R2 R3 R4 R5","link":"#","icon":"https://i.ibb.co/yB4MtYGv/FB-IMG-1777984615685.jpg"},
+  {"name":"تطبيق EgyBest محدث","desc":"سينمانا نسخة مخصصة للشاشات فقط • HDMosul🚀","link":"#","icon":"https://i.ibb.co/1fGLRvFr/egybest.webp"},
+  {"name":"الكتلان برو شاشات","desc":"كود دخول 4444 او 0000 HDMosul🚀","link":"#","icon":"https://i.ibb.co/vvxjNXHV/IMG-20260502-195209-109.jpg"},
+  {"name":"يوتيوب الرسمي خفيفة لشاشات","desc":"نسخة. من تطويري للجميع شاشات والتيفي بوكس HDMosul🚀","link":"#","icon":"https://i.ibb.co/yBMtv4GY/Picsart-26-05-13-00-03-19-172.png"},
+  {"name":"القرآن الكريم  شاشات تلفزيون","desc":"لشاشات تلفزيون فقط HDMosul🚀","link":"#","icon":"https://i.ibb.co/V08ghTRR/IMG-20260513-232634-473.jpg"},
+  {"name":"الاسطورة TV محدث","desc":"مع المشغل لشاشات وتيفي بوكس HDMosul🚀","link":"#","icon":"https://i.ibb.co/kVS5ZhQm/logo.jpg","playerName":"المشغل","playerLink":"#"},
+  {"name":"ياسين تيفي الاسود","desc":"بدون مشغل شاشات تيفي بوكس HDMosul🚀","link":"#","icon":"https://i.ibb.co/LBXjbz0/image-1.png"},
+  {"name":"MovieBox VIP","desc":"سينمانا جميع شبكات • بدون إعلانات • عائلي • HDMosul🚀","link":"#","icon":"https://i.ibb.co/ycCG2Fmt/android-icon-192x192.png"},
+  {"name":"FOX TV","desc":"فوكس تيفي تطبيق جديد HDMosul🚀","link":"#","icon":"https://i.ibb.co/JRcrHcnh/IMG-20260405-WA0027.jpg","playerName":"FX مشغل","playerLink":"#"},
+  {"name":"تطبيق المنصة New","desc":"يلزم تسجيل دخول من موبايل مسح باركود QR • HDMosul🚀","link":"#","icon":"https://i.ibb.co/Gf1XSdKf/logo-XZ.png"},
+  {"name":"تطبيق شو SHOW","desc":"رياضة متنوعة • أفلام • مسلسلات • HDMosul🚀","link":"#","icon":"https://i.ibb.co/q3XsCRzT/images-20.jpg"},
+  {"name":"تطبيق NETFLY","desc":"سينمانا منوع نسخة VIP سريعة جداً • HDMosul🚀","link":"#","icon":"https://i.ibb.co/cKmbCYPq/apk-netfly-tv.webp"},
+  {"name":"هاي تي في HiTv","desc":"سينمانا متنوع محدث بأحدث الأفلام • HDMosul🚀","link":"#","icon":"https://i.ibb.co/rGqJpbFf/unnamed-1-2.png"},
+  {"name":"شاهد Shahid VIP","desc":"نسخة مهكرة مدفوعة بالكامل لشاشات الأندرويد • HDMosul🚀","link":"#","icon":"https://i.ibb.co/FLKDL6zq/vip-shahid-2.webp"},
+  {"name":"عبدو بلس Abdo Plus","desc":"جديد كود التفعيل ABDOTOP1","link":"#","icon":"https://i.ibb.co/cKN5TGNb/Abdo-Plus.webp"},
+  {"name":"يوتيوب الشاشات","desc":"بدون إعلانات • يحدث تلقائي • لجميع الشاشات • HDMosul🚀","link":"#","icon":"https://cdn-icons-png.flaticon.com/512/1384/1384060.png"},
+  {"name":"Reezn TV","desc":"سينمانا متنوع نسخة جديدة كلياً • HDMosul🚀","link":"#","icon":"https://i.ibb.co/Y7MMnDzg/images-21.jpg"},
+  {"name":"تطبيق UXP","desc":"الأفضل لجميع الشبكات • سينمانا ورياضة • HDMosul🚀","link":"#","icon":"https://i.ibb.co/8L8SWsLk/hqdefault.jpg"},
+  {"name":"Cinemana CBOX","desc":"نسخة شاشات وتيفي بوكس • شبكة ايرثلنك حصراً • HDMosul🚀","link":"#","icon":"https://i.ibb.co/FbhWbvrc/cinemana.png"},
+  {"name":"Cinemana Plus","desc":"للشاشات الضعيفة • يعمل فقط على ايرثلنك • HDMosul🚀","link":"#","icon":"https://i.ibb.co/323G0rN/cinemanaplus.png"},
+  {"name":"باب المشاهد TV","desc":"لمشاهدة قنوات bein sports والباقات بدون تقطيع","link":"#","icon":"https://i.ibb.co/8gVyF3BB/Bab-Al-Moshahd-TV.webp"},
+  {"name":"عالمنا Tv","desc":"تطبيق مميز","link":"#","icon":"https://i.ibb.co/nqTJ8JBC/TV.webp","playerName":"المشغل","playerLink":"#"},
+  {"name":"واحد بغداد TV","desc":"اكواد تفعيل B1 B2 B3 B4 B5","link":"#","icon":"https://i.ibb.co/C51MvJRB/IMG-20260422-144652-368-edit-112663194689209.jpg"},
+  {"name":"المهندس تيفي TV","desc":"جديد","link":"#","icon":"https://i.ibb.co/vtY10X5/Almohands-Tv.webp"},
+  {"name":"AG","desc":"مثل تطبيق Xp","link":"#","icon":"https://i.ibb.co/9HCnHVL8/20260425-183948.jpg"},
+  {"name":"مشغل اكسترايم IPTV","desc":"خفيف حدا","link":"#","icon":"https://i.ibb.co/bMbLsmwb/a30b26fc9cae97eefa0935c1772bf681.jpg"}
+];
 
-var DEFAULT_STORE = [];
+var DEFAULT_STORE = [
+  {"name":"مكتبة التطبيقات PRO","desc":"HDMosul🚀 • المتجر المتكامل من Android_AppsX يعمل بشكل صفحة وايب","link":"#","icon":"https://i.ibb.co/Tqd3QMfz/IMG-20260422-175208-052.jpg"},
+  {"name":"مكتبة التطبيقات Lite","desc":"HDMosul🚀 • Lite تطبيقات منوعة يعمل بشكل صفحة وايب","link":"#","icon":"https://i.ibb.co/tMgcg6tc/file-00000000e70c7243a5ef35f19d97eabc.png"},
+  {"name":"Android TV متجر","desc":"متجر تطبيقات مثل سوق بلي مجاني لأجهزة شاشات والتيفي بوكس وشاشات السيارات. HDMosul🚀 •","link":"#","icon":"https://i.ibb.co/PvT20Ryk/aptoide-tv-icon.webp"},
+  {"name":"AuroraStore","desc":"متجر تطبيقات مثل سوق بلي مجاني لأجهزة شاشات والتيفي بوكس وشاشات السيارات. HDMosul🚀 •","link":"#","icon":"https://i.ibb.co/hRBZsrch/aurora-store.webp"},
+  {"name":"متجر إيموتن","desc":"متجر تطبيقات مثل سوق بلي مجاني لأجهزة شاشات والتيفي بوكس وشاشات السيارات HDMosul🚀 •","link":"#","icon":"https://i.ibb.co/GfvKFPvh/emotn-store.webp"},
+  {"name":"مباريات اليوم  اضغط","desc":"يمكنك معرفة مباريات اليوم بشكل تلقائيا HDMosul🚀","link":"#","icon":"https://i.ibb.co/9mt5JVRP/1776878144246-edit-129489298127946.png"},
+  {"name":"الدعم الفني","desc":"يمكنك ابلاغ عن طريق الايميل pqkbgfcn688@gmail.com","link":"#","icon":"https://i.ibb.co/Q3kRJr0y/IMG-20260422-183846-311.jpg"}
+];
 
 var appsList = [], storeList = [];
 
@@ -461,10 +503,9 @@ function applySettings() {
     document.getElementById('footerLine1').textContent = storeSettings.footer1;
     document.getElementById('footerLine2').textContent = storeSettings.footer2;
     applyMaintenanceMode();
-    applyAccessControl();   // ✅ استدعاء فحص كود الدخول
+    applyAccessControl();
 }
 
-// ✅ دوال كود الدخول (مضافة بالكامل)
 function applyAccessControl() {
     var accessModal = document.getElementById('accessCodeModal');
     var main = document.getElementById('mainContent');
@@ -781,7 +822,7 @@ window.addNewApp = addNewApp; window.saveEdit = saveEdit; window.cancelEdit = ca
 window.openDownloaderCode = openDownloaderCode;
 window.saveStoreEdit = saveStoreEdit; window.cancelStoreEdit = cancelStoreEdit; window.addNewStore = addNewStore;
 window.setTheme = setTheme;
-window.checkAccessCode = checkAccessCode;   // ✅ تعريض دالة كود الدخول
+window.checkAccessCode = checkAccessCode;
 
 // ========== بدء التشغيل ==========
 window.onload = function() {
@@ -791,4 +832,11 @@ window.onload = function() {
 })();
 </script>
 
+<!-- إخفاء الملاحظة بعد 6 ثوانٍ -->
+<script>
+setTimeout(function(){
+    var notice = document.getElementById('ethicalNotice');
+    if (notice) notice.style.display = 'none';
+}, 6000);
+</script>
 </body></html>
