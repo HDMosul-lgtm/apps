@@ -414,8 +414,8 @@ font-size: 0.85rem;
 
 <body>
 
-<!-- ========== الملاحظة الأخلاقية (تظهر تلقائياً 6 ثواني) ========== -->
-<div id="ethicalNotice" style="display: none;">
+<!-- ========== الملاحظة الأخلاقية (ستظهر تلقائياً وتختفي بعد 6 ثوانٍ) ========== -->
+<div id="ethicalNotice">
   <div class="notice-box">
     <div class="notice-icon"><i class="fas fa-exclamation-triangle"></i></div>
     <p class="notice-text">
@@ -1843,17 +1843,19 @@ loadTheme(); // تحميل الثيم المحفوظ (افتراضي نهاري)
 
 </script>
 
-<!-- ========== سكربت إخفاء الملاحظة الأخلاقية بعد 6 ثوانٍ ========== -->
+<!-- ========== سكربت إظهار الملاحظة ثم إخفاؤها بعد 6 ثوانٍ ========== -->
 <script>
-setTimeout(function() {
+(function() {
   var notice = document.getElementById('ethicalNotice');
-  if (notice) notice.style.display = 'none';
-}, 6000);
+  if (notice) {
+    // إظهار الملاحظة فوراً
+    notice.style.display = 'block';
+    // إخفاؤها بعد 6 ثوانٍ
+    setTimeout(function() {
+      notice.style.display = 'none';
+    }, 6000);
+  }
+})();
 </script>
-
-
-
-
-
 
 </body></html>
