@@ -414,8 +414,8 @@ font-size: 0.85rem;
 
 <body>
 
-<!-- ========== الملاحظة الأخلاقية (تظهر 6 ثواني) ========== -->
-<div id="ethicalNotice" style="display: none;">
+<!-- ========== الملاحظة الأخلاقية (تظهر تلقائياً 6 ثواني) ========== -->
+<div id="ethicalNotice">
   <div class="notice-box">
     <div class="notice-icon"><i class="fas fa-exclamation-triangle"></i></div>
     <p class="notice-text">
@@ -452,7 +452,7 @@ font-size: 0.85rem;
 
 <div class="info-pill">
 
-<div id="liveClock">2:58:12 PM</div>
+<div id="liveClock">3:02:25 PM</div>
 
 <div id="liveDate">الجمعة 2026-06-12</div>
 
@@ -1834,13 +1834,14 @@ loadTheme(); // تحميل الثيم المحفوظ (افتراضي نهاري)
 
 </script>
 
-<!-- ========== سكربت إخفاء الملاحظة الأخلاقية بعد 6 ثوانٍ (إضافة بسيطة) ========== -->
+<!-- ========== سكربت إخفاء الملاحظة الأخلاقية بعد 6 ثوانٍ ========== -->
 <script>
 setTimeout(function() {
   var notice = document.getElementById('ethicalNotice');
   if (notice) notice.style.display = 'none';
 }, 6000);
 </script>
+
 
 
 </body></html>
